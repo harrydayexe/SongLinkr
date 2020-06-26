@@ -8,11 +8,18 @@
 import Foundation
 
 extension Endpoint {
-    static func search(with songURL: String) -> Endpoint {
+    /**
+     The search function sets the endpoint path and adds the url query item to the query item array
+     
+     - Parameter encodedSongURL: The URL of the song being sent to the API
+     - Returns: An Endpoint object to allow chaining
+     - Important: The URL passed into the function must be percent encoded as it will be used in the API request. Use the `Network.encodeURL(from:)` function to percent encode the URL correctly
+     */
+    static func search(with encodedSongURL: String) -> Endpoint {
         return Endpoint(
             path: "/v1-alpha.1/links",
             queryItems: [
-                URLQueryItem(name: "url", value: songURL)
+                URLQueryItem(name: "url", value: encodedSongURL)
             ]
         )
     }
