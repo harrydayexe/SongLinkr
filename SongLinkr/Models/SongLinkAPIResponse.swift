@@ -13,7 +13,7 @@ public typealias EntityUniqueId = String
 /**
  The SongLinkAPIResponse struct contains support for decoding JSON objects from the Song.Link API
  */
-public struct SongLinkAPIResponse: Codable {
+public struct SongLinkAPIResponse: Codable, Equatable {
     /**
      The unique ID for the input entity that was supplied in the request.
      */
@@ -42,7 +42,7 @@ public struct SongLinkAPIResponse: Codable {
      - parameter data: Song.Link JSON `Data` to be converted
      - warning: This initialiser will fail if the Song.Link JSON provided to it cannot be decoded by a `JSONDecoder` into a `SongLinkAPIResponse` for whatever reason, such as an incomplete download or other badly formatted JSON.
      */
-    public init?(data: Data) {
+    public init?(data: Data) throws {
         let decoder = JSONDecoder()
         do {
             let response = try decoder.decode(SongLinkAPIResponse.self, from: data)
@@ -52,7 +52,15 @@ public struct SongLinkAPIResponse: Codable {
             self.entitiesByUniqueId = response.entitiesByUniqueId
             self.linksByPlatform = response.linksByPlatform
         } catch {
-            return nil
+            throw Network.DataLoaderError.decodingError(error)
         }
+    }
+    
+    public init(entityUniqueId: String, userCountry: String, pageUrl: URL, entitiesByUniqueId: [EntityUniqueId:Entity], linksByPlatform: [Platform.RawValue:PlatformInfo]) {
+        self.entityUniqueId = entityUniqueId
+        self.userCountry = userCountry
+        self.pageUrl = pageUrl
+        self.entitiesByUniqueId = entitiesByUniqueId
+        self.linksByPlatform = linksByPlatform
     }
 }

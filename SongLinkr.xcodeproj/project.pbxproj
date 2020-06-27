@@ -11,7 +11,7 @@
 		8C43CB0E24A6658E001B89A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB0D24A6658E001B89A0 /* ContentView.swift */; };
 		8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */; };
-		8C43CB1E24A66593001B89A0 /* SongLinkrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB1D24A66593001B89A0 /* SongLinkrTests.swift */; };
+		8C43CB1E24A66593001B89A0 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB1D24A66593001B89A0 /* NetworkTests.swift */; };
 		8C43CB2924A66593001B89A0 /* SongLinkrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB2824A66593001B89A0 /* SongLinkrUITests.swift */; };
 		8C43CB3824A66659001B89A0 /* SongLinkAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB3724A66659001B89A0 /* SongLinkAPIResponse.swift */; };
 		8C43CB3B24A666E2001B89A0 /* SongLinkAPIResponse+MusicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB3A24A666E2001B89A0 /* SongLinkAPIResponse+MusicType.swift */; };
@@ -25,6 +25,15 @@
 		8C43CB4A24A668D0001B89A0 /* Endpoint+url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4924A668D0001B89A0 /* Endpoint+url.swift */; };
 		8C43CB4C24A66944001B89A0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4B24A66944001B89A0 /* Network.swift */; };
 		8C43CB4D24A66944001B89A0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4B24A66944001B89A0 /* Network.swift */; };
+		8C43CB4E24A68875001B89A0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4424A66874001B89A0 /* Endpoint.swift */; };
+		8C43CB4F24A6887A001B89A0 /* SongLinkAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB3724A66659001B89A0 /* SongLinkAPIResponse.swift */; };
+		8C43CB5024A6887A001B89A0 /* SongLinkAPIResponse+Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4024A6673D001B89A0 /* SongLinkAPIResponse+Entity.swift */; };
+		8C43CB5124A6887A001B89A0 /* SongLinkAPIResponse+PlatformInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4224A66751001B89A0 /* SongLinkAPIResponse+PlatformInfo.swift */; };
+		8C43CB5224A6887A001B89A0 /* SongLinkAPIResponse+MusicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB3A24A666E2001B89A0 /* SongLinkAPIResponse+MusicType.swift */; };
+		8C43CB5324A6887A001B89A0 /* SongLinkAPIResponse+APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB3C24A66702001B89A0 /* SongLinkAPIResponse+APIProvider.swift */; };
+		8C43CB5424A6887A001B89A0 /* Endpoint+url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4924A668D0001B89A0 /* Endpoint+url.swift */; };
+		8C43CB5524A6887A001B89A0 /* SongLinkAPIResponse+Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB3E24A66725001B89A0 /* SongLinkAPIResponse+Platform.swift */; };
+		8C43CB5A24A75CF2001B89A0 /* SongLinkAPIResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB5924A75CF2001B89A0 /* SongLinkAPIResponseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +61,7 @@
 		8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8C43CB1424A66593001B89A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C43CB1924A66593001B89A0 /* SongLinkrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongLinkrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C43CB1D24A66593001B89A0 /* SongLinkrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrTests.swift; sourceTree = "<group>"; };
+		8C43CB1D24A66593001B89A0 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		8C43CB1F24A66593001B89A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongLinkrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C43CB2824A66593001B89A0 /* SongLinkrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrUITests.swift; sourceTree = "<group>"; };
@@ -67,6 +76,7 @@
 		8C43CB4624A668AD001B89A0 /* Endpoint+search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+search.swift"; sourceTree = "<group>"; };
 		8C43CB4924A668D0001B89A0 /* Endpoint+url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+url.swift"; sourceTree = "<group>"; };
 		8C43CB4B24A66944001B89A0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8C43CB5924A75CF2001B89A0 /* SongLinkAPIResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkAPIResponseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +148,8 @@
 		8C43CB1C24A66593001B89A0 /* SongLinkrTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C43CB1D24A66593001B89A0 /* SongLinkrTests.swift */,
+				8C43CB5924A75CF2001B89A0 /* SongLinkAPIResponseTests.swift */,
+				8C43CB1D24A66593001B89A0 /* NetworkTests.swift */,
 				8C43CB1F24A66593001B89A0 /* Info.plist */,
 			);
 			path = SongLinkrTests;
@@ -318,9 +329,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C43CB5124A6887A001B89A0 /* SongLinkAPIResponse+PlatformInfo.swift in Sources */,
 				8C43CB4824A668AD001B89A0 /* Endpoint+search.swift in Sources */,
-				8C43CB1E24A66593001B89A0 /* SongLinkrTests.swift in Sources */,
+				8C43CB5224A6887A001B89A0 /* SongLinkAPIResponse+MusicType.swift in Sources */,
+				8C43CB1E24A66593001B89A0 /* NetworkTests.swift in Sources */,
+				8C43CB4E24A68875001B89A0 /* Endpoint.swift in Sources */,
+				8C43CB4F24A6887A001B89A0 /* SongLinkAPIResponse.swift in Sources */,
+				8C43CB5A24A75CF2001B89A0 /* SongLinkAPIResponseTests.swift in Sources */,
+				8C43CB5024A6887A001B89A0 /* SongLinkAPIResponse+Entity.swift in Sources */,
+				8C43CB5324A6887A001B89A0 /* SongLinkAPIResponse+APIProvider.swift in Sources */,
+				8C43CB5424A6887A001B89A0 /* Endpoint+url.swift in Sources */,
 				8C43CB4D24A66944001B89A0 /* Network.swift in Sources */,
+				8C43CB5524A6887A001B89A0 /* SongLinkAPIResponse+Platform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,9 +489,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
-				DEVELOPMENT_TEAM = WQ55A92845;
+				DEVELOPMENT_TEAM = 5376Q5PJG7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -481,6 +502,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.SongLinkr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -491,9 +513,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
-				DEVELOPMENT_TEAM = WQ55A92845;
+				DEVELOPMENT_TEAM = 5376Q5PJG7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -503,6 +526,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.SongLinkr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -13,7 +13,7 @@ extension SongLinkAPIResponse {
      - important:
      A Platform will exist here only if there is a match found. E.g. if there is no YouTube match found, then neither `youtube` or `youtubeMusic` properties will exist here
      */
-    public struct PlatformInfo: Codable {
+    public struct PlatformInfo: Codable, Equatable {
         /**
          The unique ID for this entity. Use it to look up data about this entity at `entitiesByUniqueId[entityUniqueId]`
          */
