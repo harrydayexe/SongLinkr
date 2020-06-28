@@ -34,6 +34,10 @@
 		8C43CB5424A6887A001B89A0 /* Endpoint+url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4924A668D0001B89A0 /* Endpoint+url.swift */; };
 		8C43CB5524A6887A001B89A0 /* SongLinkAPIResponse+Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB3E24A66725001B89A0 /* SongLinkAPIResponse+Platform.swift */; };
 		8C43CB5A24A75CF2001B89A0 /* SongLinkAPIResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB5924A75CF2001B89A0 /* SongLinkAPIResponseTests.swift */; };
+		8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
+		8C81830E24A9269B0047193B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830D24A9269B0047193B /* ColorExtension.swift */; };
+		8C81831024A9408C0047193B /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830F24A9408C0047193B /* MainTextView.swift */; };
+		8C81831224A945F30047193B /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81831124A945F30047193B /* ResultsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +81,10 @@
 		8C43CB4924A668D0001B89A0 /* Endpoint+url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+url.swift"; sourceTree = "<group>"; };
 		8C43CB4B24A66944001B89A0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8C43CB5924A75CF2001B89A0 /* SongLinkAPIResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkAPIResponseTests.swift; sourceTree = "<group>"; };
+		8C81830824A908070047193B /* GetLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonStyle.swift; sourceTree = "<group>"; };
+		8C81830D24A9269B0047193B /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		8C81830F24A9408C0047193B /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
+		8C81831124A945F30047193B /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */,
-				8C43CB0D24A6658E001B89A0 /* ContentView.swift */,
+				8C81830724A907DB0047193B /* Views */,
+				8C81831324A94CD60047193B /* Supporting Views */,
+				8C81830A24A911760047193B /* Resources */,
 				8C43CB3624A665FD001B89A0 /* Models */,
 				8C43CB0F24A66593001B89A0 /* Assets.xcassets */,
 				8C43CB1424A66593001B89A0 /* Info.plist */,
@@ -179,6 +189,32 @@
 				8C43CB4224A66751001B89A0 /* SongLinkAPIResponse+PlatformInfo.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8C81830724A907DB0047193B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C43CB0D24A6658E001B89A0 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8C81830A24A911760047193B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8C81830824A908070047193B /* GetLinkButtonStyle.swift */,
+				8C81830D24A9269B0047193B /* ColorExtension.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8C81831324A94CD60047193B /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C81830F24A9408C0047193B /* MainTextView.swift */,
+				8C81831124A945F30047193B /* ResultsView.swift */,
+			);
+			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,11 +347,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C43CB0E24A6658E001B89A0 /* ContentView.swift in Sources */,
+				8C81831024A9408C0047193B /* MainTextView.swift in Sources */,
 				8C43CB4524A66874001B89A0 /* Endpoint.swift in Sources */,
+				8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */,
 				8C43CB4C24A66944001B89A0 /* Network.swift in Sources */,
 				8C43CB3824A66659001B89A0 /* SongLinkAPIResponse.swift in Sources */,
+				8C81830E24A9269B0047193B /* ColorExtension.swift in Sources */,
 				8C43CB4124A6673D001B89A0 /* SongLinkAPIResponse+Entity.swift in Sources */,
 				8C43CB4324A66751001B89A0 /* SongLinkAPIResponse+PlatformInfo.swift in Sources */,
+				8C81831224A945F30047193B /* ResultsView.swift in Sources */,
 				8C43CB3B24A666E2001B89A0 /* SongLinkAPIResponse+MusicType.swift in Sources */,
 				8C43CB3F24A66725001B89A0 /* SongLinkAPIResponse+Platform.swift in Sources */,
 				8C43CB0C24A6658E001B89A0 /* SongLinkrApp.swift in Sources */,
