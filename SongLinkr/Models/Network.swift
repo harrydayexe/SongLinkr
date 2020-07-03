@@ -26,7 +26,7 @@ public final class Network {
         /**
          This error signifies that something went wrong when trying to use the JSONDecoder to decode the received JSON into an object. The `Error` associated type is from the JSONDecoder and is normally of type `DecodingError`
          */
-        case decodingError(Error)
+        case decodingError()
     }
 
     /**
@@ -64,16 +64,44 @@ public final class Network {
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      - parameter handler: The completion handler. This is an `@escaping` closure to deal with when you call the function.
      */
-    static func request(_ endpoint: Endpoint, session: URLSession = .shared, then handler: @escaping (Result<Data>) -> Void) {
+    static func request(_ endpoint: Endpoint, session: URLSession = .shared, then handler: @escaping (Result<Data>) -> Result<SongLinkAPIResponse>) -> SongLinkAPIResponse {
         guard let url = endpoint.url else {
-            return handler(.failure(DataLoaderError.invalidURL))
+            print("Invalid URL")
         }
-
+        
+        var decodedResponse = SongLinkAPIResponse()
+        
         let task = session.dataTask(with: url) { data, response, error in
-            let result = data.map(Result.success) ?? .failure(DataLoaderError.network(error!))
-            handler(result)
+            let result = data.map(Result.success) ?? Result.failure(DataLoaderError.network(error!))
+            let handlerResult = handler(result)
+            
+            switch handlerResult {
+                case .success(let response):
+                    decodedResponse = response
+                case .failure(let error):
+                    print(error)
+            }
         }
         
         task.resume()
+        
+        return decodedResponse
+    }
+    
+    func apiCall(with queryURL: String) -> SongLinkAPIResponse {
+        let decodedResponse = Network.request(.search(with: Network.encodeURL(from: queryURL))) { (result) in
+            switch result {
+                case .success(let data):
+                    guard let decodedResponse = try? JSONDecoder().decode(SongLinkAPIResponse.self, from: data) else {
+                        return Result.failure(Network.DataLoaderError.decodingError())
+                    }
+                    return Result.success(decodedResponse)
+                    
+                case .failure(let error):
+                    return Result.failure(Network.DataLoaderError.network(error))
+            }
+        }
+        
+        return decodedResponse
     }
 }
