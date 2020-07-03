@@ -17,11 +17,11 @@ extension SongLinkAPIResponse {
         /**
          The unique ID for this entity. Use it to look up data about this entity at `entitiesByUniqueId[entityUniqueId]`
          */
-        public var entityUniqueId: String
+        public var entityUniqueId: String = ""
         /**
          The URL for this match
          */
-        public var url: URL
+        public var url: URL = URL(string: "")!
         /**
          The native app URI that can be used on mobile devices to open this entity directly in the native app
          */

@@ -15,11 +15,11 @@ extension SongLinkAPIResponse {
         /**
          This is the unique identifier on the streaming platform/API provider
          */
-        public var id: String
+        public var id: String = ""
         /**
          The type of the media
          */
-        public var type: MusicType
+        public var type: MusicType = .song
         /**
          The title of the media
          */
@@ -43,10 +43,10 @@ extension SongLinkAPIResponse {
         /**
          The  API provider that powered this match. Useful if you'd like to use this entity's data to query the API directly
          */
-        public var apiProvider: APIProvider
+        public var apiProvider: APIProvider = .amazon
         /**
          An array of platforms that are "powered" by this entity. E.g. an entity from Apple Music will generally have a `platforms` array of `["appleMusic", "itunes"]` since both those platforms/links are derived from this single entity
          */
-        public var platforms: [Platform]
+        public var platforms: [Platform] = [.amazonStore]
     }
 }

@@ -17,50 +17,23 @@ public struct SongLinkAPIResponse: Codable, Equatable {
     /**
      The unique ID for the input entity that was supplied in the request.
      */
-    public var entityUniqueId: String
+    public var entityUniqueId: String = ""
     /**
      The userCountry query param that was supplied in the request. It signals the country/availability we use to query the streaming platforms. Defaults to `US` if no userCountry supplied in the request.
      - Warning:
         As a fallback, our service may respond with matches that were found in a locale other than the userCountry supplied
      */
-    public var userCountry: String
+    public var userCountry: String = ""
     /**
      A URL that will render the Songlink page for this entity
      */
-    public var pageUrl: URL
+    public var pageUrl: URL = URL(string: "")!
     /**
      A collection of objects. Each key is a unique identifier for a streaming entity, and each value is an object that contains data for that entity, such as `title`, `artistName`, `thumbnailUrl`, etc.
      */
-    public var entitiesByUniqueId: [EntityUniqueId:Entity]
+    public var entitiesByUniqueId: [EntityUniqueId:Entity] = ["":Entity()]
     /**
      A collection of objects. Each key is a platform, and each value is an object that contains data for linking to the match
      */
-    public var linksByPlatform: [Platform.RawValue:PlatformInfo]
-    
-    /**
-     Creates a SongLinkAPIResponse struct from the Song.Link JSON data, if possible. This initialiser is simply a wrapper around a `JSONDecoder`
-     - parameter data: Song.Link JSON `Data` to be converted
-     - warning: This initialiser will fail if the Song.Link JSON provided to it cannot be decoded by a `JSONDecoder` into a `SongLinkAPIResponse` for whatever reason, such as an incomplete download or other badly formatted JSON.
-     */
-    public init?(data: Data) throws {
-        let decoder = JSONDecoder()
-        do {
-            let response = try decoder.decode(SongLinkAPIResponse.self, from: data)
-            self.entityUniqueId = response.entityUniqueId
-            self.userCountry = response.userCountry
-            self.pageUrl = response.pageUrl
-            self.entitiesByUniqueId = response.entitiesByUniqueId
-            self.linksByPlatform = response.linksByPlatform
-        } catch {
-            throw Network.DataLoaderError.decodingError(error)
-        }
-    }
-    
-    public init(entityUniqueId: String, userCountry: String, pageUrl: URL, entitiesByUniqueId: [EntityUniqueId:Entity], linksByPlatform: [Platform.RawValue:PlatformInfo]) {
-        self.entityUniqueId = entityUniqueId
-        self.userCountry = userCountry
-        self.pageUrl = pageUrl
-        self.entitiesByUniqueId = entitiesByUniqueId
-        self.linksByPlatform = linksByPlatform
-    }
+    public var linksByPlatform: [Platform.RawValue:PlatformInfo] = [Platform.amazonMusic.rawValue:PlatformInfo()]
 }
