@@ -35,12 +35,6 @@ public final class Network {
          This error is thrown when the HTTPS Status Code is not in the `2xx` range. The INT value is the status code receieved.
          */
         case serverSide(Int)
-    }
-    
-    /**
-     This Error type is supposed to provide more clarity for the user on why they received a 404.
-     */
-    enum ServerErrors: Error {
         /**
          This means the server understood the entity/platform of the link but could not find the actual item. This could be because of a missing character on an ID of a song for example.
          */
@@ -104,9 +98,22 @@ public final class Network {
             }
 //            Status code not in the 2xx range and therefore a 4xx or 5xx indicating bad URL or server problems etc.
             guard (200...299).contains(status) else {
+//                Try to decode response for more information
                 if let detailedResponse = BadResponse(data: data!) {
-                    handler(Result.failure(DataLoaderError.serverSideWithReason(detailedResponse.statusCode, detailedResponse.code)))
-                    return
+                    let reason = detailedResponse.code
+//                    Start to match against known responses and reasons
+                    if (reason == "could not resolve entity") {
+                        handler(Result.failure(DataLoaderError.unknownEntity))
+                        return
+                    } else if (reason == "could not fetch entity data") {
+                        handler(Result.failure(DataLoaderError.unknownItem))
+                        return
+                    } else {
+//                        Default for unknown error
+                        handler(Result.failure(DataLoaderError.serverSideWithReason(detailedResponse.statusCode, detailedResponse.code)))
+                        return
+                    }
+//                    Fallback Error type if response can't be decoded
                 } else {
                     handler(Result.failure(DataLoaderError.serverSide(status)))
                     return
@@ -140,5 +147,43 @@ public final class Network {
         }
         
         return returnValue
+    }
+    
+    /**
+     This function takes a `DataLoaderError` as an input and returns the error message dictionary for an alert as an output
+     - parameter dataLoaderError: The Error to generate a response for.
+     */
+    static func createErrorMessage(from dataLoaderError: DataLoaderError) -> [String : String] {
+        switch dataLoaderError {
+            case .network(let error):
+                print("Network Error")
+                print(error.localizedDescription)
+                return ["Network Error" : "Sorry something went wrong whilst talking to the server. Please try again."]
+                
+            case .serverSideWithReason(let code, let status):
+                print("Status Code: \(code), \(status)")
+                return ["Something went wrong" : "Sorry we're not quite sure what happened here. Received status code \(code) from the server with message: \(status)"]
+                
+            case .serverSide(let code):
+                print("Status Code: \(code)")
+                return ["Something went wrong" : "Sorry we're not quite sure what happened here. Received status code \(code) from the server"]
+                
+            case .decodingError(let error):
+                print("Decoding Error")
+                print(error.localizedDescription)
+                return ["Decoding Error" : "Sorry something went wrong whilst decoding the data received from the server. Please try again."]
+
+            case .invalidURL:
+                print("Invalid URL")
+                return ["Invalid URL" : "Sorry that URL is not valid."]
+
+            case .unknownEntity:
+                print("Unknown Entity")
+                return ["Unknown Platform" : "Sorry we couldn't recognise that platform. Check the supported list for more information on what platforms are supported and try again."]
+
+            case .unknownItem:
+                print("Unknown Item")
+                return ["Unknown Item" : "Sorry the server couldn't find a song or album with that link. Please check your link and try again"]
+        }
     }
 }
