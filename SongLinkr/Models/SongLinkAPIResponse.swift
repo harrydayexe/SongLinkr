@@ -27,7 +27,7 @@ public struct SongLinkAPIResponse: Codable, Equatable {
     /**
      A URL that will render the Songlink page for this entity
      */
-    public var pageUrl: URL = URL(string: "")!
+    public var pageUrl: URL = URL(string: "https://song.link")!
     /**
      A collection of objects. Each key is a unique identifier for a streaming entity, and each value is an object that contains data for that entity, such as `title`, `artistName`, `thumbnailUrl`, etc.
      */

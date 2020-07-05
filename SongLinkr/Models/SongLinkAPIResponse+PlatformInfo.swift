@@ -21,7 +21,7 @@ extension SongLinkAPIResponse {
         /**
          The URL for this match
          */
-        public var url: URL = URL(string: "")!
+        public var url: URL = URL(string: "https://song.link")!
         /**
          The native app URI that can be used on mobile devices to open this entity directly in the native app
          */

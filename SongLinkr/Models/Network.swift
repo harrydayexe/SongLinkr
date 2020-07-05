@@ -26,7 +26,15 @@ public final class Network {
         /**
          This error signifies that something went wrong when trying to use the JSONDecoder to decode the received JSON into an object. The `Error` associated type is from the JSONDecoder and is normally of type `DecodingError`
          */
-        case decodingError()
+        case decodingError(Error)
+        /**
+         This error is thrown when the HTTPS Status Code is not in the `2xx` range. The `Int` value is the status code receieved and the `String` is the server supplied reason for failure
+         */
+        case serverSideWithReason(Int, String)
+        /**
+         This error is thrown when the HTTPS Status Code is not in the `2xx` range. The INT value is the status code receieved.
+         */
+        case serverSide(Int)
     }
 
     /**
@@ -40,7 +48,7 @@ public final class Network {
         /**
          This indicates a failure when making a request. Access the `Error` associated type to find out more.
          */
-        case failure(Error)
+        case failure(DataLoaderError)
     }
 
     /**
@@ -64,44 +72,56 @@ public final class Network {
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      - parameter handler: The completion handler. This is an `@escaping` closure to deal with when you call the function.
      */
-    static func request(_ endpoint: Endpoint, session: URLSession = .shared, then handler: @escaping (Result<Data>) -> Result<SongLinkAPIResponse>) -> SongLinkAPIResponse {
+    static func request(_ endpoint: Endpoint, session: URLSession = .shared, then handler: @escaping (Result<Data>) -> Void) {
         guard let url = endpoint.url else {
-            print("Invalid URL")
+            handler(Result.failure(DataLoaderError.invalidURL))
+            return
         }
         
-        var decodedResponse = SongLinkAPIResponse()
-        
         let task = session.dataTask(with: url) { data, response, error in
-            let result = data.map(Result.success) ?? Result.failure(DataLoaderError.network(error!))
-            let handlerResult = handler(result)
+            let response = response as! HTTPURLResponse
+            let status = response.statusCode
             
-            switch handlerResult {
-                case .success(let response):
-                    decodedResponse = response
-                case .failure(let error):
-                    print(error)
+            
+//            No Response, timeout etc etc.
+            if let error = error {
+                handler(Result.failure(DataLoaderError.network(error)))
+                return
             }
+//            Status code not in the 2xx range and therefore a 4xx or 5xx indicating bad URL or server problems etc.
+            guard (200...299).contains(status) else {
+                if let detailedResponse = BadResponse(data: data!) {
+                    handler(Result.failure(DataLoaderError.serverSideWithReason(detailedResponse.statusCode, detailedResponse.code)))
+                    return
+                } else {
+                    handler(Result.failure(DataLoaderError.serverSide(status)))
+                    return
+                }
+            }
+            
+//            Getting to this point means the data is there and correct
+            handler(Result.success(data!))
+            return
         }
         
         task.resume()
-        
-        return decodedResponse
     }
     
-    func apiCall(with queryURL: String) -> SongLinkAPIResponse {
-        let decodedResponse = Network.request(.search(with: Network.encodeURL(from: queryURL))) { (result) in
-            switch result {
-                case .success(let data):
-                    guard let decodedResponse = try? JSONDecoder().decode(SongLinkAPIResponse.self, from: data) else {
-                        return Result.failure(Network.DataLoaderError.decodingError())
-                    }
-                    return Result.success(decodedResponse)
-                    
-                case .failure(let error):
-                    return Result.failure(Network.DataLoaderError.network(error))
-            }
+    static func fixDictionaries(response: SongLinkAPIResponse) -> [PlatformLinks] {
+        var returnValue: [PlatformLinks] = []
+        
+        for platform in response.linksByPlatform {
+            let platformValue = platform.value
+            returnValue.append(
+                PlatformLinks(
+                    id: platform.key,
+                    url: platformValue.url,
+                    nativeAppUriMobile: platformValue.nativeAppUriMobile,
+                    nativeAppUriDesktop: platformValue.nativeAppUriDesktop
+                )
+            )
         }
         
-        return decodedResponse
+        return returnValue
     }
 }
