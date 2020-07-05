@@ -153,37 +153,37 @@ public final class Network {
      This function takes a `DataLoaderError` as an input and returns the error message dictionary for an alert as an output
      - parameter dataLoaderError: The Error to generate a response for.
      */
-    static func createErrorMessage(from dataLoaderError: DataLoaderError) -> [String : String] {
+    static func createErrorMessage(from dataLoaderError: DataLoaderError) -> (String, String) {
         switch dataLoaderError {
             case .network(let error):
                 print("Network Error")
                 print(error.localizedDescription)
-                return ["Network Error" : "Sorry something went wrong whilst talking to the server. Please try again."]
+                return ("Network Error", "Sorry something went wrong whilst talking to the server. Please try again.")
                 
             case .serverSideWithReason(let code, let status):
                 print("Status Code: \(code), \(status)")
-                return ["Something went wrong" : "Sorry we're not quite sure what happened here. Received status code \(code) from the server with message: \(status)"]
+                return ("Something went wrong", "Sorry we're not quite sure what happened here. Received status code \(code) from the server with message: \(status)")
                 
             case .serverSide(let code):
                 print("Status Code: \(code)")
-                return ["Something went wrong" : "Sorry we're not quite sure what happened here. Received status code \(code) from the server"]
+                return ("Something went wrong", "Sorry we're not quite sure what happened here. Received status code \(code) from the server")
                 
             case .decodingError(let error):
                 print("Decoding Error")
                 print(error.localizedDescription)
-                return ["Decoding Error" : "Sorry something went wrong whilst decoding the data received from the server. Please try again."]
+                return ("Decoding Error", "Sorry something went wrong whilst decoding the data received from the server. Please try again.")
 
             case .invalidURL:
                 print("Invalid URL")
-                return ["Invalid URL" : "Sorry that URL is not valid."]
+                return ("Invalid URL", "Sorry that URL is not valid.")
 
             case .unknownEntity:
                 print("Unknown Entity")
-                return ["Unknown Platform" : "Sorry we couldn't recognise that platform. Check the supported list for more information on what platforms are supported and try again."]
+                return ("Unknown Platform", "Sorry we couldn't recognise that platform. Check the supported list for more information on what platforms are supported and try again.")
 
             case .unknownItem:
                 print("Unknown Item")
-                return ["Unknown Item" : "Sorry the server couldn't find a song or album with that link. Please check your link and try again"]
+                return ("Unknown Item", "Sorry the server couldn't find a song or album with that link. Please check your link and try again")
         }
     }
 }
