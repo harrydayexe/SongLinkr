@@ -36,6 +36,20 @@ public final class Network {
          */
         case serverSide(Int)
     }
+    
+    /**
+     This Error type is supposed to provide more clarity for the user on why they received a 404.
+     */
+    enum ServerErrors: Error {
+        /**
+         This means the server understood the entity/platform of the link but could not find the actual item. This could be because of a missing character on an ID of a song for example.
+         */
+        case unknownItem
+        /**
+         This happens when the API cannot identify the platform or entity of the link.
+         */
+        case unknownEntity
+    }
 
     /**
      This is used in the completion handler when making a request.
@@ -107,6 +121,9 @@ public final class Network {
         task.resume()
     }
     
+    /**
+     This function unpacks the data in a dictionary in `SongLinkAPIResponse` and returns an array of that data in the form of `[PlatformLinks]`. This is useful for when arrays are needed to dynamically generate UI.
+     */
     static func fixDictionaries(response: SongLinkAPIResponse) -> [PlatformLinks] {
         var returnValue: [PlatformLinks] = []
         
