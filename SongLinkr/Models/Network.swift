@@ -135,10 +135,11 @@ public final class Network {
         var returnValue: [PlatformLinks] = []
         
         for platform in response.linksByPlatform {
+            let platformType = SongLinkAPIResponse.Platform(rawValue: platform.key)!
             let platformValue = platform.value
             returnValue.append(
                 PlatformLinks(
-                    id: platform.key,
+                    id: platformType,
                     url: platformValue.url,
                     nativeAppUriMobile: platformValue.nativeAppUriMobile,
                     nativeAppUriDesktop: platformValue.nativeAppUriDesktop

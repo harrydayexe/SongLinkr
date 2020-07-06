@@ -14,7 +14,7 @@ public struct PlatformLinks: Identifiable {
     /**
      The unique ID for the song/album on the platform
      */
-    public var id: String
+    public var id: SongLinkAPIResponse.Platform
     /**
      The main URL for the platform
      */
