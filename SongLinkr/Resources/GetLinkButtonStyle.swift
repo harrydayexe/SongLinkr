@@ -14,7 +14,7 @@ struct GetLinkButtonStyle: ButtonStyle {
         configuration.label
             .foregroundColor(.white)
             .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [Color("AppRed"), Color("AppOrange")]), startPoint: .leading, endPoint: .trailing))
+            .background(LinearGradient(gradient: Gradient(colors: [Color("AppRed"), .accentColor]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(15.0)
     }
 }
