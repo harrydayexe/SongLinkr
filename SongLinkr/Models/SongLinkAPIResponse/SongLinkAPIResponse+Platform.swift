@@ -12,21 +12,21 @@ extension SongLinkAPIResponse {
      The `Platform` enum contains all the platforms that the Song.Link API retrieves results for.
      */
     public enum Platform: String, Codable {
-        case spotify = "Spotify"
-        case itunes = "iTunes"
-        case appleMusic = "Apple Music"
-        case youtube = "YouTube"
-        case youtubeMusic = "YouTube Music"
-        case google = "Google"
-        case googleStore = "Google Store"
-        case pandora = "Pandora"
-        case deezer = "Deezer"
-        case tidal = "Tidal"
-        case amazonStore = "Amazon Store"
-        case amazonMusic = "Amazon Music"
-        case soundcloud = "SoundCloud"
-        case napster = "Napster"
-        case yandex = "Yandex"
-        case spinrilla = "Spinrilla"
+        case spotify
+        case itunes
+        case appleMusic
+        case youtube
+        case youtubeMusic
+        case google
+        case googleStore
+        case pandora
+        case deezer
+        case tidal
+        case amazonStore
+        case amazonMusic
+        case soundcloud
+        case napster
+        case yandex
+        case spinrilla
     }
 }

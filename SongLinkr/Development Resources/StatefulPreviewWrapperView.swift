@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/**
+ A Wrapper to enable custom types be used as a binding in SwiftUI previews
+ `StatefulPreviewWrapper(false) { ContentView(enabled: $0) }`
+ */
 struct StatefulPreviewWrapper<Value, Content: View>: View {
     @State var value: Value
     var content: (Binding<Value>) -> Content

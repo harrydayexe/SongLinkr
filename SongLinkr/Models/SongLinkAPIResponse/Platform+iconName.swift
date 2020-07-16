@@ -13,33 +13,33 @@ extension SongLinkAPIResponse.Platform {
             case .spotify:
                 return "SpotifyLogoWhite"
             case .itunes:
-                return "iTunes"
+                return "iTunesLogoWhite"
             case .appleMusic:
-                return "Apple Music"
+                return "AppleMusicLogoWhite"
             case .youtube:
-                return "YouTube"
+                return "YouTubeLogoWhite"
             case .youtubeMusic:
-                return "YouTube Music"
+                return "YouTubeLogoWhite"
             case .google:
-                return "Google"
+                return "PlayMusicLogo"
             case .googleStore:
-                return "Google Store"
+                return "PlayStoreLogo"
             case .pandora:
-                return "Pandora"
+                return "PandoraLogoWhite"
             case .deezer:
-                return "Deezer"
+                return "DeezerLogoWhite"
             case .tidal:
-                return "Tidal"
+                return "TidalLogoWhite"
             case .amazonStore:
-                return "Amazon Store"
+                return "AmazonLogoWhite"
             case .amazonMusic:
-                return "Amazon Music"
+                return "PrimeLogoWhite"
             case .soundcloud:
-                return "SoundCloud"
+                return "SoundcloudLogoWhite"
             case .napster:
-                return "Napster"
+                return "NapsterLogoWhite"
             case .yandex:
-                return "Yandex"
+                return "YandexLogoColor"
             case .spinrilla:
                 return "Spinrilla"
         }
