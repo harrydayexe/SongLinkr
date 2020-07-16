@@ -12,8 +12,6 @@ struct ContentView: View {
     @State var searchURL: String = ""
     @State var showResults: Bool = false
     @State var response: [PlatformLinks] = []
-    @State var showError: Bool = false
-    @State var errorDescription: (String, String) = ("", "")
     
     var body: some View {
         ZStack {
@@ -21,49 +19,11 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 MainTextView(searchURL: self.$searchURL)
-                Button(action: {
-                    self.callInProgress = true
-                    
-                    Network.request(.search(with: Network.encodeURL(from: self.searchURL))) { (result) in
-                        switch result {
-                            case .success(let data):
-                                do {
-                                    let decodedResponse = try JSONDecoder().decode(SongLinkAPIResponse.self, from: data)
-                                    self.response = Network.fixDictionaries(response: decodedResponse)
-                                    
-                                    self.callInProgress = false
-                                    self.showResults = true
-                                } catch {
-                                    self.showResults = false
-                                    self.callInProgress = false
-                                    
-                                    self.errorDescription = Network.createErrorMessage(from: Network.DataLoaderError.decodingError(error))
-                                    
-                                    self.showError = true
-//                                    TODO: Error alert here
-                                }
-                            case .failure(let dataLoaderError):
-                                self.showResults = false
-                                self.callInProgress = false
-                                
-                                self.errorDescription = Network.createErrorMessage(from: dataLoaderError)
-                                
-                                self.showError = true
-//                                TODO: Error alert here
-                        }
-                    }
-                }) {
-                    GetLinkButtonView(callInProgress: self.$callInProgress)
-                }
-                .alert(isPresented: self.$showError) {
-                    Alert(title: Text(self.errorDescription.0), message: Text(self.errorDescription.1), dismissButton: .cancel())
-                }
-                .buttonStyle(GetLinkButtonStyle())
-                .padding()
+                GetLinkButton(callInProgress: self.$callInProgress, searchURL: self.$searchURL, showResults: self.$showResults, response: self.$response)
             }
         }
         .sheet(isPresented: self.$showResults) {
-            ResultsView(showResults: self.$showResults, response: self.response)
+            ResultsView(showResults: self.$showResults, response: self.$response)
         }
     }
 }
