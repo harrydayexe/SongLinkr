@@ -22,6 +22,11 @@ struct ContentView: View {
                 GetLinkButton(callInProgress: self.$callInProgress, searchURL: self.$searchURL, showResults: self.$showResults, response: self.$response)
             }
         }
+        .onAppear(perform: {
+            if UIPasteboard.general.hasURLs {
+                searchURL = "\(UIPasteboard.general.url!)"
+            }
+        })
         .sheet(isPresented: self.$showResults) {
             ResultsView(showResults: self.$showResults, response: self.$response)
         }

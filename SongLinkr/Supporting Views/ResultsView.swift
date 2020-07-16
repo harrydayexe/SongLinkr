@@ -13,7 +13,7 @@ struct ResultsView: View {
     @Binding var response: [PlatformLinks]
     
     var gridItemLayout = [
-        GridItem(.adaptive(minimum: 200))
+        GridItem(.adaptive(minimum: 250))
     ]
     
     
@@ -24,18 +24,19 @@ struct ResultsView: View {
                 LazyVGrid(columns: gridItemLayout, spacing: 20) {
                     ForEach(response) { platform in
                         PlatformLinkButtonView(platform: platform)
+                            .popover(
+                                isPresented: self.$showShareSheet,
+                                attachmentAnchor: .point(.bottom),
+                                arrowEdge: .bottom
+                            ) {
+                                ActivityView(activityItems: [platform.url] as [Any], applicationActivities: nil)
+                            }
                             .contextMenu {
                                 Button(action: {
                                     self.showShareSheet = true
                                 }) {
                                     Text("Share")
                                     Image(systemName: "square.and.arrow.up")
-                                }
-                                .popover(
-                                    isPresented: self.$showShareSheet,
-                                    arrowEdge: .top
-                                ) {
-                                    ActivityView(activityItems: [platform.url] as [Any], applicationActivities: nil)
                                 }
                                 
                                 Button(action: { UIPasteboard.general.url = platform.url }) {
