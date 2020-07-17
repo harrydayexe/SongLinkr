@@ -2,53 +2,112 @@
 //  SongLinkAPIResponseTests.swift
 //  SongLinkrTests
 //
-//  Created by Harry Day on 27/06/2020.
+//  Created by Harry Day on 17/07/2020.
 //
 
 import XCTest
 @testable import SongLinkr
 
 class SongLinkAPIResponseTests: XCTestCase {
-    
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
     }
     
-    func testDecodeGoodData() {
-        // Given
-        let amazon = SongLinkAPIResponse.Entity(id: "B081QMVJ42", type: SongLinkAPIResponse.MusicType.song, title: "Angst", artistName: "Inzo", thumbnailUrl: URL(string: "https://m.media-amazon.com/images/I/51aEjxYscCL._AA500.jpg"), thumbnailWidth: 500, thumbnailHeight: 500, apiProvider: SongLinkAPIResponse.APIProvider.amazon, platforms: [SongLinkAPIResponse.Platform.amazonMusic, SongLinkAPIResponse.Platform.amazonStore])
+    func testBlankInit() {
+        let response = SongLinkAPIResponse()
         
-        let youtube = SongLinkAPIResponse.Entity(id: "QfnVrp2bPuE", type: SongLinkAPIResponse.MusicType.song, title: "INZO - Angst", artistName: "Lowly.", thumbnailUrl: URL(string: "https://i.ytimg.com/vi/QfnVrp2bPuE/hqdefault.jpg"), thumbnailWidth: 480, thumbnailHeight: 360, apiProvider: SongLinkAPIResponse.APIProvider.youtube, platforms: [SongLinkAPIResponse.Platform.youtube, SongLinkAPIResponse.Platform.youtubeMusic])
+        let targetPageURL: URL = "https://song.link"
+        let entityCount = response.entitiesByUniqueId.count
+        let platformCount = response.linksByPlatform.count
+        let targetEntity = ["":SongLinkAPIResponse.Entity()]
+        let targetPlatform = [SongLinkAPIResponse.Platform.amazonMusic.rawValue:SongLinkAPIResponse.PlatformInfo()]
         
-        let amazonMusic = SongLinkAPIResponse.PlatformInfo(entityUniqueId: "AMAZON_SONG::B081QMVJ42", url: URL(string: "https://music.amazon.com/albums/B081QNFXHB?trackAsin=B081QMVJ42&do=play")!)
-        
-        let amazonStore = SongLinkAPIResponse.PlatformInfo(entityUniqueId: "AMAZON_SONG::B081QMVJ42", url: URL(string: "https://amazon.com/dp/B081QMVJ42?tag=songlink0d-20")!)
-        
-        let youtubePlatform = SongLinkAPIResponse.PlatformInfo(entityUniqueId: "YOUTUBE_VIDEO::QfnVrp2bPuE", url: URL(string: "https://www.youtube.com/watch?v=QfnVrp2bPuE")!)
-        
-        let youtubeMusic = SongLinkAPIResponse.PlatformInfo(entityUniqueId: "YOUTUBE_VIDEO::QfnVrp2bPuE", url: URL(string: "https://music.youtube.com/watch?v=QfnVrp2bPuE")!)
-        
-        let target = SongLinkAPIResponse(entityUniqueId: "YOUTUBE_VIDEO::QfnVrp2bPuE", userCountry: "US", pageUrl: URL(string: "https://song.link/y/QfnVrp2bPuE")!, entitiesByUniqueId: ["AMAZON_SONG::B081QMVJ42":amazon, "YOUTUBE_VIDEO::QfnVrp2bPuE":youtube], linksByPlatform: [SongLinkAPIResponse.Platform.amazonMusic.rawValue:amazonMusic, SongLinkAPIResponse.Platform.amazonStore.rawValue:amazonStore, SongLinkAPIResponse.Platform.youtube.rawValue:youtubePlatform, SongLinkAPIResponse.Platform.youtubeMusic.rawValue:youtubeMusic])
-
-
-        do {
-            let response = try SongLinkAPIResponse(data: goodJSON)
-            XCTAssertEqual(response, target, "Did not decode correctly")
-        } catch {
-            XCTFail("Should not fail with this JSON input")
+        XCTAssertEqual(response.entityUniqueId, "", "Unexpected non empty string init")
+        XCTAssertEqual(response.userCountry, "", "Unexpected non empty string init")
+        XCTAssertEqual(response.pageUrl, targetPageURL, "Incorrect default URL")
+        XCTAssertEqual(entityCount, 1, "Incorrect defualt number of Entities by unique ID")
+        XCTAssertEqual(platformCount, 1, "Incorrect defualt number of Links By Platforms")
+        XCTAssertEqual(response.entitiesByUniqueId, targetEntity, "Incorrect default EntityByUniqueID")
+        XCTAssertEqual(response.linksByPlatform, targetPlatform, "Incorrect default Links by Platform")
+    }
+    
+    func testDisplayName() {
+        for platform in SongLinkAPIResponse.Platform.allCases {
+            switch platform {
+                case .spotify:
+                    XCTAssertEqual(platform.displayName, "Spotify", "Incorrect Display Name")
+                case .itunes:
+                    XCTAssertEqual(platform.displayName, "iTunes", "Incorrect Display Name")
+                case .appleMusic:
+                    XCTAssertEqual(platform.displayName, "Apple Music", "Incorrect Display Name")
+                case .youtube:
+                    XCTAssertEqual(platform.displayName, "YouTube", "Incorrect Display Name")
+                case .youtubeMusic:
+                    XCTAssertEqual(platform.displayName, "YouTube Music", "Incorrect Display Name")
+                case .google:
+                    XCTAssertEqual(platform.displayName, "Google", "Incorrect Display Name")
+                case .googleStore:
+                    XCTAssertEqual(platform.displayName, "Google Store", "Incorrect Display Name")
+                case .pandora:
+                    XCTAssertEqual(platform.displayName, "Pandora", "Incorrect Display Name")
+                case .deezer:
+                    XCTAssertEqual(platform.displayName, "Deezer", "Incorrect Display Name")
+                case .tidal:
+                    XCTAssertEqual(platform.displayName, "Tidal", "Incorrect Display Name")
+                case .amazonStore:
+                    XCTAssertEqual(platform.displayName, "Amazon Store", "Incorrect Display Name")
+                case .amazonMusic:
+                    XCTAssertEqual(platform.displayName, "Amazon Music", "Incorrect Display Name")
+                case .soundcloud:
+                    XCTAssertEqual(platform.displayName, "SoundCloud", "Incorrect Display Name")
+                case .napster:
+                    XCTAssertEqual(platform.displayName, "Napster", "Incorrect Display Name")
+                case .yandex:
+                    XCTAssertEqual(platform.displayName, "Yandex", "Incorrect Display Name")
+                case .spinrilla:
+                    XCTAssertEqual(platform.displayName, "Spinrilla", "Incorrect Display Name")
+            }
         }
     }
     
-    func testDecodeGoodJSONBadData() {
-        XCTAssertThrowsError(try SongLinkAPIResponse(data: goodJSONbadData)) { error in
-            XCTAssertTrue(error is Network.DataLoaderError, "Unexpected error type")
-        }
-    }
-    
-    func testDecodeBadJSON() {
-        XCTAssertThrowsError(try SongLinkAPIResponse(data: goodJSONbadData)) { error in
-            XCTAssertTrue(error is Network.DataLoaderError, "Unexpected error type")
+    func testIconName() {
+        for platform in SongLinkAPIResponse.Platform.allCases {
+            switch platform {
+                case .spotify:
+                    XCTAssertEqual(platform.iconName, "SpotifyLogoWhite", "Incorrect Display Name")
+                case .itunes:
+                    XCTAssertEqual(platform.iconName, "iTunesLogoWhite", "Incorrect Display Name")
+                case .appleMusic:
+                    XCTAssertEqual(platform.iconName, "AppleMusicLogoWhite", "Incorrect Display Name")
+                case .youtube:
+                    XCTAssertEqual(platform.iconName, "YouTubeLogoWhite", "Incorrect Display Name")
+                case .youtubeMusic:
+                    XCTAssertEqual(platform.iconName, "YouTubeLogoWhite", "Incorrect Display Name")
+                case .google:
+                    XCTAssertEqual(platform.iconName, "PlayMusicLogo", "Incorrect Display Name")
+                case .googleStore:
+                    XCTAssertEqual(platform.iconName, "PlayStoreLogo", "Incorrect Display Name")
+                case .pandora:
+                    XCTAssertEqual(platform.iconName, "PandoraLogoWhite", "Incorrect Display Name")
+                case .deezer:
+                    XCTAssertEqual(platform.iconName, "DeezerLogoWhite", "Incorrect Display Name")
+                case .tidal:
+                    XCTAssertEqual(platform.iconName, "TidalLogoWhite", "Incorrect Display Name")
+                case .amazonStore:
+                    XCTAssertEqual(platform.iconName, "AmazonLogoWhite", "Incorrect Display Name")
+                case .amazonMusic:
+                    XCTAssertEqual(platform.iconName, "PrimeLogoWhite", "Incorrect Display Name")
+                case .soundcloud:
+                    XCTAssertEqual(platform.iconName, "SoundcloudLogoWhite", "Incorrect Display Name")
+                case .napster:
+                    XCTAssertEqual(platform.iconName, "NapsterLogoWhite", "Incorrect Display Name")
+                case .yandex:
+                    XCTAssertEqual(platform.iconName, "YandexLogoColor", "Incorrect Display Name")
+                case .spinrilla:
+                    XCTAssertEqual(platform.iconName, "SpinrillaLogoWhite", "Incorrect Display Name")
+            }
         }
     }
 
@@ -57,167 +116,3 @@ class SongLinkAPIResponseTests: XCTestCase {
         super.tearDown()
     }
 }
-
-private let goodJSON = Data("""
-                {
-                  "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE",
-                  "userCountry": "US",
-                  "pageUrl": "https://song.link/y/QfnVrp2bPuE",
-                  "entitiesByUniqueId": {
-                    "AMAZON_SONG::B081QMVJ42": {
-                      "id": "B081QMVJ42",
-                      "type": "song",
-                      "title": "Angst",
-                      "artistName": "Inzo",
-                      "thumbnailUrl": "https://m.media-amazon.com/images/I/51aEjxYscCL._AA500.jpg",
-                      "thumbnailWidth": 500,
-                      "thumbnailHeight": 500,
-                      "apiProvider": "amazon",
-                      "platforms": [
-                        "amazonMusic",
-                        "amazonStore"
-                      ]
-                    },
-                    "YOUTUBE_VIDEO::QfnVrp2bPuE": {
-                      "id": "QfnVrp2bPuE",
-                      "type": "song",
-                      "title": "INZO - Angst",
-                      "artistName": "Lowly.",
-                      "thumbnailUrl": "https://i.ytimg.com/vi/QfnVrp2bPuE/hqdefault.jpg",
-                      "thumbnailWidth": 480,
-                      "thumbnailHeight": 360,
-                      "apiProvider": "youtube",
-                      "platforms": [
-                        "youtube",
-                        "youtubeMusic"
-                      ]
-                    }
-                  },
-                  "linksByPlatform": {
-                    "amazonMusic": {
-                      "url": "https://music.amazon.com/albums/B081QNFXHB?trackAsin=B081QMVJ42&do=play",
-                      "entityUniqueId": "AMAZON_SONG::B081QMVJ42"
-                    },
-                    "amazonStore": {
-                      "url": "https://amazon.com/dp/B081QMVJ42?tag=songlink0d-20",
-                      "entityUniqueId": "AMAZON_SONG::B081QMVJ42"
-                    },
-                    "youtube": {
-                      "url": "https://www.youtube.com/watch?v=QfnVrp2bPuE",
-                      "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE"
-                    },
-                    "youtubeMusic": {
-                      "url": "https://music.youtube.com/watch?v=QfnVrp2bPuE",
-                      "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE"
-                    }
-                  }
-                }
-""".utf8)
-private let goodJSONbadData = Data("""
-                {
-                  "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE",
-                  "userCountry": "US",
-                  "pageUrl": "https://song.link/y/QfnVrp2bPuE",
-                  "entitiesByUniqueId": {
-                    "AMAZON_SONG::B081QMVJ42": {
-                      "id": "B081QMVJ42",
-                      "type": "song",
-                      "title": "Angst",
-                      "artistName": "Inzo",
-                      "thumbnailUrl": "https://m.media-amazon.com/images/I/51aEjxYscCL._AA500.jpg",
-                      "thumbnailWidth": 500,
-                      "thumbnailHeight": 500,
-                      "apiProvider": "amazon",
-                      "platforms": [
-                        "amazonMusic",
-                        "amazonStore"
-                      ]
-                    },
-                    "YOUTUBE_VIDEO::QfnVrp2bPuE": {
-                      "id": "QfnVrp2bPuE",
-                      "title": "INZO - Angst",
-                      "artistName": "Lowly.",
-                      "thumbnailUrl": "https://i.ytimg.com/vi/QfnVrp2bPuE/hqdefault.jpg",
-                      "thumbnailWidth": 480,
-                      "thumbnailHeight": 360,
-                      "apiProvider": "youtube",
-                      "platforms": [
-                        "youtube",
-                        "youtubeMusic"
-                      ]
-                    }
-                  },
-                  "linksByPlatform": {
-                    "amazonMusic": {
-                      "url": "https://music.amazon.com/albums/B081QNFXHB?trackAsin=B081QMVJ42&do=play"
-                    },
-                    "amazonStore": {
-                      "url": "https://amazon.com/dp/B081QMVJ42?tag=songlink0d-20",
-                      "entityUniqueId": "AMAZON_SONG::B081QMVJ42"
-                    },
-                    "youtube": {
-                      "url": "https://www.youtube.com/watch?v=QfnVrp2bPuE",
-                      "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE"
-                    },
-                    "youtubeMusic": {
-                      "url": "https://music.youtube.com/watch?v=QfnVrp2bPuE",
-                      "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE"
-                    }
-                  }
-                }
-""".utf8)
-private let badJSON = Data("""
-                {
-                  "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE",
-                  "userCountry": "US",
-                  "pageUrl": "https://song.link/y/QfnVrp2bPuE",
-                  "entitiesByUniqueId": {
-                    "AMAZON_SONG::B081QMVJ42": {
-                      "id": "B081QMVJ42",
-                      "type": "song",
-                      "title": "Angst",
-                      "artistName": "Inzo",
-                      "thumbnailUrl": "https://m.media-amazon.com/images/I/51aEjxYscCL._AA500.jpg",
-                      "thumbnailWidth": 500,
-                      "thumbnailHeight": 500,
-                      "apiProvider": "amazon",
-                      "platforms": [
-                        "amazonMusic",
-                        "amazonStore"
-                      ]
-                    },
-                    "YOUTUBE_VIDEO::QfnVrp2bPuE": {
-                      "id": "QfnVrp2bPuE",
-                      "type": "song",
-                      "title": "INZO - Angst",
-                      "artistName": "Lowly.",
-                      "thumbnailUrl": "https://i.ytimg.com/vi/QfnVrp2bPuE/hqdefault.jpg",
-                      "thumbnailWidth": 480,
-                      "thumbnailHeight": 360,
-                      "apiProvider": "youtube",
-                      "platforms": [
-                        "youtube",
-                        "youtubeMusic"
-                      ]
-                    },
-                 
-                  "linksByPlatform": {
-                    "amazonMusic": {
-                      "url": "https://music.amazon.com/albums/B081QNFXHB?trackAsin=B081QMVJ42&do=play"
-                    },
-                    "amazonStore": {
-                      "url": "https://amazon.com/dp/B081QMVJ42?tag=songlink0d-20",
-                      "entityUniqueId": "AMAZON_SONG::B081QMVJ42"
-                    },
-                    "youtube": {
-                      "url": "https://www.youtube.com/watch?v=QfnVrp2bPuE",
-                      "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE"
-                    },
-                    "youtubeMusic": {
-                      "url": "https://music.youtube.com/watch?v=QfnVrp2bPuE",
-                      "entityUniqueId": "YOUTUBE_VIDEO::QfnVrp2bPuE"
-                    }
-                }
-""".utf8)
-
-

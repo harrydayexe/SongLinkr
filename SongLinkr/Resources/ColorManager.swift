@@ -72,11 +72,3 @@ struct ColorManager {
     static let spinrillaPurple = Color(red: 64/255, green: 14/255, blue: 83/255)
 }
 
-struct ColorManager_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            Text("")
-            ColorManager.pandoraBlue
-        }
-    }
-}

@@ -10,7 +10,7 @@ import Foundation
 /**
  The `PlatformLinks` struct is used to hold the links to each platform after a request has been made. This is used to replace the dictionary from the JSON response to easily create buttons dynamically using SwiftUI
  */
-public struct PlatformLinks: Identifiable {
+public struct PlatformLinks: Identifiable, Equatable {
     /**
      The unique ID for the song/album on the platform
      */

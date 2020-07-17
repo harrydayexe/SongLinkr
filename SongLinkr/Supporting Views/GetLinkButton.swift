@@ -17,33 +17,35 @@ struct GetLinkButton: View {
     
     var body: some View {
         Button(action: {
-            self.callInProgress = true
-            
-            Network.request(.search(with: Network.encodeURL(from: self.searchURL))) { (result) in
-                switch result {
-                    case .success(let data):
-                        do {
-                            let decodedResponse = try JSONDecoder().decode(SongLinkAPIResponse.self, from: data)
-                            self.response = Network.fixDictionaries(response: decodedResponse).sorted(by: { $0.id.rawValue < $1.id.rawValue })
-                            print(self.response)
-                            
-                            self.callInProgress = false
-                            self.showResults = true
-                        } catch {
+            if self.searchURL != "" {
+                self.callInProgress = true
+                
+                Network.request(.search(with: Network.encodeURL(from: self.searchURL))) { (result) in
+                    switch result {
+                        case .success(let data):
+                            do {
+                                let decodedResponse = try JSONDecoder().decode(SongLinkAPIResponse.self, from: data)
+                                self.response = Network.fixDictionaries(response: decodedResponse).sorted(by: { $0.id.rawValue < $1.id.rawValue })
+                                print(self.response)
+                                
+                                self.callInProgress = false
+                                self.showResults = true
+                            } catch {
+                                self.showResults = false
+                                self.callInProgress = false
+                                
+                                self.errorDescription = Network.createErrorMessage(from: Network.DataLoaderError.decodingError(error))
+                                
+                                self.showError = true
+                            }
+                        case .failure(let dataLoaderError):
                             self.showResults = false
                             self.callInProgress = false
-                            
-                            self.errorDescription = Network.createErrorMessage(from: Network.DataLoaderError.decodingError(error))
+                            print(dataLoaderError)
+                            self.errorDescription = Network.createErrorMessage(from: dataLoaderError)
                             
                             self.showError = true
-                        }
-                    case .failure(let dataLoaderError):
-                        self.showResults = false
-                        self.callInProgress = false
-                        print(dataLoaderError)
-                        self.errorDescription = Network.createErrorMessage(from: dataLoaderError)
-                        
-                        self.showError = true
+                    }
                 }
             }
         }) {
@@ -54,6 +56,7 @@ struct GetLinkButton: View {
         }
         .buttonStyle(GetLinkButtonStyle())
         .padding()
+        .disabled(self.searchURL == "")
     }
 }
 

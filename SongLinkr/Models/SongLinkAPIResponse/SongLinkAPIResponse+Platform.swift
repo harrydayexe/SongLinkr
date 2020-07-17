@@ -11,7 +11,7 @@ extension SongLinkAPIResponse {
     /**
      The `Platform` enum contains all the platforms that the Song.Link API retrieves results for.
      */
-    public enum Platform: String, Codable {
+    public enum Platform: String, Codable, CaseIterable {
         case spotify
         case itunes
         case appleMusic

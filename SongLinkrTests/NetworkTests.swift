@@ -1,43 +1,17 @@
 //
-//  SongLinkrTests.swift
+//  NetworkTests.swift
 //  SongLinkrTests
 //
-//  Created by Harry Day on 26/06/2020.
+//  Created by Harry Day on 04/07/2020.
 //
 
 import XCTest
-@testable import SongLinkr
 
 class NetworkTests: XCTestCase {
-    
-    private var session: URLSessionMock!
-    
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        session = URLSessionMock()
-    }
-    
-    func testInvalidURLReturnsNil() {
-        // Given
-        let endpoint: Endpoint = Endpoint(
-            path: "v1-alpha.1/links",
-            queryItems: [
-                URLQueryItem(name: "url", value: "https%3A//youtu.be/QfnVrp2bPuE")
-            ]
-        )
-        let error = Network.DataLoaderError.invalidURL
-        self.session.error = error
-        
-        // When
-        Network.request(endpoint, session: session) { result in
-            switch result {
-                case .success(_):
-                    XCTFail("Should not be able to perform a data task with an incorrect url")
-                case .failure(let error):
-                    XCTAssertTrue(error is Network.DataLoaderError, "Unexpected error type")
-            }
-        }
     }
     
     func testURLEncodeCorrectly() {
@@ -52,89 +26,64 @@ class NetworkTests: XCTestCase {
         XCTAssertEqual(testURL1, encoded1, "Percent Encoded Wrong")
     }
     
-    func testURLReceived() {
-        // Create data and tell session to always return it
-        let data = Data([0, 1, 0, 1])
-        self.session.data = data
+    func testFixDictionaries() {
+        typealias Platform = SongLinkAPIResponse.Platform
+        typealias PlatformInfo = SongLinkAPIResponse.PlatformInfo
         
-        let testURLString = "testurlstring"
+//        Given
+        let platforms: [Platform.RawValue : PlatformInfo] = [Platform.amazonMusic.rawValue : PlatformInfo(entityUniqueId: "amazonMusic", url: "https://song.link/testURL")]
         
-        Network.request(.search(with: testURLString), session: session) { result in
-            XCTAssert(self.session.url == URL(string: "https://api.song.link/v1-alpha.1/links?url=\(testURLString)"))
-        }
+        let response = SongLinkAPIResponse(entityUniqueId: "testID", userCountry: "US", pageUrl: "https://song.link", entitiesByUniqueId: ["":SongLinkAPIResponse.Entity()], linksByPlatform: platforms)
+        
+//        When
+        let fixedArray = Network.fixDictionaries(response: response).sorted(by: { $0.id.rawValue < $1.id.rawValue })
+        let targetArray = [PlatformLinks(id: Platform.amazonMusic, url: "https://song.link/testURL")]
+        
+        XCTAssertEqual(fixedArray, targetArray, "Array did not decode correctly")
     }
     
-    func testSuccessfulResponse() {
-        // Create data and tell session to always return it
-        let data = Data([0, 1, 0, 1])
-        self.session.data = data
-        let testURLString = "testurlstring"
+    func testCreateErrorMessage() {
+        typealias DLError = Network.DataLoaderError
+        let errors: [DLError] = [
+            DLError.invalidURL,
+            DLError.network(DLError.invalidURL),
+            DLError.decodingError(DLError.invalidURL),
+            DLError.serverSideWithReason(400, "Test Status"),
+            DLError.serverSide(200),
+            DLError.unknownItem,
+            DLError.unknownEntity
+        ]
         
-        Network.request(.search(with: testURLString), session: session) { result in
-            switch result {
-                case .success(let data):
-                    XCTAssertEqual(data, Data([0, 1, 0, 1]))
-                case .failure(_):
-                    XCTFail("Should not reach this point")
-            }
-        }
-    }
-    
-    func testBadResponse() {
-        let error = Network.DataLoaderError.invalidURL
-        self.session.error = error
-        let testURLString = "testurlstring"
-        
-        Network.request(.search(with: testURLString), session: session) { result in
-            switch result {
-                case .success(_):
-                    XCTFail("Should not reach this point")
-                case .failure(let error):
-                    XCTAssertTrue(error is Network.DataLoaderError, "Unexpected error type")
+        for error in errors {
+            let errorMessage = Network.createErrorMessage(from: error)
+            switch error {
+                case .invalidURL:
+                    XCTAssertEqual(errorMessage.0, "Invalid URL", "Incorrect title for error message")
+                    XCTAssertEqual(errorMessage.1, "Sorry that URL is not valid.", "Incorrect body for error message")
+                case .network(_):
+                    XCTAssertEqual(errorMessage.0, "Network Error", "Incorrect title for error message")
+                    XCTAssertEqual(errorMessage.1, "Sorry something went wrong whilst talking to the server. Please try again.", "Incorrect body for error message")
+                case .decodingError(_):
+                    XCTAssertEqual(errorMessage.0, "Decoding Error", "Incorrect title for error message")
+                    XCTAssertEqual(errorMessage.1, "Sorry something went wrong whilst decoding the data received from the server. Please try again.", "Incorrect body for error message")
+                case .serverSideWithReason(let code, let status):
+                    XCTAssertEqual(errorMessage.0, "Something went wrong", "Incorrect title for error message")
+                    XCTAssertEqual(errorMessage.1, "Sorry we're not quite sure what happened here. Received status code \(code) from the server with message: \(status)", "Incorrect body for error message")
+                case .serverSide(let code):
+                    XCTAssertEqual(errorMessage.0, "Something went wrong", "Incorrect title for error message")
+                    XCTAssertEqual(errorMessage.1, "Sorry we're not quite sure what happened here. Received status code \(code) from the server", "Incorrect body for error message")
+                case .unknownItem:
+                    XCTAssertEqual(errorMessage.0, "Unknown Item", "Incorrect title for error message")
+                    XCTAssertEqual(errorMessage.1, "Sorry the server couldn't find a song or album with that link. Please check your link and try again", "Incorrect body for error message")
+                case .unknownEntity:
+                    XCTAssertEqual(errorMessage.0, "Unknown Platform", "Incorrect title for error message")
+                    XCTAssertEqual(errorMessage.1, "Sorry we couldn't recognise that platform. Check the supported list for more information on what platforms are supported and try again.", "Incorrect body for error message")
             }
         }
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        session = nil
         super.tearDown()
-    }
-}
-
-
-// We create a partial mock by subclassing the original class
-class URLSessionDataTaskMock: URLSessionDataTask {
-    private let closure: () -> Void
-
-    init(closure: @escaping () -> Void) {
-        self.closure = closure
-    }
-
-    // We override the 'resume' method and simply call our closure
-    // instead of actually resuming any task.
-    override func resume() {
-        closure()
-    }
-}
-
-
-class URLSessionMock: URLSession {
-    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-    
-    // Properties that enable us to set exactly what data or error we want our mocked URLSession to return for any request.
-    var data: Data?
-    var error: Error?
-    var url: URL?
-    
-    
-    override func dataTask(with url: URL, completionHandler: @escaping CompletionHandler) -> URLSessionDataTask {
-        let data = self.data
-        let error = self.error
-        self.url = url
-        
-        return URLSessionDataTaskMock {
-            completionHandler(data, nil, error)
-        }
     }
 }
