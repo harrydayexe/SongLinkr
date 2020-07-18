@@ -17,8 +17,6 @@ struct ResultsView: View {
         GridItem(.adaptive(minimum: 250))
     ]
     
-    
-    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -54,6 +52,7 @@ struct ResultsView: View {
                                 }
                             }
                     }
+                    SongLinkCreditView()
                 }
                 .popover(
                     isPresented: self.$showShareSheet,
