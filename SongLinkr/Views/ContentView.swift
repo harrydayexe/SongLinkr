@@ -24,7 +24,9 @@ struct ContentView: View {
         }
         .onAppear(perform: {
             if UIPasteboard.general.hasURLs {
-                searchURL = "\(UIPasteboard.general.url!)"
+                if let copiedURL = UIPasteboard.general.url {
+                    self.searchURL = "\(copiedURL)"
+                }
             }
         })
         .sheet(isPresented: self.$showResults) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ResultsView: View {
     @State var showShareSheet = false
+    @State var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
     @Binding var response: [PlatformLinks]
     
@@ -24,15 +25,9 @@ struct ResultsView: View {
                 LazyVGrid(columns: gridItemLayout, spacing: 20) {
                     ForEach(response) { platform in
                         PlatformLinkButtonView(platform: platform)
-                            .popover(
-                                isPresented: self.$showShareSheet,
-                                attachmentAnchor: .point(.bottom),
-                                arrowEdge: .bottom
-                            ) {
-                                ActivityView(activityItems: [platform.url] as [Any], applicationActivities: nil)
-                            }
                             .contextMenu {
                                 Button(action: {
+                                    self.shareSheetURL = platform.url
                                     self.showShareSheet = true
                                 }) {
                                     Text("Share")
@@ -59,6 +54,13 @@ struct ResultsView: View {
                                 }
                             }
                     }
+                }
+                .popover(
+                    isPresented: self.$showShareSheet,
+                    attachmentAnchor: .point(.bottom),
+                    arrowEdge: .bottom
+                ) {
+                    ShareSheet(activityItems: [self.shareSheetURL])
                 }
             }
             .navigationBarTitle(Text("Pick your platform"), displayMode: .inline)
