@@ -22,7 +22,7 @@ class SongLinkAPIResponseTests: XCTestCase {
         let entityCount = response.entitiesByUniqueId.count
         let platformCount = response.linksByPlatform.count
         let targetEntity = ["":SongLinkAPIResponse.Entity()]
-        let targetPlatform = [SongLinkAPIResponse.Platform.amazonMusic.rawValue:SongLinkAPIResponse.PlatformInfo()]
+        let targetPlatform = [Platform.amazonMusic.rawValue:PlatformInfo()]
         
         XCTAssertEqual(response.entityUniqueId, "", "Unexpected non empty string init")
         XCTAssertEqual(response.userCountry, "", "Unexpected non empty string init")
@@ -34,7 +34,7 @@ class SongLinkAPIResponseTests: XCTestCase {
     }
     
     func testDisplayName() {
-        for platform in SongLinkAPIResponse.Platform.allCases {
+        for platform in Platform.allCases {
             switch platform {
                 case .spotify:
                     XCTAssertEqual(platform.displayName, "Spotify", "Incorrect Display Name")
@@ -73,7 +73,7 @@ class SongLinkAPIResponseTests: XCTestCase {
     }
     
     func testIconName() {
-        for platform in SongLinkAPIResponse.Platform.allCases {
+        for platform in Platform.allCases {
             switch platform {
                 case .spotify:
                     XCTAssertEqual(platform.iconName, "SpotifyLogoWhite", "Incorrect Display Name")

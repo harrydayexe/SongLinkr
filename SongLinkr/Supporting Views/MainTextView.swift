@@ -18,6 +18,7 @@ struct MainTextView: View {
                 .fontWeight(.bold)
             TextField("Paste a URL to share", text: self.$searchURL)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(maxWidth: 700)
                 .padding()
         }
     }

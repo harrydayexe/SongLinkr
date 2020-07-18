@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias PlatformInfo = SongLinkAPIResponse.PlatformInfo
+
 extension SongLinkAPIResponse {
     /**
      The `PlatformInfo` struct contains information about each platform that has been matched by the API.

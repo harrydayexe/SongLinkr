@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias MusicType = SongLinkAPIResponse.MusicType
+
 extension SongLinkAPIResponse {
     /**
      The `MusicType` enum contains the two types of media currently available to be accessed by the Song.Link API, Song and Album.

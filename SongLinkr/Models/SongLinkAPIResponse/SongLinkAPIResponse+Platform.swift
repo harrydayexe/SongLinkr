@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias Platform = SongLinkAPIResponse.Platform
+
 extension SongLinkAPIResponse {
     /**
      The `Platform` enum contains all the platforms that the Song.Link API retrieves results for.

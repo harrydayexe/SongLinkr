@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias APIProvider = SongLinkAPIResponse.APIProvider
+
 extension SongLinkAPIResponse {
     /**
      The `APIProvider` enum contains all the API Providers the data has been collected from.

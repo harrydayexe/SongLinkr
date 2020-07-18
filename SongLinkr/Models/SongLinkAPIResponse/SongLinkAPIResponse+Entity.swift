@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias Entity = SongLinkAPIResponse.Entity
+
 extension SongLinkAPIResponse {
     /**
      `Entity` is a struct that contains data for that entity, such as `title`, `artistName`, `thumbnailUrl`, etc.

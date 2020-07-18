@@ -27,9 +27,6 @@ class NetworkTests: XCTestCase {
     }
     
     func testFixDictionaries() {
-        typealias Platform = SongLinkAPIResponse.Platform
-        typealias PlatformInfo = SongLinkAPIResponse.PlatformInfo
-        
 //        Given
         let platforms: [Platform.RawValue : PlatformInfo] = [Platform.amazonMusic.rawValue : PlatformInfo(entityUniqueId: "amazonMusic", url: "https://song.link/testURL")]
         

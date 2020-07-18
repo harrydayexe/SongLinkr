@@ -135,7 +135,7 @@ public final class Network {
         var returnValue: [PlatformLinks] = []
         
         for platform in response.linksByPlatform {
-            let platformType = SongLinkAPIResponse.Platform(rawValue: platform.key)!
+            let platformType = Platform(rawValue: platform.key)!
             let platformValue = platform.value
             returnValue.append(
                 PlatformLinks(
