@@ -31,8 +31,11 @@
 	<dict>
 		<key>UIColorName</key>
 		<string>AppBlue</string>
-		<key>UIImageName</key>
-		<string></string>
+		<key>UITabBar</key>
+		<dict>
+			<key>UIImageName</key>
+			<string>textfield</string>
+		</dict>
 	</dict>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

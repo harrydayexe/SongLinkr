@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SongLinkrApp: App {
+    var userSettings = UserSettings()
+    
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environmentObject(userSettings)
         }
     }
 }

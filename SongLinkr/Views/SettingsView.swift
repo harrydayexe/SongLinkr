@@ -8,16 +8,27 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var userSettings = UserSettings()
+    @EnvironmentObject var userSettings: UserSettings
+    let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Preferences")) {
-                    Picker(selection: $userSettings.defaultPlatform, label: Text("Default Streaming Platform")) {
-                        ForEach(Platform.allCases, id: \.self) { platform in
-                            Text(platform.displayName)
-                        }
+                Section(
+                    header: Text("Preferences"),
+                    footer: Text("If Auto open external links is on, SongLinkr will, where available, automatically open any links that are not from your default streaming platform straight away without presenting the selection screen.")
+                ) {
+                    DefaultPlatformsPickerView(defaultPlatform: self.$userSettings.defaultPlatform)
+                    Toggle(isOn: self.$userSettings.autoOpen) {
+                        Text("Auto open external links")
+                    }
+                }
+                Section(header: Text("About")) {
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text(versionNumber ?? "Unknown")
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -27,7 +38,10 @@ struct SettingsView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
+    static var userSettings = UserSettings()
+    
     static var previews: some View {
         SettingsView()
+            .environmentObject(userSettings)
     }
 }

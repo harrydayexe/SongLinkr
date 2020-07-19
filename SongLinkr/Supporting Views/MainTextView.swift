@@ -20,6 +20,8 @@ struct MainTextView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(maxWidth: 700)
                 .padding()
+                .keyboardType(.URL)
+                .textContentType(.URL)
         }
     }
 }
