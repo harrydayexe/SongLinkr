@@ -28,10 +28,13 @@ struct GetLinkButton: View {
                             do {
                                 let decodedResponse = try JSONDecoder().decode(SongLinkAPIResponse.self, from: data)
                                 self.response = Network.fixDictionaries(response: decodedResponse).sorted(by: { $0.id.rawValue < $1.id.rawValue })
-                                print(self.response)
+                                print(decodedResponse.entityUniqueId)
+                                
+                                let isDefaultPlatform = decodedResponse.entityUniqueId.contains(userSettings.defaultPlatform.entityName)
+                                
                                 
 //                                Auto Open if turned on
-                                if userSettings.autoOpen {
+                                if userSettings.autoOpen && !isDefaultPlatform {
                                     if let defaultPlatformIndex = response.firstIndex(where: { $0.id == userSettings.defaultPlatform }) {
                                         let defaultPlatform = response[defaultPlatformIndex]
                                         DispatchQueue.main.async {
