@@ -18,6 +18,5 @@ class UserSettings: ObservableObject {
     init() {
         let defaultPlatform = UserDefaults.standard.object(forKey: "defaultPlatform") as? String ?? Platform.youtube.rawValue
         self.defaultPlatform = Platform(rawValue: defaultPlatform)!
-//        self.username = UserDefaults.standard.object(forKey: "defaultPlatform") as? String ?? ""
     }
 }

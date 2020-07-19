@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @ObservedObject var userSettings = UserSettings()
+    
     var body: some View {
-        Text("Settings")
+        NavigationView {
+            Form {
+                Section(header: Text("Preferences")) {
+                    Picker(selection: $userSettings.defaultPlatform, label: Text("Default Streaming Platform")) {
+                        ForEach(Platform.allCases, id: \.self) { platform in
+                            Text(platform.displayName)
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle("Settings")
+        }
     }
 }
 

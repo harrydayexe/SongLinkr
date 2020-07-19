@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @State var selectedView = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedView) {
             ContentView()
                 .tabItem {
                     Image(systemName: "textbox")
@@ -26,6 +28,14 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        Group {
+            MainTabView()
+            MainTabView(selectedView: 1)
+        }
+        Group {
+            MainTabView()
+            MainTabView(selectedView: 1)
+        }
+        .preferredColorScheme(.dark)
     }
 }
