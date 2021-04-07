@@ -29,13 +29,16 @@ struct MainTabView: View {
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MainTabView()
-            MainTabView(selectedView: 1)
+            Group {
+                MainTabView()
+                MainTabView(selectedView: 1)
+            }
+            Group {
+                MainTabView()
+                MainTabView(selectedView: 1)
+            }
+            .preferredColorScheme(.dark)
         }
-        Group {
-            MainTabView()
-            MainTabView(selectedView: 1)
-        }
-        .preferredColorScheme(.dark)
+        .environmentObject(UserSettings())
     }
 }

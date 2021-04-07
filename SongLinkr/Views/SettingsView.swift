@@ -32,7 +32,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationBarTitle("Settings")
+            .navigationTitle("Settings")
         }
     }
 }
