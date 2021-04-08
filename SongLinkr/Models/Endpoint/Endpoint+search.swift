@@ -17,7 +17,7 @@ extension Endpoint {
      */
     static func search(with encodedSongURL: String) -> Endpoint {
         return Endpoint(
-            path: "/v1-alpha.1/links",
+            path: "/links",
             queryItems: [
                 URLQueryItem(name: "url", value: encodedSongURL)
             ]

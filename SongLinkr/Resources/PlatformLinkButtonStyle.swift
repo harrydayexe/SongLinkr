@@ -99,6 +99,12 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                         .padding()
                         .background(ColorManager.spinrillaPurple)
                         .cornerRadius(15.0)
+                case Platform.audius:
+                    configuration.label
+                        .foregroundColor(.primary)
+                        .padding()
+                        .background(ColorManager.audiusColour)
+                        .cornerRadius(15.0)
             }
         }
             

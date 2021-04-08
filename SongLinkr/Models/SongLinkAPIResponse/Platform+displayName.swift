@@ -42,6 +42,8 @@ extension SongLinkAPIResponse.Platform {
                 return "Yandex"
             case .spinrilla:
                 return "Spinrilla"
+            case .audius:
+                return "Audius"
         }
     }
 }

@@ -42,6 +42,8 @@ extension SongLinkAPIResponse.Platform {
                 return "YandexLogoColor"
             case .spinrilla:
                 return "SpinrillaLogoWhite"
+            case .audius:
+                return "AudiusLogo"
         }
     }
 }

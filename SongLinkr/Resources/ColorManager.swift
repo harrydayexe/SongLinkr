@@ -70,5 +70,10 @@ struct ColorManager {
      The Spinrilla purple
      */
     static let spinrillaPurple = Color(red: 64/255, green: 14/255, blue: 83/255)
+    
+    /**
+     This is the audius purple color asset.
+     */
+    static let audiusColour = Color("AudiusColour")
 }
 

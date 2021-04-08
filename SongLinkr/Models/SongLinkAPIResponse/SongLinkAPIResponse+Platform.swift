@@ -30,5 +30,6 @@ extension SongLinkAPIResponse {
         case napster
         case yandex
         case spinrilla
+        case audius
     }
 }

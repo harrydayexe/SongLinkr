@@ -17,7 +17,7 @@ class EndpointModelTests: XCTestCase {
     
     func testSearchFunction() {
         let endpoint = Endpoint.search(with: "test.url.string")
-        XCTAssertEqual(endpoint.path, "/v1-alpha.1/links", "Path not correct")
+        XCTAssertEqual(endpoint.url!, "https://api.song.link/v1-alpha.1/links?url=test.url.string", "URL not correct")
         XCTAssertEqual(endpoint.queryItems, [URLQueryItem(name: "url", value: "test.url.string")])
     }
     

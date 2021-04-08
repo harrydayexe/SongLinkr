@@ -28,7 +28,6 @@ struct GetLinkButton: View {
                             do {
                                 let decodedResponse = try JSONDecoder().decode(SongLinkAPIResponse.self, from: data)
                                 self.response = Network.fixDictionaries(response: decodedResponse).sorted(by: { $0.id.rawValue < $1.id.rawValue })
-                                print(decodedResponse.entityUniqueId)
                                 
                                 let isDefaultPlatform = decodedResponse.entityUniqueId.contains(userSettings.defaultPlatform.entityName)
                                 

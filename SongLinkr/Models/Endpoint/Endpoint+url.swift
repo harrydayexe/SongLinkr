@@ -15,7 +15,7 @@ extension Endpoint {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.song.link"
-        components.path = path
+        components.path = "/v1-alpha.1" + path
         components.queryItems = queryItems
 
         return components.url
