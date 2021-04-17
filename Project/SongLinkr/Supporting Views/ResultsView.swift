@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct ResultsView: View {
     @State var showShareSheet = false
@@ -65,6 +66,8 @@ struct ResultsView: View {
             .navigationBarTitle(Text("Pick your platform"), displayMode: .inline)
             .navigationBarItems(trailing: Button("Done", action: {
                 self.showResults = false
+                // Request Review
+                if let windowScene = UIApplication.shared.windows.first?.windowScene { SKStoreReviewController.requestReview(in: windowScene) }
             }))
             .padding()
         }
