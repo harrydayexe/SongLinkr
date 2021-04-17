@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTextView: View {
     @Binding var searchURL: String
+    @State private var isEditing: Bool = false
     
     var body: some View {
         VStack {
@@ -19,9 +20,14 @@ struct MainTextView: View {
             TextField("Paste a URL to share", text: self.$searchURL)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(maxWidth: 700)
-                .padding()
                 .keyboardType(.URL)
                 .textContentType(.URL)
+//                Clear Button
+                .modifier(Cancellable(isEditing: $isEditing, text: $searchURL))
+                .onTapGesture {
+                    self.isEditing = true
+                }
+                
         }
     }
 }
