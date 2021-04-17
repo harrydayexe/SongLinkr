@@ -135,7 +135,9 @@ public final class Network {
         var returnValue: [PlatformLinks] = []
         
         for platform in response.linksByPlatform {
-            let platformType = Platform(rawValue: platform.key)!
+            guard let platformType = Platform(rawValue: platform.key) else {
+                continue
+            }
             let platformValue = platform.value
             returnValue.append(
                 PlatformLinks(
