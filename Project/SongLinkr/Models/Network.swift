@@ -6,11 +6,23 @@
 //
 
 import Foundation
+import Combine
 
 /**
  The Network class contains networking utilities needed to make a request to the Song.Link API
  */
 public final class Network {
+    /// The URL Session to use for the fetcher
+    private let session: URLSession
+    
+    /**
+     Initialise the Network object
+     - Parameter session: The URLSession object to use. Default is `.shared`.
+     */
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
     /**
      The DataLoaderError enum contains the possible error cases for errors that may be encountered when making a request
      */
@@ -20,13 +32,17 @@ public final class Network {
          */
         case invalidURL
         /**
+         This error signifies that an unkown problem occured with no description
+         */
+        case unknownNetworkProblem
+        /**
          This error signifies that something went wrong when making the request. This could mean the API is down, there is no connection or something else. Read the `Error` associated value to find out more.
          */
         case network(Error)
         /**
-         This error signifies that something went wrong when trying to use the JSONDecoder to decode the received JSON into an object. The `Error` associated type is from the JSONDecoder and is normally of type `DecodingError`
+         This error signifies that something went wrong when trying to use the JSONDecoder to decode the received JSON into an object. The `String` associated type is the generated description of the error.
          */
-        case decodingError(Error)
+        case decodingError(description: String)
         /**
          This error is thrown when the HTTPS Status Code is not in the `2xx` range. The `Int` value is the status code receieved and the `String` is the server supplied reason for failure
          */
@@ -80,58 +96,97 @@ public final class Network {
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      - parameter handler: The completion handler. This is an `@escaping` closure to deal with when you call the function.
      */
-    static func request(_ endpoint: Endpoint, session: URLSession = .shared, then handler: @escaping (Result<Data>) -> Void) {
+    func request(
+        from endpoint: Endpoint,
+        with decoder: JSONDecoder = JSONDecoder()
+    ) -> AnyPublisher<SongLinkAPIResponse, DataLoaderError> {
+        // Create URL from Endpoint
         guard let url = endpoint.url else {
-            handler(Result.failure(DataLoaderError.invalidURL))
-            return
+            return Fail(error: DataLoaderError.invalidURL).eraseToAnyPublisher()
         }
         
-        let task = session.dataTask(with: url) { data, response, error in
-            let response = response as! HTTPURLResponse
-            let status = response.statusCode
-            
-            
-//            No Response, timeout etc etc.
-            if let error = error {
-                handler(Result.failure(DataLoaderError.network(error)))
-                return
-            }
-//            Status code not in the 2xx range and therefore a 4xx or 5xx indicating bad URL or server problems etc.
-            guard (200...299).contains(status) else {
-//                Try to decode response for more information
-                if let detailedResponse = BadResponse(data: data!) {
-                    let reason = detailedResponse.code
-//                    Start to match against known responses and reasons
-                    if (reason == "could not resolve entity") {
-                        handler(Result.failure(DataLoaderError.unknownEntity))
-                        return
-                    } else if (reason == "could not fetch entity data") {
-                        handler(Result.failure(DataLoaderError.unknownItem))
-                        return
-                    } else {
-//                        Default for unknown error
-                        handler(Result.failure(DataLoaderError.serverSideWithReason(detailedResponse.statusCode, detailedResponse.code)))
-                        return
-                    }
-//                    Fallback Error type if response can't be decoded
+        // Create the request object
+        let request = URLRequest(url: url)
+        
+        // Get the publisher data from the server using the retrieveData function
+        return self.retrieveData(with: request)
+            // Try to decode into SongLinkAPIResponse
+            .decode(type: SongLinkAPIResponse.self, decoder: decoder)
+            // If there is an error, map it
+            .mapError { error -> DataLoaderError in
+                // If the error has already been set
+                if let error = error as? DataLoaderError {
+                    return error
+                } else if let error = error as? DecodingError {
+                    return self.mapDecodingError(error: error)
                 } else {
-                    handler(Result.failure(DataLoaderError.serverSide(status)))
-                    return
+                    // If not decoding then network
+                    return DataLoaderError.network(error)
                 }
             }
-            
-//            Getting to this point means the data is there and correct
-            handler(Result.success(data!))
-            return
-        }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    /**
+     This function is responsible for running the data task and returning the data received from the server
+     - Parameter endpoint: An `Endpoint` object which contains the URL to access the relevant API endpoint.
+     - Returns: An `AnyPublisher` with output of data and a failure of DataloaderError
+     */
+    private func retrieveData(with request: URLRequest) -> AnyPublisher<Data, DataLoaderError> {
+        // Start the data task publisher
+        return URLSession.DataTaskPublisher(request: request, session: session)
+            .tryMap { data, response in
+                // Check the HTTP Response Code is 2xx
+                guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                    // Now find out what kind of error it is
+                    // Check for 4xx first
+                    if let httpResponse = response as? HTTPURLResponse, 400..<500 ~= httpResponse.statusCode {
+                        if let detailedResponse = BadResponse(data: data) {
+                            // Start to match against known responses and reasons
+                            if (detailedResponse.code == "could not resolve entity") {
+                                throw DataLoaderError.unknownEntity
+                            } else if (detailedResponse.code == "could not fetch entity data") {
+                                throw DataLoaderError.unknownItem
+                            } else {
+                                // Default for unknown error
+                                throw DataLoaderError.serverSideWithReason(detailedResponse.statusCode, detailedResponse.code)
+                            }
+                        }
+                        // If can't decode then just throw the status code
+                        throw DataLoaderError.serverSide(httpResponse.statusCode)
+                    // Now check for 5xx
+                    } else if let httpResponse = response as? HTTPURLResponse, 500..<600 ~= httpResponse.statusCode {
+                        throw DataLoaderError.serverSide(httpResponse.statusCode)
+                    // Catch all if everything else fails
+                    } else {
+                        throw DataLoaderError.unknownNetworkProblem
+                    }
+                }
+                
+                // Everything is all good
+                return data
+            }
+            // Map to a dataloader error if not already
+            .mapError { error in
+                if let error = error as? DataLoaderError {
+                    return error
+                } else {
+                    return DataLoaderError.network(error)
+                }
+            }
+            .eraseToAnyPublisher()
         
-        task.resume()
     }
     
     /**
      This function unpacks the data in a dictionary in `SongLinkAPIResponse` and returns an array of that data in the form of `[PlatformLinks]`. This is useful for when arrays are needed to dynamically generate UI.
      */
-    static func fixDictionaries(response: SongLinkAPIResponse) -> [PlatformLinks] {
+    func fixDictionaries(response: SongLinkAPIResponse?) -> [PlatformLinks] {
+        guard let response = response else {
+            return []
+        }
+        
         var returnValue: [PlatformLinks] = []
         
         for platform in response.linksByPlatform {
@@ -155,8 +210,9 @@ public final class Network {
     /**
      This function takes a `DataLoaderError` as an input and returns the error message dictionary for an alert as an output
      - parameter dataLoaderError: The Error to generate a response for.
+     - Returns: A tuple of two strings, the first being the title of the error and the second being the main description
      */
-    static func createErrorMessage(from dataLoaderError: DataLoaderError) -> (String, String) {
+    func createErrorMessage(from dataLoaderError: DataLoaderError) -> (String, String) {
         switch dataLoaderError {
             case .network(let error):
                 print("Network Error")
@@ -171,9 +227,9 @@ public final class Network {
                 print("Status Code: \(code)")
                 return ("Something went wrong", "Sorry we're not quite sure what happened here. Received status code \(code) from the server")
                 
-            case .decodingError(let error):
+            case .decodingError(let description):
                 print("Decoding Error")
-                print(error.localizedDescription)
+                print(description)
                 return ("Decoding Error", "Sorry something went wrong whilst decoding the data received from the server. Please try again.")
 
             case .invalidURL:
@@ -187,6 +243,35 @@ public final class Network {
             case .unknownItem:
                 print("Unknown Item")
                 return ("Unknown Item", "Sorry the server couldn't find a song or album with that link. Please check your link and try again")
+                
+            case .unknownNetworkProblem:
+                print("Unknown Network Problem")
+                return ("Unknown Network Problem", "Sorry an unkown network error occured. Please try again later.")
         }
+    }
+    
+    /**
+     Converts a `DecodingError` into a human readable string which describes the error.
+     - parameter error: The `DecodingError` of which to convert
+     - returns: A DatabaseError of type parsing with the relevant description
+     */
+    private func mapDecodingError(error: DecodingError) -> DataLoaderError {
+        var errorToReport = error.localizedDescription
+        switch error {
+            case .dataCorrupted(let context):
+                let details = context.underlyingError?.localizedDescription ?? context.codingPath.map { $0.stringValue }.joined(separator: ".")
+                errorToReport = "\(context.debugDescription) - (\(details))"
+            case .keyNotFound(let key, let context):
+                let details = context.underlyingError?.localizedDescription ?? context.codingPath.map { $0.stringValue }.joined(separator: ".")
+                errorToReport = "\(context.debugDescription) (key: \(key), \(details))"
+            case .typeMismatch(let type, let context), .valueNotFound(let type, let context):
+                let details = context.underlyingError?.localizedDescription ?? context.codingPath.map { $0.stringValue }.joined(separator: ".")
+                errorToReport = "\(context.debugDescription) (type: \(type), \(details))"
+            @unknown default:
+                break
+        }
+        // Return the formatted error as a parsing error
+        print(errorToReport)
+        return DataLoaderError.decodingError(description: errorToReport)
     }
 }

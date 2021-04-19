@@ -20,7 +20,10 @@ struct World {
 // MARK: App Action
 /// Actions that affect the app state
 enum AppAction {
-    case searchSong(urlString: String)
+    case setSearchResults(with: [PlatformLinks])
+    case getSearchResults(from: Endpoint)
+    case fixDictionary(on: NilWrapper<SongLinkAPIResponse>)
+    case setErrorDescription(withErrorDescription: (String, String))
 }
 
 // MARK: App State
@@ -28,6 +31,9 @@ enum AppAction {
 struct AppState {
     /// The search results to be displayed on the results modal
     var searchResults: [PlatformLinks] = []
+    
+    /// The description of an error to be shown
+    var errorDescription: (String, String)?
 }
 
 // MARK: App Reducer
@@ -43,9 +49,49 @@ func appReducer(
     action: AppAction,
     environment: World
 ) -> AnyPublisher<AppAction, Never> {
+    var errorTemp: (String, String) = ("", "")
+    
     switch action {
-        case let .searchSong(urlString):
-            print(urlString)
+        case .setSearchResults(with: let platformLinks):
+            state.searchResults = platformLinks
+        
+        case .fixDictionary(on: let apiResponse):
+            guard apiResponse.isNil == false, let response = apiResponse.object else {
+                return Just(AppAction.setSearchResults(with: [])).eraseToAnyPublisher()
+            }
+            return Just(AppAction.setSearchResults(with: environment.network.fixDictionaries(response: response))).eraseToAnyPublisher()
+            
+        case .setErrorDescription(withErrorDescription: let errorDescription):
+            state.errorDescription = errorDescription
+            
+        case .getSearchResults(from: let endpoint):
+            return environment.network
+                .request(from: endpoint)
+                .map({ (response) in
+                    return AppAction.fixDictionary(on: NilWrapper<SongLinkAPIResponse>(object: response))
+                })
+                .mapError({ (error) -> Error in
+                    errorTemp = environment.network.createErrorMessage(from: error)
+                    return error
+                })
+                .replaceError(with: AppAction.setErrorDescription(withErrorDescription: errorTemp))
+                .eraseToAnyPublisher()
+                
     }
     return Empty().eraseToAnyPublisher()
+}
+
+/// A Wrapper
+struct NilWrapper<Object> {
+    var isNil: Bool
+    var object: Object? = nil
+    
+    init(object: Object) {
+        self.isNil = false
+        self.object = object
+    }
+    
+    init() {
+        self.isNil = true
+    }
 }
