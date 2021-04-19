@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct MainTextView: View {
+    /// The binding to the property where the user input is stored
     @Binding var searchURL: String
+    
+    /// Determines if the clear button should be shown
     @State private var isEditing: Bool = false
     
     var body: some View {

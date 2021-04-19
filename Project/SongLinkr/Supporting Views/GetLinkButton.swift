@@ -9,64 +9,31 @@ import Foundation
 import SwiftUI
 
 struct GetLinkButton: View {
-    @Binding var callInProgress: Bool
+    /// The store object in the environment
+    @EnvironmentObject var store: AppStore
+    
+    /// The URL the user has entered
     @Binding var searchURL: String
-    @Binding var showResults: Bool
-    @Binding var response: [PlatformLinks]
-    @State var showError: Bool = false
-    @State var errorDescription: (String, String) = ("","")
-    @EnvironmentObject var userSettings: UserSettings
+    
+    /// Declares whether an error has occured
+    private var showError: Binding<Bool> { Binding(
+        get: { self.store.state.errorDescription != nil },
+        set: { if !$0 { self.store.send(.clearErrorDescription) }}
+    )}
     
     var body: some View {
         Button(action: {
             if self.searchURL != "" {
-                self.callInProgress = true
-                
-                Network.request(.search(with: Network.encodeURL(from: self.searchURL))) { (result) in
-                    switch result {
-                        case .success(let data):
-                            do {
-                                let decodedResponse = try JSONDecoder().decode(SongLinkAPIResponse.self, from: data)
-                                self.response = Network.fixDictionaries(response: decodedResponse).sorted(by: { $0.id.rawValue < $1.id.rawValue })
-                                
-                                let isDefaultPlatform = decodedResponse.entityUniqueId.contains(userSettings.defaultPlatform.entityName)
-                                
-                                
-//                                Auto Open if turned on
-                                if userSettings.autoOpen && !isDefaultPlatform {
-                                    if let defaultPlatformIndex = response.firstIndex(where: { $0.id == userSettings.defaultPlatform }) {
-                                        let defaultPlatform = response[defaultPlatformIndex]
-                                        DispatchQueue.main.async {
-                                            UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
-                                        }
-                                    }
-                                }
-                                
-                                self.callInProgress = false
-                                self.showResults = true
-                            } catch {
-                                self.showResults = false
-                                self.callInProgress = false
-                                
-                                self.errorDescription = Network.createErrorMessage(from: Network.DataLoaderError.decodingError(error))
-                                
-                                self.showError = true
-                            }
-                        case .failure(let dataLoaderError):
-                            self.showResults = false
-                            self.callInProgress = false
-                            print(dataLoaderError)
-                            self.errorDescription = Network.createErrorMessage(from: dataLoaderError)
-                            
-                            self.showError = true
-                    }
-                }
+                // Start the call
+                store.send(.updateCallInProgress(newValue: true))
+                // Request the data
+                store.send(.getSearchResults(from: .search(with: self.searchURL)))
             }
         }) {
-            GetLinkButtonView(callInProgress: self.$callInProgress)
+            GetLinkButtonView(callInProgress: self.store.state.callInProgress)
         }
-        .alert(isPresented: self.$showError) {
-            Alert(title: Text(self.errorDescription.0), message: Text(self.errorDescription.1), dismissButton: .cancel())
+        .alert(isPresented: self.showError) {
+            Alert(title: Text(store.state.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(store.state.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel())
         }
         .buttonStyle(GetLinkButtonStyle())
         .padding()
@@ -76,7 +43,6 @@ struct GetLinkButton: View {
 
 struct GetLinkButton_Previews: PreviewProvider {
     static var previews: some View {
-        GetLinkButton(callInProgress: .mock(false), searchURL: .constant("https://youtu.be/9XvXLrWgA"), showResults: .mock(false), response: .constant([]))
-            .environmentObject(UserSettings())
+        Text("Hello World")
     }
 }

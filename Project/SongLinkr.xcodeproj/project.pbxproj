@@ -14,9 +14,11 @@
 		8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830F24A9408C0047193B /* MainTextView.swift */; };
 		8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81831124A945F30047193B /* ResultsView.swift */; };
 		8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */; };
+		8C1C7B79262C5D7D00A14896 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C7B78262C5D7D00A14896 /* Store.swift */; };
 		8C1E03E7262B1C5E00E98109 /* TextField+Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E03E6262B1C5E00E98109 /* TextField+Cancellable.swift */; };
 		8C3132DB24C4837800A722EB /* Platform+EntityName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3132DA24C4837800A722EB /* Platform+EntityName.swift */; };
 		8C3132DC24C4837D00A722EB /* Platform+EntityName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3132DA24C4837800A722EB /* Platform+EntityName.swift */; };
+		8C314DC9262C6F1F007BC14C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C314DC8262C6F1F007BC14C /* App.swift */; };
 		8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */; };
 		8C43CB2924A66593001B89A0 /* SongLinkrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB2824A66593001B89A0 /* SongLinkrUITests.swift */; };
@@ -106,8 +108,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C1C7B78262C5D7D00A14896 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8C1E03E6262B1C5E00E98109 /* TextField+Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Cancellable.swift"; sourceTree = "<group>"; };
 		8C3132DA24C4837800A722EB /* Platform+EntityName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+EntityName.swift"; sourceTree = "<group>"; };
+		8C314DC8262C6F1F007BC14C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		8C43CB0824A6658E001B89A0 /* SongLinkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SongLinkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrApp.swift; sourceTree = "<group>"; };
 		8C43CB0D24A6658E001B89A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -182,6 +186,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C1C7B6F262C5C6100A14896 /* Redux State */ = {
+			isa = PBXGroup;
+			children = (
+				8C1C7B78262C5D7D00A14896 /* Store.swift */,
+				8C314DC8262C6F1F007BC14C /* App.swift */,
+			);
+			path = "Redux State";
+			sourceTree = "<group>";
+		};
 		8C43CAFF24A6658E001B89A0 = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +263,7 @@
 		8C43CB3624A665FD001B89A0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8C1C7B6F262C5C6100A14896 /* Redux State */,
 				8C43CB4B24A66944001B89A0 /* Network.swift */,
 				8CA41EBB24B245CD006C8ADB /* PlatformLinks.swift */,
 				8CA41EC024B2783B006C8ADB /* BadResponse.swift */,
@@ -466,6 +480,7 @@
 				8C43CB4524A66874001B89A0 /* Endpoint.swift in Sources */,
 				8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */,
 				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
+				8C314DC9262C6F1F007BC14C /* App.swift in Sources */,
 				8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */,
 				8C08B57524C3134300DC8235 /* ContentView.swift in Sources */,
 				8C6277D324B39E5500D4F9F6 /* Platform+iconName.swift in Sources */,
@@ -495,6 +510,7 @@
 				8C6BE3CE24C3971D004FBDD4 /* SongLinkCreditView.swift in Sources */,
 				8C43CB4724A668AD001B89A0 /* Endpoint+search.swift in Sources */,
 				8C43CB3D24A66702001B89A0 /* SongLinkAPIResponse+APIProvider.swift in Sources */,
+				8C1C7B79262C5D7D00A14896 /* Store.swift in Sources */,
 				8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */,
 				8C3132DB24C4837800A722EB /* Platform+EntityName.swift in Sources */,
 				8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */,
@@ -684,7 +700,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -694,7 +710,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -711,7 +727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -721,7 +737,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
