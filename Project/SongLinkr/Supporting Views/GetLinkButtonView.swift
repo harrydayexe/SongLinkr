@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GetLinkButtonView: View {
-    @Binding var callInProgress: Bool
+    let callInProgress: Bool
     
     var body: some View {
         VStack {
@@ -26,6 +26,7 @@ struct GetLinkButtonView: View {
 
 struct GetLinkButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        GetLinkButtonView(callInProgress: .constant(false))
+        GetLinkButtonView(callInProgress: false)
+        GetLinkButtonView(callInProgress: true)
     }
 }

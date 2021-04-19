@@ -8,10 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var callInProgress: Bool = false
+    /// The app state stored in the environment
+    @EnvironmentObject var store: AppStore
+    
+    /// The user settings stored in the environment
+    @EnvironmentObject var userSettings: UserSettings
+    
+    /// The URL the user is searching
     @State var searchURL: String = ""
-    @State var showResults: Bool = false
-    @State var response: [PlatformLinks] = []
+    
+    /// Whether to show the search results
+    private var showResults: Binding<Bool> { Binding(
+        get: { self.store.state.searchResults != [] },
+        // If new value is false then clear the results
+        set: { if !$0 { self.store.send(.setSearchResults(with: [])) }}
+    )
+    }
     
     var body: some View {
         ZStack {
@@ -19,7 +31,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 MainTextView(searchURL: self.$searchURL)
-                GetLinkButton(callInProgress: self.$callInProgress, searchURL: self.$searchURL, showResults: self.$showResults, response: self.$response)
+                GetLinkButton(searchURL: $searchURL)
             }
         }
         .onAppear(perform: {
@@ -29,8 +41,19 @@ struct ContentView: View {
                 }
             }
         })
-        .sheet(isPresented: self.$showResults) {
-            ResultsView(showResults: self.$showResults, response: self.$response)
+        .sheet(isPresented: self.showResults) {
+            ResultsView(showResults: self.showResults, response: store.state.searchResults)
+                // Auto open
+                .onAppear {
+                    if userSettings.autoOpen && !store.state.originEntityID.contains(userSettings.defaultPlatform.entityName) {
+                        if let defaultPlatformIndex = store.state.searchResults.firstIndex(where: { $0.id == userSettings.defaultPlatform }) {
+                            let defaultPlatform = store.state.searchResults[defaultPlatformIndex]
+                            DispatchQueue.main.async {
+                                UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
+                            }
+                        }
+                    }
+                }
         }
     }
 }

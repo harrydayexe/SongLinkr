@@ -24,6 +24,9 @@ enum AppAction {
     case getSearchResults(from: Endpoint)
     case fixDictionary(on: NilWrapper<SongLinkAPIResponse>)
     case setErrorDescription(withErrorDescription: (String, String))
+    case clearErrorDescription
+    case updateCallInProgress(newValue: Bool)
+    case setAPIResponse(from: SongLinkAPIResponse)
 }
 
 // MARK: App State
@@ -34,6 +37,12 @@ struct AppState {
     
     /// The description of an error to be shown
     var errorDescription: (String, String)?
+    
+    /// Declares whether a call is being made
+    var callInProgress: Bool = false
+    
+    /// Declares if the origin entity is the default or not
+    var originEntityID: String = ""
 }
 
 // MARK: App Reducer
@@ -53,13 +62,14 @@ func appReducer(
     
     switch action {
         case .setSearchResults(with: let platformLinks):
-            state.searchResults = platformLinks
+            state.searchResults = platformLinks.sorted(by: { $0.id.rawValue < $1.id.rawValue })
+            return Just(AppAction.updateCallInProgress(newValue: false)).eraseToAnyPublisher()
         
         case .fixDictionary(on: let apiResponse):
             guard apiResponse.isNil == false, let response = apiResponse.object else {
                 return Just(AppAction.setSearchResults(with: [])).eraseToAnyPublisher()
             }
-            return Just(AppAction.setSearchResults(with: environment.network.fixDictionaries(response: response))).eraseToAnyPublisher()
+            return Just(AppAction.setAPIResponse(from: response)).eraseToAnyPublisher()
             
         case .setErrorDescription(withErrorDescription: let errorDescription):
             state.errorDescription = errorDescription
@@ -77,6 +87,15 @@ func appReducer(
                 .replaceError(with: AppAction.setErrorDescription(withErrorDescription: errorTemp))
                 .eraseToAnyPublisher()
                 
+        case .clearErrorDescription:
+            state.errorDescription = nil
+            
+        case .updateCallInProgress(newValue: let newValue):
+            state.callInProgress = newValue
+            
+        case .setAPIResponse(from: let response):
+            state.originEntityID = response.entityUniqueId
+            return Just(AppAction.setSearchResults(with: environment.network.fixDictionaries(response: response))).eraseToAnyPublisher()
     }
     return Empty().eraseToAnyPublisher()
 }

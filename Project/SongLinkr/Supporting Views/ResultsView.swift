@@ -9,10 +9,10 @@ import SwiftUI
 import StoreKit
 
 struct ResultsView: View {
-    @State var showShareSheet = false
-    @State var shareSheetURL: URL = "https://song.link"
+    @State private var showShareSheet = false
+    @State private var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
-    @Binding var response: [PlatformLinks]
+    let response: [PlatformLinks]
     
     var gridItemLayout = [
         GridItem(.adaptive(minimum: 250))
@@ -95,7 +95,7 @@ struct ResultsView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            StatefulPreviewWrapper(response) { ResultsView(showResults: .constant(true), response: $0)}
+            ResultsView(showResults: .constant(true), response: response)
         }
     }
 }
