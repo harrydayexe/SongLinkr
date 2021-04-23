@@ -58,7 +58,6 @@ func appReducer(
     action: AppAction,
     environment: World
 ) -> AnyPublisher<AppAction, Never> {
-    var errorTemp: (String, String) = ("", "")
     
     switch action {
         case .setSearchResults(with: let platformLinks):
@@ -72,6 +71,7 @@ func appReducer(
             return Just(AppAction.setAPIResponse(from: response)).eraseToAnyPublisher()
             
         case .setErrorDescription(withErrorDescription: let errorDescription):
+            print(errorDescription)
             state.errorDescription = errorDescription
             
         case .getSearchResults(from: let endpoint):
@@ -80,11 +80,9 @@ func appReducer(
                 .map({ (response) in
                     return AppAction.fixDictionary(on: NilWrapper<SongLinkAPIResponse>(object: response))
                 })
-                .mapError({ (error) -> Error in
-                    errorTemp = environment.network.createErrorMessage(from: error)
-                    return error
+                .catch({ error in
+                    return Just(AppAction.setErrorDescription(withErrorDescription: environment.network.createErrorMessage(from: error))).eraseToAnyPublisher()
                 })
-                .replaceError(with: AppAction.setErrorDescription(withErrorDescription: errorTemp))
                 .eraseToAnyPublisher()
                 
         case .clearErrorDescription:

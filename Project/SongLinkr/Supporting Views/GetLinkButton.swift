@@ -30,10 +30,12 @@ struct GetLinkButton: View {
                 store.send(.getSearchResults(from: .search(with: self.searchURL)))
             }
         }) {
-            GetLinkButtonView(callInProgress: self.store.state.callInProgress)
+            GetLinkButtonView(callInProgress: self.store.state.callInProgress && !self.showError.wrappedValue)
         }
         .alert(isPresented: self.showError) {
-            Alert(title: Text(store.state.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(store.state.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel())
+            Alert(title: Text(store.state.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(store.state.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel({
+                store.send(.updateCallInProgress(newValue: false))
+            }))
         }
         .buttonStyle(GetLinkButtonStyle())
         .padding()
