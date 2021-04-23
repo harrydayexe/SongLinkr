@@ -41,6 +41,12 @@ struct ContentView: View {
                 }
             }
         })
+        .onOpenURL(perform: { deepLinkURL in
+            self.showResults.wrappedValue = false
+            if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
+                self.searchURL = songLink.absoluteString
+            }
+        })
         .sheet(isPresented: self.showResults) {
             ResultsView(showResults: self.showResults, response: store.state.searchResults)
                 // Auto open
