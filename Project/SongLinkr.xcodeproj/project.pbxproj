@@ -32,6 +32,10 @@
 		8C43CB4724A668AD001B89A0 /* Endpoint+search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4624A668AD001B89A0 /* Endpoint+search.swift */; };
 		8C43CB4A24A668D0001B89A0 /* Endpoint+url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4924A668D0001B89A0 /* Endpoint+url.swift */; };
 		8C43CB4C24A66944001B89A0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB4B24A66944001B89A0 /* Network.swift */; };
+		8C4E907A2633741B00D201C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C4E90792633741B00D201C1 /* Media.xcassets */; };
+		8C4E907C2633741B00D201C1 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E907B2633741B00D201C1 /* ActionViewController.swift */; };
+		8C4E907F2633741B00D201C1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C4E907D2633741B00D201C1 /* MainInterface.storyboard */; };
+		8C4E90832633741B00D201C1 /* SongLinkrActionWithView.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C55B3DE24C0FCEB00B6E6E3 /* BadResponseModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C55B3DC24C0FCEB00B6E6E3 /* BadResponseModelTests.swift */; };
 		8C55B3E824C1008300B6E6E3 /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
 		8C55B3EA24C1008300B6E6E3 /* StatefulPreviewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */; };
@@ -92,6 +96,13 @@
 			remoteGlobalIDString = 8C43CB0724A6658E001B89A0;
 			remoteInfo = SongLinkr;
 		};
+		8C4E90812633741B00D201C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C43CB0024A6658E001B89A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C4E90762633741B00D201C1;
+			remoteInfo = SongLinkrActionWithView;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +112,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				8C4E90832633741B00D201C1 /* SongLinkrActionWithView.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +145,11 @@
 		8C43CB4624A668AD001B89A0 /* Endpoint+search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+search.swift"; sourceTree = "<group>"; };
 		8C43CB4924A668D0001B89A0 /* Endpoint+url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+url.swift"; sourceTree = "<group>"; };
 		8C43CB4B24A66944001B89A0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SongLinkrActionWithView.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C4E90792633741B00D201C1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		8C4E907B2633741B00D201C1 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		8C4E907E2633741B00D201C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		8C4E90802633741B00D201C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButton.swift; sourceTree = "<group>"; };
 		8C51E3E624B36FE700BD8D3D /* PlatformLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonView.swift; sourceTree = "<group>"; };
 		8C55B3DC24C0FCEB00B6E6E3 /* BadResponseModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadResponseModelTests.swift; sourceTree = "<group>"; };
@@ -183,6 +200,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C4E90742633741B00D201C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -201,6 +225,7 @@
 				8C43CB0A24A6658E001B89A0 /* SongLinkr */,
 				8C43CB1C24A66593001B89A0 /* SongLinkrTests */,
 				8C43CB2724A66593001B89A0 /* SongLinkrUITests */,
+				8C4E90782633741B00D201C1 /* SongLinkrActionWithView */,
 				8C43CB0924A6658E001B89A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -211,6 +236,7 @@
 				8C43CB0824A6658E001B89A0 /* SongLinkr.app */,
 				8C43CB1924A66593001B89A0 /* SongLinkrTests.xctest */,
 				8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */,
+				8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,6 +298,17 @@
 				8C6277D524B39E6600D4F9F6 /* SongLinkAPIResponse */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8C4E90782633741B00D201C1 /* SongLinkrActionWithView */ = {
+			isa = PBXGroup;
+			children = (
+				8C4E90792633741B00D201C1 /* Media.xcassets */,
+				8C4E907B2633741B00D201C1 /* ActionViewController.swift */,
+				8C4E907D2633741B00D201C1 /* MainInterface.storyboard */,
+				8C4E90802633741B00D201C1 /* Info.plist */,
+			);
+			path = SongLinkrActionWithView;
 			sourceTree = "<group>";
 		};
 		8C53433B24C06DD1007BDB89 /* Development Resources */ = {
@@ -362,6 +399,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8C4E90822633741B00D201C1 /* PBXTargetDependency */,
 			);
 			name = SongLinkr;
 			productName = SongLinkr;
@@ -404,13 +442,30 @@
 			productReference = 8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8C4E90762633741B00D201C1 /* SongLinkrActionWithView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C4E90842633741B00D201C1 /* Build configuration list for PBXNativeTarget "SongLinkrActionWithView" */;
+			buildPhases = (
+				8C4E90732633741B00D201C1 /* Sources */,
+				8C4E90742633741B00D201C1 /* Frameworks */,
+				8C4E90752633741B00D201C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SongLinkrActionWithView;
+			productName = SongLinkrActionWithView;
+			productReference = 8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8C43CB0024A6658E001B89A0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					8C43CB0724A6658E001B89A0 = {
@@ -423,6 +478,9 @@
 					8C43CB2324A66593001B89A0 = {
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = 8C43CB0724A6658E001B89A0;
+					};
+					8C4E90762633741B00D201C1 = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -442,6 +500,7 @@
 				8C43CB0724A6658E001B89A0 /* SongLinkr */,
 				8C43CB1824A66593001B89A0 /* SongLinkrTests */,
 				8C43CB2324A66593001B89A0 /* SongLinkrUITests */,
+				8C4E90762633741B00D201C1 /* SongLinkrActionWithView */,
 			);
 		};
 /* End PBXProject section */
@@ -467,6 +526,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C4E90752633741B00D201C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C4E907A2633741B00D201C1 /* Media.xcassets in Resources */,
+				8C4E907F2633741B00D201C1 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +628,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C4E90732633741B00D201C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C4E907C2633741B00D201C1 /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -573,7 +649,23 @@
 			target = 8C43CB0724A6658E001B89A0 /* SongLinkr */;
 			targetProxy = 8C43CB2524A66593001B89A0 /* PBXContainerItemProxy */;
 		};
+		8C4E90822633741B00D201C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C4E90762633741B00D201C1 /* SongLinkrActionWithView */;
+			targetProxy = 8C4E90812633741B00D201C1 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8C4E907D2633741B00D201C1 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C4E907E2633741B00D201C1 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8C43CB2B24A66593001B89A0 /* Debug */ = {
@@ -830,6 +922,48 @@
 			};
 			name = Release;
 		};
+		8C4E90852633741B00D201C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQ55A92845;
+				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrActionWithView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C4E90862633741B00D201C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQ55A92845;
+				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrActionWithView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -865,6 +999,15 @@
 			buildConfigurations = (
 				8C43CB3424A66593001B89A0 /* Debug */,
 				8C43CB3524A66593001B89A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C4E90842633741B00D201C1 /* Build configuration list for PBXNativeTarget "SongLinkrActionWithView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C4E90852633741B00D201C1 /* Debug */,
+				8C4E90862633741B00D201C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
