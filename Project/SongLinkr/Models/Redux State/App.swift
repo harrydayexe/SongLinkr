@@ -61,7 +61,8 @@ func appReducer(
     
     switch action {
         case .setSearchResults(with: let platformLinks):
-            state.searchResults = platformLinks.sorted(by: { $0.id.rawValue < $1.id.rawValue })
+//            state.searchResults = platformLinks.sorted(by: { $0.id.rawValue < $1.id.rawValue })
+            state.searchResults = platformLinks.sorted(by: <)
             return Just(AppAction.updateCallInProgress(newValue: false)).eraseToAnyPublisher()
         
         case .fixDictionary(on: let apiResponse):

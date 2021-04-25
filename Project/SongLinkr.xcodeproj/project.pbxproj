@@ -77,6 +77,7 @@
 		8CA41EC124B2783B006C8ADB /* BadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA41EC024B2783B006C8ADB /* BadResponse.swift */; };
 		8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
 		8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */; };
+		8CE9078E2635F1DB003D710F /* Platform+DisplayRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9078D2635F1DB003D710F /* Platform+DisplayRank.swift */; };
 		8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */; };
 		8CF3CFF724B3B016004E5179 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF624B3B016004E5179 /* ColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -174,6 +175,7 @@
 		8CA41EC024B2783B006C8ADB /* BadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadResponse.swift; sourceTree = "<group>"; };
 		8CC72A4724C06E2E006672AE /* Binding+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Mock.swift"; sourceTree = "<group>"; };
 		8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreviewWrapperView.swift; sourceTree = "<group>"; };
+		8CE9078D2635F1DB003D710F /* Platform+DisplayRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+DisplayRank.swift"; sourceTree = "<group>"; };
 		8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8CF3CFF624B3B016004E5179 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -332,6 +334,7 @@
 				8C6277CF24B39E2C00D4F9F6 /* Platform+displayName.swift */,
 				8C6277D224B39E5500D4F9F6 /* Platform+iconName.swift */,
 				8C3132DA24C4837800A722EB /* Platform+EntityName.swift */,
+				8CE9078D2635F1DB003D710F /* Platform+DisplayRank.swift */,
 			);
 			path = SongLinkAPIResponse;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				8C43CB3B24A666E2001B89A0 /* SongLinkAPIResponse+MusicType.swift in Sources */,
 				8C43CB3F24A66725001B89A0 /* SongLinkAPIResponse+Platform.swift in Sources */,
 				8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */,
+				8CE9078E2635F1DB003D710F /* Platform+DisplayRank.swift in Sources */,
 				8C6277D024B39E2C00D4F9F6 /* Platform+displayName.swift in Sources */,
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
 				8C43CB4A24A668D0001B89A0 /* Endpoint+url.swift in Sources */,
@@ -928,6 +932,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIconExtension-iOS";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -951,6 +956,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIconExtension-iOS";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
