@@ -25,9 +25,29 @@ class UserSettings: ObservableObject {
         }
     }
     
+    @Published var sortOption: SortOptions {
+        didSet {
+            UserDefaults.standard.set(sortOption.rawValue, forKey: "sortOption")
+        }
+    }
+    
+    @Published var defaultAtTop: Bool {
+        didSet {
+            UserDefaults.standard.set(defaultAtTop, forKey: "defaultAtTop")
+        }
+    }
+    
     init() {
         let defaultPlatform = UserDefaults.standard.object(forKey: "defaultPlatform") as? String ?? Platform.youtube.rawValue
-        self.defaultPlatform = Platform(rawValue: defaultPlatform)!
+        self.defaultPlatform = Platform(rawValue: defaultPlatform) ?? Platform.youtube
         self.autoOpen = UserDefaults.standard.object(forKey: "autoOpen") as? Bool ?? false
+        let sortOption = UserDefaults.standard.object(forKey: "sortOption") as? String ?? SortOptions.popularity.rawValue
+        self.sortOption = SortOptions(rawValue: sortOption) ?? SortOptions.popularity
+        self.defaultAtTop = UserDefaults.standard.object(forKey: "defaultAtTop") as? Bool ?? true
+    }
+    
+    enum SortOptions: String, CaseIterable {
+        case alphabetically = "Alphabetically"
+        case popularity = "Popularity"
     }
 }

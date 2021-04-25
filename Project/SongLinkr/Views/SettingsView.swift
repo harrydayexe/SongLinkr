@@ -19,6 +19,17 @@ struct SettingsView: View {
                     footer: Text("If Auto open external links is on, SongLinkr will, where available, automatically open any links that are not from your default streaming platform straight away without presenting the selection screen.")
                 ) {
                     DefaultPlatformsPickerView(defaultPlatform: self.$userSettings.defaultPlatform)
+                    
+                    Picker(selection: self.$userSettings.sortOption, label: Text("Platform Sort Option")) {
+                        ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in
+                            Text(sortOption.rawValue)
+                        }
+                    }
+                    
+                    Toggle(isOn: self.$userSettings.defaultAtTop) {
+                        Text("Default Platform at Top")
+                    }
+                    
                     Toggle(isOn: self.$userSettings.autoOpen) {
                         Text("Auto open external links")
                     }

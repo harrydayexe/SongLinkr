@@ -42,3 +42,16 @@ public struct PlatformLinks: Identifiable, Equatable, Comparable {
      */
     public var nativeAppUriDesktop: URL?
 }
+
+extension Array where Element == PlatformLinks {
+    func moveDefaultFirst(with defaultPlatform: Platform) -> [PlatformLinks] {
+        var temp = self
+        guard let index = temp.firstIndex(where: { $0.id == defaultPlatform }) else {
+            return temp
+        }
+        
+        let element = temp.remove(at: index)
+        temp.insert(element, at: 0)
+        return temp
+    }
+}

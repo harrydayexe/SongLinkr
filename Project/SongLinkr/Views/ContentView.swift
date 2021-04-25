@@ -28,6 +28,22 @@ struct ContentView: View {
     )
     }
     
+    private var searchResults: [PlatformLinks] {
+        var temp = store.state.searchResults
+        if userSettings.sortOption == .popularity {
+            temp.sort(by: <)
+        } else {
+            temp.sort {
+                $0.id.rawValue < $1.id.rawValue
+            }
+        }
+        if userSettings.defaultAtTop {
+            return temp.moveDefaultFirst(with: userSettings.defaultPlatform)
+        } else {
+            return temp
+        }
+    }
+    
     var body: some View {
         ZStack {
             Color("AppBlue")
@@ -52,7 +68,7 @@ struct ContentView: View {
             }
         })
         .sheet(isPresented: self.showResults) {
-            ResultsView(showResults: self.showResults, response: store.state.searchResults)
+            ResultsView(showResults: self.showResults, response: searchResults)
                 // Auto open
                 .onAppear {
                     if userSettings.autoOpen && !store.state.originEntityID.contains(userSettings.defaultPlatform.entityName) {
@@ -75,5 +91,7 @@ struct ContentView_Previews: PreviewProvider {
             ContentView(selectedTab: .constant(0))
                 .preferredColorScheme(.dark)
         }
+            .environmentObject(UserSettings())
+            .environmentObject(AppStore(initialState: .init(), reducer: appReducer, environment: World()))
     }
 }
