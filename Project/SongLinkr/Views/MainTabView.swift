@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MainTabView: View {
+    /// The tab that is selected
     @State var selectedView = 0
     
     var body: some View {
         TabView(selection: $selectedView) {
-            ContentView()
+            ContentView(selectedTab: $selectedView)
                 .tabItem {
                     Image(systemName: "textbox")
                     Text("SongLinkr")

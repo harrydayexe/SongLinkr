@@ -17,6 +17,9 @@ struct ContentView: View {
     /// The URL the user is searching
     @State var searchURL: String = ""
     
+    /// The selected tab
+    @Binding var selectedTab: Int
+    
     /// Whether to show the search results
     private var showResults: Binding<Bool> { Binding(
         get: { self.store.state.searchResults != [] },
@@ -43,6 +46,7 @@ struct ContentView: View {
         })
         .onOpenURL(perform: { deepLinkURL in
             self.showResults.wrappedValue = false
+            self.selectedTab = 0
             if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
                 self.searchURL = songLink.absoluteString
             }
@@ -67,8 +71,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
-            ContentView()
+            ContentView(selectedTab: .constant(0))
+            ContentView(selectedTab: .constant(0))
                 .preferredColorScheme(.dark)
         }
     }
