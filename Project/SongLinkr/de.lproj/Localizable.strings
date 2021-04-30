@@ -15,3 +15,8 @@
 "default-platform-at-top" = "Standardplattform oben";
 "auto-open-external-links" = "Externe Links automatisch öffnen";
 "auto-open-hint" = "Wenn die Option \"Externe Links automatisch öffnen\" aktiviert ist, öffnet SongLinkr, sofern verfügbar, automatisch alle Links, die nicht von Ihrer Standard-Streaming-Plattform stammen, ohne den Auswahlbildschirm anzuzeigen.";
+"Help" = "Helfen";
+"Improve Translations" = "Übersetzungen verbessern";
+"Support" = "Unterstützung";
+"Privacy Policy" = "Datenschutz-Bestimmungen";
+"SongLinkr is developed by Harry Day from England" = "SongLinkr wird von Harry Day aus England entwickelt";

@@ -34,7 +34,24 @@ struct SettingsView: View {
                         Text("auto-open-external-links")
                     }
                 }
-                Section(header: Text("About")) {
+                
+                Section(
+                    header: Text("Help")
+                ) {
+                    Link(destination: URL(string: "https://songlinkr.harryday.xyz/support.html")!, label: {
+                        Text("Support")
+                    })
+                    Link(destination: URL(string: "https://songlinkr.harryday.xyz/privacy.html")!, label: {
+                        Text("Privacy Policy")
+                    })
+                    Link(destination: URL(string: "http://songlinkr.harryday.xyz/translations.html")!) {
+                        Text("Improve Translations")
+                    }
+                }
+                
+                Section(
+                    header: Text("About"),
+                    footer: Text("SongLinkr is developed by Harry Day from England")) {
                     HStack {
                         Text(LocalizedStringKey("version-number"))
                         Spacer()
@@ -52,8 +69,11 @@ struct SettingsView_Previews: PreviewProvider {
     static var userSettings = UserSettings()
     
     static var previews: some View {
-        SettingsView()
+        Group {
+            SettingsView()
+            SettingsView()
+                .environment(\.locale, .init(identifier: "de"))
+        }
             .environmentObject(userSettings)
-            .environment(\.locale, .init(identifier: "de"))
     }
 }

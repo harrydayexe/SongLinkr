@@ -11,7 +11,7 @@ struct DefaultPlatformsPickerView: View {
     @Binding var defaultPlatform: Platform
     
     var body: some View {
-        Picker(selection: self.$defaultPlatform, label: Text("Default Streaming Platform")) {
+        Picker(selection: self.$defaultPlatform, label: Text("default-streaming-platform")) {
             ForEach(Platform.allCases, id: \.self) { platform in
                 Text(platform.displayName)
             }
