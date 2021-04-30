@@ -21,7 +21,7 @@ struct MainTabView: View {
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text("Settings")
+                    Text(LocalizedStringKey("settings-name"))
                 }.tag(1)
         }
     }
@@ -41,5 +41,6 @@ struct MainTabView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
         }
         .environmentObject(UserSettings())
+        .environmentObject(AppStore(initialState: .init(), reducer: appReducer, environment: World()))
     }
 }

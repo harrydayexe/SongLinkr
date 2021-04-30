@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  SongLinkr
+
+  Created by Harry Day on 30/04/2021.
+  
+*/
+"settings-name" = "Settings";
+"preferences-name" = "Preferences";
+"version-number" = "Version";
+"popularity" = "Popularity";
+"alphabetically" = "Alphabetically";
+"default-streaming-platform" = "Default Streaming Platform";
+"platform-sort-option" = "Platform Sort Option";
+"default-platform-at-top" = "Default Platform at Top";
+"auto-open-external-links" = "Auto Open External Links";
+"auto-open-hint" = "If Auto open external links is on, SongLinkr will, where available, automatically open any links that are not from your default streaming platform straight away without presenting the selection screen.";

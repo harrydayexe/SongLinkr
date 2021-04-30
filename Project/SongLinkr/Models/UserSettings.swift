@@ -49,5 +49,14 @@ class UserSettings: ObservableObject {
     enum SortOptions: String, CaseIterable {
         case alphabetically = "Alphabetically"
         case popularity = "Popularity"
+        
+        var localisedName: LocalizedStringKey {
+            switch self {
+                case .alphabetically:
+                    return LocalizedStringKey("alphabetically")
+                case .popularity:
+                    return LocalizedStringKey("popularity")
+            }
+        }
     }
 }

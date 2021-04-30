@@ -15,35 +15,35 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 Section(
-                    header: Text("Preferences"),
-                    footer: Text("If Auto open external links is on, SongLinkr will, where available, automatically open any links that are not from your default streaming platform straight away without presenting the selection screen.")
+                    header: Text("preferences-name"),
+                    footer: Text("auto-open-hint")
                 ) {
                     DefaultPlatformsPickerView(defaultPlatform: self.$userSettings.defaultPlatform)
                     
-                    Picker(selection: self.$userSettings.sortOption, label: Text("Platform Sort Option")) {
+                    Picker(selection: self.$userSettings.sortOption, label: Text("platform-sort-option")) {
                         ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in
-                            Text(sortOption.rawValue)
+                            Text(sortOption.localisedName)
                         }
                     }
                     
                     Toggle(isOn: self.$userSettings.defaultAtTop) {
-                        Text("Default Platform at Top")
+                        Text("default-platform-at-top")
                     }
                     
                     Toggle(isOn: self.$userSettings.autoOpen) {
-                        Text("Auto open external links")
+                        Text("auto-open-external-links")
                     }
                 }
                 Section(header: Text("About")) {
                     HStack {
-                        Text("Version")
+                        Text(LocalizedStringKey("version-number"))
                         Spacer()
                         Text(versionNumber ?? "Unknown")
                             .foregroundColor(.secondary)
                     }
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(LocalizedStringKey("settings-name"))
         }
     }
 }
@@ -54,5 +54,6 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
             .environmentObject(userSettings)
+            .environment(\.locale, .init(identifier: "de"))
     }
 }

@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  SongLinkr
+
+  Created by Harry Day on 30/04/2021.
+  
+*/
+"settings-name" = "Einstellungen";
+"preferences-name" = "Vorlieben";
+"version-number" = "Softwareversion";
+"popularity" = "Beliebtheit";
+"alphabetically" = "Alphabetisch";
+"default-streaming-platform" = "Standard-Streaming-Service";
+"platform-sort-option" = "Plattformsortieroption";
+"default-platform-at-top" = "Standardplattform oben";
+"auto-open-external-links" = "Externe Links automatisch öffnen";
+"auto-open-hint" = "Wenn die Option \"Externe Links automatisch öffnen\" aktiviert ist, öffnet SongLinkr, sofern verfügbar, automatisch alle Links, die nicht von Ihrer Standard-Streaming-Plattform stammen, ohne den Auswahlbildschirm anzuzeigen.";
