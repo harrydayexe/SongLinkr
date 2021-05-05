@@ -251,12 +251,12 @@
 			isa = PBXGroup;
 			children = (
 				8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */,
-				8C52E1D8263C2688004BFFB8 /* Localizable.strings */,
 				8C81830724A907DB0047193B /* Views */,
 				8C81831324A94CD60047193B /* Supporting Views */,
 				8C81830A24A911760047193B /* Resources */,
 				8C43CB3624A665FD001B89A0 /* Models */,
 				8C53433B24C06DD1007BDB89 /* Development Resources */,
+				8C52E1D8263C2688004BFFB8 /* Localizable.strings */,
 				8C43CB0F24A66593001B89A0 /* Assets.xcassets */,
 				8C43CB1424A66593001B89A0 /* Info.plist */,
 				8C43CB1124A66593001B89A0 /* Preview Content */,

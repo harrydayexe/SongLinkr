@@ -96,6 +96,7 @@ struct ResultsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ResultsView(showResults: .constant(true), response: response)
+//                .environment(\.locale, .init(identifier: "de"))
         }
     }
 }
