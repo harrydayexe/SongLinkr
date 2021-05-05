@@ -18,7 +18,11 @@ struct SettingsView: View {
                     header: Text("preferences-name"),
                     footer: Text("auto-open-hint")
                 ) {
-                    DefaultPlatformsPickerView(defaultPlatform: self.$userSettings.defaultPlatform)
+                    Picker(selection: self.$userSettings.defaultPlatform, label: Text("default-streaming-platform")) {
+                        ForEach(Platform.allCases, id: \.self) { platform in
+                            Text(platform.displayName)
+                        }
+                    }
                     
                     Picker(selection: self.$userSettings.sortOption, label: Text("platform-sort-option")) {
                         ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in
@@ -58,6 +62,8 @@ struct SettingsView: View {
                         Text(versionNumber ?? "Unknown")
                             .foregroundColor(.secondary)
                     }
+                    .accessibility(label: Text("version-number"))
+                    .accessibility(value: Text(versionNumber ?? "Unknown"))
                 }
             }
             .navigationTitle(LocalizedStringKey("settings-name"))
