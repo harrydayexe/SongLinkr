@@ -20,6 +20,7 @@ struct MainTextView: View {
                 .foregroundColor(.primary)
                 .font(.largeTitle)
                 .fontWeight(.bold)
+                .accessibility(addTraits: .isHeader)
             TextField("Paste a URL to share", text: self.$searchURL)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(maxWidth: 700)
@@ -30,7 +31,9 @@ struct MainTextView: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
-                
+                .accessibility(addTraits: .isSearchField)
+                .accessibility(label: Text("URL Search Field"))
+                .accessibility(hint: Text("Paste a URL to search for matches on other platforms."))
         }
     }
 }

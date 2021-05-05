@@ -26,6 +26,7 @@ struct Cancellable: ViewModifier {
                         .foregroundColor(.gray)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 8)
+                        .accessibility(hidden: true)
                     
                     if isEditing {
                         Button(action: {
@@ -35,6 +36,7 @@ struct Cancellable: ViewModifier {
                                 .foregroundColor(.gray)
                                 .padding(.trailing, 8)
                         }
+                        .accessibility(label: Text("Clear Search Bar"))
                     }
                 }
             )

@@ -81,6 +81,14 @@ struct ContentView: View {
                     }
                 }
         }
+        .accessibilityAction(.magicTap) {
+            if self.searchURL != "" {
+                // Start the call
+                store.send(.updateCallInProgress(newValue: true))
+                // Request the data
+                store.send(.getSearchResults(from: .search(with: self.searchURL)))
+            }
+        }
     }
 }
 
