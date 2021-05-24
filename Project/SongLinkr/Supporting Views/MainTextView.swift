@@ -21,19 +21,9 @@ struct MainTextView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .accessibility(addTraits: .isHeader)
-            TextField("Paste a URL to share", text: self.$searchURL)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(maxWidth: 700)
-                .keyboardType(.URL)
-                .textContentType(.URL)
-//                Clear Button
-                .modifier(Cancellable(isEditing: $isEditing, text: $searchURL))
-                .onTapGesture {
-                    self.isEditing = true
-                }
-                .accessibility(addTraits: .isSearchField)
-                .accessibility(label: Text("URL Search Field"))
-                .accessibility(hint: Text("Paste a URL to search for matches on other platforms."))
+            
+            URLEntryField(searchURL: self.$searchURL)
+                .padding()
         }
     }
 }

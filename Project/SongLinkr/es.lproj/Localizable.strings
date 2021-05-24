@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  SongLinkr
+
+  Created by Harry Day on 30/04/2021.
+  
+*/
+"settings-name" = "Ajustes";
+"preferences-name" = "Preferencias";
+"version-number" = "Número de versión";
+"popularity" = "Popularidad";
+"alphabetically" = "Alfabéticamente";
+"default-streaming-platform" = "Plataforma de transmisión predeterminada";
+"platform-sort-option" = "Plataforma Ordenar Opción";
+"default-platform-at-top" = "Plataforma predeterminada en la parte superior";
+"auto-open-external-links" = "Abrir automáticamente enlaces externos";
+"auto-open-hint" = "Si la opción Abrir automáticamente enlaces externos está activada, SongLinkr, cuando esté disponible, abrirá automáticamente cualquier enlace que no sea de su plataforma de transmisión predeterminada de inmediato sin presentar la pantalla de selección.";
+"Help" = "Ayudar";
+"Improve Translations" = "Mejorar las traducciones";
+"Support" = "Manutención";
+"Privacy Policy" = "Política de privacidad";
+"SongLinkr is developed by Harry Day from England" = "SongLinkr es desarrollado por Harry Day de Inglaterra";
+"Share" = "Cuota";
+"Copy" = "Copiar";
+"Open" = "Abiertar";
+"Open in App" = "Abiertar en la aplicación";
+"Pick your platform" = "Elige tu plataforma";
+"Powered by Song.Link" = "Desarrollado por Song.Link";
+"Visit Song.Link" = "Visita Song.Link";
+
