@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SongLinkrNetworkCore
 
 struct SettingsView: View {
     @EnvironmentObject var userSettings: UserSettings

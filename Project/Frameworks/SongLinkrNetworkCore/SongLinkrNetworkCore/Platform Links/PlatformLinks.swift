@@ -11,6 +11,13 @@ import Foundation
  The `PlatformLinks` struct is used to hold the links to each platform after a request has been made. This is used to replace the dictionary from the JSON response to easily create buttons dynamically using SwiftUI
  */
 public struct PlatformLinks: Identifiable, Equatable, Comparable {
+    public init(id: SongLinkAPIResponse.Platform, url: URL, nativeAppUriMobile: URL? = nil, nativeAppUriDesktop: URL? = nil) {
+        self.id = id
+        self.url = url
+        self.nativeAppUriMobile = nativeAppUriMobile
+        self.nativeAppUriDesktop = nativeAppUriDesktop
+    }
+    
     public static func < (lhs: PlatformLinks, rhs: PlatformLinks) -> Bool {
         if lhs.id.displayRank < rhs.id.displayRank {
             return true
@@ -43,7 +50,12 @@ public struct PlatformLinks: Identifiable, Equatable, Comparable {
     public var nativeAppUriDesktop: URL?
 }
 
-extension Array where Element == PlatformLinks {
+public extension Array where Element == PlatformLinks {
+    /**
+     This functon takes the default platform of the user and moves it to the first position in the array
+     - Parameter defaultPlatform: The default `Platform` of the user
+     - Returns: An array of platform links which has been reordered
+     */
     func moveDefaultFirst(with defaultPlatform: Platform) -> [PlatformLinks] {
         var temp = self
         guard let index = temp.firstIndex(where: { $0.id == defaultPlatform }) else {

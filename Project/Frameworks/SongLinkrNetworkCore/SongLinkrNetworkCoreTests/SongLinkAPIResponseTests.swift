@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import SongLinkr
+@testable import SongLinkrNetworkCore
 
 class SongLinkAPIResponseTests: XCTestCase {
 
@@ -18,7 +18,7 @@ class SongLinkAPIResponseTests: XCTestCase {
     func testBlankInit() {
         let response = SongLinkAPIResponse()
         
-        let targetPageURL: URL = "https://song.link"
+        let targetPageURL: URL = URL(string: "https://song.link")!
         let entityCount = response.entitiesByUniqueId.count
         let platformCount = response.linksByPlatform.count
         let targetEntity = ["":SongLinkAPIResponse.Entity()]
@@ -68,6 +68,8 @@ class SongLinkAPIResponseTests: XCTestCase {
                     XCTAssertEqual(platform.displayName, "Yandex", "Incorrect Display Name")
                 case .spinrilla:
                     XCTAssertEqual(platform.displayName, "Spinrilla", "Incorrect Display Name")
+                case .audius:
+                    XCTAssertEqual(platform.displayName, "Audius", "Incorrect Display Name")
             }
         }
     }
@@ -107,6 +109,8 @@ class SongLinkAPIResponseTests: XCTestCase {
                     XCTAssertEqual(platform.iconName, "YandexLogoColor", "Incorrect Display Name")
                 case .spinrilla:
                     XCTAssertEqual(platform.iconName, "SpinrillaLogoWhite", "Incorrect Display Name")
+                case .audius:
+                    XCTAssertEqual(platform.iconName, "AudiusLogo", "Incorrect Display Name")
             }
         }
     }

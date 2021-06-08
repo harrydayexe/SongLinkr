@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SongLinkrNetworkCore
 
 @main
 struct SongLinkrApp: App {

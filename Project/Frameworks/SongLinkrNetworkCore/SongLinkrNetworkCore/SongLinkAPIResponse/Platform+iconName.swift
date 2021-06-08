@@ -7,7 +7,8 @@
 
 import Foundation
 
-extension SongLinkAPIResponse.Platform {
+public extension SongLinkAPIResponse.Platform {
+    /// The name of the icon for a platform
     var iconName: String {
         switch self {
             case .spotify:

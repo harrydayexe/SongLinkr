@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import SongLinkrNetworkCore
 
 /**
  Stores the users current preferences and saves them to UserDefaults

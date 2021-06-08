@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import SongLinkr
+@testable import SongLinkrNetworkCore
 
 class EndpointModelTests: XCTestCase {
 

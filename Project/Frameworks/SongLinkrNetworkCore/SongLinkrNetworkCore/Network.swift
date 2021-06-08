@@ -19,14 +19,14 @@ public final class Network {
      Initialise the Network object
      - Parameter session: The URLSession object to use. Default is `.shared`.
      */
-    init(session: URLSession = .shared) {
+    public init(session: URLSession = .shared) {
         self.session = session
     }
     
     /**
      The DataLoaderError enum contains the possible error cases for errors that may be encountered when making a request
      */
-    enum DataLoaderError: Error {
+    public enum DataLoaderError: Error {
         /**
          This error signifies that the URL failed to construct from the `Endpoint` struct
          */
@@ -64,7 +64,7 @@ public final class Network {
     /**
      This is used in the completion handler when making a request.
      */
-    enum Result<Value> {
+    public enum Result<Value> {
         /**
          This indicates the API was successfully accessed and contains the data inside the `Value` associated type.
          */
@@ -81,7 +81,7 @@ public final class Network {
      - parameter url: A string containing the URL to be percent encoded
      - returns: The percent encoded URL as a string
      */
-    static func encodeURL(from url: String) -> String {
+    static public func encodeURL(from url: String) -> String {
         if let encodedURL = url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
             return encodedURL
         } else {
@@ -96,7 +96,7 @@ public final class Network {
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      - parameter handler: The completion handler. This is an `@escaping` closure to deal with when you call the function.
      */
-    func request(
+    public func request(
         from endpoint: Endpoint,
         with decoder: JSONDecoder = JSONDecoder()
     ) -> AnyPublisher<SongLinkAPIResponse, DataLoaderError> {
@@ -182,7 +182,7 @@ public final class Network {
     /**
      This function unpacks the data in a dictionary in `SongLinkAPIResponse` and returns an array of that data in the form of `[PlatformLinks]`. This is useful for when arrays are needed to dynamically generate UI.
      */
-    func fixDictionaries(response: SongLinkAPIResponse?) -> [PlatformLinks] {
+    public func fixDictionaries(response: SongLinkAPIResponse?) -> [PlatformLinks] {
         guard let response = response else {
             return []
         }
@@ -212,7 +212,7 @@ public final class Network {
      - parameter dataLoaderError: The Error to generate a response for.
      - Returns: A tuple of two strings, the first being the title of the error and the second being the main description
      */
-    func createErrorMessage(from dataLoaderError: DataLoaderError) -> (String, String) {
+    public func createErrorMessage(from dataLoaderError: DataLoaderError) -> (String, String) {
         switch dataLoaderError {
             case .network(let error):
                 print("Network Error")

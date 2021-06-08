@@ -9,11 +9,11 @@ import Foundation
 
 public typealias APIProvider = SongLinkAPIResponse.APIProvider
 
-extension SongLinkAPIResponse {
+public extension SongLinkAPIResponse {
     /**
      The `APIProvider` enum contains all the API Providers the data has been collected from.
      */
-    public enum APIProvider: String, Codable {
+    enum APIProvider: String, Codable {
         case spotify
         case itunes
         case youtube

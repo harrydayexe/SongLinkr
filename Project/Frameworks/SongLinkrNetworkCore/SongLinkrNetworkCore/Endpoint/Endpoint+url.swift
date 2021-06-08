@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Endpoint {
+public extension Endpoint {
     /**
      The url variable returns a `URL?` property that is built from the components of the endpoint.
      */
