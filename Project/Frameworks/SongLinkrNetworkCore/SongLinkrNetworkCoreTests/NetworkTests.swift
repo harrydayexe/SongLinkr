@@ -29,13 +29,37 @@ class NetworkTests: XCTestCase {
         XCTAssertEqual(testURL1, encoded1, "Percent Encoded Wrong")
     }
     
-    func testFixDictionaries() {
-//        Given
+    func testFixDictionariesWithGoodResponse() {
+        // Given
         let platforms: [Platform.RawValue : PlatformInfo] = [Platform.amazonMusic.rawValue : PlatformInfo(entityUniqueId: "amazonMusic", url: "https://song.link/testURL")]
         
         let response = SongLinkAPIResponse(entityUniqueId: "testID", userCountry: "US", pageUrl: "https://song.link", entitiesByUniqueId: ["":SongLinkAPIResponse.Entity()], linksByPlatform: platforms)
         
-//        When
+        // When
+        let fixedArray = sut.fixDictionaries(response: response).sorted(by: { $0.id.rawValue < $1.id.rawValue })
+        let targetArray = [PlatformLinks(id: Platform.amazonMusic, url: "https://song.link/testURL")]
+        
+        XCTAssertEqual(fixedArray, targetArray, "Array did not decode correctly")
+    }
+    
+    func testFixDictionariesWithNilResponse() {
+        // When
+        let fixedArray = sut.fixDictionaries(response: nil).sorted(by: { $0.id.rawValue < $1.id.rawValue })
+        let targetArray: [PlatformLinks] = []
+        
+        XCTAssertEqual(fixedArray, targetArray, "Array did not decode correctly")
+    }
+    
+    func testFixDictionariesWithUnknownPlatform() {
+        // Given
+        let platforms: [Platform.RawValue : PlatformInfo] = [
+            Platform.amazonMusic.rawValue : PlatformInfo(entityUniqueId: "amazonMusic", url: "https://song.link/testURL"),
+            "Unknown Platform" : PlatformInfo(entityUniqueId: "unKnownEntityID", url: "https://song.link/testURL")
+        ]
+        
+        let response = SongLinkAPIResponse(entityUniqueId: "testID", userCountry: "US", pageUrl: "https://song.link", entitiesByUniqueId: ["":SongLinkAPIResponse.Entity()], linksByPlatform: platforms)
+        
+        // When
         let fixedArray = sut.fixDictionaries(response: response).sorted(by: { $0.id.rawValue < $1.id.rawValue })
         let targetArray = [PlatformLinks(id: Platform.amazonMusic, url: "https://song.link/testURL")]
         
@@ -51,7 +75,8 @@ class NetworkTests: XCTestCase {
             DLError.serverSideWithReason(400, "Test Status"),
             DLError.serverSide(200),
             DLError.unknownItem,
-            DLError.unknownEntity
+            DLError.unknownEntity,
+            DLError.unknownNetworkProblem
         ]
         
         for error in errors {

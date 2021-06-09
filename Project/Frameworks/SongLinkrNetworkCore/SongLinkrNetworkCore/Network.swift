@@ -85,7 +85,7 @@ public final class Network {
         if let encodedURL = url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
             return encodedURL
         } else {
-            preconditionFailure("Failed to percent encode shared url")
+            preconditionFailure("Failed to percent encode shared url. Check: https://stackoverflow.com/a/33558934/9682666 for more info")
         }
     }
     

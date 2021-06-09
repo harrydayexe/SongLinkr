@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8C6E7F1626701F6B00B0D05D /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6E7F0C26701F6B00B0D05D /* SongLinkrNetworkCore.framework */; };
 		8C6E7F1D26701F6B00B0D05D /* SongLinkrNetworkCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C6E7F0F26701F6B00B0D05D /* SongLinkrNetworkCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CBAAF742671004B0018F500 /* PlatformLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */; };
 		8CE207FE2670212000DAD0F9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE207EB2670212000DAD0F9 /* Network.swift */; };
 		8CE207FF2670212000DAD0F9 /* Endpoint+search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE207ED2670212000DAD0F9 /* Endpoint+search.swift */; };
 		8CE208002670212000DAD0F9 /* Endpoint+url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE207EE2670212000DAD0F9 /* Endpoint+url.swift */; };
@@ -49,6 +50,7 @@
 		8C6E7F1026701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C6E7F1526701F6B00B0D05D /* SongLinkrNetworkCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongLinkrNetworkCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6E7F1C26701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinksTests.swift; sourceTree = "<group>"; };
 		8CE207EB2670212000DAD0F9 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8CE207ED2670212000DAD0F9 /* Endpoint+search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endpoint+search.swift"; sourceTree = "<group>"; };
 		8CE207EE2670212000DAD0F9 /* Endpoint+url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endpoint+url.swift"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		8C6E7F1926701F6B00B0D05D /* SongLinkrNetworkCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */,
 				8CE20812267022FA00DAD0F9 /* BadResponseModelTests.swift */,
 				8CE20811267022FA00DAD0F9 /* EndpointModelTests.swift */,
 				8CE20813267022FA00DAD0F9 /* NetworkTests.swift */,
@@ -317,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CE20817267022FA00DAD0F9 /* NetworkTests.swift in Sources */,
+				8CBAAF742671004B0018F500 /* PlatformLinksTests.swift in Sources */,
 				8CE20816267022FA00DAD0F9 /* BadResponseModelTests.swift in Sources */,
 				8CE20818267022FA00DAD0F9 /* SongLinkAPIResponseTests.swift in Sources */,
 				8CE20815267022FA00DAD0F9 /* EndpointModelTests.swift in Sources */,
