@@ -114,6 +114,80 @@ class SongLinkAPIResponseTests: XCTestCase {
             }
         }
     }
+    
+    func testDisplayRank() {
+        for platform in Platform.allCases {
+            switch platform {
+                case .spotify:
+                    XCTAssertEqual(platform.displayRank, 0, "Incorrect Display Rank")
+                case .itunes:
+                    XCTAssertEqual(platform.displayRank, 1, "Incorrect Display Rank")
+                case .appleMusic:
+                    XCTAssertEqual(platform.displayRank, 0, "Incorrect Display Rank")
+                case .youtube:
+                    XCTAssertEqual(platform.displayRank, 0, "Incorrect Display Rank")
+                case .youtubeMusic:
+                    XCTAssertEqual(platform.displayRank, 0, "Incorrect Display Rank")
+                case .google:
+                    XCTAssertEqual(platform.displayRank, 1, "Incorrect Display Rank")
+                case .googleStore:
+                    XCTAssertEqual(platform.displayRank, 1, "Incorrect Display Rank")
+                case .pandora:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+                case .deezer:
+                    XCTAssertEqual(platform.displayRank, 1, "Incorrect Display Rank")
+                case .tidal:
+                    XCTAssertEqual(platform.displayRank, 1, "Incorrect Display Rank")
+                case .amazonStore:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+                case .amazonMusic:
+                    XCTAssertEqual(platform.displayRank, 1, "Incorrect Display Rank")
+                case .soundcloud:
+                    XCTAssertEqual(platform.displayRank, 1, "Incorrect Display Rank")
+                case .napster:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+                case .yandex:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+                case .spinrilla:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+                case .audius:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+            }
+        }
+    }
+    
+    func testEntityName() {
+        for platform in Platform.allCases {
+            switch platform {
+                case .spotify:
+                    XCTAssertEqual(platform.entityName, "SPOTIFY", "Incorrect Entity Name")
+                case .itunes, .appleMusic:
+                    XCTAssertEqual(platform.entityName, "ITUNES", "Incorrect Entity Name")
+                case .youtube, .youtubeMusic:
+                    XCTAssertEqual(platform.entityName, "YOUTUBE", "Incorrect Entity Name")
+                case .google, .googleStore:
+                    XCTAssertEqual(platform.entityName, "GOOGLE", "Incorrect Entity Name")
+                case .pandora:
+                    XCTAssertEqual(platform.entityName, "PANDORA", "Incorrect Entity Name")
+                case .deezer:
+                    XCTAssertEqual(platform.entityName, "DEEZER", "Incorrect Entity Name")
+                case .tidal:
+                    XCTAssertEqual(platform.entityName, "TIDAL", "Incorrect Entity Name")
+                case .amazonStore, .amazonMusic:
+                    XCTAssertEqual(platform.entityName, "AMAZON", "Incorrect Entity Name")
+                case .soundcloud:
+                    XCTAssertEqual(platform.entityName, "SOUNDCLOUD", "Incorrect Entity Name")
+                case .napster:
+                    XCTAssertEqual(platform.entityName, "NAPSTER", "Incorrect Entity Name")
+                case .yandex:
+                    XCTAssertEqual(platform.entityName, "YANDEX", "Incorrect Entity Name")
+                case .spinrilla:
+                    XCTAssertEqual(platform.entityName, "SPINRILLA", "Incorrect Entity Name")
+                case .audius:
+                    XCTAssertEqual(platform.entityName, "AUDIUS", "Incorrect Entity Name")
+            }
+        }
+    }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.

@@ -13,17 +13,11 @@ public extension SongLinkAPIResponse.Platform {
         switch self {
             case .spotify:
                 return "SPOTIFY"
-            case .itunes:
+            case .itunes, .appleMusic:
                 return "ITUNES"
-            case .appleMusic:
-                return "ITUNES"
-            case .youtube:
+            case .youtube, .youtubeMusic:
                 return "YOUTUBE"
-            case .youtubeMusic:
-                return "YOUTUBE"
-            case .google:
-                return "GOOGLE"
-            case .googleStore:
+            case .google, .googleStore:
                 return "GOOGLE"
             case .pandora:
                 return "PANDORA"
@@ -31,9 +25,7 @@ public extension SongLinkAPIResponse.Platform {
                 return "DEEZER"
             case .tidal:
                 return "TIDAL"
-            case .amazonStore:
-                return "AMAZON"
-            case .amazonMusic:
+            case .amazonStore, .amazonMusic:
                 return "AMAZON"
             case .soundcloud:
                 return "SOUNDCLOUD"

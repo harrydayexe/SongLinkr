@@ -12,8 +12,14 @@ class NetworkTests: XCTestCase {
     var sut: Network!
 
     override func setUp() {
-        sut = Network()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        // Config for the session
+        let config = URLSessionConfiguration.ephemeral
+        config.protocolClasses = [URLProtocolStub.self]
+        
+        let session = URLSession(configuration: config)
+        
+        sut = Network(session: session)
+        
         super.setUp()
     }
     
@@ -108,6 +114,191 @@ class NetworkTests: XCTestCase {
                     XCTAssertEqual(errorMessage.1, "Sorry an unkown network error occured. Please try again later.", "Incorrect body for error message")
             }
         }
+    }
+    
+    func testRequestWith200Code() throws {
+        // Expected response
+        let expected = SongLinkAPIResponse(
+            entityUniqueId: "TestEntity",
+            userCountry: "US",
+            pageUrl: "https://song.link/testURL",
+            entitiesByUniqueId: [:],
+            linksByPlatform: [:]
+        )
+        
+        // json for stub
+        let jsonData = Data("""
+            {
+              "entityUniqueId": "TestEntity",
+              "userCountry": "US",
+              "pageUrl": "https://song.link/testURL",
+              "entitiesByUniqueId": {},
+              "linksByPlatform": {}
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        let response = try awaitOutput(sut.request(from: endpoint))
+        
+        XCTAssertEqual(response, expected)
+    }
+    
+    func testRequestWith404Code() throws {
+        // json for stub
+        let jsonData = Data("""
+            {
+              "statusCode": 404,
+              "code": "could_not_fetch_entity_data"
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 404, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+    }
+    
+    func testRequestWith400Code() throws {
+        // json for stub
+        let jsonData = Data("""
+            {
+              "statusCode": 400,
+              "code": "could_not_resolve_entity"
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 400, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+    }
+    
+    func testRequestWithRandomCode() throws {
+        // json for stub
+        let jsonData = Data("""
+            {
+              "statusCode": 407,
+              "code": "random_test_reason"
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 407, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+    }
+    
+    func testRequestWithUndecodabeErrorResponse() throws {
+        // json for stub
+        let jsonData = Data("""
+            {
+              "testKey": 4828,
+              "testKey2": "random_test_reason"
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 404, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+    }
+    
+    func testRequestWith500StatusCode() throws {
+        // json for stub
+        let jsonData = Data("""
+            {
+              "statusCode": 500,
+              "code": "random_test_reason"
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 500, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+    }
+    
+    func testRequestWithUnknownStatusCode() throws {
+        // json for stub
+        let jsonData = Data("""
+            {
+              "statusCode": 700,
+              "code": "random_test_reason"
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 700, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+    }
+    
+    func testRequestWithBadJSON() throws {
+        // json for stub
+        let jsonData = Data("""
+            {
+              "entityUniqueId": "SPOTIFY_SONG::0Jcij1eWd5bDMU5iPbxe2i",
+              "usountry": "US",
+              "pageUrl": "https://song.link/s/0Jcij1eWd5bDMU5iPbxe2i",
+              "entitiesByUniqueId": {
+                "YOUTUBE_VIDEO::w3LJ2bDvDJs": {
+                  "id": "w3LJ2bDvDJs",
+                  "type": "song",
+                  "title": "Kitchen",
+                  "artistName": "Kid Cudi - Topic",
+                  "thumbnailUrl": "https://i.ytimg.com/vi/w3LJ2bDvDJs/hqdefault.jpg",
+                  "thumbnailWidth": 480,
+                  "thumbnailHeight": 360,
+                  "apiProvider": "youtube",
+                  "platforms": [
+                    "youtube",
+                    "youtubeMusic"
+                  ]
+                }
+              },
+              "linPlatform": {
+                "youtube": {
+                  "url": "https://www.youtube.com/watch?v=w3LJ2bDvDJs",
+                  "entityUniqueId": "YOUTUBE_VIDEO::w3LJ2bDvDJs"
+                },
+                "youtubeMusic": {
+                  "url": "https://music.youtube.com/watch?v=w3LJ2bDvDJs",
+                  "entityUniqueId": "YOUTUBE_VIDEO::w3LJ2bDvDJs"
+                }
+              }
+            }
+            """.utf8)
+        
+
+        URLProtocolStub.testURLs = [Endpoint.search(with: "Test-String").url : jsonData]
+        URLProtocolStub.response = HTTPURLResponse(url: "https://song.link/testURL", statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)
+        
+        let endpoint: Endpoint = .search(with: "Test-String")
+        
+        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
     }
 
     override func tearDown() {
