@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SongLinkrNetworkCore
 
 struct ContentView: View {
     /// The app state stored in the environment

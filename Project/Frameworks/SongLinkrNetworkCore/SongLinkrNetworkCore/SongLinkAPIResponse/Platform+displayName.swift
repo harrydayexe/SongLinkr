@@ -7,7 +7,8 @@
 
 import Foundation
 
-extension SongLinkAPIResponse.Platform {
+public extension SongLinkAPIResponse.Platform {
+    /// The name to be displayed for a platform
     var displayName: String {
         switch self {
             case .spotify:

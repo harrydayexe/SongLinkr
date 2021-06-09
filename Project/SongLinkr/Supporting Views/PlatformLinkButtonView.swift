@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SongLinkrNetworkCore
 
 struct PlatformLinkButtonView: View {
     @State var platform: PlatformLinks

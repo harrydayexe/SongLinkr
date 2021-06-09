@@ -9,11 +9,11 @@ import Foundation
 
 public typealias MusicType = SongLinkAPIResponse.MusicType
 
-extension SongLinkAPIResponse {
+public extension SongLinkAPIResponse {
     /**
      The `MusicType` enum contains the two types of media currently available to be accessed by the Song.Link API, Song and Album.
      */
-    public enum MusicType: String, Codable {
+    enum MusicType: String, Codable {
         case song, album
     }
 }

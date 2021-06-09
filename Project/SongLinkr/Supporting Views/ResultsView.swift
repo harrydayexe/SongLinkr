@@ -7,6 +7,7 @@
 
 import SwiftUI
 import StoreKit
+import SongLinkrNetworkCore
 
 struct ResultsView: View {
     @State private var showShareSheet = false

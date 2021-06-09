@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SongLinkrNetworkCore
 
 /// A typealias for the Store Observable Object
 typealias AppStore = Store<AppState, AppAction, World>

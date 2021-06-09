@@ -7,7 +7,8 @@
 
 import Foundation
 
-extension SongLinkAPIResponse.Platform {
+public extension SongLinkAPIResponse.Platform {
+    /// Determines the order of platforms when displayed
     var displayRank: Int {
         switch self {
             case .spotify:

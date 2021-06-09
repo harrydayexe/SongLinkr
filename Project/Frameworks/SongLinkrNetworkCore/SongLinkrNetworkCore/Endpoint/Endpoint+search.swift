@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Endpoint {
+public extension Endpoint {
     /**
      The search function sets the endpoint path and adds the url query item to the query item array
      

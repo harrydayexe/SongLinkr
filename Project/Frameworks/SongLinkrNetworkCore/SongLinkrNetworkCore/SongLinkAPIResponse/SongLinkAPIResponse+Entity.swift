@@ -9,11 +9,11 @@ import Foundation
 
 public typealias Entity = SongLinkAPIResponse.Entity
 
-extension SongLinkAPIResponse {
+public extension SongLinkAPIResponse {
     /**
      `Entity` is a struct that contains data for that entity, such as `title`, `artistName`, `thumbnailUrl`, etc.
      */
-    public struct Entity: Codable, Equatable {
+    struct Entity: Codable, Equatable {
         /**
          This is the unique identifier on the streaming platform/API provider
          */

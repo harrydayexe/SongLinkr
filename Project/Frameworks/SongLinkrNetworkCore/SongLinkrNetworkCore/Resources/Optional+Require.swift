@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension Optional {
+extension Optional {
     /**
      *  Require this optional to contain a non-nil value
      *
