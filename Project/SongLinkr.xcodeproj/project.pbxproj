@@ -17,6 +17,9 @@
 		8C1C7B79262C5D7D00A14896 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C7B78262C5D7D00A14896 /* Store.swift */; };
 		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
 		8C314DC9262C6F1F007BC14C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C314DC8262C6F1F007BC14C /* App.swift */; };
+		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
+		8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C34F3BB26723FEF00E05629 /* IntentHandler.swift */; };
+		8C34F3C026723FEF00E05629 /* Shortcuts.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C34F3B726723FEF00E05629 /* Shortcuts.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */; };
 		8C43CB2924A66593001B89A0 /* SongLinkrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB2824A66593001B89A0 /* SongLinkrUITests.swift */; };
@@ -37,7 +40,12 @@
 		8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
+		8C8BD2832672413400B75DC9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2822672413400B75DC9 /* Intents.intentdefinition */; };
+		8C8BD2862672443F00B75DC9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2822672413400B75DC9 /* Intents.intentdefinition */; };
+		8C8BD2882672B35700B75DC9 /* matchURLToPlatformHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */; };
 		8CA1F3E124C0807900E6B853 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1F3E024C0807900E6B853 /* ActivityView.swift */; };
+		8CBD49D92672BC5100CB69DB /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
+		8CBD49DA2672BC5100CB69DB /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CC091F6267029A600ED7BED /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC091F7267029A600ED7BED /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
@@ -47,6 +55,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8C34F3BE26723FEF00E05629 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C43CB0024A6658E001B89A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C34F3B626723FEF00E05629;
+			remoteInfo = Shortcuts;
+		};
 		8C43CB1A24A66593001B89A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C43CB0024A6658E001B89A0 /* Project object */;
@@ -85,6 +100,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8CBD49DB2672BC5100CB69DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8CBD49DA2672BC5100CB69DB /* SongLinkrNetworkCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CC091F8267029A600ED7BED /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,6 +128,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				8C34F3C026723FEF00E05629 /* Shortcuts.appex in Embed App Extensions */,
 				8C4E90832633741B00D201C1 /* SongLinkrActionWithView.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -113,6 +140,10 @@
 		8C1C7B78262C5D7D00A14896 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
 		8C314DC8262C6F1F007BC14C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		8C34F3BB26723FEF00E05629 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		8C34F3BD26723FEF00E05629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C43CB0824A6658E001B89A0 /* SongLinkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SongLinkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrApp.swift; sourceTree = "<group>"; };
 		8C43CB0D24A6658E001B89A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +172,8 @@
 		8C81830824A908070047193B /* GetLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8C81830F24A9408C0047193B /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
 		8C81831124A945F30047193B /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		8C8BD2822672413400B75DC9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = matchURLToPlatformHandler.swift; sourceTree = "<group>"; };
 		8CA1F3E024C0807900E6B853 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
 		8CC72A4724C06E2E006672AE /* Binding+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Mock.swift"; sourceTree = "<group>"; };
@@ -153,6 +186,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8C34F3B426723FEF00E05629 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CBD49D92672BC5100CB69DB /* SongLinkrNetworkCore.framework in Frameworks */,
+				8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C43CB0524A6658E001B89A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -194,6 +236,17 @@
 			path = "Redux State";
 			sourceTree = "<group>";
 		};
+		8C34F3BA26723FEF00E05629 /* Shortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				8C34F3BB26723FEF00E05629 /* IntentHandler.swift */,
+				8C8BD2822672413400B75DC9 /* Intents.intentdefinition */,
+				8C8BD28C2672B68C00B75DC9 /* Shortcut Handlers */,
+				8C34F3BD26723FEF00E05629 /* Info.plist */,
+			);
+			path = Shortcuts;
+			sourceTree = "<group>";
+		};
 		8C43CAFF24A6658E001B89A0 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +255,7 @@
 				8C43CB1C24A66593001B89A0 /* SongLinkrTests */,
 				8C43CB2724A66593001B89A0 /* SongLinkrUITests */,
 				8C4E90782633741B00D201C1 /* SongLinkrActionWithView */,
+				8C34F3BA26723FEF00E05629 /* Shortcuts */,
 				8C43CB0924A6658E001B89A0 /* Products */,
 				8CE20824267027A400DAD0F9 /* Frameworks */,
 			);
@@ -214,6 +268,7 @@
 				8C43CB1924A66593001B89A0 /* SongLinkrTests.xctest */,
 				8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */,
 				8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */,
+				8C34F3B726723FEF00E05629 /* Shortcuts.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,6 +379,14 @@
 			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
+		8C8BD28C2672B68C00B75DC9 /* Shortcut Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */,
+			);
+			path = "Shortcut Handlers";
+			sourceTree = "<group>";
+		};
 		8CE207E32670206600DAD0F9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +399,7 @@
 		8CE20824267027A400DAD0F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C34F3B826723FEF00E05629 /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -343,6 +407,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8C34F3B626723FEF00E05629 /* Shortcuts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C34F3C526723FEF00E05629 /* Build configuration list for PBXNativeTarget "Shortcuts" */;
+			buildPhases = (
+				8C34F3B326723FEF00E05629 /* Sources */,
+				8C34F3B426723FEF00E05629 /* Frameworks */,
+				8C34F3B526723FEF00E05629 /* Resources */,
+				8CBD49DB2672BC5100CB69DB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shortcuts;
+			productName = Shortcuts;
+			productReference = 8C34F3B726723FEF00E05629 /* Shortcuts.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8C43CB0724A6658E001B89A0 /* SongLinkr */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C43CB2D24A66593001B89A0 /* Build configuration list for PBXNativeTarget "SongLinkr" */;
@@ -358,6 +440,7 @@
 			);
 			dependencies = (
 				8C4E90822633741B00D201C1 /* PBXTargetDependency */,
+				8C34F3BF26723FEF00E05629 /* PBXTargetDependency */,
 			);
 			name = SongLinkr;
 			productName = SongLinkr;
@@ -423,9 +506,12 @@
 		8C43CB0024A6658E001B89A0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					8C34F3B626723FEF00E05629 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					8C43CB0724A6658E001B89A0 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -467,6 +553,7 @@
 				8C43CB1824A66593001B89A0 /* SongLinkrTests */,
 				8C43CB2324A66593001B89A0 /* SongLinkrUITests */,
 				8C4E90762633741B00D201C1 /* SongLinkrActionWithView */,
+				8C34F3B626723FEF00E05629 /* Shortcuts */,
 			);
 		};
 /* End PBXProject section */
@@ -489,6 +576,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8C34F3B526723FEF00E05629 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C43CB0624A6658E001B89A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -545,10 +639,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8C34F3B326723FEF00E05629 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C8BD2882672B35700B75DC9 /* matchURLToPlatformHandler.swift in Sources */,
+				8C8BD2832672413400B75DC9 /* Intents.intentdefinition in Sources */,
+				8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C43CB0424A6658E001B89A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C8BD2862672443F00B75DC9 /* Intents.intentdefinition in Sources */,
 				8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */,
 				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
 				8C314DC9262C6F1F007BC14C /* App.swift in Sources */,
@@ -605,6 +710,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8C34F3BF26723FEF00E05629 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C34F3B626723FEF00E05629 /* Shortcuts */;
+			targetProxy = 8C34F3BE26723FEF00E05629 /* PBXContainerItemProxy */;
+		};
 		8C43CB1B24A66593001B89A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8C43CB0724A6658E001B89A0 /* SongLinkr */;
@@ -646,6 +756,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8C34F3C126723FEF00E05629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQ55A92845;
+				INFOPLIST_FILE = Shortcuts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C34F3C226723FEF00E05629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQ55A92845;
+				INFOPLIST_FILE = Shortcuts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8C43CB2B24A66593001B89A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -957,6 +1109,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8C34F3C526723FEF00E05629 /* Build configuration list for PBXNativeTarget "Shortcuts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C34F3C126723FEF00E05629 /* Debug */,
+				8C34F3C226723FEF00E05629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8C43CB0324A6658E001B89A0 /* Build configuration list for PBXProject "SongLinkr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
