@@ -17,6 +17,8 @@ import Combine
 /// The Handler for matchURLToPlatform shortcut
 class MatchURLToPlatformHandler: NSObject, MatchURLToPlatformIntentHandling {
     
+    private var cancellables: Set<AnyCancellable> = []
+    
     func resolveUrl(for intent: MatchURLToPlatformIntent, with completion: @escaping (MatchURLToPlatformUrlResolutionResult) -> Void) {
         if let url = intent.url {
             completion(MatchURLToPlatformUrlResolutionResult.success(with: url))
@@ -36,7 +38,6 @@ class MatchURLToPlatformHandler: NSObject, MatchURLToPlatformIntentHandling {
     }
     
     func handle(intent: MatchURLToPlatformIntent, completion: @escaping (MatchURLToPlatformIntentResponse) -> Void) {
-        
         // Unwrap url or throw error
         guard let url = intent.url else {
             completion(MatchURLToPlatformIntentResponse.failure(error: "The entered URL was invalid"))
@@ -57,6 +58,7 @@ class MatchURLToPlatformHandler: NSObject, MatchURLToPlatformIntentHandling {
             }
             // Get desired platform links arrays
             .map { platformLinks -> [PlatformLinks] in
+                print("here")
                 // Check if the user wants a specific platform
                 if specificPlatformWanted {
                     // Try to find the wanted platform in the list and return
@@ -75,7 +77,8 @@ class MatchURLToPlatformHandler: NSObject, MatchURLToPlatformIntentHandling {
                 return platformLinks.map { $0.url }
             }
             .replaceError(with: [])
-            .sink { completion(MatchURLToPlatformIntentResponse.success(result: $0)) }
+            .sink(receiveValue: { completion(MatchURLToPlatformIntentResponse.success(result: $0)) })
+            .store(in: &cancellables)
     }
     
 }
