@@ -43,6 +43,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8C43CB2324A66593001B89A0"
+               BuildableName = "SongLinkrUITests.xctest"
+               BlueprintName = "SongLinkrUITests"
+               ReferencedContainer = "container:SongLinkr.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
