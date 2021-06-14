@@ -300,6 +300,72 @@ class NetworkTests: XCTestCase {
         
         XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
     }
+    
+    func testGetArtworkURL() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "Entity1" : Entity(
+                    id: "Entity1",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .amazon,
+                    platforms: [.amazonStore, .amazonMusic]
+                ),
+                "Entity2" : Entity(
+                    id: "Entity2",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/2",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .itunes,
+                    platforms: [.appleMusic, .itunes]
+                ),
+                "Entity3" : Entity(
+                    id: "Entity3",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/3",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .pandora,
+                    platforms: [.pandora]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        // Expected
+        let expectedURL: URL = "https://thumbnail.com/1"
+        
+        // Actual
+        let actualResult = Network.getArtworkURL(from: response)!
+        
+        XCTAssertEqual(expectedURL, actualResult)
+    }
+    
+    func testGetArtworkURLisNil() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [:],
+            linksByPlatform: [:]
+        )
+        
+        // Actual
+        let actualResult = Network.getArtworkURL(from: response)
+        
+        XCTAssertNil(actualResult)
+    }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.

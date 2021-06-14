@@ -208,6 +208,31 @@ public final class Network {
     }
     
     /**
+     This function returns the best URL to the album artwork from a SongLinkAPIResponse.
+     Each response object can have many different thumbnails based on the platform therefore this functions pulls the best fit
+      - Parameter response: The `SongLinkAPIResponse` to get results from
+      - Returns: An optional `URL` which directs to the artwork location
+     */
+    public static func getArtworkURL(from response: SongLinkAPIResponse) -> URL? {
+        let entities = response.entitiesByUniqueId
+            .map { $0.value }
+            .sorted { first, second in
+//                $0.platforms.map { $0.displayRank }.sorted(by: >) > $1.platforms.map { $0.displayRank }.sorted(by: >)
+                let platformRanksFirst = first.platforms.map { platform in
+                    platform.displayRank
+                }.sorted(by: >)
+                
+                let platformRanksSecond = second.platforms.map { platform in
+                    platform.displayRank
+                }.sorted(by: >)
+                
+                return platformRanksFirst.first ?? 0 > platformRanksSecond.first ?? 0
+            }
+        
+        return entities.first?.thumbnailUrl
+    }
+    
+    /**
      This function takes a `DataLoaderError` as an input and returns the error message dictionary for an alert as an output
      - parameter dataLoaderError: The Error to generate a response for.
      - Returns: A tuple of two strings, the first being the title of the error and the second being the main description

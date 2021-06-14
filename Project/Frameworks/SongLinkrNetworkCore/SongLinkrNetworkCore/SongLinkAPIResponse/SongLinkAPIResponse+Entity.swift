@@ -49,6 +49,6 @@ public extension SongLinkAPIResponse {
         /**
          An array of platforms that are "powered" by this entity. E.g. an entity from Apple Music will generally have a `platforms` array of `["appleMusic", "itunes"]` since both those platforms/links are derived from this single entity
          */
-        public var platforms: [Platform] = [.amazonStore]
+        public var platforms: [Platform] = []
     }
 }
