@@ -396,6 +396,72 @@ class NetworkTests: XCTestCase {
         
         XCTAssertNil(actualResult)
     }
+    
+    func testGetSongNameAndArtist() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "SPOTIFY_SONG::0Jcij1eWd5bDMU5iPbxe2i" : Entity(
+                    id: "0Jcij1eWd5bDMU5iPbxe2i",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .spotify,
+                    platforms: [.spotify]
+                ),
+                "ITUNES_SONG::1440867832" : Entity(
+                    id: "1440867832",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/2",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .itunes,
+                    platforms: [.appleMusic, .itunes]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        XCTAssertEqual("Artist Name", Network.getSongNameAndArtist(from: response).0)
+        XCTAssertEqual("Song Name", Network.getSongNameAndArtist(from: response).1)
+    }
+    
+    func testGetSongNameAndArtistNil() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "SPOTIFY_SONG::0Jcij1eWd5bDMU5iPbxe2i" : Entity(
+                    id: "0Jcij1eWd5bDMU5iPbxe2i",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .spotify,
+                    platforms: [.spotify]
+                ),
+                "ITUNES_SONG::1440867832" : Entity(
+                    id: "1440867832",
+                    thumbnailUrl: "https://thumbnail.com/2",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .itunes,
+                    platforms: [.appleMusic, .itunes]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        XCTAssertEqual(nil, Network.getSongNameAndArtist(from: response).0)
+        XCTAssertEqual(nil, Network.getSongNameAndArtist(from: response).1)
+    }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.

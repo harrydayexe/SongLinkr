@@ -225,20 +225,58 @@ public final class Network {
                     platform.displayRank
                 }.min()
                 
-                print(platformRankFirst, platformRankSecond)
-                
                 // If same display rank or both missing
                 if platformRankFirst ?? Int.max == platformRankSecond ?? Int.max {
                     return first.key < second.key
                 // Else return the result of the comparison
                 } else {
-                    print("here")
                     return platformRankFirst ?? Int.max < platformRankSecond ?? Int.max
                 }
             }
             .map { $0.value }
         
         return entities.first?.thumbnailUrl
+    }
+    
+    /**
+     This function returns the song name and artist from a SongLinkAPIResponse.
+      - Parameter response: The `SongLinkAPIResponse` to get results from
+      - Returns: A tuple with the first string being the song name and the second string being the artist name
+     */
+    public static func getSongNameAndArtist(from response: SongLinkAPIResponse) -> (String?, String?) {
+        // Get entities with song names and artists in
+        let entitiesDict = response.entitiesByUniqueId.filter { entity in
+            guard let _ = entity.value.artistName, let _ = entity.value.title else {
+                return false
+            }
+            return true
+        }
+        
+        // Get the artist names excluding any from youtube
+        let artistName = entitiesDict.values.filter { entity in
+            entity.platforms.contains { !($0 == .youtube || $0 == .youtubeMusic) }
+        }.map({ $0.artistName })
+        // Get the song names
+        let songTitles = entitiesDict.values.map({ $0.title })
+        
+        // Remove duplicates from each array
+        let uniqueArtistNames = Array(Set(artistName))
+        let uniquesongTitles = Array(Set(songTitles))
+        
+        var decidedArtistName: String?
+        var decidedSongName: String?
+
+        // If both arrays only have one item (best case scenario as every platform is in agreement)
+        if uniqueArtistNames.count >= 1 {
+            decidedArtistName = uniqueArtistNames.first!
+        }
+        
+        if uniquesongTitles.count >= 1 {
+            decidedSongName = uniquesongTitles.first!
+        }
+        print(decidedArtistName, decidedSongName)
+        
+        return (decidedArtistName, decidedSongName)
     }
     
     /**
