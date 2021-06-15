@@ -215,19 +215,28 @@ public final class Network {
      */
     public static func getArtworkURL(from response: SongLinkAPIResponse) -> URL? {
         let entities = response.entitiesByUniqueId
-            .map { $0.value }
             .sorted { first, second in
 //                $0.platforms.map { $0.displayRank }.sorted(by: >) > $1.platforms.map { $0.displayRank }.sorted(by: >)
-                let platformRanksFirst = first.platforms.map { platform in
+                let platformRankFirst = first.value.platforms.map { platform in
                     platform.displayRank
-                }.sorted(by: >)
+                }.min()
                 
-                let platformRanksSecond = second.platforms.map { platform in
+                let platformRankSecond = second.value.platforms.map { platform in
                     platform.displayRank
-                }.sorted(by: >)
+                }.min()
                 
-                return platformRanksFirst.first ?? 0 > platformRanksSecond.first ?? 0
+                print(platformRankFirst, platformRankSecond)
+                
+                // If same display rank or both missing
+                if platformRankFirst ?? Int.max == platformRankSecond ?? Int.max {
+                    return first.key < second.key
+                // Else return the result of the comparison
+                } else {
+                    print("here")
+                    return platformRankFirst ?? Int.max < platformRankSecond ?? Int.max
+                }
             }
+            .map { $0.value }
         
         return entities.first?.thumbnailUrl
     }

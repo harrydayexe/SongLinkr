@@ -318,16 +318,6 @@ class NetworkTests: XCTestCase {
                     apiProvider: .amazon,
                     platforms: [.amazonStore, .amazonMusic]
                 ),
-                "Entity2" : Entity(
-                    id: "Entity2",
-                    title: "Song Name",
-                    artistName: "Artist Name",
-                    thumbnailUrl: "https://thumbnail.com/2",
-                    thumbnailWidth: 500,
-                    thumbnailHeight: 500,
-                    apiProvider: .itunes,
-                    platforms: [.appleMusic, .itunes]
-                ),
                 "Entity3" : Entity(
                     id: "Entity3",
                     title: "Song Name",
@@ -344,6 +334,46 @@ class NetworkTests: XCTestCase {
         
         // Expected
         let expectedURL: URL = "https://thumbnail.com/1"
+        
+        // Actual
+        let actualResult = Network.getArtworkURL(from: response)!
+        
+        XCTAssertEqual(expectedURL, actualResult)
+    }
+    
+    func testGetArtworkURLSameRank() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "SPOTIFY_SONG::0Jcij1eWd5bDMU5iPbxe2i" : Entity(
+                    id: "0Jcij1eWd5bDMU5iPbxe2i",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .spotify,
+                    platforms: [.spotify]
+                ),
+                "ITUNES_SONG::1440867832" : Entity(
+                    id: "1440867832",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/2",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .itunes,
+                    platforms: [.appleMusic, .itunes]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        // Expected
+        let expectedURL: URL = "https://thumbnail.com/2"
         
         // Actual
         let actualResult = Network.getArtworkURL(from: response)!
