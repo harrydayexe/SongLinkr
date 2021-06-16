@@ -274,7 +274,6 @@ public final class Network {
         if uniquesongTitles.count >= 1 {
             decidedSongName = uniquesongTitles.first!
         }
-        print(decidedArtistName, decidedSongName)
         
         return (decidedArtistName, decidedSongName)
     }

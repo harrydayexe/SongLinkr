@@ -69,7 +69,13 @@ struct ContentView: View {
             }
         })
         .sheet(isPresented: self.showResults) {
-            ResultsView(showResults: self.showResults, response: searchResults)
+            ResultsView(
+                showResults: self.showResults,
+                response: searchResults,
+                artworkURL: self.store.state.artworkURL,
+                mediaTitle: self.store.state.mediaTitle ?? "",
+                artistName: self.store.state.artistName ?? ""
+            )
                 // Auto open
                 .onAppear {
                     if userSettings.autoOpen && !store.state.originEntityID.contains(userSettings.defaultPlatform.entityName) {

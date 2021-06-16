@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C063A97267A1B610064B368 /* NeumorphicShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */; };
 		8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */; };
 		8C08B57524C3134300DC8235 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB0D24A6658E001B89A0 /* ContentView.swift */; };
 		8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */; };
@@ -50,6 +51,7 @@
 		8CC091F7267029A600ED7BED /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
 		8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */; };
+		8CDD45922678F10D0074B5D3 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD45912678F10D0074B5D3 /* MediaDetailView.swift */; };
 		8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */; };
 		8CF3CFF724B3B016004E5179 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF624B3B016004E5179 /* ColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -137,6 +139,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicShadowModifier.swift; sourceTree = "<group>"; };
 		8C1C7B78262C5D7D00A14896 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
 		8C314DC8262C6F1F007BC14C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
 		8CC72A4724C06E2E006672AE /* Binding+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Mock.swift"; sourceTree = "<group>"; };
 		8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreviewWrapperView.swift; sourceTree = "<group>"; };
+		8CDD45912678F10D0074B5D3 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
 		8CE207E22670206600DAD0F9 /* SongLinkrNetworkCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SongLinkrNetworkCore.xcodeproj; path = Frameworks/SongLinkrNetworkCore/SongLinkrNetworkCore.xcodeproj; sourceTree = "<group>"; };
 		8CE2109926458572003F5B5B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		8CE2109A26458572003F5B5B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				8C81830824A908070047193B /* GetLinkButtonStyle.swift */,
+				8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */,
 				8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */,
 				8CF3CFF624B3B016004E5179 /* ColorManager.swift */,
 				8CA1F3E024C0807900E6B853 /* ActivityView.swift */,
@@ -370,6 +375,7 @@
 			children = (
 				8C81830F24A9408C0047193B /* MainTextView.swift */,
 				8C81831124A945F30047193B /* ResultsView.swift */,
+				8CDD45912678F10D0074B5D3 /* MediaDetailView.swift */,
 				8C6BE3CD24C3971D004FBDD4 /* SongLinkCreditView.swift */,
 				8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */,
 				8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */,
@@ -433,7 +439,6 @@
 				8C43CB0524A6658E001B89A0 /* Frameworks */,
 				8C43CB0624A6658E001B89A0 /* Resources */,
 				8CFF204724C21CC900112F67 /* Embed App Extensions */,
-				8CE210782642B3DB003F5B5B /* ShellScript */,
 				8CC091F8267029A600ED7BED /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -618,26 +623,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		8CE210782642B3DB003F5B5B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $ENABLE_PREVIEWS == \"NO\" ]\nthen\n    agvtool next-version -all\nfi\n\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8C34F3B326723FEF00E05629 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -655,10 +640,12 @@
 			files = (
 				8C8BD2862672443F00B75DC9 /* Intents.intentdefinition in Sources */,
 				8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */,
+				8C063A97267A1B610064B368 /* NeumorphicShadowModifier.swift in Sources */,
 				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
 				8C314DC9262C6F1F007BC14C /* App.swift in Sources */,
 				8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */,
 				8C08B57524C3134300DC8235 /* ContentView.swift in Sources */,
+				8CDD45922678F10D0074B5D3 /* MediaDetailView.swift in Sources */,
 				8CF3CFF724B3B016004E5179 /* ColorManager.swift in Sources */,
 				8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */,
 				8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */,
@@ -761,15 +748,16 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -784,15 +772,16 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -856,7 +845,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -915,7 +904,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -934,12 +923,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -962,12 +951,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1070,12 +1059,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIconExtension-iOS";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1095,12 +1085,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIconExtension-iOS";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

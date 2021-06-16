@@ -14,6 +14,9 @@ struct ResultsView: View {
     @State private var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
     let response: [PlatformLinks]
+    let artworkURL: URL?
+    let mediaTitle: String
+    let artistName: String
     
     var gridItemLayout = [
         GridItem(.adaptive(minimum: 250))
@@ -23,6 +26,12 @@ struct ResultsView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: gridItemLayout, spacing: 20) {
+                    MediaDetailView(
+                        artworkURL: artworkURL,
+                        mediaTitle: mediaTitle,
+                        artistName: artistName
+                    )
+                    
                     ForEach(response) { platform in
                         PlatformLinkButtonView(platform: platform)
                             .contextMenu {
@@ -72,7 +81,6 @@ struct ResultsView: View {
             }))
             .padding()
         }
-        
     }
 }
 
@@ -96,7 +104,13 @@ struct ResultsView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            ResultsView(showResults: .constant(true), response: response)
+            ResultsView(
+                showResults: .constant(true),
+                response: response,
+                artworkURL: URL(string: "https://m.media-amazon.com/images/I/418XoY1l0PL._AA500.jpg"),
+                mediaTitle: "Kitchen",
+                artistName: "Kid Cudi"
+            )
 //                .environment(\.locale, .init(identifier: "de"))
         }
     }

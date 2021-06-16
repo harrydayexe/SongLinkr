@@ -12,17 +12,19 @@ struct MainTabView: View {
     @State var selectedView = 0
     
     var body: some View {
-        TabView(selection: $selectedView) {
-            ContentView(selectedTab: $selectedView)
-                .tabItem {
-                    Image(systemName: "textbox")
-                    Text("SongLinkr")
-                }.tag(0)
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text(LocalizedStringKey("settings-name"))
-                }.tag(1)
+        NavigationView {
+            TabView(selection: $selectedView) {
+                ContentView(selectedTab: $selectedView)
+                    .tabItem {
+                        Image(systemName: "textbox")
+                        Text("SongLinkr")
+                    }.tag(0)
+                SettingsView()
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text(LocalizedStringKey("settings-name"))
+                    }.tag(1)
+            }
         }
     }
 }
@@ -30,15 +32,8 @@ struct MainTabView: View {
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            Group {
-                MainTabView()
-                MainTabView(selectedView: 1)
-            }
-            Group {
-                MainTabView()
-                MainTabView(selectedView: 1)
-            }
-            .preferredColorScheme(.dark)
+            MainTabView()
+            MainTabView(selectedView: 1)
         }
         .environmentObject(UserSettings())
         .environmentObject(AppStore(initialState: .init(), reducer: appReducer, environment: World()))

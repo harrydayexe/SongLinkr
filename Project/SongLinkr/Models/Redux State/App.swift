@@ -44,6 +44,15 @@ struct AppState {
     
     /// Declares if the origin entity is the default or not
     var originEntityID: String = ""
+    
+    /// The URL to the artwork image
+    var artworkURL: URL?
+    
+    /// The name of the media
+    var mediaTitle: String?
+    
+    /// The name of the artist
+    var artistName: String?
 }
 
 // MARK: App Reducer
@@ -67,9 +76,15 @@ func appReducer(
             return Just(AppAction.updateCallInProgress(newValue: false)).eraseToAnyPublisher()
         
         case .fixDictionary(on: let apiResponse):
+            // Unwrap response
             guard apiResponse.isNil == false, let response = apiResponse.object else {
                 return Just(AppAction.setSearchResults(with: [])).eraseToAnyPublisher()
             }
+            // Set artwork and details
+            state.artworkURL = Network.getArtworkURL(from: response)
+            (state.artistName, state.mediaTitle) = Network.getSongNameAndArtist(from: response)
+            
+            // Set response results
             return Just(AppAction.setAPIResponse(from: response)).eraseToAnyPublisher()
             
         case .setErrorDescription(withErrorDescription: let errorDescription):

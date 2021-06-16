@@ -75,5 +75,11 @@ struct ColorManager {
      This is the audius purple color asset.
      */
     static let audiusColour = Color("AudiusColour")
+    
+    /// Off white colour for skeumorphic design cards
+    static let offWhite = Color("offWhite")
+    
+    /// Drop shadow colour for skeumorphic design
+    static let dropShadow = Color("dropShadow")
 }
 
