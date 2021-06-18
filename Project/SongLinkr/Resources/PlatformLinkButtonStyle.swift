@@ -20,19 +20,19 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(ColorManager.spotifyGreen)
+                        .background(Color.spotifyGreen)
                         .cornerRadius(15.0)
                 case Platform.itunes:
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(LinearGradient(gradient: ColorManager.itunesGrad, startPoint: .top, endPoint: .bottom))
+                        .background(LinearGradient(gradient: Color.itunesGrad, startPoint: .top, endPoint: .bottom))
                         .cornerRadius(15.0)
                 case Platform.appleMusic:
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(LinearGradient(gradient: ColorManager.appleMusicGrad, startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .background(LinearGradient(gradient: Color.appleMusicGrad, startPoint: .topLeading, endPoint: .bottomTrailing))
                         .cornerRadius(15.0)
                 case Platform.youtube, Platform.youtubeMusic:
                     configuration.label
@@ -50,13 +50,13 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(ColorManager.pandoraBlue)
+                        .background(Color.pandoraBlue)
                         .cornerRadius(15.0)
                 case Platform.deezer:
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(LinearGradient(gradient: ColorManager.deezerGrad, startPoint: .topLeading, endPoint: .bottomLeading))
+                        .background(LinearGradient(gradient: Color.deezerGrad, startPoint: .topLeading, endPoint: .bottomLeading))
                         .cornerRadius(15.0)
                 case Platform.tidal:
                     configuration.label
@@ -68,25 +68,25 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(ColorManager.amazonBlue)
+                        .background(Color.amazonBlue)
                         .cornerRadius(15.0)
                 case Platform.amazonStore:
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(ColorManager.amazonOrange)
+                        .background(Color.amazonOrange)
                         .cornerRadius(15.0)
                 case Platform.soundcloud:
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(ColorManager.soundcloudOrange)
+                        .background(Color.soundcloudOrange)
                         .cornerRadius(15.0)
                 case Platform.napster:
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(ColorManager.napsterYellow)
+                        .background(Color.napsterYellow)
                         .cornerRadius(15.0)
                 case Platform.yandex:
                     configuration.label
@@ -98,13 +98,13 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(ColorManager.spinrillaPurple)
+                        .background(Color.spinrillaPurple)
                         .cornerRadius(15.0)
                 case Platform.audius:
                     configuration.label
                         .foregroundColor(.primary)
                         .padding()
-                        .background(ColorManager.audiusColour)
+                        .background(Color.audiusColour)
                         .cornerRadius(15.0)
             }
         }

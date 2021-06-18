@@ -80,6 +80,7 @@ struct ResultsView: View {
                 if let windowScene = UIApplication.shared.windows.first?.windowScene { SKStoreReviewController.requestReview(in: windowScene) }
             }))
             .padding()
+            .background(Color.offWhite)
         }
     }
 }

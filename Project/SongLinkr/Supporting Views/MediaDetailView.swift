@@ -20,7 +20,7 @@ struct MediaDetailView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(ColorManager.cardColour)
+                .fill(Color.offWhite)
                 .makeSkeumorphic()
 
             VStack {
