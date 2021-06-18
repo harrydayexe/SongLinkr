@@ -20,7 +20,8 @@ struct MediaDetailView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(ColorManager.offWhite)
+                .fill(.white)
+                .makeSkeumorphic()
 
             VStack {
                 AsyncImage(url: artworkURL) { image in
@@ -28,6 +29,7 @@ struct MediaDetailView: View {
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .padding()
                 } placeholder: {
                     // Placeholder view for when image is loading
                     ZStack {
@@ -37,14 +39,15 @@ struct MediaDetailView: View {
                     }
                     .aspectRatio(1, contentMode: .fit)
                 }
-                .padding(15)
                 .accessibility(label: Text("The artwork for the song or album results are shown for"))
                 Text(mediaTitle)
                     .font(.title).fontWeight(.semibold)
                 Text(artistName)
                     .font(.title2)
+                    .padding(.bottom)
             }
-        }.makeSkeumorphic()
+        }
+        .padding(33)
     }
 }
 
