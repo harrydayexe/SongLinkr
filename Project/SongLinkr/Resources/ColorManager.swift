@@ -77,9 +77,12 @@ struct ColorManager {
     static let audiusColour = Color("AudiusColour")
     
     /// Off white colour for skeumorphic design cards
-    static let offWhite = Color("offWhite")
+    static let cardColour = Color("cardColour")
     
-    /// Drop shadow colour for skeumorphic design
-    static let dropShadow = Color("dropShadow")
+    /// Dark shadow colour for skeumorphic design
+    static let darkShadow = Color("darkShadow")
+    
+    /// Light shadow colour for skeumorphic design
+    static let lightShadow = Color("lightShadow")
 }
 

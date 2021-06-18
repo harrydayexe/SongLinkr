@@ -107,9 +107,9 @@ struct ResultsView_Previews: PreviewProvider {
             ResultsView(
                 showResults: .constant(true),
                 response: response,
-                artworkURL: URL(string: "https://m.media-amazon.com/images/I/418XoY1l0PL._AA500.jpg"),
-                mediaTitle: "Kitchen",
-                artistName: "Kid Cudi"
+                artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+                mediaTitle: "Humble",
+                artistName: "Kendrick Lamar"
             )
 //                .environment(\.locale, .init(identifier: "de"))
         }

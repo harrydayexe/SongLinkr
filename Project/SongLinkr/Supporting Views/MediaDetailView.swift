@@ -20,7 +20,7 @@ struct MediaDetailView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
-                .fill(.white)
+                .fill(ColorManager.cardColour)
                 .makeSkeumorphic()
 
             VStack {
@@ -54,9 +54,9 @@ struct MediaDetailView: View {
 struct MediaDetailView_Previews: PreviewProvider {
     static var previews: some View {
         MediaDetailView(
-            artworkURL: URL(stringLiteral: "https://m.media-amazon.com/images/I/418XoY1l0PL._AA500.jpg"),
-            mediaTitle: "Kitchen",
-            artistName: "Kid Cudi"
-        ).padding()
+            artworkURL: URL(stringLiteral: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+            mediaTitle: "Humble",
+            artistName: "Kendrick Lamar"
+        ).preferredColorScheme(.dark).padding()
     }
 }

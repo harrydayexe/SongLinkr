@@ -16,8 +16,8 @@ import SwiftUI
 struct NeumorphicShadowModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .shadow(color: ColorManager.dropShadow, radius: 15, x: 10, y: 10)
-            .shadow(color: Color.white, radius: 15, x: -10, y: -10)
+            .shadow(color: ColorManager.lightShadow, radius: 8, x: -8, y: -8)
+            .shadow(color: ColorManager.darkShadow, radius: 8, x: 8, y: 8)
     }
 }
 
