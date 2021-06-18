@@ -253,29 +253,63 @@ public final class Network {
         }
         
         // Get the artist names excluding any from youtube
-        let artistName = entitiesDict.values.filter { entity in
+        let artistNames = entitiesDict.values.filter { entity in
             entity.platforms.contains { !($0 == .youtube || $0 == .youtubeMusic) }
-        }.map({ $0.artistName })
-        // Get the song names
-        let songTitles = entitiesDict.values.map({ $0.title })
+        }.reduce([APIProvider : String]()) { (dict, entity) in
+            var dict = dict
+            dict[entity.apiProvider] = entity.artistName
+            return dict
+        }
+                                              
+        // Get the song names and API Provider
+        let songTitles = entitiesDict.values.reduce([APIProvider : String]()) { dict, entity in
+            var dict = dict
+            dict[entity.apiProvider] = entity.title
+            return dict
+        }
         
-        // Remove duplicates from each array
-        let uniqueArtistNames = Array(Set(artistName))
-        let uniquesongTitles = Array(Set(songTitles))
+        // Remove duplicates from each dictionary
+        let uniqueArtistNames = removeDuplicates(fromDict: artistNames)
+        let uniquesongTitles = removeDuplicates(fromDict: songTitles)
         
         var decidedArtistName: String?
         var decidedSongName: String?
 
         // If both arrays only have one item (best case scenario as every platform is in agreement)
-        if uniqueArtistNames.count >= 1 {
-            decidedArtistName = uniqueArtistNames.first!
+        if uniqueArtistNames.count == 1 {
+            decidedArtistName = uniqueArtistNames.values.first!
+        } else if uniqueArtistNames.count > 1 {
+            decidedArtistName = uniqueArtistNames.sorted(by: { $0.key.informationRanking < $1.key.informationRanking }).first?.value
         }
         
-        if uniquesongTitles.count >= 1 {
-            decidedSongName = uniquesongTitles.first!
+        if uniquesongTitles.count == 1 {
+            decidedSongName = uniquesongTitles.values.first!
+        } else if uniquesongTitles.count > 1 {
+            decidedSongName = uniquesongTitles.sorted(by: { $0.key.informationRanking < $1.key.informationRanking }).first?.value
         }
         
         return (decidedArtistName, decidedSongName)
+    }
+    
+    /**
+     This function removes duplicates from any dictionary
+     - Parameter dict: The input dictionary to remove duplicate values from
+     - Returns: The same dictionary with duplicates removed
+     */
+    private static func removeDuplicates(fromDict dict: Dictionary<APIProvider, String>) -> Dictionary<APIProvider, String> {
+        let sourceDict = dict.sorted(by: { $0.key.informationRanking < $1.key.informationRanking })
+        
+        var uniqueValues = Set<String>()
+        var resultDict = [APIProvider : String](minimumCapacity: dict.count)
+        
+        for (key, value) in sourceDict {
+          if !uniqueValues.contains(value) {
+            uniqueValues.insert(value)
+            resultDict[key] = value
+          }
+        }
+        
+        return resultDict
     }
     
     /**
