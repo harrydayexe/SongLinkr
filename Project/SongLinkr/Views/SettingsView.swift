@@ -69,6 +69,7 @@ struct SettingsView: View {
             }
             .navigationTitle(LocalizedStringKey("settings-name"))
         }
+        .navigationTitle(LocalizedStringKey("settings-name"))
     }
 }
 
@@ -78,8 +79,6 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SettingsView()
-            SettingsView()
-                .environment(\.locale, .init(identifier: "de"))
         }
             .environmentObject(userSettings)
     }

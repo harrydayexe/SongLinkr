@@ -46,66 +46,60 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color("AppBlue")
-                .edgesIgnoringSafeArea(.all)
+        NavigationView {
             VStack {
                 MainTextView(searchURL: self.$searchURL)
                 GetLinkButton(searchURL: $searchURL)
             }
-        }
-        .onAppear(perform: {
-            if UIPasteboard.general.hasURLs {
-                if let copiedURL = UIPasteboard.general.url {
-                    self.searchURL = "\(copiedURL)"
+            .onAppear(perform: {
+                if UIPasteboard.general.hasURLs {
+                    if let copiedURL = UIPasteboard.general.url {
+                        self.searchURL = "\(copiedURL)"
+                    }
                 }
-            }
-        })
-        .onOpenURL(perform: { deepLinkURL in
-            self.showResults.wrappedValue = false
-            self.selectedTab = 0
-            if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
-                self.searchURL = songLink.absoluteString
-            }
-        })
-        .sheet(isPresented: self.showResults) {
-            ResultsView(
-                showResults: self.showResults,
-                response: searchResults,
-                artworkURL: self.store.state.artworkURL,
-                mediaTitle: self.store.state.mediaTitle ?? "",
-                artistName: self.store.state.artistName ?? ""
-            )
-                // Auto open
-                .onAppear {
-                    if userSettings.autoOpen && !store.state.originEntityID.contains(userSettings.defaultPlatform.entityName) {
-                        if let defaultPlatformIndex = store.state.searchResults.firstIndex(where: { $0.id == userSettings.defaultPlatform }) {
-                            let defaultPlatform = store.state.searchResults[defaultPlatformIndex]
-                            DispatchQueue.main.async {
-                                UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
+            })
+            .onOpenURL(perform: { deepLinkURL in
+                self.showResults.wrappedValue = false
+                self.selectedTab = 0
+                if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
+                    self.searchURL = songLink.absoluteString
+                }
+            })
+            .sheet(isPresented: self.showResults) {
+                ResultsView(
+                    showResults: self.showResults,
+                    response: searchResults,
+                    artworkURL: self.store.state.artworkURL,
+                    mediaTitle: self.store.state.mediaTitle ?? "",
+                    artistName: self.store.state.artistName ?? ""
+                )
+                    // Auto open
+                    .onAppear {
+                        if userSettings.autoOpen && !store.state.originEntityID.contains(userSettings.defaultPlatform.entityName) {
+                            if let defaultPlatformIndex = store.state.searchResults.firstIndex(where: { $0.id == userSettings.defaultPlatform }) {
+                                let defaultPlatform = store.state.searchResults[defaultPlatformIndex]
+                                DispatchQueue.main.async {
+                                    UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
+                                }
                             }
                         }
                     }
+            }
+            .accessibilityAction(.magicTap) {
+                if self.searchURL != "" {
+                    // Start the call
+                    store.send(.updateCallInProgress(newValue: true))
+                    // Request the data
+                    store.send(.getSearchResults(from: .search(with: self.searchURL)))
                 }
         }
-        .accessibilityAction(.magicTap) {
-            if self.searchURL != "" {
-                // Start the call
-                store.send(.updateCallInProgress(newValue: true))
-                // Request the data
-                store.send(.getSearchResults(from: .search(with: self.searchURL)))
-            }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            ContentView(selectedTab: .constant(0))
-            ContentView(selectedTab: .constant(0))
-                .preferredColorScheme(.dark)
-        }
+        ContentView(selectedTab: .constant(0))
             .environmentObject(UserSettings())
             .environmentObject(AppStore(initialState: .init(), reducer: appReducer, environment: World()))
     }

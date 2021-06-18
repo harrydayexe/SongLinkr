@@ -12,19 +12,17 @@ struct MainTabView: View {
     @State var selectedView = 0
     
     var body: some View {
-        NavigationView {
-            TabView(selection: $selectedView) {
-                ContentView(selectedTab: $selectedView)
-                    .tabItem {
-                        Image(systemName: "textbox")
-                        Text("SongLinkr")
-                    }.tag(0)
-                SettingsView()
-                    .tabItem {
-                        Image(systemName: "gear")
-                        Text(LocalizedStringKey("settings-name"))
-                    }.tag(1)
-            }
+        TabView(selection: $selectedView) {
+            ContentView(selectedTab: $selectedView)
+                .tabItem {
+                    Image(systemName: "textbox")
+                    Text("SongLinkr")
+                }.tag(0)
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text(LocalizedStringKey("settings-name"))
+                }.tag(1)
         }
     }
 }

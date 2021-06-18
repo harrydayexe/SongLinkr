@@ -32,13 +32,21 @@ struct GetLinkButton: View {
         }) {
             GetLinkButtonView(callInProgress: self.store.state.callInProgress && !self.showError.wrappedValue)
         }
+        // Button Styling
+        .tint(.accentColor)
+        .buttonStyle(.bordered)
+        .controlSize(.large)
+        .controlProminence(.increased)
+        // Keyboard Shortcut
+        .keyboardShortcut(.defaultAction)
+        // Alert if error
         .alert(isPresented: self.showError) {
             Alert(title: Text(store.state.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(store.state.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel({
                 store.send(.updateCallInProgress(newValue: false))
             }))
         }
-        .buttonStyle(GetLinkButtonStyle())
         .padding()
+        // Disable if no URL
         .disabled(self.searchURL == "")
     }
 }
