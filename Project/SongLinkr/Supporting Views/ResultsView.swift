@@ -74,7 +74,10 @@ struct ResultsView: View {
             .navigationBarItems(trailing: Button("Done", action: {
                 self.showResults = false
                 // Request Review
-                if let windowScene = UIApplication.shared.windows.first?.windowScene { SKStoreReviewController.requestReview(in: windowScene) }
+                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                }
+                
             }))
             .padding()
             .background(Color.offWhite)
