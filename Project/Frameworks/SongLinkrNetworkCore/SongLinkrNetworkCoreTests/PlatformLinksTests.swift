@@ -39,7 +39,7 @@ class PlatformLinksTests: XCTestCase {
     }
     
     func testMoveDefaultFirst() {
-        let arrayOfPlatforms = [
+        var arrayOfPlatforms = [
             PlatformLinks(id: .amazonMusic, url: "https://amazon.com"),
             PlatformLinks(id: .appleMusic, url: "https://music.apple.com"),
             PlatformLinks(id: .yandex, url: "https://yandex.com"),
@@ -53,17 +53,21 @@ class PlatformLinksTests: XCTestCase {
             PlatformLinks(id: .google, url: "https://music.google.com")
         ]
         
-        XCTAssertEqual(fixedArray, arrayOfPlatforms.moveDefaultFirst(with: .appleMusic))
+        arrayOfPlatforms.moveDefaultFirst(with: .appleMusic)
+        
+        XCTAssertEqual(fixedArray, arrayOfPlatforms)
     }
     
     func testMoveDefaultFirstEmpty() {
-        let arrayOfPlatforms = [
+        var arrayOfPlatforms = [
             PlatformLinks(id: .amazonMusic, url: "https://amazon.com"),
             PlatformLinks(id: .appleMusic, url: "https://music.apple.com"),
             PlatformLinks(id: .yandex, url: "https://yandex.com"),
             PlatformLinks(id: .google, url: "https://music.google.com")
         ]
         
-        XCTAssertEqual(arrayOfPlatforms, arrayOfPlatforms.moveDefaultFirst(with: .audius))
+        arrayOfPlatforms.moveDefaultFirst(with: .audius)
+        
+        XCTAssertEqual(arrayOfPlatforms, arrayOfPlatforms)
     }
 }

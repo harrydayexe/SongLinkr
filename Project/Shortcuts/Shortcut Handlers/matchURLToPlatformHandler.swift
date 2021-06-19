@@ -51,7 +51,7 @@ class MatchURLToPlatformHandler: NSObject, MatchURLToPlatformIntentHandling {
         
         // Run network request
         let network = Network()
-        network.request(from: .search(with: percentEncodedURL))
+        network.requestOld(from: .search(with: percentEncodedURL))
             // Map to [PlatformLinks]
             .map { response in
                 Network().fixDictionaries(response: response)

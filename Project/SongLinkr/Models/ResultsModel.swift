@@ -24,5 +24,5 @@ struct ResultsModel {
     let artistName: String
     
     /// The actual links to display
-    let response: [PlatformLinks]
+    var response: [PlatformLinks]
 }

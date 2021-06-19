@@ -96,7 +96,7 @@ public final class Network {
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      - parameter handler: The completion handler. This is an `@escaping` closure to deal with when you call the function.
      */
-    public func request(
+    public func requestOld(
         from endpoint: Endpoint,
         with decoder: JSONDecoder = JSONDecoder()
     ) -> AnyPublisher<SongLinkAPIResponse, DataLoaderError> {
@@ -134,7 +134,7 @@ public final class Network {
      - parameter endpoint: The endpoint to access data from.
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      */
-    func request(
+    public func request(
         from endpoint: Endpoint,
         with decoder: JSONDecoder = JSONDecoder()
     ) async throws -> SongLinkAPIResponse {
@@ -319,7 +319,7 @@ public final class Network {
     /**
      This function returns the song name and artist from a SongLinkAPIResponse.
       - Parameter response: The `SongLinkAPIResponse` to get results from
-      - Returns: A tuple with the first string being the song name and the second string being the artist name
+      - Returns: A tuple with the first string being the artist name and the second string being the song name
      */
     public static func getSongNameAndArtist(from response: SongLinkAPIResponse) -> (String?, String?) {
         // Get entities with song names and artists in

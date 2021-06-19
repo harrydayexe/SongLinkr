@@ -15,9 +15,7 @@
 		8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830F24A9408C0047193B /* MainTextView.swift */; };
 		8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81831124A945F30047193B /* ResultsView.swift */; };
 		8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */; };
-		8C1C7B79262C5D7D00A14896 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C7B78262C5D7D00A14896 /* Store.swift */; };
 		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
-		8C314DC9262C6F1F007BC14C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C314DC8262C6F1F007BC14C /* App.swift */; };
 		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
 		8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C34F3BB26723FEF00E05629 /* IntentHandler.swift */; };
 		8C34F3C026723FEF00E05629 /* Shortcuts.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C34F3B726723FEF00E05629 /* Shortcuts.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -143,9 +141,7 @@
 
 /* Begin PBXFileReference section */
 		8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicShadowModifier.swift; sourceTree = "<group>"; };
-		8C1C7B78262C5D7D00A14896 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
-		8C314DC8262C6F1F007BC14C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C34F3BB26723FEF00E05629 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -236,15 +232,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8C1C7B6F262C5C6100A14896 /* Redux State */ = {
-			isa = PBXGroup;
-			children = (
-				8C1C7B78262C5D7D00A14896 /* Store.swift */,
-				8C314DC8262C6F1F007BC14C /* App.swift */,
-			);
-			path = "Redux State";
-			sourceTree = "<group>";
-		};
 		8C34F3BA26723FEF00E05629 /* Shortcuts */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,7 +315,6 @@
 		8C43CB3624A665FD001B89A0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8C1C7B6F262C5C6100A14896 /* Redux State */,
 				8CAD5449267E17DC0062099B /* ResultsModel.swift */,
 			);
 			path = Models;
@@ -657,7 +643,6 @@
 				8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */,
 				8C063A97267A1B610064B368 /* NeumorphicShadowModifier.swift in Sources */,
 				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
-				8C314DC9262C6F1F007BC14C /* App.swift in Sources */,
 				8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */,
 				8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */,
 				8C08B57524C3134300DC8235 /* ContentView.swift in Sources */,
@@ -673,7 +658,6 @@
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
 				8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */,
 				8C6BE3CE24C3971D004FBDD4 /* SongLinkCreditView.swift in Sources */,
-				8C1C7B79262C5D7D00A14896 /* Store.swift in Sources */,
 				8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */,
 				8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */,
 				8C08B57724C3134900DC8235 /* PlatformLinkButtonView.swift in Sources */,

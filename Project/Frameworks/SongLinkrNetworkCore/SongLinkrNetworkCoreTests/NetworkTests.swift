@@ -143,7 +143,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        let response = try awaitOutput(sut.request(from: endpoint))
+        let response = try awaitOutput(sut.requestOld(from: endpoint))
         
         XCTAssertEqual(response, expected)
     }
@@ -163,7 +163,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWith400Code() throws {
@@ -181,7 +181,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithRandomCode() throws {
@@ -199,7 +199,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithUndecodabeErrorResponse() throws {
@@ -217,7 +217,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWith500StatusCode() throws {
@@ -235,7 +235,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithUnknownStatusCode() throws {
@@ -253,7 +253,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithBadJSON() throws {
@@ -298,7 +298,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testGetArtworkURL() {
