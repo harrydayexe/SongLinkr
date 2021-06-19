@@ -19,7 +19,8 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>35</string>
+	async-network-refactor
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

@@ -92,15 +92,18 @@ func appReducer(
             state.errorDescription = errorDescription
             
         case .getSearchResults(from: let endpoint):
-            return environment.network
-                .request(from: endpoint)
-                .map({ (response) in
-                    return AppAction.fixDictionary(on: NilWrapper<SongLinkAPIResponse>(object: response))
-                })
-                .catch({ error in
-                    return Just(AppAction.setErrorDescription(withErrorDescription: environment.network.createErrorMessage(from: error))).eraseToAnyPublisher()
-                })
-                .eraseToAnyPublisher()
+            async { () -> AnyPublisher<AppAction, Never> in
+                do {
+                    let response = try await environment.network.request(from: endpoint)
+                    return Just(AppAction.fixDictionary(on: NilWrapper<SongLinkAPIResponse>(object: response))).eraseToAnyPublisher()
+                } catch {
+                    if error is Network.DataLoaderError {
+                        return Just(AppAction.setErrorDescription(withErrorDescription: environment.network.createErrorMessage(from: error as! Network.DataLoaderError))).eraseToAnyPublisher()
+                    } else {
+                        return Just(AppAction.setErrorDescription(withErrorDescription: ("Unknown Error Occured", "Please try again later"))).eraseToAnyPublisher()
+                    }
+                }
+            }
                 
         case .clearErrorDescription:
             state.errorDescription = nil
