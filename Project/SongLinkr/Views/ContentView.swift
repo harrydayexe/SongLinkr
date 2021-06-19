@@ -51,6 +51,7 @@ struct ContentView: View {
                 MainTextView(searchURL: self.$searchURL)
                 GetLinkButton(searchURL: $searchURL)
             }
+            // Check pasteboard for URLs
             .onAppear(perform: {
                 if UIPasteboard.general.hasURLs {
                     if let copiedURL = UIPasteboard.general.url {
@@ -58,6 +59,7 @@ struct ContentView: View {
                     }
                 }
             })
+            // Handle Deeplinks
             .onOpenURL(perform: { deepLinkURL in
                 self.showResults.wrappedValue = false
                 self.selectedTab = 0
@@ -65,6 +67,7 @@ struct ContentView: View {
                     self.searchURL = songLink.absoluteString
                 }
             })
+            // Results view
             .sheet(isPresented: self.showResults) {
                 ResultsView(
                     showResults: self.showResults,
@@ -92,7 +95,7 @@ struct ContentView: View {
                     // Request the data
                     store.send(.getSearchResults(from: .search(with: self.searchURL)))
                 }
-        }
+            }
         }
     }
 }
