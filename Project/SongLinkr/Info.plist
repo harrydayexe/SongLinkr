@@ -33,7 +33,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>35</string>
-	async-network-refactor
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSUserActivityTypes</key>
