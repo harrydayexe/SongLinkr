@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GetLinkButton: View {
     /// The view model for making a request
-    @ObservedObject var viewModel: RequestViewModel
+    @EnvironmentObject var viewModel: RequestViewModel
     
     /// The user settings stored in the environment
     @EnvironmentObject var userSettings: UserSettings
@@ -25,7 +25,8 @@ struct GetLinkButton: View {
     private var showError: Binding<Bool> { Binding(
         get: { viewModel.errorDescription != nil },
         set: { if !$0 { viewModel.errorDescription = nil }}
-    )}
+    )
+    }
     
     var body: some View {
         Button(action: {
@@ -60,7 +61,12 @@ struct GetLinkButton: View {
 }
 
 struct GetLinkButton_Previews: PreviewProvider {
+    static let viewModel = RequestViewModel()
+    
     static var previews: some View {
-        Text("Hello World")
+        GetLinkButton(searchURL: .constant("Hi"))
+            .previewLayout(.fixed(width: 300, height: 100))
+            .environmentObject(UserSettings())
+            .environmentObject(self.viewModel)
     }
 }

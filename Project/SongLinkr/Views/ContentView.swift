@@ -25,7 +25,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 MainTextView(searchURL: self.$searchURL)
-                GetLinkButton(viewModel: viewModel, searchURL: $searchURL)
+                GetLinkButton(searchURL: $searchURL).environmentObject(viewModel)
             }
             // Check pasteboard for URLs
             .onAppear(perform: {
