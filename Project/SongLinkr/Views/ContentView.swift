@@ -21,11 +21,22 @@ struct ContentView: View {
     /// The selected tab
     @Binding var selectedTab: Int
     
+    private func makeRequest(inProgress: Binding<Bool>) {
+        if searchURL != "" {
+            async {
+                inProgress.wrappedValue = true
+                await viewModel.getResults(for: searchURL, with: userSettings)
+                inProgress.wrappedValue = false
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 MainTextView(searchURL: self.$searchURL)
-                GetLinkButton(searchURL: $searchURL).environmentObject(viewModel)
+                GetLinkButton(searchURL: $searchURL, makeRequest: makeRequest).environmentObject(viewModel)
+                ShazamButton()
             }
             // Check pasteboard for URLs
             .onAppear(perform: {

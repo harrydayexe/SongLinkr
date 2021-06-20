@@ -28,15 +28,11 @@ struct GetLinkButton: View {
     )
     }
     
+    var makeRequest: (Binding<Bool>) -> Void
+    
     var body: some View {
         Button(action: {
-            if searchURL != "" {
-                async {
-                    inProgress = true
-                    await viewModel.getResults(for: searchURL, with: userSettings)
-                    inProgress = false
-                }
-            }
+            makeRequest($inProgress)
         }) {
             GetLinkButtonView(callInProgress: inProgress && !showError.wrappedValue)
         }
@@ -64,7 +60,7 @@ struct GetLinkButton_Previews: PreviewProvider {
     static let viewModel = RequestViewModel()
     
     static var previews: some View {
-        GetLinkButton(searchURL: .constant("Hi"))
+        GetLinkButton(searchURL: .constant("Hi"), makeRequest: { _ in })
             .previewLayout(.fixed(width: 300, height: 100))
             .environmentObject(UserSettings())
             .environmentObject(self.viewModel)
