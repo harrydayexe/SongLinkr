@@ -17,7 +17,7 @@ struct SearchScreenView: View {
     @Binding var searchURL: String
     
     /// Declares if the shazam process is in progress
-    @Binding var shazamInProgress: Bool
+    @Binding var shazamInProgress: RequestViewModel.ShazamState
     
     /// Declares if the normal process is in progress
     @Binding var normalInProgress: Bool
@@ -30,15 +30,17 @@ struct SearchScreenView: View {
     
     var body: some View {
         VStack {
+            Spacer()
             MainTextView(searchURL: self.$searchURL)
             GetLinkButton(searchURL: $searchURL, inProgress: $normalInProgress, makeRequest: makeRequest)
-            ShazamButton(inProgress: $shazamInProgress, startShazam: startShazam)
+            ShazamButton(shazamState: $shazamInProgress, startShazam: startShazam)
+            Spacer()
         }
     }
 }
 
 struct SearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchScreenView(searchURL: .constant(""), shazamInProgress: .constant(false), normalInProgress: .constant(false), makeRequest: {}, startShazam: {})
+        SearchScreenView(searchURL: .constant(""), shazamInProgress: .constant(.idle), normalInProgress: .constant(false), makeRequest: {}, startShazam: {})
     }
 }

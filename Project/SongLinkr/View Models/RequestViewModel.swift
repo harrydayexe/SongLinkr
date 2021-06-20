@@ -17,7 +17,7 @@ import ShazamKit
 import AVFoundation
 
 @MainActor
-class RequestViewModel: ObservableObject {
+class RequestViewModel: NSObject, ObservableObject {
     // MARK: Published Properties
     
     /// The object to pass to results view
@@ -33,10 +33,13 @@ class RequestViewModel: ObservableObject {
     @Published private(set) var originEntityID: String = ""
     
     /// Declares if the shazam process is in progress
-    @Published var shazamInProgress = false
+    @Published var shazamState: ShazamState = .idle
     
     /// Declares if the normal process is in progress
     @Published var normalInProgress = false
+    
+    /// Last Snapshot of the `UserSettings`
+    var userSettingsSnapshot: UserSettings?
     
     
     // MARK: Private Properties
@@ -64,6 +67,7 @@ class RequestViewModel: ObservableObject {
         set: { newValue in
             if !newValue {
                 self.resultsObject = nil
+                self.shazamState = .idle
             }
         }
         )
@@ -97,16 +101,25 @@ class RequestViewModel: ObservableObject {
      - Parameters:
         - searchString: The string the user has inputted
         - settings: The current `UserSettings` object
+        - title: The title of the track if it is already known
+        - artist: The name of the artist if already known
+        - artworkURL: The URL to the artwork if already known
      */
-    func getResults(for searchString: String, with settings: UserSettings) async {
+    func getResults(
+        for searchString: String,
+        with settings: UserSettings?,
+        title: String? = nil,
+        artist: String? = nil,
+        artworkURL: URL? = nil
+    ) async {
         let endpoint = generateEndpoint(with: searchString)
         
         do {
             // Get response
-            var results = try await makeRequest(with: endpoint)
+            var results = try await makeRequest(with: endpoint, title: title, artist: artist, knownArtworkURL: artworkURL)
             
             // Sort correctly
-            if settings.sortOption == .popularity {
+            if let settings = settings, settings.sortOption == .popularity {
                 results.response.sort(by: <)
             } else {
                 results.response.sort {
@@ -115,7 +128,7 @@ class RequestViewModel: ObservableObject {
             }
             
             // Put default at top
-            if settings.defaultAtTop {
+            if let settings = settings, settings.defaultAtTop {
                 results.response.moveDefaultFirst(with: settings.defaultPlatform)
             }
             
@@ -143,16 +156,36 @@ class RequestViewModel: ObservableObject {
     
     /**
      Make a request to the server with the specified endpoint
-     - Parameter endpoint: The endpoint to request data from
+     - Parameters:
+        - endpoint: The endpoint to request data from
+        - title: The title of the track if it is already known
+        - artist: The name of the artist if already known
+        - artworkURL: The URL to the artwork if already known
      - Returns: A `ResultsModel` containing the response from the API
      */
-    private func makeRequest(with endpoint: Endpoint) async throws -> ResultsModel {
+    private func makeRequest(
+        with endpoint: Endpoint,
+        title: String? = nil,
+        artist: String? = nil,
+        knownArtworkURL: URL? = nil
+    ) async throws -> ResultsModel {
         // Get response asynchronously from API
         let response = try await network.request(from: endpoint)
         
         // Get artwork URL and names
-        let artworkURL = Network.getArtworkURL(from: response)
-        let (artistName, mediaTitle) = Network.getSongNameAndArtist(from: response)
+        var artworkURL = Network.getArtworkURL(from: response)
+        var (artistName, mediaTitle) = Network.getSongNameAndArtist(from: response)
+        
+        // If we have been given title, artist or URl then override
+        if let title = title {
+            mediaTitle = title
+        }
+        if let artist = artist {
+            artistName = artist
+        }
+        if let url = knownArtworkURL {
+            artworkURL = url
+        }
         
         // Set origin entity ID
         self.originEntityID = response.entityUniqueId
@@ -172,10 +205,90 @@ class RequestViewModel: ObservableObject {
     
     // MARK: Shazam
     
-    func shazamMatch() {
-//        session.delegate = self
+    /// Declares what stage the shazam search is in
+    enum ShazamState: Equatable {
+        /// Nothing is happening
+        case idle
+        /// The search is in progress
+        case matching
+        /// A match has been found
+        case matchFound
+        /// Finished Processing Song.Link API results
+        case finished
+    }
+    
+    /// Starts to record from the microphone and send the buffer to shazam for a match
+    func startShazamMatch() {
+        self.shazamState = .matching
         
+        // The delegate will receive callbacks when the media is recognized.
+        session.delegate = self
+        
+        // Create an audio format for our buffers based on the format of the input, with a single channel (mono).
+        let audioFormat = AVAudioFormat(
+            standardFormatWithSampleRate: audioEngine.inputNode.outputFormat(forBus: 0).sampleRate,
+            channels: 1
+        )
+        
+        // Install a "tap" in the audio engine's input so that we can send buffers from the microphone to the session.
+        audioEngine.inputNode.installTap(onBus: 0, bufferSize: 2048, format: audioFormat) { [weak session] buffer, audioTime in
+            // Whenever a new buffer comes in, we send it over to the session for recognition.
+            session?.matchStreamingBuffer(buffer, at: audioTime)
+        }
+        
+        // Tell the system that we're about to start recording.
+        try? AVAudioSession.sharedInstance().setCategory(.record)
+        
+        // Ensure that we have permission to record, then start running the audio engine.
+        AVAudioSession.sharedInstance().requestRecordPermission { [weak self] success in
+            guard success, let self = self else { return }
+            
+            try? self.audioEngine.start()
+        }
+    }
+    
+    /// Stops recording and removes the buffer tap
+    func stopMatching() {
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
     }
 }
 
-//extension RequestViewModel: SHSessionDelegate {}
+extension RequestViewModel: SHSessionDelegate {
+    /// Match found
+    func session(_ session: SHSession, didFind match: SHMatch) {
+        print("Match Found")
+        
+        // Stop recording
+        stopMatching()
+        
+        // Get the matched item
+        guard let matchedItem = match.mediaItems.first else {
+            return
+        }
+        
+        // Get the apple music URL
+        guard let appleMusicURLString = matchedItem.appleMusicURL?.absoluteString else {
+            return
+        }
+        
+        // Set the button status
+        DispatchQueue.main.async { self.shazamState = .matchFound }
+        
+        async {
+            await getResults(for: appleMusicURLString, with: userSettingsSnapshot, title: matchedItem.title, artist: matchedItem.artist, artworkURL: matchedItem.artworkURL)
+            self.shazamState = .finished
+        }
+    }
+    
+    /// No match found or error occured
+    func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
+        // Check if error occured
+        if let error = error {
+            self.errorDescription = ("Something went wrong.", error.localizedDescription)
+        // No match found
+        } else {
+            self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again")
+        }
+    }
+}

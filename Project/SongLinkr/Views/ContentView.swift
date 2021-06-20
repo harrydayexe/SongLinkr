@@ -34,16 +34,15 @@ struct ContentView: View {
     
     /// The function to start a shazam match via the viewmodel
     private func startShazam() {
-        viewModel.shazamInProgress = true
         print("Shazam Match Started")
-        viewModel.shazamInProgress = false
+        viewModel.startShazamMatch()
     }
     
     var body: some View {
         NavigationView {
             SearchScreenView(
                 searchURL: $searchURL,
-                shazamInProgress: $viewModel.shazamInProgress,
+                shazamInProgress: $viewModel.shazamState,
                 normalInProgress: $viewModel.normalInProgress,
                 makeRequest: makeRequest,
                 startShazam: startShazam
@@ -71,7 +70,7 @@ struct ContentView: View {
                     message: Text(viewModel.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"),
                     dismissButton: .cancel({
                     // Reset both
-                    viewModel.shazamInProgress = false
+                    viewModel.shazamState = .idle
                     viewModel.normalInProgress = false
                     viewModel.errorDescription = nil
                 })

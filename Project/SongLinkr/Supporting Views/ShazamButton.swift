@@ -20,7 +20,7 @@ struct ShazamButton: View {
     @EnvironmentObject var userSettings: UserSettings
     
     /// Declares whether a request is being made
-    @Binding var inProgress: Bool
+    @Binding var shazamState: RequestViewModel.ShazamState
     
     /// The function to use to start a shazam match
     let startShazam: () -> Void
@@ -29,19 +29,36 @@ struct ShazamButton: View {
         Button(action: {
             startShazam()
         }) {
-            Label("Shazam Match", image: "shazam.fill")
+            switch shazamState {
+                case .idle:
+                    Label("Match with Shazam", image: "shazam.fill")
+                
+                case .matching:
+                    ProgressView("Listening")
+                        .tint(.secondary)
+                
+                case .matchFound:
+                    ProgressView("Shazam Match Found")
+                        .tint(.secondary)
+                case .finished:
+                    Label("Matches Found", systemImage: "checkmark.icloud")
+            }
         }
         // Button Styling
         .tint(.blue)
         .buttonStyle(.bordered)
         .controlSize(.large)
         .controlProminence(.increased)
+        // Disabled if already matching
+        .disabled(!(shazamState == .idle))
     }
 }
 
 struct ShazamButton_Previews: PreviewProvider {
     static var previews: some View {
-        ShazamButton(inProgress: .constant(false), startShazam: {})
-            .previewLayout(.fixed(width: 300, height: 100))
+        Group {
+            ShazamButton(shazamState: .constant(.idle), startShazam: {})
+                .previewLayout(.fixed(width: 300, height: 100))
+        }
     }
 }

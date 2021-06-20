@@ -35,6 +35,8 @@
 	<string>35</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow microphone access to enable searching via Shazam</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>MatchURLToPlatformIntent</string>
