@@ -52,6 +52,9 @@ class RequestViewModel: NSObject, ObservableObject {
     /// The Shazam Session
     private var session: SHSession
     
+    /// Cache for last matched shazam item
+    private var shazamItemCache: SHMediaItem?
+    
     
     // MARK: Computed Properties
     
@@ -110,13 +113,14 @@ class RequestViewModel: NSObject, ObservableObject {
         with settings: UserSettings?,
         title: String? = nil,
         artist: String? = nil,
-        artworkURL: URL? = nil
+        artworkURL: URL? = nil,
+        fromShazam: Bool = false
     ) async {
         let endpoint = generateEndpoint(with: searchString)
         
         do {
             // Get response
-            var results = try await makeRequest(with: endpoint, title: title, artist: artist, knownArtworkURL: artworkURL)
+            var results = try await makeRequest(with: endpoint, title: title, artist: artist, knownArtworkURL: artworkURL, fromShazam: fromShazam)
             
             // Sort correctly
             if let settings = settings, settings.sortOption == .popularity {
@@ -167,7 +171,8 @@ class RequestViewModel: NSObject, ObservableObject {
         with endpoint: Endpoint,
         title: String? = nil,
         artist: String? = nil,
-        knownArtworkURL: URL? = nil
+        knownArtworkURL: URL? = nil,
+        fromShazam: Bool = false
     ) async throws -> ResultsModel {
         // Get response asynchronously from API
         let response = try await network.request(from: endpoint)
@@ -187,8 +192,15 @@ class RequestViewModel: NSObject, ObservableObject {
             artworkURL = url
         }
         
-        // Set origin entity ID
-        self.originEntityID = response.entityUniqueId
+        // If from shazam then do not set the origin entity
+        // Otherwise this will be set as Apple Music
+        // This is a problem when the user has Apple Music as default and also has auto open on
+        if fromShazam {
+            self.originEntityID = ""
+        } else {
+            // Set origin entity ID
+            self.originEntityID = response.entityUniqueId
+        }
         
         // Fix Dictionaries
         let platformLinks = network.fixDictionaries(response: response)
@@ -198,6 +210,7 @@ class RequestViewModel: NSObject, ObservableObject {
             artworkURL: artworkURL,
             mediaTitle: mediaTitle ?? "",
             artistName: artistName ?? "",
+            isFromShazam: fromShazam,
             response: platformLinks
         )
     }
@@ -217,8 +230,15 @@ class RequestViewModel: NSObject, ObservableObject {
         case finished
     }
     
-    /// Starts to record from the microphone and send the buffer to shazam for a match
-    func startShazamMatch() {
+    /**
+     Starts to record from the microphone and send the buffer to shazam for a match
+     - Parameter snapshot: The current value of `UserSettings`
+     */
+    func startShazamMatch(userSettings snapshot: UserSettings?) {
+        // Set the snapshot
+        self.userSettingsSnapshot = snapshot
+        
+        // Set the progress
         self.shazamState = .matching
         
         // The delegate will receive callbacks when the media is recognized.
@@ -252,6 +272,31 @@ class RequestViewModel: NSObject, ObservableObject {
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 0)
     }
+    
+    /**
+     Add the given media item to the user's shazam library
+     - Parameter item: The item to add to the shazam library
+     */
+    private func addToShazamLibrary(item: SHMediaItem) async {
+        // Save to Shazam Library Asynchronously
+        do {
+            try await SHMediaLibrary.default.add([item])
+            print("Added to Library")
+        } catch {
+            print("Error occured when saving to Shazam library")
+        }
+    }
+    
+    func saveCachedItem() {
+        // Get the cached item
+        guard let cachedItem = shazamItemCache else {
+            return
+        }
+        
+        async {
+            await addToShazamLibrary(item: cachedItem)
+        }
+    }
 }
 
 extension RequestViewModel: SHSessionDelegate {
@@ -272,12 +317,24 @@ extension RequestViewModel: SHSessionDelegate {
             return
         }
         
-        // Set the button status
-        DispatchQueue.main.async { self.shazamState = .matchFound }
+        // Set the button status and cache item
+        DispatchQueue.main.async {
+            self.shazamState = .matchFound
+            self.shazamItemCache = matchedItem
+        }
         
         async {
-            await getResults(for: appleMusicURLString, with: userSettingsSnapshot, title: matchedItem.title, artist: matchedItem.artist, artworkURL: matchedItem.artworkURL)
+            // Get results from API
+            await getResults(for: appleMusicURLString, with: userSettingsSnapshot, title: matchedItem.title, artist: matchedItem.artist, artworkURL: matchedItem.artworkURL, fromShazam: true)
+            // Set finished state
             self.shazamState = .finished
+        }
+        
+        if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
+            // Save to Shazam Library Asynchronously
+            async {
+                await addToShazamLibrary(item: matchedItem)
+            }
         }
     }
     

@@ -38,6 +38,10 @@ struct SettingsView: View {
                     Toggle(isOn: self.$userSettings.autoOpen) {
                         Text("auto-open-external-links")
                     }
+                    
+                    Toggle(isOn: self.$userSettings.saveToShazamLibrary) {
+                        Text("Save Shazam Matches to Library")
+                    }
                 }
                 
                 Section(

@@ -28,12 +28,15 @@ struct SearchScreenView: View {
     /// The function to use to run the request
     let startShazam: () -> Void
     
+    /// The function to stop recording and matching on Shazam
+    let stopShazam: () -> Void
+    
     var body: some View {
         VStack {
             Spacer()
             MainTextView(searchURL: self.$searchURL)
             GetLinkButton(searchURL: $searchURL, inProgress: $normalInProgress, makeRequest: makeRequest)
-            ShazamButton(shazamState: $shazamInProgress, startShazam: startShazam)
+            ShazamButton(shazamState: $shazamInProgress, startShazam: startShazam, stopShazam: stopShazam)
             Spacer()
         }
     }
@@ -41,6 +44,6 @@ struct SearchScreenView: View {
 
 struct SearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchScreenView(searchURL: .constant(""), shazamInProgress: .constant(.idle), normalInProgress: .constant(false), makeRequest: {}, startShazam: {})
+        SearchScreenView(searchURL: .constant(""), shazamInProgress: .constant(.idle), normalInProgress: .constant(false), makeRequest: {}, startShazam: {}, stopShazam: {})
     }
 }

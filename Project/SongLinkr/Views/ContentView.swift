@@ -35,7 +35,14 @@ struct ContentView: View {
     /// The function to start a shazam match via the viewmodel
     private func startShazam() {
         print("Shazam Match Started")
-        viewModel.startShazamMatch()
+        viewModel.startShazamMatch(userSettings: userSettings)
+    }
+    
+    /// The function to stop recording and matching on Shazam
+    private func stopShazam() {
+        print("Shazam Match Cancelled")
+        viewModel.stopMatching()
+        viewModel.shazamState = .idle
     }
     
     var body: some View {
@@ -45,7 +52,8 @@ struct ContentView: View {
                 shazamInProgress: $viewModel.shazamState,
                 normalInProgress: $viewModel.normalInProgress,
                 makeRequest: makeRequest,
-                startShazam: startShazam
+                startShazam: startShazam,
+                stopShazam: stopShazam
             ).environmentObject(viewModel)
             // Check pasteboard for URLs
             .onAppear(perform: {
@@ -80,7 +88,8 @@ struct ContentView: View {
             .sheet(isPresented: self.viewModel.showResults) {
                 ResultsView(
                     showResults: self.viewModel.showResults,
-                    results: self.viewModel.resultsObject!
+                    results: self.viewModel.resultsObject!,
+                    saveFunction: viewModel.saveCachedItem
                 )
                 // Auto open
                     .onAppear {

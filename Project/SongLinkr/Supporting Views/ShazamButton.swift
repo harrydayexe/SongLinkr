@@ -25,9 +25,16 @@ struct ShazamButton: View {
     /// The function to use to start a shazam match
     let startShazam: () -> Void
     
+    /// The function to stop recording and matching on Shazam
+    let stopShazam: () -> Void
+    
     var body: some View {
         Button(action: {
-            startShazam()
+            if shazamState == .matching {
+                stopShazam()
+            } else {
+                startShazam()
+            }
         }) {
             switch shazamState {
                 case .idle:
@@ -50,14 +57,14 @@ struct ShazamButton: View {
         .controlSize(.large)
         .controlProminence(.increased)
         // Disabled if already matching
-        .disabled(!(shazamState == .idle))
+        .disabled(shazamState == .matchFound || shazamState == .finished)
     }
 }
 
 struct ShazamButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ShazamButton(shazamState: .constant(.idle), startShazam: {})
+            ShazamButton(shazamState: .constant(.idle), startShazam: {}, stopShazam: {})
                 .previewLayout(.fixed(width: 300, height: 100))
         }
     }
