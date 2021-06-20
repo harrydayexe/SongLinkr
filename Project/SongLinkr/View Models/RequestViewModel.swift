@@ -13,9 +13,13 @@
 import Foundation
 import SwiftUI
 import SongLinkrNetworkCore
+import ShazamKit
+import AVFoundation
 
 @MainActor
 class RequestViewModel: ObservableObject {
+    // MARK: Published Properties
+    
     /// The object to pass to results view
     @Published private(set) var resultsObject: ResultsModel?
     
@@ -28,8 +32,25 @@ class RequestViewModel: ObservableObject {
      */
     @Published private(set) var originEntityID: String = ""
     
+    /// Declares if the shazam process is in progress
+    @Published var shazamInProgress = false
+    
+    /// Declares if the normal process is in progress
+    @Published var normalInProgress = false
+    
+    
+    // MARK: Private Properties
     /// The network to make requests through
     private let network: Network
+    
+    /// The audio engine to access the microphone
+    private var audioEngine: AVAudioEngine
+    
+    /// The Shazam Session
+    private var session: SHSession
+    
+    
+    // MARK: Computed Properties
     
     /**
      Declares whether to show the search results or not
@@ -48,14 +69,29 @@ class RequestViewModel: ObservableObject {
         )
     }
     
+    /// Declares whether an error has occured
+    var showError: Binding<Bool> { Binding(
+        get: { self.errorDescription != nil },
+        set: { if !$0 { self.errorDescription = nil }}
+    )
+    }
+    
+    // MARK: Initialise
     /**
      Create a `RequestViewModel` class
      - Parameter network: The network layer to use for retrieving results. Defaults to `Network()`
      */
-    init(network: Network = Network()) {
+    init(
+        network: Network = Network(),
+        session: SHSession = SHSession(),
+        audioEngine: AVAudioEngine = AVAudioEngine()
+    ) {
         self.network = network
+        self.session = session
+        self.audioEngine = audioEngine
     }
     
+    // MARK: Normal Requests
     /**
      Retrieve the search results from the API, sort them and set them to the published property
      - Parameters:
@@ -132,4 +168,14 @@ class RequestViewModel: ObservableObject {
             response: platformLinks
         )
     }
+    
+    
+    // MARK: Shazam
+    
+    func shazamMatch() {
+//        session.delegate = self
+        
+    }
 }
+
+//extension RequestViewModel: SHSessionDelegate {}

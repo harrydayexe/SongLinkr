@@ -12,14 +12,11 @@ struct GetLinkButton: View {
     /// The view model for making a request
     @EnvironmentObject var viewModel: RequestViewModel
     
-    /// The user settings stored in the environment
-    @EnvironmentObject var userSettings: UserSettings
-    
     /// The URL the user has entered
     @Binding var searchURL: String
     
     /// Declares whether a request is being made
-    @State private var inProgress = false
+    @Binding var inProgress: Bool
     
     /// Declares whether an error has occured
     private var showError: Binding<Bool> { Binding(
@@ -28,11 +25,12 @@ struct GetLinkButton: View {
     )
     }
     
-    var makeRequest: (Binding<Bool>) -> Void
+    /// The function to start the request
+    let makeRequest: () -> Void
     
     var body: some View {
         Button(action: {
-            makeRequest($inProgress)
+            makeRequest()
         }) {
             GetLinkButtonView(callInProgress: inProgress && !showError.wrappedValue)
         }
@@ -43,13 +41,6 @@ struct GetLinkButton: View {
         .controlProminence(.increased)
         // Keyboard Shortcut
         .keyboardShortcut(.defaultAction)
-        // Alert if error
-        .alert(isPresented: showError) {
-            Alert(title: Text(viewModel.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(viewModel.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel({
-                inProgress = false
-                viewModel.errorDescription = nil
-            }))
-        }
         .padding()
         // Disable if no URL
         .disabled(self.searchURL == "")
@@ -60,9 +51,8 @@ struct GetLinkButton_Previews: PreviewProvider {
     static let viewModel = RequestViewModel()
     
     static var previews: some View {
-        GetLinkButton(searchURL: .constant("Hi"), makeRequest: { _ in })
+        GetLinkButton(searchURL: .constant("Hi"), inProgress: .constant(false), makeRequest: {})
             .previewLayout(.fixed(width: 300, height: 100))
-            .environmentObject(UserSettings())
             .environmentObject(self.viewModel)
     }
 }

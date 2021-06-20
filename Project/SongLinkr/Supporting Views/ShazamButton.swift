@@ -19,9 +19,15 @@ struct ShazamButton: View {
     /// The user settings stored in the environment
     @EnvironmentObject var userSettings: UserSettings
     
+    /// Declares whether a request is being made
+    @Binding var inProgress: Bool
+    
+    /// The function to use to start a shazam match
+    let startShazam: () -> Void
+    
     var body: some View {
         Button(action: {
-            print("Shazam Match")
+            startShazam()
         }) {
             Label("Shazam Match", image: "shazam.fill")
         }
@@ -35,7 +41,7 @@ struct ShazamButton: View {
 
 struct ShazamButton_Previews: PreviewProvider {
     static var previews: some View {
-        ShazamButton()
+        ShazamButton(inProgress: .constant(false), startShazam: {})
             .previewLayout(.fixed(width: 300, height: 100))
     }
 }
