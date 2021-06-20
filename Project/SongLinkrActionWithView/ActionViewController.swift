@@ -22,7 +22,7 @@ class ActionViewController: UIViewController {
         }
         
         let itemProvider = attachments.first!
-        let propertyList = String(kUTTypeURL)
+        let propertyList = String("public.url")
         
         
         if itemProvider.hasItemConformingToTypeIdentifier(propertyList) {
