@@ -9,28 +9,36 @@ import Foundation
 import SwiftUI
 
 struct GetLinkButton: View {
-    /// The store object in the environment
-    @EnvironmentObject var store: AppStore
+    /// The view model for making a request
+    @EnvironmentObject var viewModel: RequestViewModel
+    
+    /// The user settings stored in the environment
+    @EnvironmentObject var userSettings: UserSettings
     
     /// The URL the user has entered
     @Binding var searchURL: String
     
+    /// Declares whether a request is being made
+    @State private var inProgress = false
+    
     /// Declares whether an error has occured
     private var showError: Binding<Bool> { Binding(
-        get: { self.store.state.errorDescription != nil },
-        set: { if !$0 { self.store.send(.clearErrorDescription) }}
-    )}
+        get: { viewModel.errorDescription != nil },
+        set: { if !$0 { viewModel.errorDescription = nil }}
+    )
+    }
     
     var body: some View {
         Button(action: {
-            if self.searchURL != "" {
-                // Start the call
-                store.send(.updateCallInProgress(newValue: true))
-                // Request the data
-                store.send(.getSearchResults(from: .search(with: self.searchURL)))
+            if searchURL != "" {
+                async {
+                    inProgress = true
+                    await viewModel.getResults(for: searchURL, with: userSettings)
+                    inProgress = false
+                }
             }
         }) {
-            GetLinkButtonView(callInProgress: self.store.state.callInProgress && !self.showError.wrappedValue)
+            GetLinkButtonView(callInProgress: inProgress && !showError.wrappedValue)
         }
         // Button Styling
         .tint(.accentColor)
@@ -40,9 +48,10 @@ struct GetLinkButton: View {
         // Keyboard Shortcut
         .keyboardShortcut(.defaultAction)
         // Alert if error
-        .alert(isPresented: self.showError) {
-            Alert(title: Text(store.state.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(store.state.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel({
-                store.send(.updateCallInProgress(newValue: false))
+        .alert(isPresented: showError) {
+            Alert(title: Text(viewModel.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(viewModel.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel({
+                inProgress = false
+                viewModel.errorDescription = nil
             }))
         }
         .padding()
@@ -52,7 +61,12 @@ struct GetLinkButton: View {
 }
 
 struct GetLinkButton_Previews: PreviewProvider {
+    static let viewModel = RequestViewModel()
+    
     static var previews: some View {
-        Text("Hello World")
+        GetLinkButton(searchURL: .constant("Hi"))
+            .previewLayout(.fixed(width: 300, height: 100))
+            .environmentObject(UserSettings())
+            .environmentObject(self.viewModel)
     }
 }

@@ -15,9 +15,7 @@
 		8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830F24A9408C0047193B /* MainTextView.swift */; };
 		8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81831124A945F30047193B /* ResultsView.swift */; };
 		8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */; };
-		8C1C7B79262C5D7D00A14896 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C7B78262C5D7D00A14896 /* Store.swift */; };
 		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
-		8C314DC9262C6F1F007BC14C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C314DC8262C6F1F007BC14C /* App.swift */; };
 		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
 		8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C34F3BB26723FEF00E05629 /* IntentHandler.swift */; };
 		8C34F3C026723FEF00E05629 /* Shortcuts.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C34F3B726723FEF00E05629 /* Shortcuts.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -45,6 +43,9 @@
 		8C8BD2862672443F00B75DC9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2822672413400B75DC9 /* Intents.intentdefinition */; };
 		8C8BD2882672B35700B75DC9 /* matchURLToPlatformHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */; };
 		8CA1F3E124C0807900E6B853 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1F3E024C0807900E6B853 /* ActivityView.swift */; };
+		8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
+		8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
+		8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5449267E17DC0062099B /* ResultsModel.swift */; };
 		8CBD49DE2672CA2600CB69DB /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CBD49DF2672CA2600CB69DB /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CC091F6267029A600ED7BED /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
@@ -140,9 +141,7 @@
 
 /* Begin PBXFileReference section */
 		8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicShadowModifier.swift; sourceTree = "<group>"; };
-		8C1C7B78262C5D7D00A14896 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
-		8C314DC8262C6F1F007BC14C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C34F3BB26723FEF00E05629 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -179,6 +178,8 @@
 		8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = matchURLToPlatformHandler.swift; sourceTree = "<group>"; };
 		8CA1F3E024C0807900E6B853 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
+		8CAD5443267E16B20062099B /* RequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
+		8CAD5449267E17DC0062099B /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
 		8CC72A4724C06E2E006672AE /* Binding+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Mock.swift"; sourceTree = "<group>"; };
 		8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreviewWrapperView.swift; sourceTree = "<group>"; };
 		8CDD45912678F10D0074B5D3 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
@@ -231,15 +232,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8C1C7B6F262C5C6100A14896 /* Redux State */ = {
-			isa = PBXGroup;
-			children = (
-				8C1C7B78262C5D7D00A14896 /* Store.swift */,
-				8C314DC8262C6F1F007BC14C /* App.swift */,
-			);
-			path = "Redux State";
-			sourceTree = "<group>";
-		};
 		8C34F3BA26723FEF00E05629 /* Shortcuts */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +276,7 @@
 				8C81830724A907DB0047193B /* Views */,
 				8C81831324A94CD60047193B /* Supporting Views */,
 				8C81830A24A911760047193B /* Resources */,
+				8CAD5448267E16B80062099B /* View Models */,
 				8C43CB3624A665FD001B89A0 /* Models */,
 				8C53433B24C06DD1007BDB89 /* Development Resources */,
 				8C52E1D8263C2688004BFFB8 /* Localizable.strings */,
@@ -322,8 +315,7 @@
 		8C43CB3624A665FD001B89A0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8C1C7B6F262C5C6100A14896 /* Redux State */,
-				8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */,
+				8CAD5449267E17DC0062099B /* ResultsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -391,6 +383,15 @@
 				8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */,
 			);
 			path = "Shortcut Handlers";
+			sourceTree = "<group>";
+		};
+		8CAD5448267E16B80062099B /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */,
+				8CAD5443267E16B20062099B /* RequestViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		8CE207E32670206600DAD0F9 /* Products */ = {
@@ -642,8 +643,8 @@
 				8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */,
 				8C063A97267A1B610064B368 /* NeumorphicShadowModifier.swift in Sources */,
 				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
-				8C314DC9262C6F1F007BC14C /* App.swift in Sources */,
 				8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */,
+				8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */,
 				8C08B57524C3134300DC8235 /* ContentView.swift in Sources */,
 				8CDD45922678F10D0074B5D3 /* MediaDetailView.swift in Sources */,
 				8CF3CFF724B3B016004E5179 /* ColorManager.swift in Sources */,
@@ -657,10 +658,10 @@
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
 				8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */,
 				8C6BE3CE24C3971D004FBDD4 /* SongLinkCreditView.swift in Sources */,
-				8C1C7B79262C5D7D00A14896 /* Store.swift in Sources */,
 				8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */,
 				8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */,
 				8C08B57724C3134900DC8235 /* PlatformLinkButtonView.swift in Sources */,
+				8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +675,7 @@
 				8C55B3FE24C1008300B6E6E3 /* ColorManager.swift in Sources */,
 				8C55B3FF24C1008300B6E6E3 /* ActivityView.swift in Sources */,
 				8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */,
+				8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */,
 				8C55B3E824C1008300B6E6E3 /* Binding+Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -748,7 +750,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -757,7 +759,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -772,7 +774,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -781,7 +783,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -796,7 +798,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_BUILD = 1;
-				APP_VERSION = 1.1.3;
+				APP_VERSION = 1.2;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -861,7 +863,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_BUILD = 1;
-				APP_VERSION = 1.1.3;
+				APP_VERSION = 1.2;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -933,7 +935,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -961,7 +963,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1071,7 +1073,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrActionWithView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1097,7 +1099,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrActionWithView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

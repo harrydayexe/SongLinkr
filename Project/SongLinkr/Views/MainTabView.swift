@@ -34,6 +34,5 @@ struct MainTabView_Previews: PreviewProvider {
             MainTabView(selectedView: 1)
         }
         .environmentObject(UserSettings())
-        .environmentObject(AppStore(initialState: .init(), reducer: appReducer, environment: World()))
     }
 }

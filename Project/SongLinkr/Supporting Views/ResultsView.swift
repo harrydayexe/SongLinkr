@@ -13,10 +13,7 @@ struct ResultsView: View {
     @State private var showShareSheet = false
     @State private var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
-    let response: [PlatformLinks]
-    let artworkURL: URL?
-    let mediaTitle: String
-    let artistName: String
+    let results: ResultsModel
     
     var gridItemLayout = [
         GridItem(.adaptive(minimum: 250))
@@ -27,12 +24,12 @@ struct ResultsView: View {
             ScrollView {
                 LazyVGrid(columns: gridItemLayout, spacing: 20) {
                     MediaDetailView(
-                        artworkURL: artworkURL,
-                        mediaTitle: mediaTitle,
-                        artistName: artistName
+                        artworkURL: results.artworkURL,
+                        mediaTitle: results.mediaTitle,
+                        artistName: results.artistName
                     )
                     
-                    ForEach(response) { platform in
+                    ForEach(results.response) { platform in
                         PlatformLinkButtonView(platform: platform)
                             .contextMenu {
                                 Button(action: {
@@ -77,7 +74,10 @@ struct ResultsView: View {
             .navigationBarItems(trailing: Button("Done", action: {
                 self.showResults = false
                 // Request Review
-                if let windowScene = UIApplication.shared.windows.first?.windowScene { SKStoreReviewController.requestReview(in: windowScene) }
+                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                }
+                
             }))
             .padding()
             .background(Color.offWhite)
@@ -107,10 +107,12 @@ struct ResultsView_Previews: PreviewProvider {
         Group {
             ResultsView(
                 showResults: .constant(true),
-                response: response,
-                artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
-                mediaTitle: "Humble",
-                artistName: "Kendrick Lamar"
+                results: ResultsModel(
+                    artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+                    mediaTitle: "Humble",
+                    artistName: "Kendrick Lamar",
+                    response: response
+                )
             )
 //                .environment(\.locale, .init(identifier: "de"))
         }

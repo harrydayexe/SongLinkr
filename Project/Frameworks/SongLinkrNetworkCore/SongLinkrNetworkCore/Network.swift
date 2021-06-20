@@ -96,7 +96,7 @@ public final class Network {
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      - parameter handler: The completion handler. This is an `@escaping` closure to deal with when you call the function.
      */
-    public func request(
+    public func requestOld(
         from endpoint: Endpoint,
         with decoder: JSONDecoder = JSONDecoder()
     ) -> AnyPublisher<SongLinkAPIResponse, DataLoaderError> {
@@ -126,6 +126,44 @@ public final class Network {
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+    }
+    
+    /**
+     Makes a request to the given `Endpoint`
+     
+     - parameter endpoint: The endpoint to access data from.
+     - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
+     */
+    public func request(
+        from endpoint: Endpoint,
+        with decoder: JSONDecoder = JSONDecoder()
+    ) async throws -> SongLinkAPIResponse {
+        // Create URL from Endpoint
+        guard let url = endpoint.url else {
+            throw DataLoaderError.invalidURL
+        }
+        
+        // Create the request object
+        let request = URLRequest(url: url)
+        
+        do {
+            // Run the data task
+            let data = try await self.retrieveData(with: request)
+            // Decode the response
+            let apiResponseObject = try decoder.decode(SongLinkAPIResponse.self, from: data)
+            // Return
+            return apiResponseObject
+        } catch {
+            // If the error has already been set
+            if let error = error as? DataLoaderError {
+                throw error
+            } else if let error = error as? DecodingError {
+                throw self.mapDecodingError(error: error)
+            } else {
+                // If not decoding then network
+                throw DataLoaderError.network(error)
+            }
+        }
     }
     
     /**
@@ -178,6 +216,46 @@ public final class Network {
             .eraseToAnyPublisher()
         
     }
+    
+    /**
+     This function is responsible for running the data task and returning the data received from the server
+     - Parameter request: A `URLRequest` object which contains the URL to access the relevant API endpoint.
+     - Returns: The Data downloaded from the server
+     */
+    private func retrieveData(with request: URLRequest) async throws -> Data {
+        // Start the data task
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        // Check the HTTP Response Code is 2xx
+        guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+            // Now find out what kind of error it is
+            // Check for 4xx first
+            if let httpResponse = response as? HTTPURLResponse, 400..<500 ~= httpResponse.statusCode {
+                if let detailedResponse = BadResponse(data: data) {
+                    // Start to match against known responses and reasons
+                    if (detailedResponse.code == "could not resolve entity") {
+                        throw DataLoaderError.unknownEntity
+                    } else if (detailedResponse.code == "could not fetch entity data") {
+                        throw DataLoaderError.unknownItem
+                    } else {
+                        // Default for unknown error
+                        throw DataLoaderError.serverSideWithReason(detailedResponse.statusCode, detailedResponse.code)
+                    }
+                }
+                // If can't decode then just throw the status code
+                throw DataLoaderError.serverSide(httpResponse.statusCode)
+            // Now check for 5xx
+            } else if let httpResponse = response as? HTTPURLResponse, 500..<600 ~= httpResponse.statusCode {
+                throw DataLoaderError.serverSide(httpResponse.statusCode)
+            // Catch all if everything else fails
+            } else {
+                throw DataLoaderError.unknownNetworkProblem
+            }
+        }
+        
+        return data
+    }
+        
     
     /**
      This function unpacks the data in a dictionary in `SongLinkAPIResponse` and returns an array of that data in the form of `[PlatformLinks]`. This is useful for when arrays are needed to dynamically generate UI.
@@ -241,7 +319,7 @@ public final class Network {
     /**
      This function returns the song name and artist from a SongLinkAPIResponse.
       - Parameter response: The `SongLinkAPIResponse` to get results from
-      - Returns: A tuple with the first string being the song name and the second string being the artist name
+      - Returns: A tuple with the first string being the artist name and the second string being the song name
      */
     public static func getSongNameAndArtist(from response: SongLinkAPIResponse) -> (String?, String?) {
         // Get entities with song names and artists in
