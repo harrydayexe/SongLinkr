@@ -13,6 +13,7 @@
 import SwiftUI
 
 struct MediaDetailView: View {
+    @State private var hasBeenSaved = false
     let artworkURL: URL?
     let mediaTitle: String
     let artistName: String
@@ -51,8 +52,13 @@ struct MediaDetailView: View {
                 if displaySaveButton {
                     Button(action: {
                         saveFunction()
+                        hasBeenSaved = true
                     }) {
-                        Label("Add to Shazam Library", systemImage: "plus.circle")
+                        if !hasBeenSaved {
+                            Label("Add to Shazam Library", systemImage: "plus.circle")
+                        } else {
+                            Label("Added to Shazam Library", systemImage: "checkmark.circle")
+                        }
                     }
                     // Button Styling
                     .tint(.accentColor)

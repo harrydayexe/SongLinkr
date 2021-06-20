@@ -283,13 +283,14 @@ class RequestViewModel: NSObject, ObservableObject {
             try await SHMediaLibrary.default.add([item])
             print("Added to Library")
         } catch {
-            print("Error occured when saving to Shazam library")
+            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", error.localizedDescription) }
         }
     }
     
     func saveCachedItem() {
         // Get the cached item
         guard let cachedItem = shazamItemCache else {
+            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "The media item was not cached correctly and cannot be saved") }
             return
         }
         
@@ -309,11 +310,13 @@ extension RequestViewModel: SHSessionDelegate {
         
         // Get the matched item
         guard let matchedItem = match.mediaItems.first else {
+            DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
             return
         }
         
         // Get the apple music URL
         guard let appleMusicURLString = matchedItem.appleMusicURL?.absoluteString else {
+            DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
             return
         }
         
@@ -340,12 +343,13 @@ extension RequestViewModel: SHSessionDelegate {
     
     /// No match found or error occured
     func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
+        stopMatching()
         // Check if error occured
         if let error = error {
-            self.errorDescription = ("Something went wrong.", error.localizedDescription)
+            DispatchQueue.main.async { self.errorDescription = ("Something went wrong.", error.localizedDescription) }
         // No match found
         } else {
-            self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again")
+            DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
         }
     }
 }
