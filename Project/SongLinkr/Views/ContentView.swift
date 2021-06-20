@@ -21,12 +21,40 @@ struct ContentView: View {
     /// The selected tab
     @Binding var selectedTab: Int
     
+    /// The function to start a request via the viewmodel to the server
+    private func makeRequest() {
+        if searchURL != "" {
+            async {
+                viewModel.normalInProgress = true
+                await viewModel.getResults(for: searchURL, with: userSettings)
+                viewModel.normalInProgress = false
+            }
+        }
+    }
+    
+    /// The function to start a shazam match via the viewmodel
+    private func startShazam() {
+        print("Shazam Match Started")
+        viewModel.startShazamMatch(userSettings: userSettings)
+    }
+    
+    /// The function to stop recording and matching on Shazam
+    private func stopShazam() {
+        print("Shazam Match Cancelled")
+        viewModel.stopMatching()
+        viewModel.shazamState = .idle
+    }
+    
     var body: some View {
         NavigationView {
-            VStack {
-                MainTextView(searchURL: self.$searchURL)
-                GetLinkButton(searchURL: $searchURL).environmentObject(viewModel)
-            }
+            SearchScreenView(
+                searchURL: $searchURL,
+                shazamInProgress: $viewModel.shazamState,
+                normalInProgress: $viewModel.normalInProgress,
+                makeRequest: makeRequest,
+                startShazam: startShazam,
+                stopShazam: stopShazam
+            ).environmentObject(viewModel)
             // Check pasteboard for URLs
             .onAppear(perform: {
                 if UIPasteboard.general.hasURLs {
@@ -43,11 +71,25 @@ struct ContentView: View {
                     self.searchURL = songLink.absoluteString
                 }
             })
+            // Alert if error
+            .alert(isPresented: viewModel.showError) {
+                Alert(
+                    title: Text(viewModel.errorDescription?.0 ?? "Unknown Error Occured"),
+                    message: Text(viewModel.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"),
+                    dismissButton: .cancel({
+                    // Reset both
+                    viewModel.shazamState = .idle
+                    viewModel.normalInProgress = false
+                    viewModel.errorDescription = nil
+                })
+                )
+            }
             // Results view
             .sheet(isPresented: self.viewModel.showResults) {
                 ResultsView(
                     showResults: self.viewModel.showResults,
-                    results: self.viewModel.resultsObject!
+                    results: self.viewModel.resultsObject!,
+                    saveFunction: viewModel.saveCachedItem
                 )
                 // Auto open
                     .onAppear {

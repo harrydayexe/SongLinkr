@@ -23,6 +23,9 @@ struct ResultsModel {
     /// The name of the artist
     let artistName: String
     
+    /// Declares whether the result has been searched from Shazam
+    let isFromShazam: Bool
+    
     /// The actual links to display
     var response: [PlatformLinks]
 }

@@ -38,6 +38,12 @@ class UserSettings: ObservableObject {
         }
     }
     
+    @Published var saveToShazamLibrary: Bool {
+        didSet {
+            UserDefaults.standard.set(saveToShazamLibrary, forKey: "saveToShazamLibrary")
+        }
+    }
+    
     init() {
         let defaultPlatform = UserDefaults.standard.object(forKey: "defaultPlatform") as? String ?? Platform.youtube.rawValue
         self.defaultPlatform = Platform(rawValue: defaultPlatform) ?? Platform.youtube
@@ -45,6 +51,7 @@ class UserSettings: ObservableObject {
         let sortOption = UserDefaults.standard.object(forKey: "sortOption") as? String ?? SortOptions.popularity.rawValue
         self.sortOption = SortOptions(rawValue: sortOption) ?? SortOptions.popularity
         self.defaultAtTop = UserDefaults.standard.object(forKey: "defaultAtTop") as? Bool ?? true
+        self.saveToShazamLibrary = UserDefaults.standard.object(forKey: "saveToShazamLibrary") as? Bool ?? false
     }
     
     enum SortOptions: String, CaseIterable {

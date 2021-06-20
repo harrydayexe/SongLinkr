@@ -19,6 +19,7 @@
 		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
 		8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C34F3BB26723FEF00E05629 /* IntentHandler.swift */; };
 		8C34F3C026723FEF00E05629 /* Shortcuts.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C34F3B726723FEF00E05629 /* Shortcuts.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43C36F267FB6320084CE97 /* SearchScreenView.swift */; };
 		8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */; };
 		8C43CB2924A66593001B89A0 /* SongLinkrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB2824A66593001B89A0 /* SongLinkrUITests.swift */; };
@@ -33,6 +34,7 @@
 		8C55B3FE24C1008300B6E6E3 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF624B3B016004E5179 /* ColorManager.swift */; };
 		8C55B3FF24C1008300B6E6E3 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1F3E024C0807900E6B853 /* ActivityView.swift */; };
 		8C55B40224C1008300B6E6E3 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */; };
+		8C59A912267F69790010A451 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C59A911267F69790010A451 /* ShazamButton.swift */; };
 		8C6BE3CE24C3971D004FBDD4 /* SongLinkCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3CD24C3971D004FBDD4 /* SongLinkCreditView.swift */; };
 		8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */; };
 		8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */; };
@@ -146,6 +148,7 @@
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C34F3BB26723FEF00E05629 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		8C34F3BD26723FEF00E05629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C43C36F267FB6320084CE97 /* SearchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenView.swift; sourceTree = "<group>"; };
 		8C43CB0824A6658E001B89A0 /* SongLinkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SongLinkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrApp.swift; sourceTree = "<group>"; };
 		8C43CB0D24A6658E001B89A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 		8C52E1CB263C2356004BFFB8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		8C52E1D7263C2688004BFFB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C52E1DD263C268C004BFFB8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8C59A911267F69790010A451 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
 		8C6BE3CD24C3971D004FBDD4 /* SongLinkCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkCreditView.swift; sourceTree = "<group>"; };
 		8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 			isa = PBXGroup;
 			children = (
 				8C81830F24A9408C0047193B /* MainTextView.swift */,
+				8C43C36F267FB6320084CE97 /* SearchScreenView.swift */,
+				8C59A911267F69790010A451 /* ShazamButton.swift */,
 				8C81831124A945F30047193B /* ResultsView.swift */,
 				8CDD45912678F10D0074B5D3 /* MediaDetailView.swift */,
 				8C6BE3CD24C3971D004FBDD4 /* SongLinkCreditView.swift */,
@@ -652,6 +658,8 @@
 				8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */,
 				8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */,
 				8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */,
+				8C59A912267F69790010A451 /* ShazamButton.swift in Sources */,
+				8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */,
 				8CA1F3E124C0807900E6B853 /* ActivityView.swift in Sources */,
 				8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */,
 				8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */,
@@ -750,7 +758,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -774,7 +782,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -925,7 +933,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -953,7 +961,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1064,7 +1072,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1090,7 +1098,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

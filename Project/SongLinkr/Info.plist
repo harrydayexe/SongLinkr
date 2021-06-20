@@ -32,9 +32,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>35</string>
+	<string>20</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow microphone access to enable searching via Shazam</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>MatchURLToPlatformIntent</string>

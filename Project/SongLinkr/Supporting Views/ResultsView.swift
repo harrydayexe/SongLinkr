@@ -10,10 +10,12 @@ import StoreKit
 import SongLinkrNetworkCore
 
 struct ResultsView: View {
+    @EnvironmentObject var userSettings: UserSettings
     @State private var showShareSheet = false
     @State private var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
     let results: ResultsModel
+    let saveFunction: @MainActor () -> Void
     
     var gridItemLayout = [
         GridItem(.adaptive(minimum: 250))
@@ -26,8 +28,10 @@ struct ResultsView: View {
                     MediaDetailView(
                         artworkURL: results.artworkURL,
                         mediaTitle: results.mediaTitle,
-                        artistName: results.artistName
-                    )
+                        artistName: results.artistName,
+                        displaySaveButton: results.isFromShazam && !userSettings.saveToShazamLibrary,
+                        saveFunction: saveFunction
+                    )                    
                     
                     ForEach(results.response) { platform in
                         PlatformLinkButtonView(platform: platform)
@@ -104,17 +108,16 @@ struct ResultsView_Previews: PreviewProvider {
     ].sorted(by: { $0.id.rawValue < $1.id.rawValue })
     
     static var previews: some View {
-        Group {
-            ResultsView(
-                showResults: .constant(true),
-                results: ResultsModel(
-                    artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
-                    mediaTitle: "Humble",
-                    artistName: "Kendrick Lamar",
-                    response: response
-                )
-            )
-//                .environment(\.locale, .init(identifier: "de"))
-        }
+        ResultsView(
+            showResults: .constant(true),
+            results: ResultsModel(
+                artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+                mediaTitle: "Humble",
+                artistName: "Kendrick Lamar",
+                isFromShazam: true,
+                response: response
+            ),
+            saveFunction: {}
+        ).environmentObject(UserSettings())
     }
 }
