@@ -197,13 +197,18 @@ class RequestViewModel: NSObject, ObservableObject {
     private func getAppleMusicURL(from shazamURL: URLComponents) async throws -> URL {
         assert(shazamURL.host!.contains("shazam.com"), "URL is not from shazam.com")
         
-        // Check URL is for a song
-        guard shazamURL.path.starts(with: "/track/") else {
+        // Ensure it is for a track
+        guard shazamURL.path.contains("/track/") else {
+            throw RequestError.network(.invalidURL)
+        }
+        
+        // Get range of ID
+        guard let range = shazamURL.path.range(of: "/[\\d]+", options: .regularExpression) else {
             throw RequestError.network(.invalidURL)
         }
         
         // Get the track id without `/track/`
-        var trackID = shazamURL.path.dropFirst(7)
+        var trackID = shazamURL.path[range].dropFirst()
         // If the URL includes anything else then remove it
         if let index = trackID.firstIndex(of: "/") {
             trackID.removeSubrange(index...)
