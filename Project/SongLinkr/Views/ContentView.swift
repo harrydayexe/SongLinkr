@@ -10,7 +10,7 @@ import SongLinkrNetworkCore
 
 struct ContentView: View {
     /// The app state stored in the environment
-    @StateObject var viewModel: RequestViewModel = RequestViewModel()
+    @StateObject var viewModel: RequestViewModel = .shared
     
     /// The user settings stored in the environment
     @EnvironmentObject var userSettings: UserSettings

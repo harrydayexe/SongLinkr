@@ -18,6 +18,9 @@ import AVFoundation
 
 @MainActor
 class RequestViewModel: NSObject, ObservableObject {
+    /// Singleton Instance
+    static var shared: RequestViewModel = RequestViewModel()
+    
     // MARK: Published Properties
     
     /// The object to pass to results view
@@ -89,13 +92,70 @@ class RequestViewModel: NSObject, ObservableObject {
      - Parameter network: The network layer to use for retrieving results. Defaults to `Network()`
      */
     init(
-        network: Network = Network(),
+        network: Network = .shared,
         session: SHSession = SHSession(),
         audioEngine: AVAudioEngine = AVAudioEngine()
     ) {
         self.network = network
         self.session = session
         self.audioEngine = audioEngine
+    }
+    
+    // MARK: Error Enum
+    /// A struct representing an error that has occured during a request
+    struct RequestError: Error {
+        enum Code {
+            case network(Network.DataLoaderError)
+            case shazam(SHError)
+            case missingInformation
+            case cacheEmpty
+            case unknown(Error)
+        }
+        
+        /// Which type of error has occured
+        var code: Code
+        
+        /// Retrieve the localized description for this error.
+        var localizedDescription: String {
+            switch code {
+                case .network(let error):
+                    let (_, message) = Network.shared.createErrorMessage(from: error)
+                    return message
+                    
+                case .shazam(let error):
+                    return error.localizedDescription
+                    
+                case .missingInformation:
+                    return "The song was matched by Shazam but not enough information was returned. Please try again later."
+                    
+                case .cacheEmpty:
+                    return "The media cache was empty so the song was not saved. Please try again later"
+                    
+                case .unknown(let error):
+                    return error.localizedDescription
+            }
+        }
+        
+        /// Retrieve the localized title for this error
+        var localizedTitle: String {
+            switch code {
+                case .network(let error):
+                    let (title, _) = Network.shared.createErrorMessage(from: error)
+                    return title
+                    
+                case .missingInformation:
+                    return "Some information was missing"
+                    
+                case .cacheEmpty:
+                    return "An error occured whilst saving to Shazam Library"
+                    
+                case .unknown(_):
+                    return "An unknown error occured"
+                    
+                default:
+                    return "Something went wrong"
+            }
+        }
     }
     
     // MARK: Normal Requests
@@ -119,7 +179,6 @@ class RequestViewModel: NSObject, ObservableObject {
         let endpoint: Endpoint
         
         // Check if searchString is from shazam.com
-        print(URLComponents(string: searchString)!.host)
         if let searchURL = URLComponents(string: searchString), let host = searchURL.host, host.contains("shazam.com") {
             print("here")
             guard let url = await getAppleMusicURL(from: searchURL) else {
@@ -326,25 +385,25 @@ class RequestViewModel: NSObject, ObservableObject {
      Add the given media item to the user's shazam library
      - Parameter item: The item to add to the shazam library
      */
-    private func addToShazamLibrary(item: SHMediaItem) async {
+    private func addToShazamLibrary(item: SHMediaItem) async throws {
         // Save to Shazam Library Asynchronously
-        do {
-            try await SHMediaLibrary.default.add([item])
-            print("Added to Library")
-        } catch {
-            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", error.localizedDescription) }
-        }
+        try await SHMediaLibrary.default.add([item])
+        print("Added to Library")
     }
     
-    func saveCachedItem() {
+    func saveCachedItem() async -> Bool {
         // Get the cached item
         guard let cachedItem = shazamItemCache else {
             DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "The media item was not cached correctly and cannot be saved") }
-            return
+            return false
         }
         
-        async {
-            await addToShazamLibrary(item: cachedItem)
+        do {
+            try await addToShazamLibrary(item: cachedItem)
+            return true
+        } catch {
+            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "Something went wrong") }
+            return false
         }
     }
 }
@@ -385,7 +444,12 @@ extension RequestViewModel: SHSessionDelegate {
         if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
             // Save to Shazam Library Asynchronously
             async {
-                await addToShazamLibrary(item: matchedItem)
+                do {
+                    try await addToShazamLibrary(item: matchedItem)
+                } catch {
+                    DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "Something went wrong") }
+                    return
+                }
             }
         }
     }

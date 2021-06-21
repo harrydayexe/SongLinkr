@@ -12,6 +12,9 @@ import Combine
  The Network class contains networking utilities needed to make a request to the Song.Link API
  */
 public final class Network {
+    /// Singleton
+    static public var shared = Network()
+    
     /// The URL Session to use for the fetcher
     private let session: URLSession
     
@@ -19,7 +22,7 @@ public final class Network {
      Initialise the Network object
      - Parameter session: The URLSession object to use. Default is `.shared`.
      */
-    public init(session: URLSession = .shared) {
+    init(session: URLSession = .shared) {
         self.session = session
     }
     

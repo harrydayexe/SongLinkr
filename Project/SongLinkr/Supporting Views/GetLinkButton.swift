@@ -48,11 +48,9 @@ struct GetLinkButton: View {
 }
 
 struct GetLinkButton_Previews: PreviewProvider {
-    static let viewModel = RequestViewModel()
-    
     static var previews: some View {
         GetLinkButton(searchURL: .constant("Hi"), inProgress: .constant(false), makeRequest: {})
             .previewLayout(.fixed(width: 300, height: 100))
-            .environmentObject(self.viewModel)
+            .environmentObject(RequestViewModel.shared)
     }
 }

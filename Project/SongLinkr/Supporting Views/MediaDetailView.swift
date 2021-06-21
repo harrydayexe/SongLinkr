@@ -18,7 +18,7 @@ struct MediaDetailView: View {
     let mediaTitle: String
     let artistName: String
     let displaySaveButton: Bool
-    let saveFunction: @MainActor () -> Void
+    let saveFunction: @MainActor () async -> Bool
     
     var body: some View {
         ZStack {
@@ -51,8 +51,9 @@ struct MediaDetailView: View {
                 // If the result is from shazam and default save to library is off
                 if displaySaveButton {
                     Button(action: {
-                        saveFunction()
-                        hasBeenSaved = true
+                        async {
+                            hasBeenSaved = await saveFunction()
+                        }
                     }) {
                         if !hasBeenSaved {
                             Label("Add to Shazam Library", systemImage: "plus.circle")
@@ -64,6 +65,7 @@ struct MediaDetailView: View {
                     .tint(.accentColor)
                     .buttonStyle(.bordered)
                     .controlSize(.large)
+                    .disabled(hasBeenSaved)
                 }
             }.padding(.bottom)
         }
@@ -77,8 +79,8 @@ struct MediaDetailView_Previews: PreviewProvider {
             artworkURL: URL(stringLiteral: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
             mediaTitle: "Humble",
             artistName: "Kendrick Lamar",
-            displaySaveButton: false,
-            saveFunction: {}
+            displaySaveButton: true,
+            saveFunction: { return false }
         ).preferredColorScheme(.dark).padding()
     }
 }
