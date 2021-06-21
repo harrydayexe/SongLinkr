@@ -29,6 +29,9 @@ class RequestViewModel: NSObject, ObservableObject {
     /// The description of an error to be shown
     @Published var errorDescription: (String, String)?
     
+    /// The error to be shown
+    @Published var error: RequestError?
+    
     /**
      The entity that the request originated from
      - Note: Used to decide if the origin platform was the default or not
@@ -81,8 +84,8 @@ class RequestViewModel: NSObject, ObservableObject {
     
     /// Declares whether an error has occured
     var showError: Binding<Bool> { Binding(
-        get: { self.errorDescription != nil },
-        set: { if !$0 { self.errorDescription = nil }}
+        get: { self.error != nil },
+        set: { if !$0 { self.error = nil }}
     )
     }
     
@@ -110,6 +113,14 @@ class RequestViewModel: NSObject, ObservableObject {
             case missingInformation
             case cacheEmpty
             case unknown(Error)
+        }
+        
+        /**
+         Create a `RequestError` with the specified code
+         - Parameter code: The code for the error
+         */
+        init(_ code: Code) {
+            self.code = code
         }
         
         /// Which type of error has occured
@@ -178,20 +189,31 @@ class RequestViewModel: NSObject, ObservableObject {
     ) async {
         let endpoint: Endpoint
         
-        // Check if searchString is from shazam.com
-        if let searchURL = URLComponents(string: searchString), let host = searchURL.host, host.contains("shazam.com") {
-            print("here")
-            guard let url = await getAppleMusicURL(from: searchURL) else {
-                return
+        do {
+            // Check if searchString is from shazam.com
+            if let searchURL = URLComponents(string: searchString), let host = searchURL.host, host.contains("shazam.com") {
+                // Get Apple Music URL
+                // Throws RequestError
+                let url = try await getAppleMusicURL(from: searchURL)
+                // Make the endpoint for the received URL
+                endpoint = generateEndpoint(with: url.absoluteString)
+            } else {
+                // Make the endpoint for the given string
+                endpoint = generateEndpoint(with: searchString)
             }
-            endpoint = generateEndpoint(with: url.absoluteString)
-        } else {
-            endpoint = generateEndpoint(with: searchString)
+        } catch {
+            if let error = error as? RequestError {
+                self.error = error
+            } else {
+                self.error = RequestError(.unknown(error))
+            }
+            return
         }
         
         
         do {
             // Get response
+            // Throws DataLoaderError
             var results = try await makeRequest(with: endpoint, title: title, artist: artist, knownArtworkURL: artworkURL, fromShazam: fromShazam)
             
             // Sort correctly
@@ -212,10 +234,10 @@ class RequestViewModel: NSObject, ObservableObject {
         } catch {
             // Catch errors
             // If dataloader error then decode it
-            if error is Network.DataLoaderError {
-                DispatchQueue.main.async { self.errorDescription = self.network.createErrorMessage(from: error as! Network.DataLoaderError) }
+            if let error = error as? Network.DataLoaderError {
+                self.error = RequestError(.network(error))
             } else {
-                DispatchQueue.main.async { self.errorDescription = ("Something went wrong", "Please try again. If the issue persists please send me an email from the settings page") }
+                self.error = RequestError(.unknown(error))
             }
         }
     }
@@ -224,14 +246,14 @@ class RequestViewModel: NSObject, ObservableObject {
      Takes a Shazam.com link and tries to get the associated SHMediaItem. If it can then it returns an Apple Music URL for the associated media
      - Parameter shazamURL: The `URLComponents` with a host of shazam.com
      - Returns: An Apple Music URL
+     - Throws: A `RequestError`
      */
-    private func getAppleMusicURL(from shazamURL: URLComponents) async -> URL? {
+    private func getAppleMusicURL(from shazamURL: URLComponents) async throws -> URL {
         assert(shazamURL.host!.contains("shazam.com"), "URL is not from shazam.com")
         
         // Check URL is for a song
         guard shazamURL.path.starts(with: "/track/") else {
-            DispatchQueue.main.async { self.errorDescription = ("Invalid Shazam Link", "Please try again with a new link") }
-            return nil
+            throw RequestError(.network(.invalidURL))
         }
         
         // Get the track id without `/track/`
@@ -242,17 +264,22 @@ class RequestViewModel: NSObject, ObservableObject {
         }
         
         do {
+            // Try to get the media item from ShazamKit
             let mediaItem = try await SHMediaItem.fetch(shazamID: String(trackID))
             
             // Get the apple music URL
             guard let appleMusicURL = mediaItem.appleMusicURL else {
-                DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
-                return nil
+                throw RequestError(.missingInformation)
             }
             return appleMusicURL
         } catch {
-            DispatchQueue.main.async { self.errorDescription = ("Could not find the media item from Shazam", error.localizedDescription) }
-            return nil
+            if let error = error as? RequestError {
+                throw error
+            } else if let error = error as? SHError {
+                throw RequestError(.shazam(error))
+            } else {
+                throw RequestError(.unknown(error))
+            }
         }
     }
     
@@ -274,6 +301,7 @@ class RequestViewModel: NSObject, ObservableObject {
         - artist: The name of the artist if already known
         - artworkURL: The URL to the artwork if already known
      - Returns: A `ResultsModel` containing the response from the API
+     - Throws: A `DataLoaderError`
      */
     private func makeRequest(
         with endpoint: Endpoint,
@@ -283,6 +311,7 @@ class RequestViewModel: NSObject, ObservableObject {
         fromShazam: Bool = false
     ) async throws -> ResultsModel {
         // Get response asynchronously from API
+        // Throws DataLoaderError
         let response = try await network.request(from: endpoint)
         
         // Get artwork URL and names
@@ -384,25 +413,44 @@ class RequestViewModel: NSObject, ObservableObject {
     /**
      Add the given media item to the user's shazam library
      - Parameter item: The item to add to the shazam library
+     - Throws: A `RequestError`
      */
     private func addToShazamLibrary(item: SHMediaItem) async throws {
         // Save to Shazam Library Asynchronously
-        try await SHMediaLibrary.default.add([item])
-        print("Added to Library")
+        do {
+            try await SHMediaLibrary.default.add([item])
+            print("Added to Library")
+        } catch {
+            if let error = error as? SHError {
+                throw RequestError(.shazam(error))
+            } else {
+                throw RequestError(.unknown(error))
+            }
+        }
     }
     
+    /**
+     Saves the cached media item to the users Shazam Library
+     - Returns: A Bool declaring if the operation was successful or not
+     */
     func saveCachedItem() async -> Bool {
         // Get the cached item
         guard let cachedItem = shazamItemCache else {
-            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "The media item was not cached correctly and cannot be saved") }
+            self.error = RequestError(.cacheEmpty)
             return false
         }
         
         do {
+            // Try to add to library
             try await addToShazamLibrary(item: cachedItem)
             return true
         } catch {
-            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "Something went wrong") }
+            // Catch all errors, set relevant one to error property
+            if let error = error as? RequestError {
+                self.error = error
+            } else {
+                self.error = RequestError(.unknown(error))
+            }
             return false
         }
     }

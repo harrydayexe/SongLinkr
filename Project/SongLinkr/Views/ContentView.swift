@@ -74,8 +74,8 @@ struct ContentView: View {
             // Alert if error
             .alert(isPresented: viewModel.showError) {
                 Alert(
-                    title: Text(viewModel.errorDescription?.0 ?? "Unknown Error Occured"),
-                    message: Text(viewModel.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"),
+                    title: Text(viewModel.error?.localizedTitle ?? "Something went wrong"),
+                    message: Text(viewModel.error?.localizedDescription ?? "Please try again later"),
                     dismissButton: .cancel({
                     // Reset both
                     viewModel.shazamState = .idle

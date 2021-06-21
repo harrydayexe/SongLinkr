@@ -133,9 +133,10 @@ public final class Network {
     
     /**
      Makes a request to the given `Endpoint`
-     
      - parameter endpoint: The endpoint to access data from.
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
+     - Throws: A `DataLoaderError`
+     - Returns: A `SongLinkAPIResponse` with the relevant data received
      */
     public func request(
         from endpoint: Endpoint,
