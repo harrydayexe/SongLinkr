@@ -116,7 +116,20 @@ class RequestViewModel: NSObject, ObservableObject {
         artworkURL: URL? = nil,
         fromShazam: Bool = false
     ) async {
-        let endpoint = generateEndpoint(with: searchString)
+        let endpoint: Endpoint
+        
+        // Check if searchString is from shazam.com
+        print(URLComponents(string: searchString)!.host)
+        if let searchURL = URLComponents(string: searchString), let host = searchURL.host, host.contains("shazam.com") {
+            print("here")
+            guard let url = await getAppleMusicURL(from: searchURL) else {
+                return
+            }
+            endpoint = generateEndpoint(with: url.absoluteString)
+        } else {
+            endpoint = generateEndpoint(with: searchString)
+        }
+        
         
         do {
             // Get response
@@ -141,10 +154,46 @@ class RequestViewModel: NSObject, ObservableObject {
             // Catch errors
             // If dataloader error then decode it
             if error is Network.DataLoaderError {
-                self.errorDescription = network.createErrorMessage(from: error as! Network.DataLoaderError)
+                DispatchQueue.main.async { self.errorDescription = self.network.createErrorMessage(from: error as! Network.DataLoaderError) }
             } else {
-                self.errorDescription = ("Something went wrong", "Please try again. If the issue persists please send me an email from the settings page")
+                DispatchQueue.main.async { self.errorDescription = ("Something went wrong", "Please try again. If the issue persists please send me an email from the settings page") }
             }
+        }
+    }
+    
+    /**
+     Takes a Shazam.com link and tries to get the associated SHMediaItem. If it can then it returns an Apple Music URL for the associated media
+     - Parameter shazamURL: The `URLComponents` with a host of shazam.com
+     - Returns: An Apple Music URL
+     */
+    private func getAppleMusicURL(from shazamURL: URLComponents) async -> URL? {
+        assert(shazamURL.host!.contains("shazam.com"), "URL is not from shazam.com")
+        
+        // Check URL is for a song
+        guard shazamURL.path.starts(with: "/track/") else {
+            DispatchQueue.main.async { self.errorDescription = ("Invalid Shazam Link", "Please try again with a new link") }
+            return nil
+        }
+        
+        // Get the track id without `/track/`
+        var trackID = shazamURL.path.dropFirst(7)
+        // If the URL includes anything else then remove it
+        if let index = trackID.firstIndex(of: "/") {
+            trackID.removeSubrange(index...)
+        }
+        
+        do {
+            let mediaItem = try await SHMediaItem.fetch(shazamID: String(trackID))
+            
+            // Get the apple music URL
+            guard let appleMusicURL = mediaItem.appleMusicURL else {
+                DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
+                return nil
+            }
+            return appleMusicURL
+        } catch {
+            DispatchQueue.main.async { self.errorDescription = ("Could not find the media item from Shazam", error.localizedDescription) }
+            return nil
         }
     }
     
