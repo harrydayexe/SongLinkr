@@ -105,68 +105,13 @@ class RequestViewModel: NSObject, ObservableObject {
     }
     
     // MARK: Error Enum
-    /// A struct representing an error that has occured during a request
-    struct RequestError: Error {
-        enum Code {
-            case network(Network.DataLoaderError)
-            case shazam(SHError)
-            case missingInformation
-            case cacheEmpty
-            case unknown(Error)
-        }
-        
-        /**
-         Create a `RequestError` with the specified code
-         - Parameter code: The code for the error
-         */
-        init(_ code: Code) {
-            self.code = code
-        }
-        
-        /// Which type of error has occured
-        var code: Code
-        
-        /// Retrieve the localized description for this error.
-        var localizedDescription: String {
-            switch code {
-                case .network(let error):
-                    let (_, message) = Network.shared.createErrorMessage(from: error)
-                    return message
-                    
-                case .shazam(let error):
-                    return error.localizedDescription
-                    
-                case .missingInformation:
-                    return "The song was matched by Shazam but not enough information was returned. Please try again later."
-                    
-                case .cacheEmpty:
-                    return "The media cache was empty so the song was not saved. Please try again later"
-                    
-                case .unknown(let error):
-                    return error.localizedDescription
-            }
-        }
-        
-        /// Retrieve the localized title for this error
-        var localizedTitle: String {
-            switch code {
-                case .network(let error):
-                    let (title, _) = Network.shared.createErrorMessage(from: error)
-                    return title
-                    
-                case .missingInformation:
-                    return "Some information was missing"
-                    
-                case .cacheEmpty:
-                    return "An error occured whilst saving to Shazam Library"
-                    
-                case .unknown(_):
-                    return "An unknown error occured"
-                    
-                default:
-                    return "Something went wrong"
-            }
-        }
+    /// An enum representing an error that has occured during a request
+    enum RequestError: Error {
+        case network(Network.DataLoaderError)
+        case shazam(SHError)
+        case missingInformation
+        case cacheEmpty
+        case unknown(Error)
     }
     
     // MARK: Normal Requests
@@ -190,6 +135,7 @@ class RequestViewModel: NSObject, ObservableObject {
         let endpoint: Endpoint
         
         do {
+            print(searchString)
             // Check if searchString is from shazam.com
             if let searchURL = URLComponents(string: searchString), let host = searchURL.host, host.contains("shazam.com") {
                 // Get Apple Music URL
@@ -205,7 +151,7 @@ class RequestViewModel: NSObject, ObservableObject {
             if let error = error as? RequestError {
                 self.error = error
             } else {
-                self.error = RequestError(.unknown(error))
+                self.error = RequestError.unknown(error)
             }
             return
         }
@@ -235,9 +181,9 @@ class RequestViewModel: NSObject, ObservableObject {
             // Catch errors
             // If dataloader error then decode it
             if let error = error as? Network.DataLoaderError {
-                self.error = RequestError(.network(error))
+                self.error = RequestError.network(error)
             } else {
-                self.error = RequestError(.unknown(error))
+                self.error = RequestError.unknown(error)
             }
         }
     }
@@ -253,7 +199,7 @@ class RequestViewModel: NSObject, ObservableObject {
         
         // Check URL is for a song
         guard shazamURL.path.starts(with: "/track/") else {
-            throw RequestError(.network(.invalidURL))
+            throw RequestError.network(.invalidURL)
         }
         
         // Get the track id without `/track/`
@@ -269,16 +215,16 @@ class RequestViewModel: NSObject, ObservableObject {
             
             // Get the apple music URL
             guard let appleMusicURL = mediaItem.appleMusicURL else {
-                throw RequestError(.missingInformation)
+                throw RequestError.missingInformation
             }
             return appleMusicURL
         } catch {
             if let error = error as? RequestError {
                 throw error
             } else if let error = error as? SHError {
-                throw RequestError(.shazam(error))
+                throw RequestError.shazam(error)
             } else {
-                throw RequestError(.unknown(error))
+                throw RequestError.unknown(error)
             }
         }
     }
@@ -422,9 +368,9 @@ class RequestViewModel: NSObject, ObservableObject {
             print("Added to Library")
         } catch {
             if let error = error as? SHError {
-                throw RequestError(.shazam(error))
+                throw RequestError.shazam(error)
             } else {
-                throw RequestError(.unknown(error))
+                throw RequestError.unknown(error)
             }
         }
     }
@@ -436,7 +382,7 @@ class RequestViewModel: NSObject, ObservableObject {
     func saveCachedItem() async -> Bool {
         // Get the cached item
         guard let cachedItem = shazamItemCache else {
-            self.error = RequestError(.cacheEmpty)
+            self.error = RequestError.cacheEmpty
             return false
         }
         
@@ -449,7 +395,7 @@ class RequestViewModel: NSObject, ObservableObject {
             if let error = error as? RequestError {
                 self.error = error
             } else {
-                self.error = RequestError(.unknown(error))
+                self.error = RequestError.unknown(error)
             }
             return false
         }
@@ -511,6 +457,50 @@ extension RequestViewModel: SHSessionDelegate {
         // No match found
         } else {
             DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
+        }
+    }
+}
+
+extension RequestViewModel.RequestError: LocalizedError {
+    /// Retrieve the localized description for this error.
+    var errorDescription: String? {
+        switch self {
+            case .network(let error):
+                let (_, message) = Network.shared.createErrorMessage(from: error)
+                return message
+                
+            case .shazam(let error):
+                return error.localizedDescription
+                
+            case .missingInformation:
+                return "The song was matched by Shazam but not enough information was returned. Please try again later."
+                
+            case .cacheEmpty:
+                return "The media cache was empty so the song was not saved. Please try again later"
+                
+            case .unknown(let error):
+                return error.localizedDescription
+        }
+    }
+    
+    /// Retrieve the localized title for this error
+    var localizedTitle: String? {
+        switch self {
+            case .network(let error):
+                let (title, _) = Network.shared.createErrorMessage(from: error)
+                return title
+                
+            case .missingInformation:
+                return "Some information was missing"
+                
+            case .cacheEmpty:
+                return "An error occured whilst saving to Shazam Library"
+                
+            case .unknown(_):
+                return "An unknown error occured"
+                
+            default:
+                return "Something went wrong"
         }
     }
 }

@@ -43,10 +43,12 @@ struct MediaDetailView: View {
                     .aspectRatio(1, contentMode: .fit)
                 }
                 .accessibility(label: Text("The artwork for the song or album results are shown for"))
-                Text(mediaTitle)
-                    .font(.title).fontWeight(.semibold)
-                Text(artistName)
-                    .font(.title2)
+                Group {
+                    Text(mediaTitle)
+                        .font(.title).fontWeight(.semibold)
+                    Text(artistName)
+                        .font(.title2)
+                }.padding(.horizontal)
                 
                 // If the result is from shazam and default save to library is off
                 if displaySaveButton {
