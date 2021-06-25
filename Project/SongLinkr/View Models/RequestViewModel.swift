@@ -112,6 +112,7 @@ class RequestViewModel: NSObject, ObservableObject {
         case missingInformation
         case cacheEmpty
         case unknown(Error)
+        case matchNotFound
     }
     
     // MARK: Normal Requests
@@ -417,13 +418,13 @@ extension RequestViewModel: SHSessionDelegate {
         
         // Get the matched item
         guard let matchedItem = match.mediaItems.first else {
-            DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
+            DispatchQueue.main.async { self.error = .matchNotFound }
             return
         }
         
         // Get the apple music URL
         guard let appleMusicURLString = matchedItem.appleMusicURL?.absoluteString else {
-            DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
+            DispatchQueue.main.async { self.error = .missingInformation }
             return
         }
         
@@ -446,7 +447,12 @@ extension RequestViewModel: SHSessionDelegate {
                 do {
                     try await addToShazamLibrary(item: matchedItem)
                 } catch {
-                    DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "Something went wrong") }
+                    // Catch all errors, set relevant one to error property
+                    if let error = error as? RequestError {
+                        DispatchQueue.main.async { self.error = error }
+                    } else {
+                        DispatchQueue.main.async { self.error = RequestError.unknown(error) }
+                    }
                     return
                 }
             }
@@ -458,10 +464,14 @@ extension RequestViewModel: SHSessionDelegate {
         stopMatching()
         // Check if error occured
         if let error = error {
-            DispatchQueue.main.async { self.errorDescription = ("Something went wrong.", error.localizedDescription) }
+            if let shError = error as? SHError {
+                DispatchQueue.main.async { self.error = RequestError.shazam(shError) }
+            } else {
+                DispatchQueue.main.async { self.error = RequestError.unknown(error) }
+            }
         // No match found
         } else {
-            DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
+            DispatchQueue.main.async { self.error = RequestError.matchNotFound }
         }
     }
 }
@@ -471,20 +481,31 @@ extension RequestViewModel.RequestError: LocalizedError {
     var errorDescription: String? {
         switch self {
             case .network(let error):
-                let (_, message) = Network.shared.createErrorMessage(from: error)
-                return message
+                return error.localizedDescription
                 
             case .shazam(let error):
                 return error.localizedDescription
                 
             case .missingInformation:
-                return "The song was matched by Shazam but not enough information was returned. Please try again later."
+                return String(
+                    localized: "The song was matched by Shazam but not enough information was returned. Please try again later.",
+                    comment: "Error message"
+                )
                 
             case .cacheEmpty:
-                return "The media cache was empty so the song was not saved. Please try again later"
+                return String(
+                    localized: "The media cache was empty so the song was not saved. Please try again later",
+                    comment: "Error message"
+                )
                 
             case .unknown(let error):
                 return error.localizedDescription
+                
+            case .matchNotFound:
+                return String(
+                    localized: "No match was found in the Shazam Library",
+                    comment: "Error message"
+                )
         }
     }
     
@@ -492,20 +513,37 @@ extension RequestViewModel.RequestError: LocalizedError {
     var localizedTitle: String? {
         switch self {
             case .network(let error):
-                let (title, _) = Network.shared.createErrorMessage(from: error)
-                return title
+                return error.errorTitle
                 
             case .missingInformation:
-                return "Some information was missing"
+                return String(
+                    localized: "Some information was missing",
+                    comment: "Error message title"
+                )
                 
             case .cacheEmpty:
-                return "An error occured whilst saving to Shazam Library"
+                return String(
+                    localized: "An error occured whilst saving to Shazam Library",
+                    comment: "Error message title"
+                )
                 
             case .unknown(_):
-                return "An unknown error occured"
+                return String(
+                    localized: "An unknown error occured",
+                    comment: "Error message title"
+                )
+            
+            case .matchNotFound:
+                return String(
+                    localized: "No Match Found",
+                    comment: "Error message title"
+                )
                 
             default:
-                return "Something went wrong"
+                return String(
+                    localized: "Something went wrong",
+                    comment: "Error message title"
+                )
         }
     }
 }

@@ -421,6 +421,52 @@ public final class Network {
 }
 
 extension Network.DataLoaderError: LocalizedError {
+    public var errorTitle: String? {
+        switch self {
+            case .network(_):
+                return String(
+                    localized: "Network Error",
+                    comment: "Error message title"
+                )
+                
+            case .decodingError(_):
+                return String(
+                    localized: "Decoding Error",
+                    comment: "Error message title"
+                )
+
+            case .invalidURL:
+                return String(
+                    localized: "Invalid URL",
+                    comment: "Error message title"
+                )
+
+            case .unknownEntity:
+                return String(
+                    localized: "Unknown Platform",
+                    comment: "Error message title"
+                )
+
+            case .unknownItem:
+                return String(
+                    localized: "Unknown Item",
+                    comment: "Error message title"
+                )
+                
+            case .unknownNetworkProblem:
+                return String(
+                    localized: "Unknown Network Problem",
+                    comment: "Error message title"
+                )
+            
+            default:
+                return String(
+                    localized: "Something went wrong",
+                    comment: "Error message title"
+                )
+        }
+    }
+    
     public var errorDescription: String? {
         switch self {
             case .network(let error):
