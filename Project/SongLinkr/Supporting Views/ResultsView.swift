@@ -15,7 +15,7 @@ struct ResultsView: View {
     @State private var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
     let results: ResultsModel
-    let saveFunction: @MainActor () -> Void
+    let saveFunction: @MainActor () async -> Bool
     
     var gridItemLayout = [
         GridItem(.adaptive(minimum: 250))
@@ -117,7 +117,7 @@ struct ResultsView_Previews: PreviewProvider {
                 isFromShazam: true,
                 response: response
             ),
-            saveFunction: {}
+            saveFunction: { return true }
         ).environmentObject(UserSettings())
     }
 }

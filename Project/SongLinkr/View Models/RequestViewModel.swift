@@ -18,6 +18,9 @@ import AVFoundation
 
 @MainActor
 class RequestViewModel: NSObject, ObservableObject {
+    /// Singleton Instance
+    static var shared: RequestViewModel = RequestViewModel()
+    
     // MARK: Published Properties
     
     /// The object to pass to results view
@@ -25,6 +28,9 @@ class RequestViewModel: NSObject, ObservableObject {
     
     /// The description of an error to be shown
     @Published var errorDescription: (String, String)?
+    
+    /// The error to be shown
+    @Published var error: RequestError?
     
     /**
      The entity that the request originated from
@@ -78,8 +84,8 @@ class RequestViewModel: NSObject, ObservableObject {
     
     /// Declares whether an error has occured
     var showError: Binding<Bool> { Binding(
-        get: { self.errorDescription != nil },
-        set: { if !$0 { self.errorDescription = nil }}
+        get: { self.error != nil },
+        set: { if !$0 { self.error = nil }}
     )
     }
     
@@ -89,13 +95,23 @@ class RequestViewModel: NSObject, ObservableObject {
      - Parameter network: The network layer to use for retrieving results. Defaults to `Network()`
      */
     init(
-        network: Network = Network(),
+        network: Network = .shared,
         session: SHSession = SHSession(),
         audioEngine: AVAudioEngine = AVAudioEngine()
     ) {
         self.network = network
         self.session = session
         self.audioEngine = audioEngine
+    }
+    
+    // MARK: Error Enum
+    /// An enum representing an error that has occured during a request
+    enum RequestError: Error {
+        case network(Network.DataLoaderError)
+        case shazam(SHError)
+        case missingInformation
+        case cacheEmpty
+        case unknown(Error)
     }
     
     // MARK: Normal Requests
@@ -116,10 +132,34 @@ class RequestViewModel: NSObject, ObservableObject {
         artworkURL: URL? = nil,
         fromShazam: Bool = false
     ) async {
-        let endpoint = generateEndpoint(with: searchString)
+        let endpoint: Endpoint
+        
+        do {
+            print(searchString)
+            // Check if searchString is from shazam.com
+            if let searchURL = URLComponents(string: searchString), let host = searchURL.host, host.contains("shazam.com") {
+                // Get Apple Music URL
+                // Throws RequestError
+                let url = try await getAppleMusicURL(from: searchURL)
+                // Make the endpoint for the received URL
+                endpoint = generateEndpoint(with: url.absoluteString)
+            } else {
+                // Make the endpoint for the given string
+                endpoint = generateEndpoint(with: searchString)
+            }
+        } catch {
+            if let error = error as? RequestError {
+                self.error = error
+            } else {
+                self.error = RequestError.unknown(error)
+            }
+            return
+        }
+        
         
         do {
             // Get response
+            // Throws DataLoaderError
             var results = try await makeRequest(with: endpoint, title: title, artist: artist, knownArtworkURL: artworkURL, fromShazam: fromShazam)
             
             // Sort correctly
@@ -140,10 +180,56 @@ class RequestViewModel: NSObject, ObservableObject {
         } catch {
             // Catch errors
             // If dataloader error then decode it
-            if error is Network.DataLoaderError {
-                self.errorDescription = network.createErrorMessage(from: error as! Network.DataLoaderError)
+            if let error = error as? Network.DataLoaderError {
+                self.error = RequestError.network(error)
             } else {
-                self.errorDescription = ("Something went wrong", "Please try again. If the issue persists please send me an email from the settings page")
+                self.error = RequestError.unknown(error)
+            }
+        }
+    }
+    
+    /**
+     Takes a Shazam.com link and tries to get the associated SHMediaItem. If it can then it returns an Apple Music URL for the associated media
+     - Parameter shazamURL: The `URLComponents` with a host of shazam.com
+     - Returns: An Apple Music URL
+     - Throws: A `RequestError`
+     */
+    private func getAppleMusicURL(from shazamURL: URLComponents) async throws -> URL {
+        assert(shazamURL.host!.contains("shazam.com"), "URL is not from shazam.com")
+        
+        // Ensure it is for a track
+        guard shazamURL.path.contains("/track/") else {
+            throw RequestError.network(.invalidURL)
+        }
+        
+        // Get range of ID
+        guard let range = shazamURL.path.range(of: "/[\\d]+", options: .regularExpression) else {
+            throw RequestError.network(.invalidURL)
+        }
+        
+        // Get the track id without `/track/`
+        var trackID = shazamURL.path[range].dropFirst()
+        // If the URL includes anything else then remove it
+        if let index = trackID.firstIndex(of: "/") {
+            trackID.removeSubrange(index...)
+        }
+        
+        do {
+            // Try to get the media item from ShazamKit
+            let mediaItem = try await SHMediaItem.fetch(shazamID: String(trackID))
+            
+            // Get the apple music URL
+            guard let appleMusicURL = mediaItem.appleMusicURL else {
+                throw RequestError.missingInformation
+            }
+            return appleMusicURL
+        } catch {
+            if let error = error as? RequestError {
+                throw error
+            } else if let error = error as? SHError {
+                throw RequestError.shazam(error)
+            } else {
+                throw RequestError.unknown(error)
             }
         }
     }
@@ -166,6 +252,7 @@ class RequestViewModel: NSObject, ObservableObject {
         - artist: The name of the artist if already known
         - artworkURL: The URL to the artwork if already known
      - Returns: A `ResultsModel` containing the response from the API
+     - Throws: A `DataLoaderError`
      */
     private func makeRequest(
         with endpoint: Endpoint,
@@ -175,6 +262,7 @@ class RequestViewModel: NSObject, ObservableObject {
         fromShazam: Bool = false
     ) async throws -> ResultsModel {
         // Get response asynchronously from API
+        // Throws DataLoaderError
         let response = try await network.request(from: endpoint)
         
         // Get artwork URL and names
@@ -276,26 +364,45 @@ class RequestViewModel: NSObject, ObservableObject {
     /**
      Add the given media item to the user's shazam library
      - Parameter item: The item to add to the shazam library
+     - Throws: A `RequestError`
      */
-    private func addToShazamLibrary(item: SHMediaItem) async {
+    private func addToShazamLibrary(item: SHMediaItem) async throws {
         // Save to Shazam Library Asynchronously
         do {
             try await SHMediaLibrary.default.add([item])
             print("Added to Library")
         } catch {
-            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", error.localizedDescription) }
+            if let error = error as? SHError {
+                throw RequestError.shazam(error)
+            } else {
+                throw RequestError.unknown(error)
+            }
         }
     }
     
-    func saveCachedItem() {
+    /**
+     Saves the cached media item to the users Shazam Library
+     - Returns: A Bool declaring if the operation was successful or not
+     */
+    func saveCachedItem() async -> Bool {
         // Get the cached item
         guard let cachedItem = shazamItemCache else {
-            DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "The media item was not cached correctly and cannot be saved") }
-            return
+            self.error = RequestError.cacheEmpty
+            return false
         }
         
-        async {
-            await addToShazamLibrary(item: cachedItem)
+        do {
+            // Try to add to library
+            try await addToShazamLibrary(item: cachedItem)
+            return true
+        } catch {
+            // Catch all errors, set relevant one to error property
+            if let error = error as? RequestError {
+                self.error = error
+            } else {
+                self.error = RequestError.unknown(error)
+            }
+            return false
         }
     }
 }
@@ -336,7 +443,12 @@ extension RequestViewModel: SHSessionDelegate {
         if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
             // Save to Shazam Library Asynchronously
             async {
-                await addToShazamLibrary(item: matchedItem)
+                do {
+                    try await addToShazamLibrary(item: matchedItem)
+                } catch {
+                    DispatchQueue.main.async { self.errorDescription = ("Could not save to library", "Something went wrong") }
+                    return
+                }
             }
         }
     }
@@ -350,6 +462,50 @@ extension RequestViewModel: SHSessionDelegate {
         // No match found
         } else {
             DispatchQueue.main.async { self.errorDescription = ("No Match Found", "Shazam could not find a match from the audio. Please try again") }
+        }
+    }
+}
+
+extension RequestViewModel.RequestError: LocalizedError {
+    /// Retrieve the localized description for this error.
+    var errorDescription: String? {
+        switch self {
+            case .network(let error):
+                let (_, message) = Network.shared.createErrorMessage(from: error)
+                return message
+                
+            case .shazam(let error):
+                return error.localizedDescription
+                
+            case .missingInformation:
+                return "The song was matched by Shazam but not enough information was returned. Please try again later."
+                
+            case .cacheEmpty:
+                return "The media cache was empty so the song was not saved. Please try again later"
+                
+            case .unknown(let error):
+                return error.localizedDescription
+        }
+    }
+    
+    /// Retrieve the localized title for this error
+    var localizedTitle: String? {
+        switch self {
+            case .network(let error):
+                let (title, _) = Network.shared.createErrorMessage(from: error)
+                return title
+                
+            case .missingInformation:
+                return "Some information was missing"
+                
+            case .cacheEmpty:
+                return "An error occured whilst saving to Shazam Library"
+                
+            case .unknown(_):
+                return "An unknown error occured"
+                
+            default:
+                return "Something went wrong"
         }
     }
 }
