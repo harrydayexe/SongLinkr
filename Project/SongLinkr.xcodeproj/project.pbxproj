@@ -18,6 +18,8 @@
 		8C2906702686B8B2005A43CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C29066E2686B8B2005A43CD /* InfoPlist.strings */; };
 		8C2906732686B8B2005A43CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C2906712686B8B2005A43CD /* Localizable.strings */; };
 		8C2906782686BD0E005A43CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C2906762686BD0E005A43CD /* InfoPlist.strings */; };
+		8C29068626873F80005A43CD /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C29068926873F80005A43CD /* Intents.intentdefinition */; };
+		8C29068726873F80005A43CD /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C29068926873F80005A43CD /* Intents.intentdefinition */; };
 		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
 		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
 		8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C34F3BB26723FEF00E05629 /* IntentHandler.swift */; };
@@ -43,8 +45,6 @@
 		8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
-		8C8BD2832672413400B75DC9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2822672413400B75DC9 /* Intents.intentdefinition */; };
-		8C8BD2862672443F00B75DC9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2822672413400B75DC9 /* Intents.intentdefinition */; };
 		8C8BD2882672B35700B75DC9 /* matchURLToPlatformHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */; };
 		8CA1F3E124C0807900E6B853 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1F3E024C0807900E6B853 /* ActivityView.swift */; };
 		8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
@@ -151,6 +151,10 @@
 		8C29067E2686C138005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C290681268738F6005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C29068226873CBA005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C29068826873F80005A43CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
+		8C29068D26873F84005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
+		8C29068F26873F84005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Intents.strings; sourceTree = "<group>"; };
+		8C29069126873F95005A43CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
 		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -183,7 +187,6 @@
 		8C81830824A908070047193B /* GetLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8C81830F24A9408C0047193B /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
 		8C81831124A945F30047193B /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
-		8C8BD2822672413400B75DC9 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		8C8BD2872672B35700B75DC9 /* matchURLToPlatformHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = matchURLToPlatformHandler.swift; sourceTree = "<group>"; };
 		8CA1F3E024C0807900E6B853 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
@@ -243,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				8C34F3BB26723FEF00E05629 /* IntentHandler.swift */,
-				8C8BD2822672413400B75DC9 /* Intents.intentdefinition */,
+				8C29068926873F80005A43CD /* Intents.intentdefinition */,
 				8C8BD28C2672B68C00B75DC9 /* Shortcut Handlers */,
 				8C34F3BD26723FEF00E05629 /* Info.plist */,
 			);
@@ -643,7 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C8BD2882672B35700B75DC9 /* matchURLToPlatformHandler.swift in Sources */,
-				8C8BD2832672413400B75DC9 /* Intents.intentdefinition in Sources */,
+				8C29068726873F80005A43CD /* Intents.intentdefinition in Sources */,
 				8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,7 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C8BD2862672443F00B75DC9 /* Intents.intentdefinition in Sources */,
+				8C29068626873F80005A43CD /* Intents.intentdefinition in Sources */,
 				8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */,
 				8C063A97267A1B610064B368 /* NeumorphicShadowModifier.swift in Sources */,
 				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
@@ -762,6 +765,17 @@
 				8C29067E2686C138005A43CD /* es */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8C29068926873F80005A43CD /* Intents.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C29068826873F80005A43CD /* Base */,
+				8C29068D26873F84005A43CD /* de */,
+				8C29068F26873F84005A43CD /* es */,
+				8C29069126873F95005A43CD /* en */,
+			);
+			name = Intents.intentdefinition;
 			sourceTree = "<group>";
 		};
 		8C4E907D2633741B00D201C1 /* MainInterface.storyboard */ = {
