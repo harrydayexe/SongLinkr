@@ -149,6 +149,8 @@
 		8C2906722686B8B2005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C2906772686BD0E005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C29067E2686C138005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C290681268738F6005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8C29068226873CBA005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
 		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -739,6 +741,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8C29066F2686B8B2005A43CD /* de */,
+				8C29068226873CBA005A43CD /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8C2906722686B8B2005A43CD /* de */,
+				8C290681268738F6005A43CD /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -776,7 +780,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -800,7 +804,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -951,7 +955,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -979,7 +983,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1090,7 +1094,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1116,7 +1120,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 57;
+				CURRENT_PROJECT_VERSION = 60;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
