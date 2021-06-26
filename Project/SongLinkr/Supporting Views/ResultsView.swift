@@ -40,23 +40,23 @@ struct ResultsView: View {
                                     self.shareSheetURL = platform.url
                                     self.showShareSheet = true
                                 }) {
-                                    Text("Share")
+                                    Text("Share", comment: "A context menu item, launches the share sheet")
                                     Image(systemName: "square.and.arrow.up")
                                 }
                                 
                                 Button(action: { UIPasteboard.general.url = platform.url }) {
-                                    Text("Copy")
+                                    Text("Copy", comment: "A context menu item, copies the link to clipboard")
                                     Image(systemName: "doc.on.doc")
                                 }
                                 
                                 Button(action: { UIApplication.shared.open(platform.url) }) {
-                                    Text("Open")
+                                    Text("Open", comment: "A context menu item, opens the link")
                                     Image(systemName: "safari")
                                 }
                                 
                                 if platform.nativeAppUriMobile != nil {
                                     Button(action: { UIApplication.shared.open(platform.nativeAppUriMobile!) }) {
-                                        Text("Open in App")
+                                        Text("Open in App", comment: "A context menu item, opens the link in the relevant music app")
                                         Image(systemName: "square.on.square")
                                     }
                                 } else {
@@ -74,7 +74,7 @@ struct ResultsView: View {
                     ShareSheet(activityItems: [self.shareSheetURL])
                 }
             }
-            .navigationBarTitle(Text("Pick your platform"), displayMode: .inline)
+            .navigationBarTitle(Text("Pick your platform", comment: "The modal view title"), displayMode: .inline)
             .navigationBarItems(trailing: Button("Done", action: {
                 self.showResults = false
                 // Request Review

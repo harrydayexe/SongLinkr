@@ -16,12 +16,12 @@ struct MainTabView: View {
             ContentView(selectedTab: $selectedView)
                 .tabItem {
                     Image(systemName: "textbox")
-                    Text("SongLinkr")
+                    Text(verbatim: "SongLinkr")
                 }.tag(0)
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text(LocalizedStringKey("settings-name"))
+                    Text("Settings", comment: "Tab Bar name for the settings page")
                 }.tag(1)
         }
     }

@@ -28,7 +28,7 @@ struct URLEntryField: View {
                 .accessibility(hidden: true)
             
             // Search Field
-            TextField("Paste a URL", text: self.$searchURL, prompt: Text("URL"))
+            TextField("Paste a URL", text: self.$searchURL, prompt: Text(verbatim: "URL"))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(maxWidth: 700)
                 .keyboardType(.URL)
@@ -37,8 +37,8 @@ struct URLEntryField: View {
                     self.isEditing = true
                 }
                 .accessibility(addTraits: .isSearchField)
-                .accessibility(label: Text("URL Search Field"))
-                .accessibility(hint: Text("Paste a URL to search for matches on other platforms."))
+                .accessibility(label: Text("URL Search Field", comment: "Accessibility label"))
+                .accessibility(hint: Text("Paste a URL to search for matches on other platforms.", comment: "Accessibility label"))
             
             if isEditing {
                 Button(action: {
@@ -47,7 +47,7 @@ struct URLEntryField: View {
                     Image(systemName: "multiply.circle.fill")
                         .foregroundColor(.gray)
                 }
-                .accessibility(label: Text("Clear Search Bar"))
+                .accessibility(label: Text("Clear Search Bar", comment: "Accessibility label"))
             }
         }
     }
