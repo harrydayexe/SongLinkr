@@ -16,64 +16,70 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 Section(
-                    header: Text("preferences-name"),
-                    footer: Text("auto-open-hint")
+                    header: Text("Preferences", comment: "Section Header, the user preferences section"),
+                    footer: Text(
+                        "Auto Open External Links will automatically open your default platform if it is matched and the original link did not originate from it.",
+                        comment: "Section Footer, Explains the auto open preference"
+                    )
                 ) {
-                    Picker(selection: self.$userSettings.defaultPlatform, label: Text("default-streaming-platform")) {
+                    Picker(selection: self.$userSettings.defaultPlatform, label: Text("Default Streaming Platform", comment: "Option Name, The user's preferred music platform")) {
                         ForEach(Platform.allCases, id: \.self) { platform in
                             Text(platform.displayName)
                         }
                     }
                     
-                    Picker(selection: self.$userSettings.sortOption, label: Text("platform-sort-option")) {
+                    Picker(selection: self.$userSettings.sortOption, label: Text("Platform Sort Option", comment: "Option name, user's choose what order to show results in")) {
                         ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in
                             Text(sortOption.localisedName)
                         }
                     }
                     
                     Toggle(isOn: self.$userSettings.defaultAtTop) {
-                        Text("default-platform-at-top")
+                        Text("Default Platform at the Top of Results", comment: "Option name, decides whether the users preferred platform is at the top of the list")
                     }
                     
                     Toggle(isOn: self.$userSettings.autoOpen) {
-                        Text("auto-open-external-links")
+                        Text("Auto Open External Links", comment: "Option name, decides whether to automatically open links in the user's preferred platform")
                     }
                     
                     Toggle(isOn: self.$userSettings.saveToShazamLibrary) {
-                        Text("Save Shazam Matches to Library")
+                        Text("Save Shazam Matches to Library", comment: "Option name, decides whether to save matches made with shazam to the shazam library automatically")
                     }
                 }
                 
                 Section(
-                    header: Text("Help")
+                    header: Text("Help", comment: "Section Header, contains links to support online")
                 ) {
                     Link(destination: URL(string: "https://songlinkr.harryday.xyz/support.html")!, label: {
-                        Text("Support")
+                        Text("Support", comment: "Link name, links to the support page")
                     })
                     Link(destination: URL(string: "https://songlinkr.harryday.xyz/privacy.html")!, label: {
-                        Text("Privacy Policy")
+                        Text("Privacy Policy", comment: "Link name, links to the privacy policy")
                     })
                     Link(destination: URL(string: "http://songlinkr.harryday.xyz/translations.html")!) {
-                        Text("Improve Translations")
+                        Text("Improve Translations", comment: "Link name, Links to a page about improving translations")
                     }
                 }
                 
                 Section(
-                    header: Text("About"),
-                    footer: Text("SongLinkr is developed by Harry Day from England")) {
+                    header: Text("About", comment: "Section Header, section contains information about the app"),
+                    footer: Text("SongLinkr is developed by Harry Day from England", comment: "Section footer")) {
                     HStack {
-                        Text(LocalizedStringKey("version-number"))
+                        Text("Version Number", comment: "The version number of the app")
                         Spacer()
-                        Text(versionNumber ?? "Unknown")
+                        Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
                             .foregroundColor(.secondary)
                     }
-                    .accessibility(label: Text("version-number"))
-                    .accessibility(value: Text(versionNumber ?? "Unknown"))
+                    .accessibility(
+                        label: Text("Version Number", comment: "The version number of the app")
+                    )
+                    .accessibility(
+                        value: Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
+                    )
                 }
             }
-            .navigationTitle(LocalizedStringKey("settings-name"))
+            .navigationTitle("Settings")
         }
-        .navigationTitle(LocalizedStringKey("settings-name"))
     }
 }
 

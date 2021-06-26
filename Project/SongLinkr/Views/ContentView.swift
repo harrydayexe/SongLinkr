@@ -74,8 +74,8 @@ struct ContentView: View {
             // Alert if error
             .alert(isPresented: viewModel.showError) {
                 Alert(
-                    title: Text(viewModel.error?.localizedTitle ?? "Something went wrong"),
-                    message: Text(viewModel.error?.localizedDescription ?? "Please try again later"),
+                    title: Text(viewModel.error?.localizedTitle ?? String(localized: "Something went wrong", comment: "The title of a default error")),
+                    message: Text(viewModel.error?.localizedDescription ?? String(localized: "Please try again later", comment: "The description of a default error")),
                     dismissButton: .cancel({
                     // Reset both
                     viewModel.shazamState = .idle

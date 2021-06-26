@@ -58,12 +58,12 @@ class UserSettings: ObservableObject {
         case alphabetically = "Alphabetically"
         case popularity = "Popularity"
         
-        var localisedName: LocalizedStringKey {
+        var localisedName: String {
             switch self {
                 case .alphabetically:
-                    return LocalizedStringKey("alphabetically")
+                    return String(localized: "Alphabetically", comment: "Platform Sort Option")
                 case .popularity:
-                    return LocalizedStringKey("popularity")
+                    return String(localized: "Popularity", comment: "Platform Sort Option")
             }
         }
     }

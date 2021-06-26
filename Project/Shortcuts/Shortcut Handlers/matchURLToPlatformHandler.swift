@@ -58,7 +58,6 @@ class MatchURLToPlatformHandler: NSObject, MatchURLToPlatformIntentHandling {
             }
             // Get desired platform links arrays
             .map { platformLinks -> [PlatformLinks] in
-                print("here")
                 // Check if the user wants a specific platform
                 if specificPlatformWanted {
                     // Try to find the wanted platform in the list and return

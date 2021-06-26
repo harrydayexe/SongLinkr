@@ -1,0 +1,140 @@
+"0H2KQc" = "Do you want results for a specific platform?";
+
+"0kYWSb" = "${error}";
+
+"4c4BCS" = "Google Store";
+
+"5Ti2AT" = "Amazon Music";
+
+"6GNxNK" = "Spotify";
+
+"6Tkxbp" = "Match URL To Platform";
+
+"79bW8S" = "Yandex";
+
+"AFUHHV" = "Match a link to a song to a specific platform";
+
+"B2DQTs" = "Google";
+
+"BaH866" = "yes";
+
+"BuHtWW" = "${error}";
+
+"FPSatn-4c4BCS" = "There are ${count} options matching ‘Google Store’.";
+
+"FPSatn-5Ti2AT" = "There are ${count} options matching ‘Amazon Music’.";
+
+"FPSatn-6GNxNK" = "There are ${count} options matching ‘Spotify’.";
+
+"FPSatn-79bW8S" = "There are ${count} options matching ‘Yandex’.";
+
+"FPSatn-B2DQTs" = "There are ${count} options matching ‘Google’.";
+
+"FPSatn-GdIWik" = "There are ${count} options matching ‘Napster’.";
+
+"FPSatn-MvPKsc" = "There are ${count} options matching ‘YouTube’.";
+
+"FPSatn-PMmjOZ" = "There are ${count} options matching ‘Deezer’.";
+
+"FPSatn-SXnfyi" = "There are ${count} options matching ‘Audius’.";
+
+"FPSatn-VAAf0j" = "There are ${count} options matching ‘Pandora’.";
+
+"FPSatn-ZbjoIu" = "There are ${count} options matching ‘YouTube Music’.";
+
+"FPSatn-hJp9L6" = "There are ${count} options matching ‘Spinrilla’.";
+
+"FPSatn-hRJWbC" = "There are ${count} options matching ‘Tidal’.";
+
+"FPSatn-nDRwZF" = "There are ${count} options matching ‘Apple Music’.";
+
+"FPSatn-urAphz" = "There are ${count} options matching ‘Amazon Store’.";
+
+"FPSatn-xYWVFm" = "There are ${count} options matching ‘iTunes’.";
+
+"FPSatn-yd7vN2" = "There are ${count} options matching ‘SoundCloud’.";
+
+"FZuYRO" = "${result}";
+
+"GdIWik" = "Napster";
+
+"MvPKsc" = "YouTube";
+
+"N0ppzK" = "no";
+
+"PMmjOZ" = "Deezer";
+
+"QoggXP" = "Result";
+
+"RrB6gc" = "Target Platform";
+
+"SXnfyi" = "Audius";
+
+"VAAf0j" = "Pandora";
+
+"W0NWGS" = "Choose Specific Platform";
+
+"ZbjoIu" = "YouTube Music";
+
+"ZpJUtS" = "Enter the URL to a song on a streaming platform";
+
+"etA7WR" = "Match the song at ${url} on ${targetPlatform}";
+
+"fWSyYq" = "Error";
+
+"fexlVe" = "Match the song at ${url} across streaming platforms";
+
+"gv57D3" = "Please enter the URL to a song on a streaming platform";
+
+"hJp9L6" = "Spinrilla";
+
+"hRJWbC" = "Tidal";
+
+"nDRwZF" = "Apple Music";
+
+"oAhco2" = "${result}";
+
+"oIhMgw" = "Platforms";
+
+"urAphz" = "Amazon Store";
+
+"xOzIJe-4c4BCS" = "Just to confirm, you wanted ‘Google Store’?";
+
+"xOzIJe-5Ti2AT" = "Just to confirm, you wanted ‘Amazon Music’?";
+
+"xOzIJe-6GNxNK" = "Just to confirm, you wanted ‘Spotify’?";
+
+"xOzIJe-79bW8S" = "Just to confirm, you wanted ‘Yandex’?";
+
+"xOzIJe-B2DQTs" = "Just to confirm, you wanted ‘Google’?";
+
+"xOzIJe-GdIWik" = "Just to confirm, you wanted ‘Napster’?";
+
+"xOzIJe-MvPKsc" = "Just to confirm, you wanted ‘YouTube’?";
+
+"xOzIJe-PMmjOZ" = "Just to confirm, you wanted ‘Deezer’?";
+
+"xOzIJe-SXnfyi" = "Just to confirm, you wanted ‘Audius’?";
+
+"xOzIJe-VAAf0j" = "Just to confirm, you wanted ‘Pandora’?";
+
+"xOzIJe-ZbjoIu" = "Just to confirm, you wanted ‘YouTube Music’?";
+
+"xOzIJe-hJp9L6" = "Just to confirm, you wanted ‘Spinrilla’?";
+
+"xOzIJe-hRJWbC" = "Just to confirm, you wanted ‘Tidal’?";
+
+"xOzIJe-nDRwZF" = "Just to confirm, you wanted ‘Apple Music’?";
+
+"xOzIJe-urAphz" = "Just to confirm, you wanted ‘Amazon Store’?";
+
+"xOzIJe-xYWVFm" = "Just to confirm, you wanted ‘iTunes’?";
+
+"xOzIJe-yd7vN2" = "Just to confirm, you wanted ‘SoundCloud’?";
+
+"xYWVFm" = "iTunes";
+
+"xumBhV" = "URL";
+
+"yd7vN2" = "SoundCloud";
+
