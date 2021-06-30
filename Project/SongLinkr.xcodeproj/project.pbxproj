@@ -20,6 +20,11 @@
 		8C2906782686BD0E005A43CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C2906762686BD0E005A43CD /* InfoPlist.strings */; };
 		8C29068626873F80005A43CD /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C29068926873F80005A43CD /* Intents.intentdefinition */; };
 		8C29068726873F80005A43CD /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C29068926873F80005A43CD /* Intents.intentdefinition */; };
+		8C29069526875422005A43CD /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C29069426875422005A43CD /* HistoryView.swift */; };
+		8C29069926875A9D005A43CD /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C29069826875A9D005A43CD /* HistoryViewModel.swift */; };
+		8C2906C426875EAA005A43CD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C326875EAA005A43CD /* Persistence.swift */; };
+		8C2906C726875F57005A43CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C526875F57005A43CD /* Model.xcdatamodeld */; };
+		8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */; };
 		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
 		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
 		8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C34F3BB26723FEF00E05629 /* IntentHandler.swift */; };
@@ -155,6 +160,11 @@
 		8C29068D26873F84005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
 		8C29068F26873F84005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Intents.strings; sourceTree = "<group>"; };
 		8C29069126873F95005A43CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
+		8C29069426875422005A43CD /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		8C29069826875A9D005A43CD /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		8C2906C326875EAA005A43CD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		8C2906C626875F57005A43CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedItemStorage.swift; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
 		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -327,6 +337,9 @@
 			isa = PBXGroup;
 			children = (
 				8CAD5449267E17DC0062099B /* ResultsModel.swift */,
+				8C2906C326875EAA005A43CD /* Persistence.swift */,
+				8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */,
+				8C2906C526875F57005A43CD /* Model.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -357,6 +370,7 @@
 			children = (
 				8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */,
 				8C43CB0D24A6658E001B89A0 /* ContentView.swift */,
+				8C29069426875422005A43CD /* HistoryView.swift */,
 				8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */,
 			);
 			path = Views;
@@ -404,6 +418,7 @@
 			children = (
 				8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */,
 				8CAD5443267E16B20062099B /* RequestViewModel.swift */,
+				8C29069826875A9D005A43CD /* HistoryViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -666,13 +681,17 @@
 				8CF3CFF724B3B016004E5179 /* ColorManager.swift in Sources */,
 				8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */,
 				8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */,
+				8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */,
 				8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */,
 				8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */,
 				8C59A912267F69790010A451 /* ShazamButton.swift in Sources */,
 				8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */,
 				8CA1F3E124C0807900E6B853 /* ActivityView.swift in Sources */,
 				8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */,
+				8C2906C426875EAA005A43CD /* Persistence.swift in Sources */,
+				8C29069526875422005A43CD /* HistoryView.swift in Sources */,
 				8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */,
+				8C29069926875A9D005A43CD /* HistoryViewModel.swift in Sources */,
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
 				8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */,
 				8C6BE3CE24C3971D004FBDD4 /* SongLinkCreditView.swift in Sources */,
@@ -680,6 +699,7 @@
 				8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */,
 				8C08B57724C3134900DC8235 /* PlatformLinkButtonView.swift in Sources */,
 				8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */,
+				8C2906C726875F57005A43CD /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,7 +814,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -818,7 +838,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -969,7 +989,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -997,7 +1017,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1108,7 +1128,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1134,7 +1154,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1211,6 +1231,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8C2906C526875F57005A43CD /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8C2906C626875F57005A43CD /* Model.xcdatamodel */,
+			);
+			currentVersion = 8C2906C626875F57005A43CD /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8C43CB0024A6658E001B89A0 /* Project object */;
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19141.11" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MatchedItem" representedClassName="MatchedItem" syncable="YES" codeGenerationType="class">
+        <attribute name="isShazamMatch" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="mediaArtist" optional="YES" attributeType="String"/>
+        <attribute name="mediaArtworkURL" optional="YES" attributeType="URI"/>
+        <attribute name="mediaTitle" optional="YES" attributeType="String"/>
+        <attribute name="originURL" attributeType="URI"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="originURL"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="MatchedItem" positionX="-63" positionY="-18" width="128" height="119"/>
+    </elements>
+</model>
