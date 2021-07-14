@@ -18,17 +18,26 @@ class MatchedItemStorage: NSObject, ObservableObject {
     var matchedItems = CurrentValueSubject<[MatchedItem], Never>([])
     private let matchedItemsFetchController: NSFetchedResultsController<MatchedItem>
     
-    // Singleton Instance
-    static var shared: MatchedItemStorage = MatchedItemStorage()
+    private var itemStore: [MatchedItem] = []
     
-    // Singleton Instance for a preview setup
-    static var preview: MatchedItemStorage = MatchedItemStorage(persistenceController: .preview)
+    /// The persistence controller
+    private let persistenceController: PersistenceController
+    
+    /// The view context
+    private var viewContext: NSManagedObjectContext {
+        persistenceController.container.viewContext
+    }
+    
+    /// Singleton Instance
+    static var shared: MatchedItemStorage = MatchedItemStorage()
     
     /**
      Initialise a MatchedItemStorage with a specificed PersistenceController
     - Parameter persistenceController: The `PersistenceController` to use. Defaults to Shared
      */
     private init(persistenceController: PersistenceController = .shared) {
+        self.persistenceController = persistenceController
+        
         let fetchRequest = MatchedItem.fetchRequest()
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "timestamp", ascending: false)
@@ -51,6 +60,24 @@ class MatchedItemStorage: NSObject, ObservableObject {
             print("Could not fetch objects")
         }
     }
+    
+    func add(isShazamMatch: Bool, mediaArtist: String?, mediaArtworkURL: URL?, mediaTitle: String?, originURL: URL?, timestamp: Date?) {
+        let newItem = MatchedItem(context: self.viewContext)
+        newItem.isShazamMatch = isShazamMatch
+        newItem.mediaArtist = mediaArtist
+        newItem.mediaArtworkURL = mediaArtworkURL
+        newItem.mediaTitle = mediaTitle
+        newItem.originURL = originURL
+        newItem.timestamp = timestamp
+        
+        persistenceController.save()
+    }
+    
+    func delete(url: URL) {
+        guard let object = itemStore.first(where: { $0.originURL == url }) else { return }
+        viewContext.delete(object)
+//        persistenceController.save()
+    }
 }
 
 extension MatchedItemStorage: NSFetchedResultsControllerDelegate {
@@ -60,5 +87,6 @@ extension MatchedItemStorage: NSFetchedResultsControllerDelegate {
         print("Updated Context, reloading now")
         
         self.matchedItems.value = matchedItems
+        self.itemStore = matchedItems
     }
 }

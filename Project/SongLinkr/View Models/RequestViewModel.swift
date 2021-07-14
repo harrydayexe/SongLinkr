@@ -177,6 +177,15 @@ class RequestViewModel: NSObject, ObservableObject {
                 results.response.moveDefaultFirst(with: settings.defaultPlatform)
             }
             
+            MatchedItemStorage.shared.add(
+                isShazamMatch: results.isFromShazam,
+                mediaArtist: results.artistName,
+                mediaArtworkURL: results.artworkURL,
+                mediaTitle: results.mediaTitle,
+                originURL: URL(string: searchString),
+                timestamp: Date()
+            )
+            
             self.resultsObject = results
         } catch {
             // Catch errors

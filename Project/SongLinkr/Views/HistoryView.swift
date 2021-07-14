@@ -24,18 +24,52 @@ struct HistoryView: View {
     var body: some View {
         List {
             ForEach(viewModel.pastMatchedItems, id: \.self) { item in
-                Label(item.mediaTitle ?? "", image: "shazam.fill")
+                HistoryViewListItem(item: item)
+                    .swipeActions {
+                        // Delete button
+                        Button(
+                            role: .destructive
+                        ) {
+                            print("Delete item")
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        
+                        // Search the link again
+                        Button(action: {
+                            guard let URLString = item.originURL?.absoluteString else {
+                                print("Could not Open")
+                                #warning("Fix this")
+                                return
+                            }
+                            
+                            UIApplication.shared.open(URL(string: "songlinkr:\(URLString)")!)
+                        }) {
+                            Label("Search Again", systemImage: "magnifyingglass.circle")
+                        }.tint(.accentColor)
+                    }
             }
+            .onDelete(perform: viewModel.deleteItem(at:))
         }
+        .toolbar {
+            EditButton()
+        }
+        .navigationTitle(Text("History"))
     }
 }
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(
-            viewModel: HistoryViewModel(
-                matchedItemPublisher: MatchedItemStorage.preview.matchedItems.eraseToAnyPublisher()
-            )
+        NavigationView {
+            HistoryView(viewModel: historyViewModel)
+        }
+    }
+}
+
+extension PreviewProvider {
+    static var historyViewModel: HistoryViewModel {
+        HistoryViewModel(
+            matchedItemPublisher: MatchedItemStorage.shared.matchedItems.eraseToAnyPublisher()
         )
     }
 }

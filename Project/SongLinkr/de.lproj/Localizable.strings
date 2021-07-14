@@ -100,3 +100,11 @@
 /* Text which links to the Song.Link website */
 "Visit Song.Link" = "Besuche Song.Link";
 
+/* Navigation Bar Title */
+"History" = "Geschichte";
+
+/* List Swipe Action Name */
+"Search Again" = "Erneut suchen";
+
+/* Delete Action */
+"Delete" = "Löschen";

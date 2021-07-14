@@ -25,6 +25,7 @@
 		8C2906C426875EAA005A43CD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C326875EAA005A43CD /* Persistence.swift */; };
 		8C2906C726875F57005A43CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C526875F57005A43CD /* Model.xcdatamodeld */; };
 		8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */; };
+		8C2906DC268CAF99005A43CD /* HistoryViewListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */; };
 		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
 		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
 		8C34F3BC26723FEF00E05629 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C34F3BB26723FEF00E05629 /* IntentHandler.swift */; };
@@ -62,6 +63,8 @@
 		8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
 		8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */; };
 		8CDD45922678F10D0074B5D3 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD45912678F10D0074B5D3 /* MediaDetailView.swift */; };
+		8CF1D49F269A1CA800B5A46E /* MatchedItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF1D49B269A1CA300B5A46E /* MatchedItem+CoreDataClass.swift */; };
+		8CF1D4A0269A1CA800B5A46E /* MatchedItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF1D49C269A1CA300B5A46E /* MatchedItem+CoreDataProperties.swift */; };
 		8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */; };
 		8CF3CFF724B3B016004E5179 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF3CFF624B3B016004E5179 /* ColorManager.swift */; };
 /* End PBXBuildFile section */
@@ -165,6 +168,7 @@
 		8C2906C326875EAA005A43CD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8C2906C626875F57005A43CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedItemStorage.swift; sourceTree = "<group>"; };
+		8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewListItem.swift; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
 		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -206,6 +210,8 @@
 		8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreviewWrapperView.swift; sourceTree = "<group>"; };
 		8CDD45912678F10D0074B5D3 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
 		8CE207E22670206600DAD0F9 /* SongLinkrNetworkCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SongLinkrNetworkCore.xcodeproj; path = Frameworks/SongLinkrNetworkCore/SongLinkrNetworkCore.xcodeproj; sourceTree = "<group>"; };
+		8CF1D49B269A1CA300B5A46E /* MatchedItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchedItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8CF1D49C269A1CA300B5A46E /* MatchedItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchedItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8CF3CFF624B3B016004E5179 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +342,8 @@
 		8C43CB3624A665FD001B89A0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8CF1D49B269A1CA300B5A46E /* MatchedItem+CoreDataClass.swift */,
+				8CF1D49C269A1CA300B5A46E /* MatchedItem+CoreDataProperties.swift */,
 				8CAD5449267E17DC0062099B /* ResultsModel.swift */,
 				8C2906C326875EAA005A43CD /* Persistence.swift */,
 				8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */,
@@ -392,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				8C81830F24A9408C0047193B /* MainTextView.swift */,
+				8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */,
 				8C43C36F267FB6320084CE97 /* SearchScreenView.swift */,
 				8C59A911267F69790010A451 /* ShazamButton.swift */,
 				8C81831124A945F30047193B /* ResultsView.swift */,
@@ -672,7 +681,9 @@
 			files = (
 				8C29068626873F80005A43CD /* Intents.intentdefinition in Sources */,
 				8CF3CFF124B3A07C004E5179 /* PlatformLinkButtonStyle.swift in Sources */,
+				8CF1D4A0269A1CA800B5A46E /* MatchedItem+CoreDataProperties.swift in Sources */,
 				8C063A97267A1B610064B368 /* NeumorphicShadowModifier.swift in Sources */,
+				8CF1D49F269A1CA800B5A46E /* MatchedItem+CoreDataClass.swift in Sources */,
 				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
 				8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */,
 				8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */,
@@ -693,6 +704,7 @@
 				8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */,
 				8C29069926875A9D005A43CD /* HistoryViewModel.swift in Sources */,
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
+				8C2906DC268CAF99005A43CD /* HistoryViewListItem.swift in Sources */,
 				8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */,
 				8C6BE3CE24C3971D004FBDD4 /* SongLinkCreditView.swift in Sources */,
 				8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */,
@@ -814,7 +826,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -838,7 +850,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -989,7 +1001,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1017,7 +1029,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1128,7 +1140,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1154,7 +1166,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

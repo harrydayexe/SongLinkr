@@ -20,6 +20,9 @@ class HistoryViewModel: ObservableObject {
     /// Store Combine tokens
     private var cancellable: AnyCancellable?
     
+    /// Matched Item Storage
+    private let itemStorage: MatchedItemStorage
+    
     /**
      Initialise a HistoryViewModel with an AnyPublisher for [MatchedItem]
      - Parameter matchedItemPublisher: The AnyPublisher which publishes [MatchedItem]
@@ -27,9 +30,20 @@ class HistoryViewModel: ObservableObject {
     init(
         matchedItemPublisher: AnyPublisher<[MatchedItem], Never> = MatchedItemStorage.shared.matchedItems.eraseToAnyPublisher()
     ) {
+        itemStorage = .shared
+        
         cancellable = matchedItemPublisher.sink { matchedItems in
             print("Updating pastMatchedItems")
             self.pastMatchedItems = matchedItems
+        }
+    }
+    
+    func deleteItem(at offsets: IndexSet) {
+        // Get the URLs to delete
+        let urlsToDelete = offsets.compactMap { self.pastMatchedItems[$0].originURL }
+        
+        for url in urlsToDelete {
+            itemStorage.delete(url: url)
         }
     }
 }
