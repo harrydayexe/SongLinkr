@@ -66,6 +66,7 @@ struct PersistenceController {
     }
     
     func save() {
+        print("here")
         let context = container.viewContext
         
         if context.hasChanges {

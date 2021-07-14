@@ -22,39 +22,41 @@ struct HistoryView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(viewModel.pastMatchedItems, id: \.self) { item in
-                HistoryViewListItem(item: item)
-                    .swipeActions {
-                        // Delete button
-                        Button(
-                            role: .destructive
-                        ) {
-                            print("Delete item")
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
-                        
-                        // Search the link again
-                        Button(action: {
-                            guard let URLString = item.originURL?.absoluteString else {
-                                print("Could not Open")
-                                #warning("Fix this")
-                                return
+        NavigationView {
+            List {
+                ForEach(viewModel.pastMatchedItems, id: \.self) { item in
+                    HistoryViewListItem(item: item)
+                        .swipeActions {
+                            // Delete button
+                            Button(
+                                role: .destructive
+                            ) {
+                                viewModel.deleteItem(with: item.originURL)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
                             }
                             
-                            UIApplication.shared.open(URL(string: "songlinkr:\(URLString)")!)
-                        }) {
-                            Label("Search Again", systemImage: "magnifyingglass.circle")
-                        }.tint(.accentColor)
-                    }
+                            // Search the link again
+                            Button(action: {
+                                guard let URLString = item.originURL?.absoluteString else {
+                                    print("Could not Open")
+                                    #warning("Fix this")
+                                    return
+                                }
+                                
+                                UIApplication.shared.open(URL(string: "songlinkr:\(URLString)")!)
+                            }) {
+                                Label("Search Again", systemImage: "magnifyingglass.circle")
+                            }.tint(.accentColor)
+                        }
+                }
+                .onDelete(perform: viewModel.deleteItem(at:))
             }
-            .onDelete(perform: viewModel.deleteItem(at:))
-        }
-        .toolbar {
-            EditButton()
-        }
+            .toolbar {
+                EditButton()
+            }
         .navigationTitle(Text("History"))
+        }
     }
 }
 

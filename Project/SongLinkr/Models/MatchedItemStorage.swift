@@ -56,6 +56,7 @@ class MatchedItemStorage: NSObject, ObservableObject {
         do {
             try matchedItemsFetchController.performFetch()
             matchedItems.value = matchedItemsFetchController.fetchedObjects ?? []
+            itemStore = matchedItemsFetchController.fetchedObjects ?? []
         } catch {
             print("Could not fetch objects")
         }
@@ -76,7 +77,8 @@ class MatchedItemStorage: NSObject, ObservableObject {
     func delete(url: URL) {
         guard let object = itemStore.first(where: { $0.originURL == url }) else { return }
         viewContext.delete(object)
-//        persistenceController.save()
+        print("in delete")
+        persistenceController.save()
     }
 }
 

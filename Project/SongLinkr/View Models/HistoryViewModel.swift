@@ -46,4 +46,13 @@ class HistoryViewModel: ObservableObject {
             itemStorage.delete(url: url)
         }
     }
+    
+    func deleteItem(with originURL: URL?) {
+        guard let url = originURL else {
+            print("Could not delete")
+            return
+        }
+        
+        itemStorage.delete(url: url)
+    }
 }
