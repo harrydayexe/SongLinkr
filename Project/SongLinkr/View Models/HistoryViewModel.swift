@@ -38,9 +38,18 @@ class HistoryViewModel: ObservableObject {
         }
     }
     
-    func deleteItem(at offsets: IndexSet) {
+    func deleteShazamItem(at offsets: IndexSet) {
         // Get the URLs to delete
-        let urlsToDelete = offsets.compactMap { self.pastMatchedItems[$0].originURL }
+        let urlsToDelete = offsets.compactMap { self.pastMatchedItems.filter({ $0.isShazamMatch })[$0].originURL }
+        
+        for url in urlsToDelete {
+            itemStorage.delete(url: url)
+        }
+    }
+    
+    func deleteNonShazamItem(at offsets: IndexSet) {
+        // Get the URLs to delete
+        let urlsToDelete = offsets.compactMap { self.pastMatchedItems.filter({ !$0.isShazamMatch })[$0].originURL }
         
         for url in urlsToDelete {
             itemStorage.delete(url: url)

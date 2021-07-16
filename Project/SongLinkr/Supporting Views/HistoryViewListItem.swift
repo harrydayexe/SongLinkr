@@ -15,6 +15,22 @@ import SwiftUI
 struct HistoryViewListItem: View {
     let item: MatchedItem
     
+    var title: String {
+        switch (item.mediaTitle, item.mediaArtist) {
+            case (nil, nil):
+                return ""
+            
+            case (let x, nil):
+                return x!
+                
+            case (nil, let x):
+                return x!
+            
+            case (let x, let y):
+                return "\(x!) - \(y!)"
+        }
+    }
+    
     var body: some View {
         HStack {
             AsyncImage(url: item.mediaArtworkURL) { image in
@@ -30,17 +46,28 @@ struct HistoryViewListItem: View {
             }
             .accessibility(label: Text("The artwork for the media in the results", comment: "Accessibility label"))
             
-            VStack {
-                Text(item.mediaTitle ?? "")
-                Text(item.mediaArtist ?? "")
+            VStack(alignment: .leading) {
+                Text(title).bold()
                 Text(item.timestamp?.formatted(.dateTime) ?? "")
+                Text(item.originURL?.absoluteString ?? "").foregroundColor(.secondary)
             }
         }.padding()
     }
 }
 
 struct HistoryViewListItem_Previews: PreviewProvider {
+    static var item: MatchedItem {
+        let item = MatchedItem(context: PersistenceController.preview.container.viewContext)
+        item.isShazamMatch = false
+        item.mediaArtist = "Artist Name"
+        item.mediaArtworkURL = URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg")
+        item.mediaTitle = "Song Title"
+        item.originURL = URL(string: "https://songlinkr.harryday.xyz/")
+        item.timestamp = Date(timeIntervalSinceNow: TimeInterval(1000))
+        return item
+    }
+    
     static var previews: some View {
-        HistoryViewListItem(item: historyViewModel.pastMatchedItems.first!)
+        return HistoryViewListItem(item: item)
     }
 }

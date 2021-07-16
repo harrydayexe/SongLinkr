@@ -108,3 +108,9 @@
 
 /* Delete Action */
 "Delete" = "Borrar";
+
+/* Section Header in History Tab */
+"Shazam Matches" = "Coincidencias de Shazam";
+
+/* Section Header in History Tab */
+"URL Matches" = "Coincidencias de URL";

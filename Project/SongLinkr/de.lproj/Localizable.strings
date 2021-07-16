@@ -108,3 +108,9 @@
 
 /* Delete Action */
 "Delete" = "Löschen";
+
+/* Section Header in History Tab */
+"Shazam Matches" = "Shazam Übereinstimmungen";
+
+/* Section Header in History Tab */
+"URL Matches" = "URL Übereinstimmungen";
