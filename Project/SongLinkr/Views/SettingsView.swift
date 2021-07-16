@@ -63,7 +63,8 @@ struct SettingsView: View {
                 
                 Section(
                     header: Text("About", comment: "Section Header, section contains information about the app"),
-                    footer: Text("SongLinkr is developed by Harry Day from England", comment: "Section footer")) {
+                    footer: Text("SongLinkr is developed by Harry Day from England", comment: "Section footer")
+                ) {
                     HStack {
                         Text("Version Number", comment: "The version number of the app")
                         Spacer()
@@ -76,6 +77,9 @@ struct SettingsView: View {
                     .accessibility(
                         value: Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
                     )
+                    NavigationLink(destination: SupportedPlatformsList()) {
+                        Text("Supported Platforms")
+                    }
                 }
             }
             .navigationTitle("Settings")

@@ -114,3 +114,6 @@
 
 /* Section Header in History Tab */
 "URL Matches" = "URL Übereinstimmungen";
+
+/* Navigation Link Name */
+"Supported Platforms" = "Unterstützte Plattformen";
