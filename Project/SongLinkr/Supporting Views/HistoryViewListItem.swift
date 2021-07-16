@@ -38,7 +38,7 @@ struct HistoryViewListItem: View {
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 25))
-                    .padding()
+                    .frame(maxHeight: 100)
             } placeholder: {
                 // Placeholder view for when image is loading
                 ProgressView()
@@ -49,9 +49,9 @@ struct HistoryViewListItem: View {
             VStack(alignment: .leading) {
                 Text(title).bold()
                 Text(item.timestamp?.formatted(.dateTime) ?? "")
-                Text(item.originURL?.absoluteString ?? "").foregroundColor(.secondary)
-            }
-        }.padding()
+                Text(item.originURL?.host ?? "").foregroundColor(.secondary)
+            }.padding(.leading)
+        }
     }
 }
 
@@ -68,6 +68,10 @@ struct HistoryViewListItem_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        return HistoryViewListItem(item: item)
+        List {
+            ForEach(0..<5) { _ in
+                HistoryViewListItem(item: item)
+            }
+        }
     }
 }
