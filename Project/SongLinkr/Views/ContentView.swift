@@ -24,7 +24,7 @@ struct ContentView: View {
     /// The function to start a request via the viewmodel to the server
     private func makeRequest() {
         if searchURL != "" {
-            async {
+            Task() {
                 viewModel.normalInProgress = true
                 await viewModel.getResults(for: searchURL, with: userSettings)
                 viewModel.normalInProgress = false

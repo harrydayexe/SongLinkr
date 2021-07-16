@@ -443,7 +443,7 @@ extension RequestViewModel: SHSessionDelegate {
             self.shazamItemCache = matchedItem
         }
         
-        async {
+        Task() {
             // Get results from API
             await getResults(for: appleMusicURLString, with: userSettingsSnapshot, title: matchedItem.title, artist: matchedItem.artist, artworkURL: matchedItem.artworkURL, fromShazam: true)
             // Set finished state
@@ -452,7 +452,7 @@ extension RequestViewModel: SHSessionDelegate {
         
         if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
             // Save to Shazam Library Asynchronously
-            async {
+            Task() {
                 do {
                     try await addToShazamLibrary(item: matchedItem)
                 } catch {

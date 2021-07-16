@@ -53,7 +53,7 @@ struct MediaDetailView: View {
                 // If the result is from shazam and default save to library is off
                 if displaySaveButton {
                     Button(action: {
-                        async {
+                        Task() {
                             hasBeenSaved = await saveFunction()
                         }
                     }) {
