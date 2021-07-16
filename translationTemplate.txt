@@ -1,5 +1,5 @@
 /* Section Header, section contains information about the app */
-"About" = "About";
+"About" = "Info";
 
 /* Platform Sort Option */
 "Alphabetically" = "Alphabetically";
