@@ -100,3 +100,17 @@
 /* Text which links to the Song.Link website */
 "Visit Song.Link" = "Visita Song.Link";
 
+/* Navigation Bar Title */
+"History" = "Historia";
+
+/* List Swipe Action Name */
+"Search Again" = "Busca de nuevo";
+
+/* Delete Action */
+"Delete" = "Borrar";
+
+/* Section Header in History Tab */
+"Shazam Matches" = "Coincidencias de Shazam";
+
+/* Section Header in History Tab */
+"URL Matches" = "Coincidencias de URL";

@@ -18,11 +18,15 @@ struct MainTabView: View {
                     Image(systemName: "textbox")
                     Text(verbatim: "SongLinkr")
                 }.tag(0)
+            HistoryView(selectedTab: $selectedView)
+                .tabItem {
+                    Label("History", systemImage: "clock")
+                }.tag(1)
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings", comment: "Tab Bar name for the settings page")
-                }.tag(1)
+                }.tag(2)
         }
     }
 }
