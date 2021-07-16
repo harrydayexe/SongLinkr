@@ -292,13 +292,15 @@ class RequestViewModel: NSObject, ObservableObject {
         
         // If from shazam then do not set the origin entity
         // Otherwise this will be set as Apple Music
-        // This is a problem when the user has Apple Music as default and also has auto open on
+        // This is a problem when the user doesn't have Apple Music as default and also has auto open on
         if fromShazam {
-            self.originEntityID = ""
+            self.originEntityID = "shazam"
         } else {
             // Set origin entity ID
             self.originEntityID = response.entityUniqueId
         }
+        
+        print(self.originEntityID)
         
         // Fix Dictionaries
         let platformLinks = network.fixDictionaries(response: response)

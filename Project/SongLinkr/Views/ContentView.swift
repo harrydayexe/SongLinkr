@@ -94,7 +94,7 @@ struct ContentView: View {
                 // Auto open
                     .onAppear {
                         // If auto open is on and the origin platform is not the default platform
-                        if userSettings.autoOpen && !self.viewModel.originEntityID.contains(userSettings.defaultPlatform.entityName) {
+                        if userSettings.autoOpen && self.viewModel.originEntityID != "shazam" && !self.viewModel.originEntityID.contains(userSettings.defaultPlatform.entityName) {
                             // Try to get the default platform index
                             if let defaultPlatformIndex = self.viewModel.resultsObject?.response.firstIndex(where: {
                                 $0.id == userSettings.defaultPlatform
