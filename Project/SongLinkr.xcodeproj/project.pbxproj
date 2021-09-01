@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0615DA26E027DD000CD6C9 /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5449267E17DC0062099B /* ResultsModel.swift */; };
+		8C0615DB26E027E6000CD6C9 /* MatchedItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */; };
+		8C0615DC26E027E6000CD6C9 /* MatchedItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF1D49B269A1CA300B5A46E /* MatchedItem+CoreDataClass.swift */; };
+		8C0615DD26E027E6000CD6C9 /* MatchedItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF1D49C269A1CA300B5A46E /* MatchedItem+CoreDataProperties.swift */; };
+		8C0615DE26E02800000CD6C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C326875EAA005A43CD /* Persistence.swift */; };
 		8C063A97267A1B610064B368 /* NeumorphicShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */; };
 		8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */; };
 		8C08B57524C3134300DC8235 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB0D24A6658E001B89A0 /* ContentView.swift */; };
@@ -712,13 +717,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C55B40224C1008300B6E6E3 /* PlatformLinkButtonStyle.swift in Sources */,
+				8C0615DB26E027E6000CD6C9 /* MatchedItemStorage.swift in Sources */,
 				8C55B3EF24C1008300B6E6E3 /* GetLinkButtonStyle.swift in Sources */,
+				8C0615DC26E027E6000CD6C9 /* MatchedItem+CoreDataClass.swift in Sources */,
 				8C55B3EA24C1008300B6E6E3 /* StatefulPreviewWrapperView.swift in Sources */,
 				8C55B3FE24C1008300B6E6E3 /* ColorManager.swift in Sources */,
 				8C55B3FF24C1008300B6E6E3 /* ActivityView.swift in Sources */,
+				8C0615DE26E02800000CD6C9 /* Persistence.swift in Sources */,
 				8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */,
+				8C0615DA26E027DD000CD6C9 /* ResultsModel.swift in Sources */,
 				8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */,
 				8C55B3E824C1008300B6E6E3 /* Binding+Mock.swift in Sources */,
+				8C0615DD26E027E6000CD6C9 /* MatchedItem+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,7 +829,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -843,7 +853,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -994,7 +1004,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1022,7 +1032,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1050,7 +1060,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1072,7 +1082,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1133,7 +1143,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1159,7 +1169,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
