@@ -55,7 +55,7 @@ struct ShazamButton: View {
         .tint(.blue)
         .buttonStyle(.bordered)
         .controlSize(.large)
-        .controlProminence(.increased)
+        .buttonStyle(.borderedProminent)
         // Disabled if already matching
         .disabled(shazamState == .matchFound || shazamState == .finished)
     }

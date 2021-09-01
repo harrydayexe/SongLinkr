@@ -38,7 +38,7 @@ struct GetLinkButton: View {
         .tint(.accentColor)
         .buttonStyle(.bordered)
         .controlSize(.large)
-        .controlProminence(.increased)
+        .buttonStyle(.borderedProminent)
         // Keyboard Shortcut
         .keyboardShortcut(.defaultAction)
         .padding()
