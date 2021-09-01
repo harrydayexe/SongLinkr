@@ -1,0 +1,33 @@
+# SongLinkr
+
+## Description
+
+SongLinkr was born out of a first world frustration. The mild inconvenience of being sent a link to music on Spotify when I used Apple Music. So instead of wasting a few seconds of my time typing out the name of a song into my preferred streaming service I sunk a month of my life into creating this app.
+
+SongLinkr is a simple utility app that takes links to songs, albums and podcasts on one platform (for example Spotify), and generates a link to the same content on all other platforms it can find it on.
+
+The version one was released in April of 2021 and the version 2 will release alongside iOS15 this year in September.
+
+The main app allows pasting or typing of a link to a song and then viewing the results to select your platform. Additionally there is a Siri Shortcut to use inside of workflows and also a share extension. This allows you to share straight to SongLinkr directly inside of a share sheet.
+
+Included with the 2.0 release is Shazam support. This allows you to use Shazam inside the app and immediately see results on all platforms. It also optionally saves this matches to your Shazam library which can be viewed in the Shazam app or from the Control Centre on iOS15.
+
+A History tab makes finding past searches a breeze along with a multitude of settings and options.
+
+
+## Features
+
+ - Matching across many popular streaming services. (Full List below)
+ - Share Sheet Extension
+ - Deeplink support (type songlinkr: before any link in Safari, Chrome or any other browser to instantly travel to the app)
+ - Shazam Integration built in
+ - History page to view past results
+ - Ability to set your default platform
+ - Ability to change the sort order of platform results
+ - Auto open links that are not from your default platform
+ - German and Spanish Translations! (WIP)
+
+
+## Contact
+
+You can contact the developer at any time via contact@harryday.xyz
