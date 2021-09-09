@@ -47,7 +47,7 @@
 				</dict>
 				<dict>
 					<key>INEnumValueDisplayName</key>
-					<string>Apple Music</string>
+					<string>AppleMusic</string>
 					<key>INEnumValueDisplayNameID</key>
 					<string>nDRwZF</string>
 					<key>INEnumValueIndex</key>
@@ -203,11 +203,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>ofKQAK</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20F71</string>
+	<string>20G95</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12E262</string>
+	<string>13A5212g</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.5</string>
+	<string>13.0</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -226,7 +226,7 @@
 			<key>INIntentKeyParameter</key>
 			<string>url</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>6</integer>
+			<integer>10</integer>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
 				<key>url,chooseSpecificPlatform</key>
@@ -372,7 +372,7 @@
 					<key>INIntentParameterMetadata</key>
 					<dict>
 						<key>INIntentParameterMetadataDefaultValue</key>
-						<string>spotify</string>
+						<string>appleMusic</string>
 					</dict>
 					<key>INIntentParameterName</key>
 					<string>targetPlatform</string>
@@ -423,7 +423,7 @@
 					<key>INIntentParameterSupportsResolution</key>
 					<true/>
 					<key>INIntentParameterTag</key>
-					<integer>4</integer>
+					<integer>10</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
 				</dict>

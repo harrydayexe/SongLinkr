@@ -15,7 +15,10 @@ class ActionViewController: UIViewController {
     
         // Get the item[s] we're handling from the extension context.
         
-        let extensionItem = extensionContext!.inputItems.first as! NSExtensionItem
+        guard let extensionItem = extensionContext!.inputItems.first as? NSExtensionItem else {
+            print("No Extension Item")
+            return
+        }
         guard let attachments = extensionItem.attachments else {
             print("No Attachments")
             return
