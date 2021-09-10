@@ -10,7 +10,7 @@ import SongLinkrNetworkCore
 
 struct ContentView: View {
     /// The app state stored in the environment
-    @EnvironmentObject var store: AppStore
+    @StateObject var viewModel: RequestViewModel = .shared
     
     /// The user settings stored in the environment
     @EnvironmentObject var userSettings: UserSettings
@@ -21,73 +21,93 @@ struct ContentView: View {
     /// The selected tab
     @Binding var selectedTab: Int
     
-    /// Whether to show the search results
-    private var showResults: Binding<Bool> { Binding(
-        get: { self.store.state.searchResults != [] },
-        // If new value is false then clear the results
-        set: { if !$0 { self.store.send(.setSearchResults(with: [])) }}
-    )
-    }
-    
-    private var searchResults: [PlatformLinks] {
-        var temp = store.state.searchResults
-        if userSettings.sortOption == .popularity {
-            temp.sort(by: <)
-        } else {
-            temp.sort {
-                $0.id.rawValue < $1.id.rawValue
+    /// The function to start a request via the viewmodel to the server
+    private func makeRequest() {
+        if searchURL != "" {
+            Task() {
+                viewModel.normalInProgress = true
+                await viewModel.getResults(for: searchURL, with: userSettings)
+                viewModel.normalInProgress = false
             }
         }
-        if userSettings.defaultAtTop {
-            return temp.moveDefaultFirst(with: userSettings.defaultPlatform)
-        } else {
-            return temp
-        }
+    }
+    
+    /// The function to start a shazam match via the viewmodel
+    private func startShazam() {
+        print("Shazam Match Started")
+        viewModel.startShazamMatch(userSettings: userSettings)
+    }
+    
+    /// The function to stop recording and matching on Shazam
+    private func stopShazam() {
+        print("Shazam Match Cancelled")
+        viewModel.stopMatching()
+        viewModel.shazamState = .idle
     }
     
     var body: some View {
-        ZStack {
-            Color("AppBlue")
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                MainTextView(searchURL: self.$searchURL)
-                GetLinkButton(searchURL: $searchURL)
-            }
-        }
-        .onAppear(perform: {
-            if UIPasteboard.general.hasURLs {
-                if let copiedURL = UIPasteboard.general.url {
-                    self.searchURL = "\(copiedURL)"
+        NavigationView {
+            SearchScreenView(
+                searchURL: $searchURL,
+                shazamInProgress: $viewModel.shazamState,
+                normalInProgress: $viewModel.normalInProgress,
+                makeRequest: makeRequest,
+                startShazam: startShazam,
+                stopShazam: stopShazam
+            ).environmentObject(viewModel)
+            // Check pasteboard for URLs
+            .onAppear(perform: {
+                if UIPasteboard.general.hasURLs {
+                    if let copiedURL = UIPasteboard.general.url {
+                        self.searchURL = "\(copiedURL)"
+                    }
                 }
+            })
+            // Handle Deeplinks
+            .onOpenURL(perform: { deepLinkURL in
+                self.viewModel.showResults.wrappedValue = false
+                self.selectedTab = 0
+                if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
+                    self.searchURL = songLink.absoluteString
+                }
+            })
+            // Alert if error
+            .alert(isPresented: viewModel.showError) {
+                Alert(
+                    title: Text(viewModel.error?.localizedTitle ?? String(localized: "Something went wrong", comment: "The title of a default error")),
+                    message: Text(viewModel.error?.localizedDescription ?? String(localized: "Please try again later", comment: "The description of a default error")),
+                    dismissButton: .cancel({
+                    // Reset both
+                    viewModel.shazamState = .idle
+                    viewModel.normalInProgress = false
+                    viewModel.errorDescription = nil
+                })
+                )
             }
-        })
-        .onOpenURL(perform: { deepLinkURL in
-            self.showResults.wrappedValue = false
-            self.selectedTab = 0
-            if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
-                self.searchURL = songLink.absoluteString
-            }
-        })
-        .sheet(isPresented: self.showResults) {
-            ResultsView(showResults: self.showResults, response: searchResults)
+            // Results view
+            .sheet(isPresented: self.viewModel.showResults) {
+                ResultsView(
+                    showResults: self.viewModel.showResults,
+                    results: self.viewModel.resultsObject!,
+                    saveFunction: viewModel.saveCachedItem
+                )
                 // Auto open
-                .onAppear {
-                    if userSettings.autoOpen && !store.state.originEntityID.contains(userSettings.defaultPlatform.entityName) {
-                        if let defaultPlatformIndex = store.state.searchResults.firstIndex(where: { $0.id == userSettings.defaultPlatform }) {
-                            let defaultPlatform = store.state.searchResults[defaultPlatformIndex]
-                            DispatchQueue.main.async {
-                                UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
+                    .onAppear {
+                        // If auto open is on and the origin platform is not the default platform
+                        if userSettings.autoOpen && self.viewModel.originEntityID != "shazam" && !self.viewModel.originEntityID.contains(userSettings.defaultPlatform.entityName) {
+                            // Try to get the default platform index
+                            if let defaultPlatformIndex = self.viewModel.resultsObject?.response.firstIndex(where: {
+                                $0.id == userSettings.defaultPlatform
+                            }) {
+                                // Get the default platform
+                                if let defaultPlatform = self.viewModel.resultsObject?.response[defaultPlatformIndex] {
+                                    DispatchQueue.main.async {
+                                        UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
+                                    }
+                                }
                             }
                         }
                     }
-                }
-        }
-        .accessibilityAction(.magicTap) {
-            if self.searchURL != "" {
-                // Start the call
-                store.send(.updateCallInProgress(newValue: true))
-                // Request the data
-                store.send(.getSearchResults(from: .search(with: self.searchURL)))
             }
         }
     }
@@ -95,12 +115,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            ContentView(selectedTab: .constant(0))
-            ContentView(selectedTab: .constant(0))
-                .preferredColorScheme(.dark)
-        }
+        ContentView(selectedTab: .constant(0))
             .environmentObject(UserSettings())
-            .environmentObject(AppStore(initialState: .init(), reducer: appReducer, environment: World()))
     }
 }

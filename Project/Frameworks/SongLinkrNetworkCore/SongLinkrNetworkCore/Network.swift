@@ -12,6 +12,9 @@ import Combine
  The Network class contains networking utilities needed to make a request to the Song.Link API
  */
 public final class Network {
+    /// Singleton
+    static public var shared = Network()
+    
     /// The URL Session to use for the fetcher
     private let session: URLSession
     
@@ -19,7 +22,7 @@ public final class Network {
      Initialise the Network object
      - Parameter session: The URLSession object to use. Default is `.shared`.
      */
-    public init(session: URLSession = .shared) {
+    init(session: URLSession = .shared) {
         self.session = session
     }
     
@@ -96,7 +99,7 @@ public final class Network {
      - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
      - parameter handler: The completion handler. This is an `@escaping` closure to deal with when you call the function.
      */
-    public func request(
+    public func requestOld(
         from endpoint: Endpoint,
         with decoder: JSONDecoder = JSONDecoder()
     ) -> AnyPublisher<SongLinkAPIResponse, DataLoaderError> {
@@ -126,6 +129,45 @@ public final class Network {
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+    }
+    
+    /**
+     Makes a request to the given `Endpoint`
+     - parameter endpoint: The endpoint to access data from.
+     - parameter session: The URLSession to be handed in. Default `URLSession.shared` in this case.
+     - Throws: A `DataLoaderError`
+     - Returns: A `SongLinkAPIResponse` with the relevant data received
+     */
+    public func request(
+        from endpoint: Endpoint,
+        with decoder: JSONDecoder = JSONDecoder()
+    ) async throws -> SongLinkAPIResponse {
+        // Create URL from Endpoint
+        guard let url = endpoint.url else {
+            throw DataLoaderError.invalidURL
+        }
+        
+        // Create the request object
+        let request = URLRequest(url: url)
+        
+        do {
+            // Run the data task
+            let data = try await self.retrieveData(with: request)
+            // Decode the response
+            let apiResponseObject = try decoder.decode(SongLinkAPIResponse.self, from: data)
+            // Return
+            return apiResponseObject
+        } catch {
+            // If the error has already been set
+            if let error = error as? DataLoaderError {
+                throw error
+            } else if let error = error as? DecodingError {
+                throw self.mapDecodingError(error: error)
+            } else {
+                // If not decoding then network
+                throw DataLoaderError.network(error)
+            }
+        }
     }
     
     /**
@@ -180,6 +222,46 @@ public final class Network {
     }
     
     /**
+     This function is responsible for running the data task and returning the data received from the server
+     - Parameter request: A `URLRequest` object which contains the URL to access the relevant API endpoint.
+     - Returns: The Data downloaded from the server
+     */
+    private func retrieveData(with request: URLRequest) async throws -> Data {
+        // Start the data task
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        // Check the HTTP Response Code is 2xx
+        guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+            // Now find out what kind of error it is
+            // Check for 4xx first
+            if let httpResponse = response as? HTTPURLResponse, 400..<500 ~= httpResponse.statusCode {
+                if let detailedResponse = BadResponse(data: data) {
+                    // Start to match against known responses and reasons
+                    if (detailedResponse.code == "could not resolve entity") {
+                        throw DataLoaderError.unknownEntity
+                    } else if (detailedResponse.code == "could not fetch entity data") {
+                        throw DataLoaderError.unknownItem
+                    } else {
+                        // Default for unknown error
+                        throw DataLoaderError.serverSideWithReason(detailedResponse.statusCode, detailedResponse.code)
+                    }
+                }
+                // If can't decode then just throw the status code
+                throw DataLoaderError.serverSide(httpResponse.statusCode)
+            // Now check for 5xx
+            } else if let httpResponse = response as? HTTPURLResponse, 500..<600 ~= httpResponse.statusCode {
+                throw DataLoaderError.serverSide(httpResponse.statusCode)
+            // Catch all if everything else fails
+            } else {
+                throw DataLoaderError.unknownNetworkProblem
+            }
+        }
+        
+        return data
+    }
+        
+    
+    /**
      This function unpacks the data in a dictionary in `SongLinkAPIResponse` and returns an array of that data in the form of `[PlatformLinks]`. This is useful for when arrays are needed to dynamically generate UI.
      */
     public func fixDictionaries(response: SongLinkAPIResponse?) -> [PlatformLinks] {
@@ -208,46 +290,108 @@ public final class Network {
     }
     
     /**
-     This function takes a `DataLoaderError` as an input and returns the error message dictionary for an alert as an output
-     - parameter dataLoaderError: The Error to generate a response for.
-     - Returns: A tuple of two strings, the first being the title of the error and the second being the main description
+     This function returns the best URL to the album artwork from a SongLinkAPIResponse.
+     Each response object can have many different thumbnails based on the platform therefore this functions pulls the best fit
+      - Parameter response: The `SongLinkAPIResponse` to get results from
+      - Returns: An optional `URL` which directs to the artwork location
      */
-    public func createErrorMessage(from dataLoaderError: DataLoaderError) -> (String, String) {
-        switch dataLoaderError {
-            case .network(let error):
-                print("Network Error")
-                print(error.localizedDescription)
-                return ("Network Error", "Sorry something went wrong whilst talking to the server. Please try again.")
+    public static func getArtworkURL(from response: SongLinkAPIResponse) -> URL? {
+        let entities = response.entitiesByUniqueId
+            .sorted { first, second in
+//                $0.platforms.map { $0.displayRank }.sorted(by: >) > $1.platforms.map { $0.displayRank }.sorted(by: >)
+                let platformRankFirst = first.value.platforms.map { platform in
+                    platform.displayRank
+                }.min()
                 
-            case .serverSideWithReason(let code, let status):
-                print("Status Code: \(code), \(status)")
-                return ("Something went wrong", "Sorry we're not quite sure what happened here. Received status code \(code) from the server with message: \(status)")
+                let platformRankSecond = second.value.platforms.map { platform in
+                    platform.displayRank
+                }.min()
                 
-            case .serverSide(let code):
-                print("Status Code: \(code)")
-                return ("Something went wrong", "Sorry we're not quite sure what happened here. Received status code \(code) from the server")
-                
-            case .decodingError(let description):
-                print("Decoding Error")
-                print(description)
-                return ("Decoding Error", "Sorry something went wrong whilst decoding the data received from the server. Please try again.")
-
-            case .invalidURL:
-                print("Invalid URL")
-                return ("Invalid URL", "Sorry that URL is not valid.")
-
-            case .unknownEntity:
-                print("Unknown Entity")
-                return ("Unknown Platform", "Sorry we couldn't recognise that platform. Check the supported list for more information on what platforms are supported and try again.")
-
-            case .unknownItem:
-                print("Unknown Item")
-                return ("Unknown Item", "Sorry the server couldn't find a song or album with that link. Please check your link and try again")
-                
-            case .unknownNetworkProblem:
-                print("Unknown Network Problem")
-                return ("Unknown Network Problem", "Sorry an unkown network error occured. Please try again later.")
+                // If same display rank or both missing
+                if platformRankFirst ?? Int.max == platformRankSecond ?? Int.max {
+                    return first.key < second.key
+                // Else return the result of the comparison
+                } else {
+                    return platformRankFirst ?? Int.max < platformRankSecond ?? Int.max
+                }
+            }
+            .map { $0.value }
+        
+        return entities.first?.thumbnailUrl
+    }
+    
+    /**
+     This function returns the song name and artist from a SongLinkAPIResponse.
+      - Parameter response: The `SongLinkAPIResponse` to get results from
+      - Returns: A tuple with the first string being the artist name and the second string being the song name
+     */
+    public static func getSongNameAndArtist(from response: SongLinkAPIResponse) -> (String?, String?) {
+        // Get entities with song names and artists in
+        let entitiesDict = response.entitiesByUniqueId.filter { entity in
+            guard let _ = entity.value.artistName, let _ = entity.value.title else {
+                return false
+            }
+            return true
         }
+        
+        // Get the artist names excluding any from youtube
+        let artistNames = entitiesDict.values.filter { entity in
+            entity.platforms.contains { !($0 == .youtube || $0 == .youtubeMusic) }
+        }.reduce([APIProvider : String]()) { (dict, entity) in
+            var dict = dict
+            dict[entity.apiProvider] = entity.artistName
+            return dict
+        }
+                                              
+        // Get the song names and API Provider
+        let songTitles = entitiesDict.values.reduce([APIProvider : String]()) { dict, entity in
+            var dict = dict
+            dict[entity.apiProvider] = entity.title
+            return dict
+        }
+        
+        // Remove duplicates from each dictionary
+        let uniqueArtistNames = removeDuplicates(fromDict: artistNames)
+        let uniquesongTitles = removeDuplicates(fromDict: songTitles)
+        
+        var decidedArtistName: String?
+        var decidedSongName: String?
+
+        // If both arrays only have one item (best case scenario as every platform is in agreement)
+        if uniqueArtistNames.count == 1 {
+            decidedArtistName = uniqueArtistNames.values.first!
+        } else if uniqueArtistNames.count > 1 {
+            decidedArtistName = uniqueArtistNames.sorted(by: { $0.key.informationRanking < $1.key.informationRanking }).first?.value
+        }
+        
+        if uniquesongTitles.count == 1 {
+            decidedSongName = uniquesongTitles.values.first!
+        } else if uniquesongTitles.count > 1 {
+            decidedSongName = uniquesongTitles.sorted(by: { $0.key.informationRanking < $1.key.informationRanking }).first?.value
+        }
+        
+        return (decidedArtistName, decidedSongName)
+    }
+    
+    /**
+     This function removes duplicates from any dictionary
+     - Parameter dict: The input dictionary to remove duplicate values from
+     - Returns: The same dictionary with duplicates removed
+     */
+    private static func removeDuplicates(fromDict dict: Dictionary<APIProvider, String>) -> Dictionary<APIProvider, String> {
+        let sourceDict = dict.sorted(by: { $0.key.informationRanking < $1.key.informationRanking })
+        
+        var uniqueValues = Set<String>()
+        var resultDict = [APIProvider : String](minimumCapacity: dict.count)
+        
+        for (key, value) in sourceDict {
+          if !uniqueValues.contains(value) {
+            uniqueValues.insert(value)
+            resultDict[key] = value
+          }
+        }
+        
+        return resultDict
     }
     
     /**
@@ -273,5 +417,105 @@ public final class Network {
         // Return the formatted error as a parsing error
         print(errorToReport)
         return DataLoaderError.decodingError(description: errorToReport)
+    }
+}
+
+extension Network.DataLoaderError: LocalizedError {
+    public var errorTitle: String? {
+        switch self {
+            case .network(_):
+                return String(
+                    localized: "Network Error",
+                    comment: "Error message title"
+                )
+                
+            case .decodingError(_):
+                return String(
+                    localized: "Decoding Error",
+                    comment: "Error message title"
+                )
+
+            case .invalidURL:
+                return String(
+                    localized: "Invalid URL",
+                    comment: "Error message title"
+                )
+
+            case .unknownEntity:
+                return String(
+                    localized: "Unknown Platform",
+                    comment: "Error message title"
+                )
+
+            case .unknownItem:
+                return String(
+                    localized: "Unknown Item",
+                    comment: "Error message title"
+                )
+                
+            case .unknownNetworkProblem:
+                return String(
+                    localized: "Unknown Network Problem",
+                    comment: "Error message title"
+                )
+            
+            default:
+                return String(
+                    localized: "Something went wrong",
+                    comment: "Error message title"
+                )
+        }
+    }
+    
+    public var errorDescription: String? {
+        switch self {
+            case .network(let error):
+                return String(
+                    localized: "Something went wrong while communicating to the server: \(error.localizedDescription)",
+                    comment: "Error message: Variable is a autogenerated description of the error"
+                )
+                
+            case .serverSideWithReason(let code, let status):
+                return String(
+                    localized: "An error occurred on the server. Received status code \(code) from the server with message: \(status)",
+                    comment: "Error message: First variable is the status code and second is a short message"
+                )
+                
+            case .serverSide(let code):
+                return String(
+                    localized: "An error occurred on the server. Received status code \(code) from the server",
+                    comment: "Error message: Variable is a status code"
+                )
+                
+            case .decodingError(let description):
+                return String(
+                    localized: "An error occurred whilst decoding the server response: \(description)",
+                    comment: "Error message: Variable is a description of the error"
+                )
+
+            case .invalidURL:
+                return String(
+                    localized: "The URL is not valid.",
+                    comment: "Error message"
+                )
+
+            case .unknownEntity:
+                return String(
+                    localized: "Platform not recognised. Check the list of supported platforms for more information.",
+                    comment: "Error message"
+                )
+
+            case .unknownItem:
+                return String(
+                    localized: "No match found. Please check your link and try again",
+                    comment: "Error message: No matches could be found for the link to a song/album given"
+                )
+                
+            case .unknownNetworkProblem:
+                return String(
+                    localized: "Sorry, an unkown network error occured.",
+                    comment: "Error message"
+                )
+        }
     }
 }

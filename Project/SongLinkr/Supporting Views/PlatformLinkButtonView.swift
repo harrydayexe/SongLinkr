@@ -13,7 +13,7 @@ struct PlatformLinkButtonView: View {
     
     var body: some View {
         Button(action: {
-            UIApplication.shared.open(platform.url)
+            UIApplication.shared.open(platform.nativeAppUriMobile ?? platform.url)
         }) {
             HStack {
                 Image(platform.id.iconName)

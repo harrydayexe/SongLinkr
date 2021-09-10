@@ -9,42 +9,48 @@ import Foundation
 import SwiftUI
 
 struct GetLinkButton: View {
-    /// The store object in the environment
-    @EnvironmentObject var store: AppStore
+    /// The view model for making a request
+    @EnvironmentObject var viewModel: RequestViewModel
     
     /// The URL the user has entered
     @Binding var searchURL: String
     
+    /// Declares whether a request is being made
+    @Binding var inProgress: Bool
+    
     /// Declares whether an error has occured
     private var showError: Binding<Bool> { Binding(
-        get: { self.store.state.errorDescription != nil },
-        set: { if !$0 { self.store.send(.clearErrorDescription) }}
-    )}
+        get: { viewModel.errorDescription != nil },
+        set: { if !$0 { viewModel.errorDescription = nil }}
+    )
+    }
+    
+    /// The function to start the request
+    let makeRequest: () -> Void
     
     var body: some View {
         Button(action: {
-            if self.searchURL != "" {
-                // Start the call
-                store.send(.updateCallInProgress(newValue: true))
-                // Request the data
-                store.send(.getSearchResults(from: .search(with: self.searchURL)))
-            }
+            makeRequest()
         }) {
-            GetLinkButtonView(callInProgress: self.store.state.callInProgress && !self.showError.wrappedValue)
+            GetLinkButtonView(callInProgress: inProgress && !showError.wrappedValue)
         }
-        .alert(isPresented: self.showError) {
-            Alert(title: Text(store.state.errorDescription?.0 ?? "Unknown Error Occured"), message: Text(store.state.errorDescription?.1 ?? "An Unknown Error Occured. Please Try Again"), dismissButton: .cancel({
-                store.send(.updateCallInProgress(newValue: false))
-            }))
-        }
-        .buttonStyle(GetLinkButtonStyle())
+        // Button Styling
+        .tint(.accentColor)
+        .buttonStyle(.bordered)
+        .controlSize(.large)
+        .buttonStyle(.borderedProminent)
+        // Keyboard Shortcut
+        .keyboardShortcut(.defaultAction)
         .padding()
+        // Disable if no URL
         .disabled(self.searchURL == "")
     }
 }
 
 struct GetLinkButton_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello World")
+        GetLinkButton(searchURL: .constant("Hi"), inProgress: .constant(false), makeRequest: {})
+            .previewLayout(.fixed(width: 300, height: 100))
+            .environmentObject(RequestViewModel.shared)
     }
 }

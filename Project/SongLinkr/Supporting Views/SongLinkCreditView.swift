@@ -10,14 +10,14 @@ import SwiftUI
 struct SongLinkCreditView: View {
     var body: some View {
         VStack {
-            Text("Powered by Song.Link")
+            Text("Powered by Song.Link", comment: "Acknowledgement to the API used")
                 .font(.headline)
             Button(action: {
                 UIApplication.shared.open("https://song.link/")
             }) {
                 HStack {
                     Image(systemName: "safari")
-                    Text("Visit Song.Link")
+                    Text("Visit Song.Link", comment: "Text which links to the Song.Link website")
                 }
             }
         }

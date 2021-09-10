@@ -16,7 +16,7 @@ struct MainTextView: View {
     
     var body: some View {
         VStack {
-            Text("SongLinkr")
+            Text(verbatim: "SongLinkr")
                 .foregroundColor(.primary)
                 .font(.largeTitle)
                 .fontWeight(.bold)
