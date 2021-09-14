@@ -1,0 +1,30 @@
+# This workflow zips the press kit folder and attaches to new releases.
+
+name: Mark stale issues and pull requests
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Create ZIP
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - name: Archive Press Kit Folder
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'press-kit.zip'
+        path: "./PressKit"
+    - name: Upload
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./press-kit.zip
+        asset_name: press-kit.zip
+        asset_content_type: application/zip
