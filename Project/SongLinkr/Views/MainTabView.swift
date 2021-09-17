@@ -16,13 +16,17 @@ struct MainTabView: View {
             ContentView(selectedTab: $selectedView)
                 .tabItem {
                     Image(systemName: "textbox")
-                    Text("SongLinkr")
+                    Text(verbatim: "SongLinkr")
                 }.tag(0)
+            HistoryView(selectedTab: $selectedView)
+                .tabItem {
+                    Label("History", systemImage: "clock")
+                }.tag(1)
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text(LocalizedStringKey("settings-name"))
-                }.tag(1)
+                    Text("Settings", comment: "Tab Bar name for the settings page")
+                }.tag(2)
         }
     }
 }
@@ -30,17 +34,9 @@ struct MainTabView: View {
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            Group {
-                MainTabView()
-                MainTabView(selectedView: 1)
-            }
-            Group {
-                MainTabView()
-                MainTabView(selectedView: 1)
-            }
-            .preferredColorScheme(.dark)
+            MainTabView()
+            MainTabView(selectedView: 1)
         }
         .environmentObject(UserSettings())
-        .environmentObject(AppStore(initialState: .init(), reducer: appReducer, environment: World()))
     }
 }

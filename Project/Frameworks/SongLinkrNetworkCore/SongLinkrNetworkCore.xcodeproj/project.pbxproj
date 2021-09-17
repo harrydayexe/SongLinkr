@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C3941F62685F5970071C0BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C3941F42685F5970071C0BC /* Localizable.strings */; };
 		8C6E7F1626701F6B00B0D05D /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6E7F0C26701F6B00B0D05D /* SongLinkrNetworkCore.framework */; };
 		8C6E7F1D26701F6B00B0D05D /* SongLinkrNetworkCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C6E7F0F26701F6B00B0D05D /* SongLinkrNetworkCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CBAAF742671004B0018F500 /* PlatformLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C3941F52685F5970071C0BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8C3941F72685F5A00071C0BC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C6E7F0C26701F6B00B0D05D /* SongLinkrNetworkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SongLinkrNetworkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6E7F0F26701F6B00B0D05D /* SongLinkrNetworkCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongLinkrNetworkCore.h; sourceTree = "<group>"; };
 		8C6E7F1026701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,14 +124,15 @@
 		8C6E7F0E26701F6B00B0D05D /* SongLinkrNetworkCore */ = {
 			isa = PBXGroup;
 			children = (
+				8CE207F72670212000DAD0F9 /* SongLinkAPIResponse */,
+				8CE207F12670212000DAD0F9 /* Platform Links */,
+				8CE207EC2670212000DAD0F9 /* Endpoint */,
 				8CE20822267024D100DAD0F9 /* Resources */,
 				8CE207F02670212000DAD0F9 /* BadResponse.swift */,
-				8CE207EC2670212000DAD0F9 /* Endpoint */,
 				8CE207EB2670212000DAD0F9 /* Network.swift */,
-				8CE207F12670212000DAD0F9 /* Platform Links */,
-				8CE207F72670212000DAD0F9 /* SongLinkAPIResponse */,
 				8C6E7F0F26701F6B00B0D05D /* SongLinkrNetworkCore.h */,
 				8C6E7F1026701F6B00B0D05D /* Info.plist */,
+				8C3941F42685F5970071C0BC /* Localizable.strings */,
 			);
 			path = SongLinkrNetworkCore;
 			sourceTree = "<group>";
@@ -250,7 +254,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					8C6E7F0B26701F6B00B0D05D = {
 						CreatedOnToolsVersion = 12.5;
@@ -268,6 +272,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
+				de,
 				Base,
 			);
 			mainGroup = 8C6E7F0226701F6A00B0D05D;
@@ -286,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3941F62685F5970071C0BC /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,11 +356,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		8C3941F42685F5970071C0BC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C3941F52685F5970071C0BC /* de */,
+				8C3941F72685F5A00071C0BC /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		8C6E7F1E26701F6B00B0D05D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -402,12 +422,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -418,6 +439,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -460,11 +482,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -485,7 +508,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SongLinkrNetworkCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -514,7 +537,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SongLinkrNetworkCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

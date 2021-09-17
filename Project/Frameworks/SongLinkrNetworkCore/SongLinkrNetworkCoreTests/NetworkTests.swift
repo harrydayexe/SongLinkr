@@ -143,7 +143,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        let response = try awaitOutput(sut.request(from: endpoint))
+        let response = try awaitOutput(sut.requestOld(from: endpoint))
         
         XCTAssertEqual(response, expected)
     }
@@ -163,7 +163,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWith400Code() throws {
@@ -181,7 +181,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithRandomCode() throws {
@@ -199,7 +199,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithUndecodabeErrorResponse() throws {
@@ -217,7 +217,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWith500StatusCode() throws {
@@ -235,7 +235,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithUnknownStatusCode() throws {
@@ -253,7 +253,7 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
     }
     
     func testRequestWithBadJSON() throws {
@@ -298,7 +298,169 @@ class NetworkTests: XCTestCase {
         
         let endpoint: Endpoint = .search(with: "Test-String")
         
-        XCTAssertThrowsError(try awaitOutput(sut.request(from: endpoint)))
+        XCTAssertThrowsError(try awaitOutput(sut.requestOld(from: endpoint)))
+    }
+    
+    func testGetArtworkURL() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "Entity1" : Entity(
+                    id: "Entity1",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .amazon,
+                    platforms: [.amazonStore, .amazonMusic]
+                ),
+                "Entity3" : Entity(
+                    id: "Entity3",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/3",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .pandora,
+                    platforms: [.pandora]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        // Expected
+        let expectedURL: URL = "https://thumbnail.com/1"
+        
+        // Actual
+        let actualResult = Network.getArtworkURL(from: response)!
+        
+        XCTAssertEqual(expectedURL, actualResult)
+    }
+    
+    func testGetArtworkURLSameRank() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "SPOTIFY_SONG::0Jcij1eWd5bDMU5iPbxe2i" : Entity(
+                    id: "0Jcij1eWd5bDMU5iPbxe2i",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .spotify,
+                    platforms: [.spotify]
+                ),
+                "ITUNES_SONG::1440867832" : Entity(
+                    id: "1440867832",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/2",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .itunes,
+                    platforms: [.appleMusic, .itunes]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        // Expected
+        let expectedURL: URL = "https://thumbnail.com/2"
+        
+        // Actual
+        let actualResult = Network.getArtworkURL(from: response)!
+        
+        XCTAssertEqual(expectedURL, actualResult)
+    }
+    
+    func testGetArtworkURLisNil() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [:],
+            linksByPlatform: [:]
+        )
+        
+        // Actual
+        let actualResult = Network.getArtworkURL(from: response)
+        
+        XCTAssertNil(actualResult)
+    }
+    
+    func testGetSongNameAndArtist() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "SPOTIFY_SONG::0Jcij1eWd5bDMU5iPbxe2i" : Entity(
+                    id: "0Jcij1eWd5bDMU5iPbxe2i",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .spotify,
+                    platforms: [.spotify]
+                ),
+                "ITUNES_SONG::1440867832" : Entity(
+                    id: "1440867832",
+                    title: "Song Name",
+                    artistName: "Artist Name",
+                    thumbnailUrl: "https://thumbnail.com/2",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .itunes,
+                    platforms: [.appleMusic, .itunes]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        XCTAssertEqual("Artist Name", Network.getSongNameAndArtist(from: response).0)
+        XCTAssertEqual("Song Name", Network.getSongNameAndArtist(from: response).1)
+    }
+    
+    func testGetSongNameAndArtistNil() {
+        // Given
+        let response = SongLinkAPIResponse(
+            entityUniqueId: "TestID",
+            userCountry: "US",
+            pageUrl: "https://example.link/test",
+            entitiesByUniqueId: [
+                "SPOTIFY_SONG::0Jcij1eWd5bDMU5iPbxe2i" : Entity(
+                    id: "0Jcij1eWd5bDMU5iPbxe2i",
+                    thumbnailUrl: "https://thumbnail.com/1",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .spotify,
+                    platforms: [.spotify]
+                ),
+                "ITUNES_SONG::1440867832" : Entity(
+                    id: "1440867832",
+                    thumbnailUrl: "https://thumbnail.com/2",
+                    thumbnailWidth: 500,
+                    thumbnailHeight: 500,
+                    apiProvider: .itunes,
+                    platforms: [.appleMusic, .itunes]
+                )
+            ],
+            linksByPlatform: [:]
+        )
+        
+        XCTAssertEqual(nil, Network.getSongNameAndArtist(from: response).0)
+        XCTAssertEqual(nil, Network.getSongNameAndArtist(from: response).1)
     }
 
     override func tearDown() {

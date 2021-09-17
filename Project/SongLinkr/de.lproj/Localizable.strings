@@ -1,29 +1,119 @@
-/* 
-  Localizable.strings
-  SongLinkr
+/* Section Header, section contains information about the app */
+"About" = "Info";
 
-  Created by Harry Day on 30/04/2021.
-  
-*/
-"settings-name" = "Einstellungen";
-"preferences-name" = "Vorlieben";
-"version-number" = "Softwareversion";
-"popularity" = "Beliebtheit";
-"alphabetically" = "Alphabetisch";
-"default-streaming-platform" = "Standard-Streaming-Service";
-"platform-sort-option" = "Plattformsortieroption";
-"default-platform-at-top" = "Standardplattform oben";
-"auto-open-external-links" = "Externe Links automatisch öffnen";
-"auto-open-hint" = "Wenn die Option \"Externe Links automatisch öffnen\" aktiviert ist, öffnet SongLinkr, sofern verfügbar, automatisch alle Links, die nicht von Ihrer Standard-Streaming-Plattform stammen, ohne den Auswahlbildschirm anzuzeigen.";
-"Help" = "Helfen";
-"Improve Translations" = "Übersetzungen verbessern";
-"Support" = "Unterstützung";
-"Privacy Policy" = "Datenschutz-Bestimmungen";
-"SongLinkr is developed by Harry Day from England" = "SongLinkr wird von Harry Day aus England entwickelt";
-"Share" = "Teilen";
+/* Platform Sort Option */
+"Alphabetically" = "Alphabetisch";
+
+/* Option name, decides whether to automatically open links in the user's preferred platform */
+"Auto Open External Links" = "Externe Links automatisch öffnen";
+
+/* Section Footer, Explains the auto open preference */
+"Auto Open External Links will automatically open your default platform if it is matched and the original link did not originate from it." = "Externe Links automatisch öffnen öffnet automatisch Ihre Standardplattform, wenn sie übereinstimmt und der ursprüngliche Link nicht von ihr stammt.";
+
+/* Accessibility label */
+"Clear Search Bar" = "Entleere Suchleiste";
+
+/* A context menu item, copies the link to clipboard */
 "Copy" = "Kopieren";
+
+/* Option name, decides whether the users preferred platform is at the top of the list */
+"Default Platform at the Top of Results" = "Standardplattform ganz oben in den Ergebnissen";
+
+/* Option Name, The user's preferred music platform */
+"Default Streaming Platform" = "Standard Streaming Dienst";
+
+/* Section Header, contains links to support online */
+"Help" = "Hilfe";
+
+/* Link name, Links to a page about improving translations */
+"Improve Translations" = "Übersetzungen verbessern";
+
+/* Button indicator, shows that the app is listening with the microphone */
+"Listening" = "Hören";
+
+/* Loading indicator */
+"Loading" = "Wird geladen";
+
+/* Button name, starts listening with Shazam */
+"Match with Shazam" = "Vergleichen mit Shazam";
+
+/* Button Indicator, shows that all matches have been found */
+"Matches Found" = "Übereinstimmungen gefunden";
+
+/* A context menu item, opens the link */
 "Open" = "Öffnen";
-"Open in App" = "In App öffnen";
-"Pick your platform" = "Wählen Sie Ihre Plattform";
+
+/* A context menu item, opens the link in the relevant music app */
+"Open in App" = "In der app Öffnen";
+
+/* Accessibility label */
+"Paste a URL to search for matches on other platforms." = "Fügen Sie eine URL ein, um auf anderen Plattformen nach Übereinstimmungen zu suchen.";
+
+/* The modal view title */
+"Pick your platform" = "Wähle deine Plattform";
+
+/* Option name, user's choose what order to show results in */
+"Platform Sort Option" = "Plattform Sortieroption";
+
+/* Platform Sort Option */
+"Popularity" = "Popularität";
+
+/* Acknowledgement to the API used */
 "Powered by Song.Link" = "Unterstützt von Song.Link";
-"Visit Song.Link" = "Besuch Song.Link";
+
+/* Section Header, the user preferences section */
+"Preferences" = "Präferenzen";
+
+/* Link name, links to the privacy policy */
+"Privacy Policy" = "Datenschutz-Bestimmungen";
+
+/* Option name, decides whether to save matches made with shazam to the shazam library automatically */
+"Save Shazam Matches to Library" = "Shazam-Matches in der Bibliothek speichern";
+
+/* Button Name, sends a link to be matched */
+"Search Link" = "Link Suche";
+
+/* Tab Bar name for the settings page */
+"Settings" = "Einstellungen";
+
+/* A context menu item, launches the share sheet */
+"Share" = "Teilen";
+
+/* Button indicator, shows a match has been found */
+"Shazam Match Found" = "Übereinstimmung gefunden";
+
+/* Section footer */
+"SongLinkr is developed by Harry Day from England" = "SongLinkr wurde von Harry Day aus England entwickelt";
+
+/* Link name, links to the support page */
+"Support" = "Unterstützung";
+
+/* Accessibility label */
+"The artwork for the media in the results" = "Das Artwork für die Medien in den Ergebnissen";
+
+/* Accessibility label */
+"URL Search Field" = "URL-Suchenfeld";
+
+/* The version number of the app */
+"Version Number" = "Softwareversion";
+
+/* Text which links to the Song.Link website */
+"Visit Song.Link" = "Besuche Song.Link";
+
+/* Navigation Bar Title */
+"History" = "Geschichte";
+
+/* List Swipe Action Name */
+"Search Again" = "Erneut suchen";
+
+/* Delete Action */
+"Delete" = "Löschen";
+
+/* Section Header in History Tab */
+"Shazam Matches" = "Shazam Übereinstimmungen";
+
+/* Section Header in History Tab */
+"URL Matches" = "URL Übereinstimmungen";
+
+/* Navigation Link Name */
+"Supported Platforms" = "Unterstützte Plattformen";

@@ -29,3 +29,23 @@ public extension SongLinkAPIResponse {
         case audius
     }
 }
+
+public extension APIProvider {
+    /// Determines the order of which to trust api providers for providing the name and artist of each song
+    var informationRanking: Int {
+        switch self {
+            case .spotify:
+                return 1
+            case .itunes:
+                return 1
+            case .google:
+                return 2
+            case .tidal:
+                return 3
+            case .amazon:
+                return 2
+            default:
+                return Int.max
+        }
+    }
+}

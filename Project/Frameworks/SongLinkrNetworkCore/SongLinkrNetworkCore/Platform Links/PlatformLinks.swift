@@ -52,18 +52,16 @@ public struct PlatformLinks: Identifiable, Equatable, Comparable {
 
 public extension Array where Element == PlatformLinks {
     /**
-     This functon takes the default platform of the user and moves it to the first position in the array
+     This functon takes the default platform of the user and moves it to the first position in the array in place
      - Parameter defaultPlatform: The default `Platform` of the user
-     - Returns: An array of platform links which has been reordered
      */
-    func moveDefaultFirst(with defaultPlatform: Platform) -> [PlatformLinks] {
-        var temp = self
-        guard let index = temp.firstIndex(where: { $0.id == defaultPlatform }) else {
-            return temp
+    mutating func moveDefaultFirst(with defaultPlatform: Platform) {
+        // Search for default in array
+        guard let index = self.firstIndex(where: { $0.id == defaultPlatform }) else {
+            return
         }
         
-        let element = temp.remove(at: index)
-        temp.insert(element, at: 0)
-        return temp
+        let element = self.remove(at: index)
+        self.insert(element, at: 0)
     }
 }

@@ -10,10 +10,12 @@ import StoreKit
 import SongLinkrNetworkCore
 
 struct ResultsView: View {
+    @EnvironmentObject var userSettings: UserSettings
     @State private var showShareSheet = false
     @State private var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
-    let response: [PlatformLinks]
+    let results: ResultsModel
+    let saveFunction: @MainActor () async -> Bool
     
     var gridItemLayout = [
         GridItem(.adaptive(minimum: 250))
@@ -23,30 +25,38 @@ struct ResultsView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: gridItemLayout, spacing: 20) {
-                    ForEach(response) { platform in
+                    MediaDetailView(
+                        artworkURL: results.artworkURL,
+                        mediaTitle: results.mediaTitle,
+                        artistName: results.artistName,
+                        displaySaveButton: results.isFromShazam && !userSettings.saveToShazamLibrary,
+                        saveFunction: saveFunction
+                    )                    
+                    
+                    ForEach(results.response) { platform in
                         PlatformLinkButtonView(platform: platform)
                             .contextMenu {
                                 Button(action: {
                                     self.shareSheetURL = platform.url
                                     self.showShareSheet = true
                                 }) {
-                                    Text("Share")
+                                    Text("Share", comment: "A context menu item, launches the share sheet")
                                     Image(systemName: "square.and.arrow.up")
                                 }
                                 
                                 Button(action: { UIPasteboard.general.url = platform.url }) {
-                                    Text("Copy")
+                                    Text("Copy", comment: "A context menu item, copies the link to clipboard")
                                     Image(systemName: "doc.on.doc")
                                 }
                                 
                                 Button(action: { UIApplication.shared.open(platform.url) }) {
-                                    Text("Open")
+                                    Text("Open", comment: "A context menu item, opens the link")
                                     Image(systemName: "safari")
                                 }
                                 
                                 if platform.nativeAppUriMobile != nil {
                                     Button(action: { UIApplication.shared.open(platform.nativeAppUriMobile!) }) {
-                                        Text("Open in App")
+                                        Text("Open in App", comment: "A context menu item, opens the link in the relevant music app")
                                         Image(systemName: "square.on.square")
                                     }
                                 } else {
@@ -64,15 +74,18 @@ struct ResultsView: View {
                     ShareSheet(activityItems: [self.shareSheetURL])
                 }
             }
-            .navigationBarTitle(Text("Pick your platform"), displayMode: .inline)
+            .navigationBarTitle(Text("Pick your platform", comment: "The modal view title"), displayMode: .inline)
             .navigationBarItems(trailing: Button("Done", action: {
                 self.showResults = false
                 // Request Review
-                if let windowScene = UIApplication.shared.windows.first?.windowScene { SKStoreReviewController.requestReview(in: windowScene) }
+                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                }
+                
             }))
             .padding()
+            .background(Color.offWhite)
         }
-        
     }
 }
 
@@ -95,9 +108,16 @@ struct ResultsView_Previews: PreviewProvider {
     ].sorted(by: { $0.id.rawValue < $1.id.rawValue })
     
     static var previews: some View {
-        Group {
-            ResultsView(showResults: .constant(true), response: response)
-//                .environment(\.locale, .init(identifier: "de"))
-        }
+        ResultsView(
+            showResults: .constant(true),
+            results: ResultsModel(
+                artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+                mediaTitle: "Humble",
+                artistName: "Kendrick Lamar",
+                isFromShazam: true,
+                response: response
+            ),
+            saveFunction: { return true }
+        ).environmentObject(UserSettings())
     }
 }
