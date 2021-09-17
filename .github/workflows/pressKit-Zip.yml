@@ -1,10 +1,10 @@
 # This workflow zips the press kit folder and attaches to new releases.
 
-name: Mark stale issues and pull requests
+name: Add PressKit to Releases
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
