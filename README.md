@@ -11,6 +11,9 @@ More info can be found at https://songlinkr.harryday.xyz.
 
 Copy a link to a song, say on Apple Music. Go to SongLinkr and paste the song (if it doesn't automatically) and click search. Once the results have loaded click a new streaming platform to be taken directly to the song in the app or on the web.
 
+## Beta
+To join the TestFlight beta click [here](https://testflight.apple.com/join/IBWGpQg8)
+
 ## Contributing
 If you would like to contribute translations, please download the file [translationTemplate.txt](translationTemplate.txt). Once you have filled out the details of the template please open an issue or [email me](mailto:contact@harryday.xyz).
 
