@@ -77,8 +77,13 @@ struct SettingsView: View {
                     .accessibility(
                         value: Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
                     )
+                    
                     NavigationLink(destination: SupportedPlatformsList()) {
                         Text("Supported Platforms")
+                    }
+                    
+                    NavigationLink(destination: TranslationCreditView()) {
+                        Text("Thanks To")
                     }
                 }
             }
