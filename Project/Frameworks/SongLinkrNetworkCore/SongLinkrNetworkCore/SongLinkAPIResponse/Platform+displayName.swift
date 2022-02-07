@@ -45,6 +45,8 @@ public extension SongLinkAPIResponse.Platform {
                 return "Spinrilla"
             case .audius:
                 return "Audius"
+            case .audiomack:
+                return "Audiomack"
         }
     }
 }
