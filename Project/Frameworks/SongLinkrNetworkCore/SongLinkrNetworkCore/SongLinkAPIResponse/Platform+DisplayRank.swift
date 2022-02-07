@@ -25,27 +25,17 @@ public extension SongLinkAPIResponse.Platform {
                 return 1
             case .googleStore:
                 return 1
-            case .pandora:
-                return 2
             case .deezer:
                 return 1
             case .tidal:
                 return 1
-            case .amazonStore:
-                return 2
             case .amazonMusic:
                 return 1
             case .soundcloud:
                 return 1
-            case .napster:
-                return 2
-            case .yandex:
-                return 2
-            case .spinrilla:
-                return 2
-            case .audius:
-                return 2
             case .unknown:
+                return 2
+            default:
                 return 2
         }
     }

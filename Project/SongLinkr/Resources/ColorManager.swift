@@ -51,6 +51,9 @@ extension Color {
     /// This is the audius purple color asset.
     static let audiusColour = Color("AudiusColour")
     
+    /// This is the Audiomack color asset.
+    static let audiomackColour = Color(red: 255/255, green: 162/255, blue: 0/255)
+    
     /// Off white colour for skeumorphic design cards
     static let cardColour = Color("cardColour")
     
