@@ -27,6 +27,7 @@ public extension SongLinkAPIResponse {
         case yandex
         case spinrilla
         case audius
+        case audiomack
     }
 }
 
