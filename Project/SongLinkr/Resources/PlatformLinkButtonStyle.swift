@@ -106,6 +106,12 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                         .padding()
                         .background(Color.audiusColour)
                         .cornerRadius(15.0)
+                default:
+                    configuration.label
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.secondary)
+                        .cornerRadius(15.0)
             }
         }
             

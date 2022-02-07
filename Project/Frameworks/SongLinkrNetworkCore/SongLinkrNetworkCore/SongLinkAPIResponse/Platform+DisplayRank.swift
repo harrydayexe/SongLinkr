@@ -45,6 +45,8 @@ public extension SongLinkAPIResponse.Platform {
                 return 2
             case .audius:
                 return 2
+            case .unknown:
+                return 2
         }
     }
 }

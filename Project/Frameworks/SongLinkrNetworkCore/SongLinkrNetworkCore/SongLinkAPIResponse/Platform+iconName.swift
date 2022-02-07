@@ -45,6 +45,8 @@ public extension SongLinkAPIResponse.Platform {
                 return "SpinrillaLogoWhite"
             case .audius:
                 return "AudiusLogo"
+            case .unknown:
+                return ""
         }
     }
 }
