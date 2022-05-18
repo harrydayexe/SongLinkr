@@ -47,6 +47,8 @@ public extension SongLinkAPIResponse.Platform {
                 return "Audius"
             case .audiomack:
                 return "Audiomack"
+            case .unknown:
+                return ""
         }
     }
 }

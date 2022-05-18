@@ -33,6 +33,8 @@ public extension SongLinkAPIResponse.Platform {
                 return 1
             case .soundcloud:
                 return 1
+            case .unknown:
+                return 2
             default:
                 return 2
         }

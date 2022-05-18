@@ -12,7 +12,7 @@ import SongLinkrNetworkCore
 
 struct PlatformLinkButtonStyle: ButtonStyle {
     let platform: Platform
-    
+
     func makeBody(configuration: Self.Configuration) -> some View {
         VStack {
             switch platform {
@@ -111,9 +111,14 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.audiomackColour)
+                default:
+                    configuration.label
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.secondary)
                         .cornerRadius(15.0)
             }
         }
-            
+
     }
 }

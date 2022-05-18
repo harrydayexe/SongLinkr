@@ -3,7 +3,7 @@
 //  SongLinkrNetworkCore
 //
 //  Created by Harry Day on 10/06/2021
-//  
+//
 //
 //  Twitter: https://twitter.com/realharryday
 //  Github: https://github.com/harryday123
@@ -52,6 +52,8 @@ public extension SongLinkAPIResponse.Platform {
                 return 17
             case .audiomack:
                 return 18
+            case .unknown:
+                return 19
         }
     }
 }

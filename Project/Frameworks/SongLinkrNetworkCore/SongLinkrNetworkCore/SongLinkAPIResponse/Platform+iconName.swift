@@ -47,6 +47,8 @@ public extension SongLinkAPIResponse.Platform {
                 return "AudiusLogo"
             case .audiomack:
                 return "AudiomackLogoWhite"
+            case .unknown:
+                return ""
         }
     }
 }

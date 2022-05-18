@@ -13,7 +13,7 @@ public extension SongLinkAPIResponse {
     /**
      The `APIProvider` enum contains all the API Providers the data has been collected from.
      */
-    enum APIProvider: String, Codable {
+    enum APIProvider: String {
         case spotify
         case itunes
         case youtube
@@ -28,6 +28,7 @@ public extension SongLinkAPIResponse {
         case spinrilla
         case audius
         case audiomack
+        case unknown
     }
 }
 
@@ -48,5 +49,11 @@ public extension APIProvider {
             default:
                 return Int.max
         }
+    }
+}
+
+extension APIProvider: Codable {
+    public init(from decoder: Decoder) throws {
+        self = try APIProvider(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
     }
 }
