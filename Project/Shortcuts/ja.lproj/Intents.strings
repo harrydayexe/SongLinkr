@@ -1,0 +1,140 @@
+"0H2KQc" = "特定のプラットフォームの結果が必要ですか？";
+
+"0kYWSb" = "${error}";
+
+"4c4BCS" = "Google Store";
+
+"5Ti2AT" = "Amazon Music";
+
+"6GNxNK" = "Spotify";
+
+"6Tkxbp" = "URLをプラットフォームに一致させる";
+
+"79bW8S" = "Yandex";
+
+"AFUHHV" = "曲へのリンクを特定のプラットフォームに一致させる";
+
+"B2DQTs" = "Google";
+
+"BaH866" = "はい";
+
+"BuHtWW" = "${error}";
+
+"FPSatn-4c4BCS" = "Google Store’一致する${count}つのオプションがあります";
+
+"FPSatn-5Ti2AT" = "‘Amazon Music’一致する${count}つのオプションがあります";
+
+"FPSatn-6GNxNK" = "‘Spotify’一致する${count}つのオプションがあります";
+
+"FPSatn-79bW8S" = "‘Yandex’一致する${count}つのオプションがあります";
+
+"FPSatn-B2DQTs" = "‘Google’一致する${count}つのオプションがあります";
+
+"FPSatn-GdIWik" = "‘Napster’一致する${count}つのオプションがあります";
+
+"FPSatn-MvPKsc" = "‘YouTube’一致する${count}つのオプションがあります";
+
+"FPSatn-PMmjOZ" = "‘Deezer’一致する${count}つのオプションがあります";
+
+"FPSatn-SXnfyi" = "‘Audius’一致する${count}つのオプションがあります";
+
+"FPSatn-VAAf0j" = "‘Pandora’一致する${count}つのオプションがあります";
+
+"FPSatn-ZbjoIu" = "‘YouTube Music’一致する${count}つのオプションがあります";
+
+"FPSatn-hJp9L6" = "‘Spinrilla’一致する${count}つのオプションがあります";
+
+"FPSatn-hRJWbC" = "‘Tidal’一致する${count}つのオプションがあります";
+
+"FPSatn-nDRwZF" = "‘AppleMusic’一致する${count}つのオプションがあります";
+
+"FPSatn-urAphz" = "‘Amazon Store’一致する${count}つのオプションがあります";
+
+"FPSatn-xYWVFm" = "‘iTunes’一致する${count}つのオプションがあります";
+
+"FPSatn-yd7vN2" = "‘SoundCloud’一致する${count}つのオプションがあります";
+
+"FZuYRO" = "${result}";
+
+"GdIWik" = "Napster";
+
+"MvPKsc" = "YouTube";
+
+"N0ppzK" = "いいえ";
+
+"PMmjOZ" = "Deezer";
+
+"QoggXP" = "結果";
+
+"RrB6gc" = "ターゲットプラットフォーム";
+
+"SXnfyi" = "Audius";
+
+"VAAf0j" = "Pandora";
+
+"W0NWGS" = "特定のプラットフォームを選択";
+
+"ZbjoIu" = "YouTube Music";
+
+"ZpJUtS" = "ストリーミングプラットフォーム上の曲のURLを入力します";
+
+"etA7WR" = "${targetPlatform}の${url}で曲を一致させます";
+
+"fWSyYq" = "エラー";
+
+"fexlVe" = "ストリーミングプラットフォーム間で${url}の曲を一致させる";
+
+"gv57D3" = "ストリーミングプラットフォームの曲のURLを入力してください";
+
+"hJp9L6" = "Spinrilla";
+
+"hRJWbC" = "Tidal";
+
+"nDRwZF" = "AppleMusic";
+
+"oAhco2" = "${result}";
+
+"oIhMgw" = "プラットフォーム";
+
+"urAphz" = "Amazon Store";
+
+"xOzIJe-4c4BCS" = "確認のために、'Google Store'が必要でしたか？";
+
+"xOzIJe-5Ti2AT" = "確認のために、‘Amazon Music’が必要でしたか？";
+
+"xOzIJe-6GNxNK" = "確認のために、‘Spotify’が必要でしたか？";
+
+"xOzIJe-79bW8S" = "確認のために、‘Yandex’が必要でしたか？";
+
+"xOzIJe-B2DQTs" = "確認のために、‘Google’が必要でしたか？";
+
+"xOzIJe-GdIWik" = "確認のために、‘Napster’が必要でしたか？";
+
+"xOzIJe-MvPKsc" = "確認のために、‘YouTube’が必要でしたか？";
+
+"xOzIJe-PMmjOZ" = "確認のために、‘Deezer’が必要でしたか？";
+
+"xOzIJe-SXnfyi" = "確認のために、‘Audius’が必要でしたか？";
+
+"xOzIJe-VAAf0j" = "確認のために、‘Pandora’が必要でしたか？";
+
+"xOzIJe-ZbjoIu" = "確認のために、‘YouTube Music’が必要でしたか？";
+
+"xOzIJe-hJp9L6" = "確認のために、‘Spinrilla’が必要でしたか？";
+
+"xOzIJe-hRJWbC" = "確認のために、‘Tidal’が必要でしたか？";
+
+"xOzIJe-nDRwZF" = "確認のために、‘AppleMusic’が必要でしたか？";
+
+"xOzIJe-urAphz" = "確認のために、‘Amazon Store’が必要でしたか？";
+
+"xOzIJe-xYWVFm" = "確認のために、‘iTunes’が必要でしたか？";
+
+"xOzIJe-yd7vN2" = "確認のために、‘SoundCloud’が必要でしたか？";
+
+"xYWVFm" = "iTunes";
+
+"xumBhV" = "URL";
+
+"yd7vN2" = "SoundCloud";
+
