@@ -1,0 +1,131 @@
+/* Section Header, section contains information about the app */
+"About" = "SongLinkrについて";
+
+/* Platform Sort Option */
+"Alphabetically" = "五十音"; // In Japanese, lists are sorted by the 50 Kana order rather than alphabetically (although in most systems, alphabets come first then the 50 Kana order, if both exist in the same list)
+
+/* Option name, decides whether to automatically open links in the user's preferred platform */
+"Auto Open External Links" = "外部リンクを自動的に開く";
+
+/* Section Footer, Explains the auto open preference */
+"Auto Open External Links will automatically open your default platform if it is matched and the original link did not originate from it." = "「外部リンクを自動的に開く」をオンにすると、元のリンクがデフォルト音楽配信サービスと一致しない場合、デフォルト音楽配信サービスで自動的に開くようになります。";
+
+/* Accessibility label */
+"Clear Search Bar" = "検索バーをクリア";
+
+/* A context menu item, copies the link to clipboard */
+"Copy" = "コピー";
+
+/* Option name, decides whether the users preferred platform is at the top of the list */
+"Default Platform at the Top of Results" = "デフォルト音楽配信サービスを上に表示";
+
+/* Option Name, The user's preferred music platform */
+"Default Streaming Platform" = "デフォルト音楽配信サービス";
+
+/* Section Header, contains links to support online */
+"Help" = "ヘルプ";
+
+/* Link name, Links to a page about improving translations */
+"Improve Translations" = "翻訳改善";
+
+/* Button indicator, shows that the app is listening with the microphone */
+"Listening" = "聞き取り中";
+
+/* Loading indicator */
+"Loading" = "読み込み中";
+
+/* Button name, starts listening with Shazam */
+"Match with Shazam" = "Shazamでマッチ";
+
+/* Button Indicator, shows that all matches have been found */
+"Matches Found" = "マッチが見つかりました";
+
+/* A context menu item, opens the link */
+"Open" = "開く";
+
+/* A context menu item, opens the link in the relevant music app */
+"Open in App" = "アプリで開く";
+
+/* Accessibility label */
+"Paste a URL to search for matches on other platforms." = "他の音楽配信サービスで検索するには、URLをペーストしてください。";
+
+/* The modal view title */
+"Pick your platform" = "音楽配信サービス選択";
+
+/* Option name, user's choose what order to show results in */
+"Platform Sort Option" = "音楽配信サービスの並べ替え";
+
+/* Platform Sort Option */
+"Popularity" = "好評";
+
+/* Acknowledgement to the API used */
+"Powered by Song.Link" = "提供者：Song.Link";
+
+/* Section Header, the user preferences section */
+"Preferences" = "設定";
+
+/* Link name, links to the privacy policy */
+"Privacy Policy" = "プライバシーポリシー";
+
+/* Option name, decides whether to save matches made with shazam to the shazam library automatically */
+"Save Shazam Matches to Library" = "Shazamのマッチをライブラリに保存";
+
+/* Button Name, sends a link to be matched */
+"Search Link" = "検索";
+
+/* Tab Bar name for the settings page */
+"Settings" = "設定";
+
+/* A context menu item, launches the share sheet */
+"Share" = "シェア";
+
+/* Button indicator, shows a match has been found */
+"Shazam Match Found" = "Shazamのマッチが見つかりました";
+
+/* Section footer */
+"SongLinkr is developed by Harry Day from England" = "SongLinkrは、イギリスのHarry Dayさんに開発されたアプリです";
+
+/* Link name, links to the support page */
+"Support" = "サポート";
+
+/* Accessibility label */
+"The artwork for the media in the results" = "検索結果のアルバムアートワーク";
+
+/* Accessibility label */
+"URL Search Field" = "URL検索フィールド";
+
+/* The version number of the app */
+"Version Number" = "バージョン";
+
+/* Text which links to the Song.Link website */
+"Visit Song.Link" = "Song.Linkを開く";
+
+/* Navigation Bar Title */
+"History" = "履歴";
+
+/* List Swipe Action Name */
+"Search Again" = "再検索";
+
+/* Delete Action */
+"Delete" = "削除";
+
+/* Section Header in History Tab */
+"Shazam Matches" = "Shazamによるマッチ";
+
+/* Section Header in History Tab */
+"URL Matches" = "URLによるマッチ";
+
+/* Navigation Link Name */
+"Supported Platforms" = "対応している音楽配信サービス";
+
+/* German */
+"German" = "ドイツ語";
+
+/* Spanish */
+"Spanish" = "スペイン語";
+
+/* Japanese */
+"Japanese" = "日本";
+
+/* Thanks To */
+"Thanks To" = "ありがとう";
