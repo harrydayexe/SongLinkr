@@ -24,7 +24,6 @@ struct TranslationCreditView: View {
                     Text(verbatim: "Lorilú")
                 })
             }
-            
             Section(header: Text("Japanese")) {
                 Link(destination: URL(string: "https://twitter.com/katagaki_")!, label: {
                     Text(verbatim: "Justin")
