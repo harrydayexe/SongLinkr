@@ -70,6 +70,10 @@ class SongLinkAPIResponseTests: XCTestCase {
                     XCTAssertEqual(platform.displayName, "Spinrilla", "Incorrect Display Name")
                 case .audius:
                     XCTAssertEqual(platform.displayName, "Audius", "Incorrect Display Name")
+                case .audiomack:
+                    XCTAssertEqual(platform.displayName, "Audiomack", "Incorrect Display Name")
+                case .unknown:
+                    XCTAssertEqual(platform.displayName, "", "Incorrect Display Name")
             }
         }
     }
@@ -78,39 +82,43 @@ class SongLinkAPIResponseTests: XCTestCase {
         for platform in Platform.allCases {
             switch platform {
                 case .spotify:
-                    XCTAssertEqual(platform.iconName, "SpotifyLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "SpotifyLogoWhite", "Incorrect Icon Name")
                 case .itunes:
-                    XCTAssertEqual(platform.iconName, "iTunesLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "iTunesLogoWhite", "Incorrect Icon Name")
                 case .appleMusic:
-                    XCTAssertEqual(platform.iconName, "AppleMusicLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "AppleMusicLogoWhite", "Incorrect Icon Name")
                 case .youtube:
-                    XCTAssertEqual(platform.iconName, "YouTubeLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "YouTubeLogoWhite", "Incorrect Icon Name")
                 case .youtubeMusic:
-                    XCTAssertEqual(platform.iconName, "YouTubeLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "YouTubeLogoWhite", "Incorrect Icon Name")
                 case .google:
-                    XCTAssertEqual(platform.iconName, "PlayMusicLogo", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "PlayMusicLogo", "Incorrect Icon Name")
                 case .googleStore:
-                    XCTAssertEqual(platform.iconName, "PlayStoreLogo", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "PlayStoreLogo", "Incorrect Icon Name")
                 case .pandora:
-                    XCTAssertEqual(platform.iconName, "PandoraLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "PandoraLogoWhite", "Incorrect Icon Name")
                 case .deezer:
-                    XCTAssertEqual(platform.iconName, "DeezerLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "DeezerLogoWhite", "Incorrect Icon Name")
                 case .tidal:
-                    XCTAssertEqual(platform.iconName, "TidalLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "TidalLogoWhite", "Incorrect Icon Name")
                 case .amazonStore:
-                    XCTAssertEqual(platform.iconName, "AmazonLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "AmazonLogoWhite", "Incorrect Icon Name")
                 case .amazonMusic:
-                    XCTAssertEqual(platform.iconName, "PrimeLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "PrimeLogoWhite", "Incorrect Icon Name")
                 case .soundcloud:
-                    XCTAssertEqual(platform.iconName, "SoundcloudLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "SoundcloudLogoWhite", "Incorrect Icon Name")
                 case .napster:
-                    XCTAssertEqual(platform.iconName, "NapsterLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "NapsterLogoWhite", "Incorrect Icon Name")
                 case .yandex:
-                    XCTAssertEqual(platform.iconName, "YandexLogoColor", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "YandexLogoColor", "Incorrect Icon Name")
                 case .spinrilla:
-                    XCTAssertEqual(platform.iconName, "SpinrillaLogoWhite", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "SpinrillaLogoWhite", "Incorrect Icon Name")
                 case .audius:
-                    XCTAssertEqual(platform.iconName, "AudiusLogo", "Incorrect Display Name")
+                    XCTAssertEqual(platform.iconName, "AudiusLogo", "Incorrect Icon Name")
+                case .audiomack:
+                    XCTAssertEqual(platform.iconName, "AudiomackLogoWhite", "Incorrect Icon Name")
+                case .unknown:
+                    XCTAssertEqual(platform.iconName, "", "Incorrect Icon Name")
             }
         }
     }
@@ -152,6 +160,10 @@ class SongLinkAPIResponseTests: XCTestCase {
                     XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
                 case .audius:
                     XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+                case .audiomack:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
+                case .unknown:
+                    XCTAssertEqual(platform.displayRank, 2, "Incorrect Display Rank")
             }
         }
     }
@@ -185,6 +197,10 @@ class SongLinkAPIResponseTests: XCTestCase {
                     XCTAssertEqual(platform.entityName, "SPINRILLA", "Incorrect Entity Name")
                 case .audius:
                     XCTAssertEqual(platform.entityName, "AUDIUS", "Incorrect Entity Name")
+                case .audiomack:
+                    XCTAssertEqual(platform.entityName, "AUDIOMACK", "Incorrect Entity Name")
+                case .unknown:
+                    XCTAssertEqual(platform.entityName, "", "Incorrect Entity Name")
             }
         }
     }
