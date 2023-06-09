@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C3941F62685F5970071C0BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C3941F42685F5970071C0BC /* Localizable.strings */; };
 		8C6E7F1626701F6B00B0D05D /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6E7F0C26701F6B00B0D05D /* SongLinkrNetworkCore.framework */; };
 		8C6E7F1D26701F6B00B0D05D /* SongLinkrNetworkCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C6E7F0F26701F6B00B0D05D /* SongLinkrNetworkCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CAECC472A33E94F0028CB93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8CAECC462A33E94F0028CB93 /* Localizable.xcstrings */; };
 		8CBAAF742671004B0018F500 /* PlatformLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */; };
 		8CBAAF7626714C5D0018F500 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF7526714C5D0018F500 /* URLProtocolStub.swift */; };
 		8CBAAF782671550A0018F500 /* XCTestCase+Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF772671550A0018F500 /* XCTestCase+Await.swift */; };
@@ -49,19 +49,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8C3941F52685F5970071C0BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8C3941F72685F5A00071C0BC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C6E7F0C26701F6B00B0D05D /* SongLinkrNetworkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SongLinkrNetworkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6E7F0F26701F6B00B0D05D /* SongLinkrNetworkCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongLinkrNetworkCore.h; sourceTree = "<group>"; };
 		8C6E7F1026701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C6E7F1526701F6B00B0D05D /* SongLinkrNetworkCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongLinkrNetworkCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6E7F1C26701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CB60378283569C600393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8CAECC462A33E94F0028CB93 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinksTests.swift; sourceTree = "<group>"; };
 		8CBAAF7526714C5D0018F500 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		8CBAAF772671550A0018F500 /* XCTestCase+Await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Await.swift"; sourceTree = "<group>"; };
 		8CBD49DC2672BFE900CB69DB /* Platform+ShortcutIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+ShortcutIndex.swift"; sourceTree = "<group>"; };
-		8CDD359F283286100011AA64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CE207EB2670212000DAD0F9 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8CE207ED2670212000DAD0F9 /* Endpoint+search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endpoint+search.swift"; sourceTree = "<group>"; };
 		8CE207EE2670212000DAD0F9 /* Endpoint+url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endpoint+url.swift"; sourceTree = "<group>"; };
@@ -134,7 +131,7 @@
 				8CE207EB2670212000DAD0F9 /* Network.swift */,
 				8C6E7F0F26701F6B00B0D05D /* SongLinkrNetworkCore.h */,
 				8C6E7F1026701F6B00B0D05D /* Info.plist */,
-				8C3941F42685F5970071C0BC /* Localizable.strings */,
+				8CAECC462A33E94F0028CB93 /* Localizable.xcstrings */,
 			);
 			path = SongLinkrNetworkCore;
 			sourceTree = "<group>";
@@ -296,7 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C3941F62685F5970071C0BC /* Localizable.strings in Resources */,
+				8CAECC472A33E94F0028CB93 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,20 +357,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		8C3941F42685F5970071C0BC /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8C3941F52685F5970071C0BC /* de */,
-				8C3941F72685F5A00071C0BC /* es */,
-				8CDD359F283286100011AA64 /* en */,
-				8CB60378283569C600393FEF /* ja */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		8C6E7F1E26701F6B00B0D05D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -429,6 +412,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -489,6 +473,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
