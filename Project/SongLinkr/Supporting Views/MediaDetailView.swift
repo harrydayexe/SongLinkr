@@ -44,9 +44,9 @@ struct MediaDetailView: View {
                 }
                 .accessibility(label: Text("The artwork for the media in the results", comment: "Accessibility label"))
                 Group {
-                    Text(mediaTitle)
+                    Text(verbatim: mediaTitle)
                         .font(.title).fontWeight(.semibold)
-                    Text(artistName)
+                    Text(verbatim: artistName)
                         .font(.title2)
                 }.padding(.horizontal)
                 
@@ -58,9 +58,9 @@ struct MediaDetailView: View {
                         }
                     }) {
                         if !hasBeenSaved {
-                            Label("Add to Shazam Library", systemImage: "plus.circle")
+                            Label(String(localized: "Add to Shazam Library", comment: "Text on button to add a song to the user's Shazam Library"), systemImage: "plus.circle")
                         } else {
-                            Label("Added to Shazam Library", systemImage: "checkmark.circle")
+                            Label(String(localized: "Added to Shazam Library", comment: "Text shown on a button after a song is added to the user's Shazam Library"), systemImage: "checkmark.circle")
                         }
                     }
                     // Button Styling
@@ -82,7 +82,7 @@ struct MediaDetailView_Previews: PreviewProvider {
             mediaTitle: "Humble",
             artistName: "Kendrick Lamar",
             displaySaveButton: true,
-            saveFunction: { return false }
+            saveFunction: { return true }
         ).preferredColorScheme(.dark).padding()
     }
 }

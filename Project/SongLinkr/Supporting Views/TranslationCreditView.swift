@@ -15,16 +15,16 @@ import SwiftUI
 struct TranslationCreditView: View {
     var body: some View {
         List {
-            Section(header: Text("German")) {
-                Text("MatrixZockt")
+            Section(header: Text("German", comment: "Header for list of people who provided translations for German localisation")) {
+                Text(verbatim: "MatrixZockt")
             }
             
-            Section(header: Text("Spanish")) {
+            Section(header: Text("Spanish", comment: "Header for list of people who provided translations for Spanish localisation")) {
                 Link(destination: URL(string: "https://youtube.com/channel/UCdlXeiTAfei1vL782OrYCZg")!, label: {
                     Text(verbatim: "Lorilú")
                 })
             }
-            Section(header: Text("Japanese")) {
+            Section(header: Text("Japanese", comment: "Header for list of people who provided translations for Japanese localisation")) {
                 Link(destination: URL(string: "https://twitter.com/katagaki_")!, label: {
                     Text(verbatim: "Justin")
                 })

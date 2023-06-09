@@ -47,9 +47,9 @@ struct HistoryViewListItem: View {
             .accessibility(label: Text("The artwork for the media in the results", comment: "Accessibility label"))
             
             VStack(alignment: .leading) {
-                Text(title).bold()
-                Text(item.timestamp?.formatted(.dateTime) ?? "")
-                Text(item.originURL?.host ?? "").foregroundColor(.secondary)
+                Text(verbatim: title).bold()
+                Text(verbatim: item.timestamp?.formatted(.dateTime) ?? "")
+                Text(verbatim: item.originURL?.host ?? "").foregroundColor(.secondary)
             }.padding(.leading)
         }
     }

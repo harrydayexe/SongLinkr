@@ -1,0 +1,1060 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "About" : {
+      "comment" : "Section Header, section contains information about the app",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SongLinkrについて"
+          }
+        }
+      }
+    },
+    "Add to Shazam Library" : {
+      "comment" : "Text on button to add a song to the user's Shazam Library"
+    },
+    "Added to Shazam Library" : {
+      "comment" : "Text shown on a button after a song is added to the user's Shazam Library"
+    },
+    "Alphabetically" : {
+      "comment" : "Platform Sort Option",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabetisch"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alfabéticamente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五十音"
+          }
+        }
+      }
+    },
+    "An error occured whilst saving to Shazam Library" : {
+      "comment" : "Error message title"
+    },
+    "An unknown error occured" : {
+      "comment" : "Error message title"
+    },
+    "Auto Open External Links" : {
+      "comment" : "Option name, decides whether to automatically open links in the user's preferred platform",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Externe Links automatisch öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto Abrir Enlaces Externos"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外部リンクを自動的に開く"
+          }
+        }
+      }
+    },
+    "Auto Open External Links will automatically open your default platform if it is matched and the original link did not originate from it." : {
+      "comment" : "Section Footer, Explains the auto open preference",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Externe Links automatisch öffnen öffnet automatisch Ihre Standardplattform, wenn sie übereinstimmt und der ursprüngliche Link nicht von ihr stammt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto abiertas enlaces externos se abrirán automáticamente su plataforma por defecto si se empareja y el enlace original no se originó a partir de ella."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「外部リンクを自動的に開く」をオンにすると、元のリンクがデフォルト音楽配信サービスと一致しない場合、デフォルト音楽配信サービスで自動的に開くようになります。"
+          }
+        }
+      }
+    },
+    "Clear Search Bar" : {
+      "comment" : "Accessibility label",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entleere Suchleiste"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro barra de búsqueda"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "検索バーをクリア"
+          }
+        }
+      }
+    },
+    "Copy" : {
+      "comment" : "A context menu item, copies the link to clipboard",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コピー"
+          }
+        }
+      }
+    },
+    "Default Platform at the Top of Results" : {
+      "comment" : "Option name, decides whether the users preferred platform is at the top of the list",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardplattform ganz oben in den Ergebnissen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plataforma predeterminada en la parte superior de los resultados"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デフォルト音楽配信サービスを上に表示"
+          }
+        }
+      }
+    },
+    "Default Streaming Platform" : {
+      "comment" : "Option Name, The user's preferred music platform",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard Streaming Dienst"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plataforma de transmisión predeterminada"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デフォルト音楽配信サービス"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "comment" : "Delete Action",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "comment" : "Button on results view to close the sheet"
+    },
+    "German" : {
+      "comment" : "Header for list of people who provided translations for German localisation",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deutsch"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alemán"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ドイツ語"
+          }
+        }
+      }
+    },
+    "Help" : {
+      "comment" : "Section Header, contains links to support online",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayudar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヘルプ"
+          }
+        }
+      }
+    },
+    "History" : {
+      "comment" : "Nav Bar Title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geschichte"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historia"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "履歴"
+          }
+        }
+      }
+    },
+    "Improve Translations" : {
+      "comment" : "Link name, Links to a page about improving translations",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übersetzungen verbessern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mejorar las traducciones"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "翻訳改善"
+          }
+        }
+      }
+    },
+    "Japanese" : {
+      "comment" : "Header for list of people who provided translations for Japanese localisation",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japanisch"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japonesa"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日本語"
+          }
+        }
+      }
+    },
+    "Listening" : {
+      "comment" : "Button indicator, shows that the app is listening with the microphone",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hören"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escuchando"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "聞き取り中"
+          }
+        }
+      }
+    },
+    "Loading" : {
+      "comment" : "Loading indicator",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird geladen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobreprima"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "読み込み中"
+          }
+        }
+      }
+    },
+    "Match with Shazam" : {
+      "comment" : "Button name, starts listening with Shazam",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleichen mit Shazam"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partido con Shazam"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shazamでマッチ"
+          }
+        }
+      }
+    },
+    "Matches Found" : {
+      "comment" : "Button Indicator, shows that all matches have been found",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übereinstimmungen gefunden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coincidencias encontradas"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "マッチが見つかりました"
+          }
+        }
+      }
+    },
+    "No Match Found" : {
+      "comment" : "Error message title"
+    },
+    "No match was found in the Shazam Library" : {
+      "comment" : "Error message"
+    },
+    "Open" : {
+      "comment" : "A context menu item, opens the link",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abierto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開く"
+          }
+        }
+      }
+    },
+    "Open in App" : {
+      "comment" : "A context menu item, opens the link in the relevant music app",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In der app Öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abierto en la aplicación"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリで開く"
+          }
+        }
+      }
+    },
+    "Paste a Song URL" : {
+      "comment" : "Title of a text input field"
+    },
+    "Paste a URL to search for matches on other platforms." : {
+      "comment" : "Accessibility label",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fügen Sie eine URL ein, um auf anderen Plattformen nach Übereinstimmungen zu suchen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pegue una URL para buscar coincidencias en otras plataformas."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "他の音楽配信サービスで検索するには、URLをペーストしてください。"
+          }
+        }
+      }
+    },
+    "Pick your platform" : {
+      "comment" : "The modal view title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle deine Plattform"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige tu plataforma"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音楽配信サービス選択"
+          }
+        }
+      }
+    },
+    "Platform Sort Option" : {
+      "comment" : "Option name, user's choose what order to show results in",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plattform Sortieroption"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plataforma Ordenar Opción"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音楽配信サービスの並べ替え"
+          }
+        }
+      }
+    },
+    "Please try again later" : {
+      "comment" : "The description of a default error"
+    },
+    "Popularity" : {
+      "comment" : "Platform Sort Option",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popularität"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popularidad"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "好評"
+          }
+        }
+      }
+    },
+    "Powered by Song.Link" : {
+      "comment" : "Acknowledgement to the API used",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unterstützt von Song.Link"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desarrollado por Song.Link"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提供者：Song.Link"
+          }
+        }
+      }
+    },
+    "Preferences" : {
+      "comment" : "Section Header, the user preferences section",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Präferenzen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferencias"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+      "comment" : "Link name, links to the privacy policy",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutz-Bestimmungen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Política de privacidad"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシーポリシー"
+          }
+        }
+      }
+    },
+    "Save Shazam Matches to Library" : {
+      "comment" : "Option name, decides whether to save matches made with shazam to the shazam library automatically",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shazam-Matches in der Bibliothek speichern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Shazam Matches to Library"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shazamのマッチをライブラリに保存"
+          }
+        }
+      }
+    },
+    "Search Again" : {
+      "comment" : "List Swipe Action Name",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erneut suchen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Busca de nuevo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再検索"
+          }
+        }
+      }
+    },
+    "Search Link" : {
+      "comment" : "Button Name, sends a link to be matched",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link Suche"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlace de búsqueda"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "検索"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "comment" : "Tab Bar name for the settings page",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        }
+      }
+    },
+    "Share" : {
+      "comment" : "A context menu item, launches the share sheet",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シェア"
+          }
+        }
+      }
+    },
+    "Shazam Match Found" : {
+      "comment" : "Button indicator, shows a match has been found",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übereinstimmung gefunden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coincidencia de Shazam encontrada"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shazamのマッチが見つかりました"
+          }
+        }
+      }
+    },
+    "Shazam Matches" : {
+      "comment" : "Section Header in History Tab",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shazam Übereinstimmungen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coincidencias de Shazam"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shazamによるマッチ"
+          }
+        }
+      }
+    },
+    "Some information was missing" : {
+      "comment" : "Error message title"
+    },
+    "Something went wrong" : {
+      "comment" : "The title of a default error\nError message title"
+    },
+    "SongLinkr is developed by Harry Day from England" : {
+      "comment" : "Section footer",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SongLinkr wurde von Harry Day aus England entwickelt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SongLinkr es desarrollado por Harry Day de Inglaterra"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SongLinkrは、イギリスのHarry Dayさんに開発されたアプリです"
+          }
+        }
+      }
+    },
+    "Spanish" : {
+      "comment" : "Header for list of people who provided translations for Spanish localisation",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spanisch"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Español"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スペイン語"
+          }
+        }
+      }
+    },
+    "Support" : {
+      "comment" : "Link name, links to the support page",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unterstützung"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apoyar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サポート"
+          }
+        }
+      }
+    },
+    "Supported Platforms" : {
+      "comment" : "Navigation Link to a list of supported platforms",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unterstützte Plattformen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plataformas compatibles"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "対応している音楽配信サービス"
+          }
+        }
+      }
+    },
+    "Thanks To" : {
+      "comment" : "A navigation link to a list of people that are credited with thanks",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dank an"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gracias a"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "謝辞"
+          }
+        }
+      }
+    },
+    "The artwork for the media in the results" : {
+      "comment" : "Accessibility label",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Artwork für die Medien in den Ergebnissen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La obra de arte para los medios en los resultados"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "検索結果のアルバムアートワーク"
+          }
+        }
+      }
+    },
+    "The media cache was empty so the song was not saved. Please try again later" : {
+      "comment" : "Error message"
+    },
+    "The song was matched by Shazam but not enough information was returned. Please try again later." : {
+      "comment" : "Error message"
+    },
+    "Unknown" : {
+      "comment" : "Placeholder for when the version number cannot be loaded"
+    },
+    "URL Matches" : {
+      "comment" : "Section Header in History Tab",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL Übereinstimmungen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coincidencias de URL"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URLによるマッチ"
+          }
+        }
+      }
+    },
+    "URL Search Field" : {
+      "comment" : "Accessibility label",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL-Suchenfeld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El campo URL búsqueda"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL検索フィールド"
+          }
+        }
+      }
+    },
+    "Version Number" : {
+      "comment" : "The version number of the app",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Softwareversion"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de versión"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バージョン"
+          }
+        }
+      }
+    },
+    "Visit Song.Link" : {
+      "comment" : "Text which links to the Song.Link website",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besuche Song.Link"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visita Song.Link"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Song.Linkを開く"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -24,13 +24,13 @@ struct SettingsView: View {
                 ) {
                     Picker(selection: self.$userSettings.defaultPlatform, label: Text("Default Streaming Platform", comment: "Option Name, The user's preferred music platform")) {
                         ForEach(Platform.allCases, id: \.self) { platform in
-                            Text(platform.displayName)
+                            Text(verbatim: platform.displayName)
                         }
                     }
                     
                     Picker(selection: self.$userSettings.sortOption, label: Text("Platform Sort Option", comment: "Option name, user's choose what order to show results in")) {
                         ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in
-                            Text(sortOption.localisedName)
+                            Text(verbatim: sortOption.localisedName)
                         }
                     }
                     
@@ -68,22 +68,22 @@ struct SettingsView: View {
                     HStack {
                         Text("Version Number", comment: "The version number of the app")
                         Spacer()
-                        Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
+                        Text(verbatim: "\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
                             .foregroundColor(.secondary)
                     }
                     .accessibility(
                         label: Text("Version Number", comment: "The version number of the app")
                     )
                     .accessibility(
-                        value: Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
+                        value: Text(verbatim: "\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
                     )
                     
                     NavigationLink(destination: SupportedPlatformsList()) {
-                        Text("Supported Platforms")
+                        Text("Supported Platforms", comment: "Navigation Link to a list of supported platforms")
                     }
                     
                     NavigationLink(destination: TranslationCreditView()) {
-                        Text("Thanks To")
+                        Text("Thanks To", comment: "A navigation link to a list of people that are credited with thanks")
                     }
                 }
             }

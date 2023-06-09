@@ -20,8 +20,6 @@
 		8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830F24A9408C0047193B /* MainTextView.swift */; };
 		8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81831124A945F30047193B /* ResultsView.swift */; };
 		8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */; };
-		8C2906702686B8B2005A43CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C29066E2686B8B2005A43CD /* InfoPlist.strings */; };
-		8C2906732686B8B2005A43CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C2906712686B8B2005A43CD /* Localizable.strings */; };
 		8C2906782686BD0E005A43CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C2906762686BD0E005A43CD /* InfoPlist.strings */; };
 		8C29068626873F80005A43CD /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C29068926873F80005A43CD /* Intents.intentdefinition */; };
 		8C29068726873F80005A43CD /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8C29068926873F80005A43CD /* Intents.intentdefinition */; };
@@ -63,6 +61,8 @@
 		8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
 		8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5449267E17DC0062099B /* ResultsModel.swift */; };
 		8CBD49DE2672CA2600CB69DB /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
+		8CBD4EAD2A33BE5E0001BDA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8CBD4EAA2A33BE5E0001BDA2 /* InfoPlist.xcstrings */; };
+		8CBD4EAF2A33BE5F0001BDA2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8CBD4EAE2A33BE5F0001BDA2 /* Localizable.xcstrings */; };
 		8CC0527B26A1BA21007200FE /* SupportedPlatformsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0527A26A1BA21007200FE /* SupportedPlatformsList.swift */; };
 		8CC091F6267029A600ED7BED /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC091F7267029A600ED7BED /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -147,14 +147,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8C061EC426A19DCC0074C196 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicShadowModifier.swift; sourceTree = "<group>"; };
-		8C29066F2686B8B2005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8C2906722686B8B2005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C2906772686BD0E005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C29067E2686C138005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8C290681268738F6005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8C29068226873CBA005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C29068826873F80005A43CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		8C29068D26873F84005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
 		8C29068F26873F84005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Intents.strings; sourceTree = "<group>"; };
@@ -203,9 +198,8 @@
 		8CAAE7AA26F4E12F00BBF2CD /* TranslationCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationCreditView.swift; sourceTree = "<group>"; };
 		8CAD5443267E16B20062099B /* RequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
 		8CAD5449267E17DC0062099B /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
-		8CB6037B28356AF000393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8CB6037C28356B0900393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8CB6037D28356B1B00393FEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8CBD4EAA2A33BE5E0001BDA2 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		8CBD4EAE2A33BE5F0001BDA2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8CC0527A26A1BA21007200FE /* SupportedPlatformsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedPlatformsList.swift; sourceTree = "<group>"; };
 		8CC72A4724C06E2E006672AE /* Binding+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Mock.swift"; sourceTree = "<group>"; };
 		8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreviewWrapperView.swift; sourceTree = "<group>"; };
@@ -311,8 +305,8 @@
 				8C53433B24C06DD1007BDB89 /* Development Resources */,
 				8C43CB0F24A66593001B89A0 /* Assets.xcassets */,
 				8C43CB1424A66593001B89A0 /* Info.plist */,
-				8C2906712686B8B2005A43CD /* Localizable.strings */,
-				8C29066E2686B8B2005A43CD /* InfoPlist.strings */,
+				8CBD4EAE2A33BE5F0001BDA2 /* Localizable.xcstrings */,
+				8CBD4EAA2A33BE5E0001BDA2 /* InfoPlist.xcstrings */,
 				8C43CB1124A66593001B89A0 /* Preview Content */,
 			);
 			path = SongLinkr;
@@ -638,8 +632,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */,
-				8C2906732686B8B2005A43CD /* Localizable.strings in Resources */,
-				8C2906702686B8B2005A43CD /* InfoPlist.strings in Resources */,
+				8CBD4EAD2A33BE5E0001BDA2 /* InfoPlist.xcstrings in Resources */,
+				8CBD4EAF2A33BE5F0001BDA2 /* Localizable.xcstrings in Resources */,
 				8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -785,28 +779,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8C29066E2686B8B2005A43CD /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8C29066F2686B8B2005A43CD /* de */,
-				8C29068226873CBA005A43CD /* es */,
-				8CB6037C28356B0900393FEF /* ja */,
-				8CB6037D28356B1B00393FEF /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8C2906712686B8B2005A43CD /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8C2906722686B8B2005A43CD /* de */,
-				8C290681268738F6005A43CD /* es */,
-				8C061EC426A19DCC0074C196 /* en */,
-				8CB6037B28356AF000393FEF /* ja */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		8C2906762686BD0E005A43CD /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -846,7 +818,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -870,7 +842,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = Shortcuts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -949,6 +921,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1007,6 +980,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1021,7 +995,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1035,6 +1009,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1049,7 +1024,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				DEVELOPMENT_TEAM = WQ55A92845;
 				ENABLE_PREVIEWS = YES;
@@ -1063,6 +1038,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1160,7 +1136,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1186,7 +1162,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = WQ55A92845;
 				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

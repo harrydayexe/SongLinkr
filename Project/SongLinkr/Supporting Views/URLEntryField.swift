@@ -28,7 +28,7 @@ struct URLEntryField: View {
                 .accessibility(hidden: true)
             
             // Search Field
-            TextField("Paste a URL", text: self.$searchURL, prompt: Text(verbatim: "URL"))
+            TextField(String(localized: "Paste a Song URL", comment: "Title of a text input field"), text: self.$searchURL, prompt: Text(verbatim: "URL"))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(maxWidth: 700)
                 .keyboardType(.URL)

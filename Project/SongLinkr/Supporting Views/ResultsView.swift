@@ -75,7 +75,7 @@ struct ResultsView: View {
                 }
             }
             .navigationBarTitle(Text("Pick your platform", comment: "The modal view title"), displayMode: .inline)
-            .navigationBarItems(trailing: Button("Done", action: {
+            .navigationBarItems(trailing: Button(String(localized: "Done", comment: "Button on results view to close the sheet"), action: {
                 self.showResults = false
                 // Request Review
                 if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {

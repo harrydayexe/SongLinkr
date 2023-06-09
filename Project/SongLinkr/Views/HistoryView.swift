@@ -110,7 +110,7 @@ struct HistoryView: View {
             .toolbar {
                 EditButton()
             }
-        .navigationTitle(Text("History"))
+            .navigationTitle(Text("History"))
         }
     }
 }

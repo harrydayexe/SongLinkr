@@ -17,7 +17,7 @@ struct SupportedPlatformsList: View {
     var body: some View {
         List {
             ForEach(Platform.allCases, id: \.self) { platform in
-                Text(platform.displayName)
+                Text(verbatim: platform.displayName)
             }
         }
     }
