@@ -16,9 +16,6 @@ struct URLEntryField: View {
     /// The binding to the property where the user input is stored
     @Binding var searchURL: String
     
-    /// Determines if the clear button should be shown
-    @State private var isEditing: Bool = false
-    
     var body: some View {
         HStack {
             // Search Icon
@@ -33,14 +30,11 @@ struct URLEntryField: View {
                 .frame(maxWidth: 700)
                 .keyboardType(.URL)
                 .textContentType(.URL)
-                .onTapGesture {
-                    self.isEditing = true
-                }
                 .accessibility(addTraits: .isSearchField)
                 .accessibility(label: Text("URL Search Field", comment: "Accessibility label"))
                 .accessibility(hint: Text("Paste a URL to search for matches on other platforms.", comment: "Accessibility label"))
             
-            if isEditing {
+            if !searchURL.isEmpty {
                 Button(action: {
                     self.searchURL = ""
                 }) {
@@ -53,8 +47,10 @@ struct URLEntryField: View {
     }
 }
 
-struct URLEntryFieldPreview: PreviewProvider {
-    static var previews: some View {
-        URLEntryField(searchURL: .constant(""))
-    }
+#Preview {
+    URLEntryField(searchURL: .constant(""))
+}
+
+#Preview {
+    URLEntryField(searchURL: .constant("https://spotify.com/test/song"))
 }
