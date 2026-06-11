@@ -215,6 +215,7 @@
 		8CECA421283812740073A8B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Intents.strings; sourceTree = "<group>"; };
 		8CECA422283815050073A8B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8CECA423283815060073A8B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8CEE5FE32FDB603300242CE0 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		8CF1D49B269A1CA300B5A46E /* MatchedItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchedItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8CF1D49C269A1CA300B5A46E /* MatchedItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MatchedItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8CF3CFF024B3A07C004E5179 /* PlatformLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonStyle.swift; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 		8C43CAFF24A6658E001B89A0 = {
 			isa = PBXGroup;
 			children = (
+				8CEE5FE32FDB603300242CE0 /* CLAUDE.md */,
 				8CE207E22670206600DAD0F9 /* SongLinkrNetworkCore.xcodeproj */,
 				8C43CB0A24A6658E001B89A0 /* SongLinkr */,
 				8C43CB1C24A66593001B89A0 /* SongLinkrTests */,
@@ -560,7 +562,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					8C34F3B626723FEF00E05629 = {
 						CreatedOnToolsVersion = 12.5;
@@ -898,6 +900,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_BUILD = 1;
 				APP_VERSION = 1.2;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -966,6 +969,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_BUILD = 1;
 				APP_VERSION = 1.2;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
