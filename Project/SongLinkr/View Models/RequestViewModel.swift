@@ -3,23 +3,22 @@
 //  SongLinkr
 //
 //  Created by Harry Day on 19/06/2021
-//  
+//
 //
 //  Twitter: https://twitter.com/realharryday
 //  Github: https://github.com/harryday123
 //
 
-
-import Foundation
-import SwiftUI
-import SongLinkrNetworkCore
-import ShazamKit
 import AVFoundation
+import Foundation
+import ShazamKit
+import SongLinkrNetworkCore
+import SwiftUI
 
 @MainActor
 class RequestViewModel: NSObject, ObservableObject {
     /// Singleton Instance
-    static var shared: RequestViewModel = RequestViewModel()
+    static var shared: RequestViewModel = .init()
     
     // MARK: Published Properties
     
@@ -47,8 +46,8 @@ class RequestViewModel: NSObject, ObservableObject {
     /// Last Snapshot of the `UserSettings`
     var userSettingsSnapshot: UserSettings?
     
-    
     // MARK: Private Properties
+
     /// The network to make requests through
     private let network: Network
     
@@ -60,7 +59,6 @@ class RequestViewModel: NSObject, ObservableObject {
     
     /// Cache for last matched shazam item
     private var shazamItemCache: SHMediaItem?
-    
     
     // MARK: Computed Properties
     
@@ -79,7 +77,7 @@ class RequestViewModel: NSObject, ObservableObject {
                 self.shazamState = .idle
             }
         }
-        )
+    )
     }
     
     /// Declares whether an error has occured
@@ -90,6 +88,7 @@ class RequestViewModel: NSObject, ObservableObject {
     }
     
     // MARK: Initialise
+
     /**
      Create a `RequestViewModel` class
      - Parameter network: The network layer to use for retrieving results. Defaults to `Network()`
@@ -105,6 +104,7 @@ class RequestViewModel: NSObject, ObservableObject {
     }
     
     // MARK: Error Enum
+
     /// An enum representing an error that has occured during a request
     enum RequestError: Error {
         case network(Network.DataLoaderError)
@@ -116,6 +116,7 @@ class RequestViewModel: NSObject, ObservableObject {
     }
     
     // MARK: Normal Requests
+
     /**
      Retrieve the search results from the API, sort them and set them to the published property
      - Parameters:
@@ -156,7 +157,6 @@ class RequestViewModel: NSObject, ObservableObject {
             }
             return
         }
-        
         
         do {
             // Get response
@@ -315,7 +315,6 @@ class RequestViewModel: NSObject, ObservableObject {
         )
     }
     
-    
     // MARK: Shazam
     
     /// Declares what stage the shazam search is in
@@ -445,7 +444,7 @@ extension RequestViewModel: SHSessionDelegate {
             self.shazamItemCache = matchedItem
         }
         
-        Task() {
+        Task {
             // Get results from API
             await getResults(for: appleMusicURLString, with: userSettingsSnapshot, title: matchedItem.title, artist: matchedItem.artist, artworkURL: matchedItem.artworkURL, fromShazam: true)
             // Set finished state
@@ -454,7 +453,7 @@ extension RequestViewModel: SHSessionDelegate {
         
         if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
             // Save to Shazam Library Asynchronously
-            Task() {
+            Task {
                 do {
                     try await addToShazamLibrary(item: matchedItem)
                 } catch {
@@ -480,7 +479,7 @@ extension RequestViewModel: SHSessionDelegate {
             } else {
                 DispatchQueue.main.async { self.error = RequestError.unknown(error) }
             }
-        // No match found
+            // No match found
         } else {
             DispatchQueue.main.async { self.error = RequestError.matchNotFound }
         }
@@ -538,7 +537,7 @@ extension RequestViewModel.RequestError: LocalizedError {
                     comment: "Error message title"
                 )
                 
-            case .unknown(_):
+            case .unknown:
                 return String(
                     localized: "An unknown error occured",
                     comment: "Error message title"

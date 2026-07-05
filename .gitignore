@@ -90,3 +90,6 @@ fastlane/test_output
 iOSInjectionProject/
 
 .DS_Store
+
+# Local secrets (shared proxy auth token) - never commit the real values
+Secrets.xcconfig

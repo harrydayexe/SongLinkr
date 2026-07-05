@@ -18,5 +18,7 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>SongLinkAuthToken</key>
+	<string>$(SONGLINK_AUTH_TOKEN)</string>
 </dict>
 </plist>
