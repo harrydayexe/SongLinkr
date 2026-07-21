@@ -84,6 +84,8 @@
 		8CE20814267022FA00DAD0F9 /* SongLinkAPIResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLinkAPIResponseTests.swift; sourceTree = "<group>"; };
 		8CE2081A267023D100DAD0F9 /* URL+ExpressibleByStringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+ExpressibleByStringLiteral.swift"; sourceTree = "<group>"; };
 		8CE20820267024CB00DAD0F9 /* Optional+Require.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Require.swift"; sourceTree = "<group>"; };
+		8CAB000000000000000001 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		8CAB000000000000000002 /* Secrets.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.example.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,8 @@
 				8C6E7F0E26701F6B00B0D05D /* SongLinkrNetworkCore */,
 				8C6E7F1926701F6B00B0D05D /* SongLinkrNetworkCoreTests */,
 				8C6E7F0D26701F6B00B0D05D /* Products */,
+				8CAB000000000000000001 /* Secrets.xcconfig */,
+				8CAB000000000000000002 /* Secrets.example.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -503,6 +507,7 @@
 		};
 		8C6E7F2126701F6B00B0D05D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CAB000000000000000001 /* Secrets.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -533,6 +538,7 @@
 		};
 		8C6E7F2226701F6B00B0D05D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CAB000000000000000001 /* Secrets.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;

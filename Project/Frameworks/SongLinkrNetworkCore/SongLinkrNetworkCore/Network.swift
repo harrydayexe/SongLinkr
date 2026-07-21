@@ -5,15 +5,15 @@
 //  Created by Harry Day on 26/06/2020.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 /**
  The Network class contains networking utilities needed to make a request to the Song.Link API
  */
 public final class Network {
     /// Singleton
-    static public var shared = Network()
+    public static var shared = Network()
     
     /// The URL Session to use for the fetcher
     private let session: URLSession
@@ -62,6 +62,10 @@ public final class Network {
          This happens when the API cannot identify the platform or entity of the link.
          */
         case unknownEntity
+        /**
+         This error is thrown when the shared proxy auth token is missing or empty. This usually means the `SongLinkAuthToken` build setting was not configured locally (see `Secrets.example.xcconfig`).
+         */
+        case missingAuthToken
     }
 
     /**
@@ -84,14 +88,48 @@ public final class Network {
      - parameter url: A string containing the URL to be percent encoded
      - returns: The percent encoded URL as a string
      */
-    static public func encodeURL(from url: String) -> String {
-        if let encodedURL = url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+    public static func encodeURL(from url: String) -> String {
+        var allowed = CharacterSet.alphanumerics
+        allowed.insert(charactersIn: "-_.!~*'()")
+        if let encodedURL = url.addingPercentEncoding(withAllowedCharacters: allowed) {
             return encodedURL
         } else {
             preconditionFailure("Failed to percent encode shared url. Check: https://stackoverflow.com/a/33558934/9682666 for more info")
         }
     }
-    
+
+    /**
+     The shared secret used to authenticate against the SongLinkr proxy, read from the framework's `Info.plist` (populated at build time from the `SONGLINK_AUTH_TOKEN` build setting - see `Secrets.example.xcconfig`).
+     - Throws: `DataLoaderError.missingAuthToken` if the token is missing or empty.
+     */
+    private var authToken: String {
+        get throws {
+            guard
+                let token = Bundle(for: Network.self).object(forInfoDictionaryKey: "SongLinkAuthToken") as? String,
+                !token.isEmpty
+            else {
+                throw DataLoaderError.missingAuthToken
+            }
+            return token
+        }
+    }
+
+    /**
+     Builds a `URLRequest` for the given `Endpoint`, attaching the `Authorization: Bearer` header required by the proxy.
+     - parameter endpoint: The endpoint to build the request for.
+     - Throws: `DataLoaderError.invalidURL` if the endpoint could not produce a URL, or `DataLoaderError.missingAuthToken` if the auth token is not configured.
+     - Returns: A fully configured `URLRequest`.
+     */
+    private func makeRequest(for endpoint: Endpoint) throws -> URLRequest {
+        guard let url = endpoint.url else {
+            throw DataLoaderError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        try request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+
     /**
      Makes a request to the given `Endpoint`
      
@@ -103,14 +141,16 @@ public final class Network {
         from endpoint: Endpoint,
         with decoder: JSONDecoder = JSONDecoder()
     ) -> AnyPublisher<SongLinkAPIResponse, DataLoaderError> {
-        // Create URL from Endpoint
-        guard let url = endpoint.url else {
-            return Fail(error: DataLoaderError.invalidURL).eraseToAnyPublisher()
+        // Build the request object, including the Authorization header
+        let request: URLRequest
+        do {
+            request = try makeRequest(for: endpoint)
+        } catch let error as DataLoaderError {
+            return Fail(error: error).eraseToAnyPublisher()
+        } catch {
+            return Fail(error: DataLoaderError.network(error)).eraseToAnyPublisher()
         }
-        
-        // Create the request object
-        let request = URLRequest(url: url)
-        
+
         // Get the publisher data from the server using the retrieveData function
         return self.retrieveData(with: request)
             // Try to decode into SongLinkAPIResponse
@@ -142,14 +182,9 @@ public final class Network {
         from endpoint: Endpoint,
         with decoder: JSONDecoder = JSONDecoder()
     ) async throws -> SongLinkAPIResponse {
-        // Create URL from Endpoint
-        guard let url = endpoint.url else {
-            throw DataLoaderError.invalidURL
-        }
-        
-        // Create the request object
-        let request = URLRequest(url: url)
-        
+        // Build the request object, including the Authorization header
+        let request = try makeRequest(for: endpoint)
+
         do {
             // Run the data task
             let data = try await self.retrieveData(with: request)
@@ -186,9 +221,9 @@ public final class Network {
                     if let httpResponse = response as? HTTPURLResponse, 400..<500 ~= httpResponse.statusCode {
                         if let detailedResponse = BadResponse(data: data) {
                             // Start to match against known responses and reasons
-                            if (detailedResponse.code == "could not resolve entity") {
+                            if detailedResponse.code == "could not resolve entity" {
                                 throw DataLoaderError.unknownEntity
-                            } else if (detailedResponse.code == "could not fetch entity data") {
+                            } else if detailedResponse.code == "could not fetch entity data" {
                                 throw DataLoaderError.unknownItem
                             } else {
                                 // Default for unknown error
@@ -197,10 +232,10 @@ public final class Network {
                         }
                         // If can't decode then just throw the status code
                         throw DataLoaderError.serverSide(httpResponse.statusCode)
-                    // Now check for 5xx
+                        // Now check for 5xx
                     } else if let httpResponse = response as? HTTPURLResponse, 500..<600 ~= httpResponse.statusCode {
                         throw DataLoaderError.serverSide(httpResponse.statusCode)
-                    // Catch all if everything else fails
+                        // Catch all if everything else fails
                     } else {
                         throw DataLoaderError.unknownNetworkProblem
                     }
@@ -218,7 +253,6 @@ public final class Network {
                 }
             }
             .eraseToAnyPublisher()
-        
     }
     
     /**
@@ -237,9 +271,9 @@ public final class Network {
             if let httpResponse = response as? HTTPURLResponse, 400..<500 ~= httpResponse.statusCode {
                 if let detailedResponse = BadResponse(data: data) {
                     // Start to match against known responses and reasons
-                    if (detailedResponse.code == "could not resolve entity") {
+                    if detailedResponse.code == "could not resolve entity" {
                         throw DataLoaderError.unknownEntity
-                    } else if (detailedResponse.code == "could not fetch entity data") {
+                    } else if detailedResponse.code == "could not fetch entity data" {
                         throw DataLoaderError.unknownItem
                     } else {
                         // Default for unknown error
@@ -248,10 +282,10 @@ public final class Network {
                 }
                 // If can't decode then just throw the status code
                 throw DataLoaderError.serverSide(httpResponse.statusCode)
-            // Now check for 5xx
+                // Now check for 5xx
             } else if let httpResponse = response as? HTTPURLResponse, 500..<600 ~= httpResponse.statusCode {
                 throw DataLoaderError.serverSide(httpResponse.statusCode)
-            // Catch all if everything else fails
+                // Catch all if everything else fails
             } else {
                 throw DataLoaderError.unknownNetworkProblem
             }
@@ -260,7 +294,6 @@ public final class Network {
         return data
     }
         
-    
     /**
      This function unpacks the data in a dictionary in `SongLinkAPIResponse` and returns an array of that data in the form of `[PlatformLinks]`. This is useful for when arrays are needed to dynamically generate UI.
      */
@@ -310,7 +343,7 @@ public final class Network {
                 // If same display rank or both missing
                 if platformRankFirst ?? Int.max == platformRankSecond ?? Int.max {
                     return first.key < second.key
-                // Else return the result of the comparison
+                    // Else return the result of the comparison
                 } else {
                     return platformRankFirst ?? Int.max < platformRankSecond ?? Int.max
                 }
@@ -337,14 +370,14 @@ public final class Network {
         // Get the artist names excluding any from youtube
         let artistNames = entitiesDict.values.filter { entity in
             entity.platforms.contains { !($0 == .youtube || $0 == .youtubeMusic) }
-        }.reduce([APIProvider : String]()) { (dict, entity) in
+        }.reduce([APIProvider: String]()) { dict, entity in
             var dict = dict
             dict[entity.apiProvider] = entity.artistName
             return dict
         }
                                               
         // Get the song names and API Provider
-        let songTitles = entitiesDict.values.reduce([APIProvider : String]()) { dict, entity in
+        let songTitles = entitiesDict.values.reduce([APIProvider: String]()) { dict, entity in
             var dict = dict
             dict[entity.apiProvider] = entity.title
             return dict
@@ -378,17 +411,17 @@ public final class Network {
      - Parameter dict: The input dictionary to remove duplicate values from
      - Returns: The same dictionary with duplicates removed
      */
-    private static func removeDuplicates(fromDict dict: Dictionary<APIProvider, String>) -> Dictionary<APIProvider, String> {
+    private static func removeDuplicates(fromDict dict: [APIProvider: String]) -> [APIProvider: String] {
         let sourceDict = dict.sorted(by: { $0.key.informationRanking < $1.key.informationRanking })
         
         var uniqueValues = Set<String>()
-        var resultDict = [APIProvider : String](minimumCapacity: dict.count)
+        var resultDict = [APIProvider: String](minimumCapacity: dict.count)
         
         for (key, value) in sourceDict {
-          if !uniqueValues.contains(value) {
-            uniqueValues.insert(value)
-            resultDict[key] = value
-          }
+            if !uniqueValues.contains(value) {
+                uniqueValues.insert(value)
+                resultDict[key] = value
+            }
         }
         
         return resultDict
@@ -423,13 +456,13 @@ public final class Network {
 extension Network.DataLoaderError: LocalizedError {
     public var errorTitle: String? {
         switch self {
-            case .network(_):
+            case .network:
                 return String(
                     localized: "Network Error",
                     comment: "Error message title"
                 )
                 
-            case .decodingError(_):
+            case .decodingError:
                 return String(
                     localized: "Decoding Error",
                     comment: "Error message title"
@@ -438,6 +471,12 @@ extension Network.DataLoaderError: LocalizedError {
             case .invalidURL:
                 return String(
                     localized: "Invalid URL",
+                    comment: "Error message title"
+                )
+
+            case .missingAuthToken:
+                return String(
+                    localized: "Missing Auth Token",
                     comment: "Error message title"
                 )
 
@@ -496,6 +535,12 @@ extension Network.DataLoaderError: LocalizedError {
             case .invalidURL:
                 return String(
                     localized: "The URL is not valid.",
+                    comment: "Error message"
+                )
+
+            case .missingAuthToken:
+                return String(
+                    localized: "The app is not configured with a valid auth token for the server.",
                     comment: "Error message"
                 )
 

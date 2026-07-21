@@ -13,10 +13,8 @@ extension Color {
     static let itunesGrad = Gradient(colors: [
         Color(red: 234/255, green: 76/255, blue: 192/255),
         Color(red: 217/255, green: 72/255, blue: 221/255),
-        Color(red: 204/255, green: 69/255, blue: 242/255)])
-    
-    /// This is the spotify green color asset.
-    static let spotifyGreen = Color("SpotifyGreen")
+        Color(red: 204/255, green: 69/255, blue: 242/255)
+    ])
     
     /// This is the Apple Music background gradient
     static let appleMusicGrad = Gradient(colors: [
@@ -48,21 +46,6 @@ extension Color {
     /// The Spinrilla purple
     static let spinrillaPurple = Color(red: 64/255, green: 14/255, blue: 83/255)
     
-    /// This is the audius purple color asset.
-    static let audiusColour = Color("AudiusColour")
-    
     /// This is the Audiomack color asset.
     static let audiomackColour = Color(red: 255/255, green: 162/255, blue: 0/255)
-    
-    /// Off white colour for skeumorphic design cards
-    static let cardColour = Color("cardColour")
-    
-    /// Dark shadow colour for skeumorphic design
-    static let darkShadow = Color("darkShadow")
-    
-    /// Light shadow colour for skeumorphic design
-    static let lightShadow = Color("lightShadow")
-    
-    /// The background colour
-    static let offWhite = Color("offWhite")
 }
