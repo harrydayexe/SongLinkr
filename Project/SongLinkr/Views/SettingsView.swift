@@ -50,13 +50,13 @@ struct SettingsView: View {
                 Section(
                     header: Text("Help", comment: "Section Header, contains links to support online")
                 ) {
-                    Link(destination: URL(string: "https://songlinkr.harryday.xyz/support.html")!, label: {
+                    Link(destination: URL(string: "https://harryday.dev/songlinkr/support")!, label: {
                         Text("Support", comment: "Link name, links to the support page")
                     })
-                    Link(destination: URL(string: "https://songlinkr.harryday.xyz/privacy.html")!, label: {
+                    Link(destination: URL(string: "https://harryday.dev/songlinkr/privacy")!, label: {
                         Text("Privacy Policy", comment: "Link name, links to the privacy policy")
                     })
-                    Link(destination: URL(string: "http://songlinkr.harryday.xyz/translations.html")!) {
+                    Link(destination: URL(string: "http://harryday.dev/songlinkr/support")!) {
                         Text("Improve Translations", comment: "Link name, Links to a page about improving translations")
                     }
                 }

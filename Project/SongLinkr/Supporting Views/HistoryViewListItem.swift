@@ -62,7 +62,7 @@ struct HistoryViewListItem_Previews: PreviewProvider {
         item.mediaArtist = "Artist Name"
         item.mediaArtworkURL = URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg")
         item.mediaTitle = "Song Title"
-        item.originURL = URL(string: "https://songlinkr.harryday.xyz/")
+        item.originURL = URL(string: "https://harryday.dev/songlinkr")
         item.timestamp = Date(timeIntervalSinceNow: TimeInterval(1000))
         return item
     }
