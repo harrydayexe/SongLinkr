@@ -10,9 +10,11 @@ final class ShareViewController: UIViewController {
 
         let contentView = ShareExtensionView(viewModel: viewModel) {
             self.extensionContext?.completeRequest(returningItems: nil)
-        } openURL: { [weak self] url in
-            self?.openExternalURL(url)
         }
+        .environment(\.openURL, OpenURLAction { [weak self] url in
+            self?.openExternalURL(url)
+            return .handled
+        })
 
         let host = UIHostingController(rootView: contentView)
         addChild(host)

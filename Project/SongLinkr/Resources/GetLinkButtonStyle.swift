@@ -19,12 +19,9 @@ struct GetLinkButtonStyle: ButtonStyle {
     }
 }
 
-struct GetLinkButtonStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        Button(action: {}) {
-            Text(verbatim: "This is an example button")
-        }
-        .buttonStyle(GetLinkButtonStyle())
-        .previewLayout(.fixed(width: 300, height: 100))
+#Preview {
+    Button(action: {}) {
+        Text(verbatim: "This is an example button")
     }
+    .buttonStyle(GetLinkButtonStyle())
 }

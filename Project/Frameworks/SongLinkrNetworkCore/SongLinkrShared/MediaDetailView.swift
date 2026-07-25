@@ -17,9 +17,9 @@ struct MediaDetailView: View {
     let artworkURL: URL?
     let mediaTitle: String
     let artistName: String
-    let displaySaveButton: Bool
-    let saveFunction: @MainActor () async -> Bool
-    
+    var displaySaveButton: Bool = false
+    var saveFunction: (@MainActor () async -> Bool)? = nil
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
@@ -34,9 +34,7 @@ struct MediaDetailView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 25))
                         .padding()
                 } placeholder: {
-                    // Placeholder view for when image is loading
                     ZStack {
-                        // Standard progress view
                         ProgressView()
                             .zIndex(1)
                     }
@@ -49,9 +47,8 @@ struct MediaDetailView: View {
                     Text(artistName)
                         .font(.title2)
                 }.padding(.horizontal)
-                
-                // If the result is from shazam and default save to library is off
-                if displaySaveButton {
+
+                if displaySaveButton, let saveFunction {
                     Button(action: {
                         Task() {
                             hasBeenSaved = await saveFunction()
@@ -63,7 +60,6 @@ struct MediaDetailView: View {
                             Label("Added to Shazam Library", systemImage: "checkmark.circle")
                         }
                     }
-                    // Button Styling
                     .tint(.accentColor)
                     .buttonStyle(.bordered)
                     .controlSize(.large)
@@ -75,14 +71,12 @@ struct MediaDetailView: View {
     }
 }
 
-struct MediaDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        MediaDetailView(
-            artworkURL: URL(stringLiteral: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
-            mediaTitle: "Humble",
-            artistName: "Kendrick Lamar",
-            displaySaveButton: true,
-            saveFunction: { return false }
-        ).preferredColorScheme(.dark).padding()
-    }
+#Preview {
+    MediaDetailView(
+        artworkURL: URL(stringLiteral: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+        mediaTitle: "Humble",
+        artistName: "Kendrick Lamar",
+        displaySaveButton: true,
+        saveFunction: { return false }
+    ).preferredColorScheme(.dark).padding()
 }

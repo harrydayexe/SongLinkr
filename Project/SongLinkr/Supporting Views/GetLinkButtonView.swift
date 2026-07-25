@@ -22,8 +22,6 @@ struct GetLinkButtonView: View {
     }
 }
 
-struct GetLinkButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        GetLinkButtonView(callInProgress: true)
-    }
+#Preview {
+    GetLinkButtonView(callInProgress: true)
 }

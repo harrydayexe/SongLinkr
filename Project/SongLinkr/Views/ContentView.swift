@@ -5,8 +5,8 @@
 //  Created by Harry Day on 26/06/2020.
 //
 
-import SwiftUI
 import SongLinkrNetworkCore
+import SwiftUI
 
 struct ContentView: View {
     /// The app state stored in the environment
@@ -24,7 +24,7 @@ struct ContentView: View {
     /// The function to start a request via the viewmodel to the server
     private func makeRequest() {
         if searchURL != "" {
-            Task() {
+            Task {
                 viewModel.normalInProgress = true
                 await viewModel.getResults(for: searchURL, with: userSettings)
                 viewModel.normalInProgress = false
@@ -55,52 +55,52 @@ struct ContentView: View {
                 startShazam: startShazam,
                 stopShazam: stopShazam
             ).environmentObject(viewModel)
-            // Check pasteboard for URLs
-            .onAppear(perform: {
-                if UIPasteboard.general.hasURLs {
-                    if let copiedURL = UIPasteboard.general.url {
-                        self.searchURL = "\(copiedURL)"
+                // Check pasteboard for URLs
+                .onAppear(perform: {
+                    if UIPasteboard.general.hasURLs {
+                        if let copiedURL = UIPasteboard.general.url {
+                            self.searchURL = "\(copiedURL)"
+                        }
                     }
-                }
-            })
-            // Handle Deeplinks
-            .onOpenURL(perform: { deepLinkURL in
-                self.viewModel.showResults.wrappedValue = false
-                self.selectedTab = 0
-                if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
-                    self.searchURL = songLink.absoluteString
-                }
-            })
-            // Handle URLs passed in from App Intents
-            .onChange(of: viewModel.pendingDeepLinkURL) { url in
-                guard let url else { return }
-                self.viewModel.showResults.wrappedValue = false
-                self.selectedTab = 0
-                self.searchURL = url.absoluteString
-                viewModel.pendingDeepLinkURL = nil
-                makeRequest()
-            }
-            // Alert if error
-            .alert(isPresented: viewModel.showError) {
-                Alert(
-                    title: Text(viewModel.error?.localizedTitle ?? String(localized: "Something went wrong", comment: "The title of a default error")),
-                    message: Text(viewModel.error?.localizedDescription ?? String(localized: "Please try again later", comment: "The description of a default error")),
-                    dismissButton: .cancel({
-                    // Reset both
-                    viewModel.shazamState = .idle
-                    viewModel.normalInProgress = false
-                    viewModel.errorDescription = nil
                 })
-                )
-            }
-            // Results view
-            .sheet(isPresented: self.viewModel.showResults) {
-                ResultsView(
-                    showResults: self.viewModel.showResults,
-                    results: self.viewModel.resultsObject!,
-                    saveFunction: viewModel.saveCachedItem
-                )
-                // Auto open
+                // Handle Deeplinks
+                .onOpenURL(perform: { deepLinkURL in
+                    self.viewModel.showResults.wrappedValue = false
+                    self.selectedTab = 0
+                    if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
+                        self.searchURL = songLink.absoluteString
+                    }
+                })
+                // Handle URLs passed in from App Intents
+                .onChange(of: viewModel.pendingDeepLinkURL) { url in
+                    guard let url else { return }
+                    self.viewModel.showResults.wrappedValue = false
+                    self.selectedTab = 0
+                    self.searchURL = url.absoluteString
+                    viewModel.pendingDeepLinkURL = nil
+                    makeRequest()
+                }
+                // Alert if error
+                .alert(isPresented: viewModel.showError) {
+                    Alert(
+                        title: Text(viewModel.error?.localizedTitle ?? String(localized: "Something went wrong", comment: "The title of a default error")),
+                        message: Text(viewModel.error?.localizedDescription ?? String(localized: "Please try again later", comment: "The description of a default error")),
+                        dismissButton: .cancel {
+                            // Reset both
+                            viewModel.shazamState = .idle
+                            viewModel.normalInProgress = false
+                            viewModel.errorDescription = nil
+                        }
+                    )
+                }
+                // Results view
+                .sheet(isPresented: self.viewModel.showResults) {
+                    ResultsView(
+                        showResults: self.viewModel.showResults,
+                        results: self.viewModel.resultsObject!,
+                        saveFunction: viewModel.saveCachedItem
+                    )
+                    // Auto open
                     .onAppear {
                         // If auto open is on and the origin platform is not the default platform
                         if userSettings.autoOpen && self.viewModel.originEntityID != "shazam" && !self.viewModel.originEntityID.contains(userSettings.defaultPlatform.entityName) {
@@ -117,14 +117,12 @@ struct ContentView: View {
                             }
                         }
                     }
-            }
+                }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(selectedTab: .constant(0))
-            .environmentObject(UserSettings())
-    }
+#Preview {
+    ContentView(selectedTab: .constant(0))
+        .environmentObject(UserSettings())
 }

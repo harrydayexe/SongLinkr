@@ -5,8 +5,8 @@
 //  Created by Harry Day on 26/06/2020.
 //
 
-import Foundation
 import AudioToolbox
+import Foundation
 
 public typealias Platform = SongLinkAPIResponse.Platform
 
@@ -41,4 +41,8 @@ extension Platform: Codable {
     public init(from decoder: Decoder) throws {
         self = try Platform(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
     }
+}
+
+extension Platform: Identifiable {
+    public var id: RawValue { rawValue }
 }

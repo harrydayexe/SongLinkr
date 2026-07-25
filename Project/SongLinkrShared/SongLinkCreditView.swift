@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct SongLinkCreditView: View {
+    @Environment(\.openURL) private var openURL
+
     var body: some View {
         VStack {
             Text("Powered by Song.Link", comment: "Acknowledgement to the API used")
                 .font(.headline)
             Button(action: {
-                UIApplication.shared.open("https://song.link/")
+                if let url = URL(string: "https://song.link/") {
+                    openURL(url)
+                }
             }) {
                 HStack {
                     Image(systemName: "safari")
@@ -25,9 +29,6 @@ struct SongLinkCreditView: View {
     }
 }
 
-struct SongLinkCreditView_Previews: PreviewProvider {
-    static var previews: some View {
-        SongLinkCreditView()
-            .previewLayout(.fixed(width: 300, height: 100))
-    }
+#Preview {
+    SongLinkCreditView()
 }

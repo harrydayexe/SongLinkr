@@ -31,12 +31,12 @@ struct MainTabView: View {
     }
 }
 
-struct MainTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            MainTabView()
-            MainTabView(selectedView: 1)
-        }
+#Preview("Default Tab") {
+    MainTabView()
         .environmentObject(UserSettings())
-    }
+}
+
+#Preview("History Tab") {
+    MainTabView(selectedView: 1)
+        .environmentObject(UserSettings())
 }

@@ -3,7 +3,6 @@ import SwiftUI
 struct ShareExtensionView: View {
     @ObservedObject var viewModel: ShareExtensionViewModel
     let dismiss: () -> Void
-    let openURL: (URL) -> Void
 
     var body: some View {
         NavigationView {
@@ -35,8 +34,7 @@ struct ShareExtensionView: View {
                 platforms: platforms,
                 title: title,
                 artist: artist,
-                artworkURL: artworkURL,
-                openURL: openURL
+                artworkURL: artworkURL
             )
 
         case .error(let message):

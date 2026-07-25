@@ -48,4 +48,20 @@ extension Color {
     
     /// This is the Audiomack color asset.
     static let audiomackColour = Color(red: 255/255, green: 162/255, blue: 0/255)
+    
+    /// The Spotify Brand Green color.
+    static let spotifyGreen = Color(red: 30/255, green: 215/255, blue: 96/255)
+    
+    /// The Audius color
+    static let audiusColour = Color(UIColor { traits in
+        switch traits.userInterfaceStyle {
+        case .dark:
+            return UIColor(red: 73/255, green: 11/255, blue: 122/255, alpha: 1)
+        default:
+            return UIColor(red: 253/255, green: 243/255, blue: 252/255, alpha: 1)
+        }
+    })
+    
+    /// The YouTube Red brand colour.
+    static let youtubeColour = Color(red: 255/255, green: 0/255, blue: 51/255)
 }

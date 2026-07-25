@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import SongLinkrNetworkCore
-
+import SwiftUI
 
 struct PlatformLinkButtonStyle: ButtonStyle {
     let platform: Platform
@@ -38,7 +37,7 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                     configuration.label
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.red)
+                        .background(Color.youtubeColour)
                         .cornerRadius(15.0)
                 case Platform.googleStore, Platform.google:
                     configuration.label
@@ -119,6 +118,5 @@ struct PlatformLinkButtonStyle: ButtonStyle {
                         .cornerRadius(15.0)
             }
         }
-
     }
 }

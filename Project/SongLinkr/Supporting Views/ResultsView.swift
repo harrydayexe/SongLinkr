@@ -5,12 +5,14 @@
 //  Created by Harry Day on 28/06/2020.
 //
 
-import SwiftUI
-import StoreKit
 import SongLinkrNetworkCore
+import StoreKit
+import SwiftUI
 
 struct ResultsView: View {
     @EnvironmentObject var userSettings: UserSettings
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var showShareSheet = false
     @State private var shareSheetURL: URL = "https://song.link"
     @Binding var showResults: Bool
@@ -18,7 +20,7 @@ struct ResultsView: View {
     let saveFunction: @MainActor () async -> Bool
     
     var gridItemLayout = [
-        GridItem(.adaptive(minimum: 250))
+        GridItem(.adaptive(minimum: 250)),
     ]
     
     var body: some View {
@@ -31,7 +33,7 @@ struct ResultsView: View {
                         artistName: results.artistName,
                         displaySaveButton: results.isFromShazam && !userSettings.saveToShazamLibrary,
                         saveFunction: saveFunction
-                    )                    
+                    )
                     
                     ForEach(results.response) { platform in
                         PlatformLinkButtonView(platform: platform)
@@ -75,22 +77,25 @@ struct ResultsView: View {
                 }
             }
             .navigationBarTitle(Text("Pick your platform", comment: "The modal view title"), displayMode: .inline)
-            .navigationBarItems(trailing: Button("Done", action: {
-                self.showResults = false
-                // Request Review
-                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                    SKStoreReviewController.requestReview(in: scene)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        self.showResults = false
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.gray)
+                    }
                 }
-                
-            }))
-            .padding()
-            .background(Color.offWhite)
+            }
         }
+        .padding()
+        .background(Color.offWhite)
     }
 }
 
-struct ResultsView_Previews: PreviewProvider {
-    static let response = [
+#Preview {
+    let response = [
         PlatformLinks(id: Platform.yandex, url: URL(string: "https://music.yandex.ru/track/59994505")!),
         PlatformLinks(id: Platform.youtube, url: URL(string: "https://www.youtube.com/watch?v=QfnVrp2bPuE")!),
         PlatformLinks(id: Platform.google, url: URL(string: "https://play.google.com/music/m/Tpubjccp2vd46677axbqaec726i?signup_if_needed=1")!),
@@ -106,18 +111,15 @@ struct ResultsView_Previews: PreviewProvider {
         PlatformLinks(id: Platform.deezer, url: URL(string: "https://www.deezer.com/track/811904832")!),
         PlatformLinks(id: Platform.tidal, url: URL(string: "https://listen.tidal.com/track/123030090")!),
     ].sorted(by: { $0.id.rawValue < $1.id.rawValue })
-    
-    static var previews: some View {
-        ResultsView(
-            showResults: .constant(true),
-            results: ResultsModel(
-                artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
-                mediaTitle: "Humble",
-                artistName: "Kendrick Lamar",
-                isFromShazam: true,
-                response: response
-            ),
-            saveFunction: { return true }
-        ).environmentObject(UserSettings())
-    }
+    ResultsView(
+        showResults: .constant(true),
+        results: ResultsModel(
+            artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+            mediaTitle: "Humble",
+            artistName: "Kendrick Lamar",
+            isFromShazam: true,
+            response: response
+        ),
+        saveFunction: { true }
+    ).environmentObject(UserSettings())
 }

@@ -55,23 +55,20 @@ struct HistoryViewListItem: View {
     }
 }
 
-struct HistoryViewListItem_Previews: PreviewProvider {
-    static var item: MatchedItem {
-        let item = MatchedItem(context: PersistenceController.preview.container.viewContext)
-        item.isShazamMatch = false
-        item.mediaArtist = "Artist Name"
-        item.mediaArtworkURL = URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg")
-        item.mediaTitle = "Song Title"
-        item.originURL = URL(string: "https://harryday.dev/songlinkr")
-        item.timestamp = Date(timeIntervalSinceNow: TimeInterval(1000))
-        return item
-    }
-    
-    static var previews: some View {
-        List {
-            ForEach(0..<5) { _ in
-                HistoryViewListItem(item: item)
-            }
+#Preview {
+    let item: MatchedItem = {
+        let i = MatchedItem(context: PersistenceController.preview.container.viewContext)
+        i.isShazamMatch = false
+        i.mediaArtist = "Artist Name"
+        i.mediaArtworkURL = URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg")
+        i.mediaTitle = "Song Title"
+        i.originURL = URL(string: "https://harryday.dev/songlinkr")
+        i.timestamp = Date(timeIntervalSinceNow: TimeInterval(1000))
+        return i
+    }()
+    List {
+        ForEach(0..<5) { _ in
+            HistoryViewListItem(item: item)
         }
     }
 }
