@@ -20,10 +20,10 @@
 		8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830F24A9408C0047193B /* MainTextView.swift */; };
 		8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81831124A945F30047193B /* ResultsView.swift */; };
 		8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */; };
+		8C20BF473015036000508138 /* Platform+AppEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF463015036000508138 /* Platform+AppEnum.swift */; };
 		8C20BF493015036200508138 /* SendToSongLinkrIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF483015036200508138 /* SendToSongLinkrIntent.swift */; };
 		8C20BF4B3015036700508138 /* MatchURLToPlatformIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF4A3015036700508138 /* MatchURLToPlatformIntent.swift */; };
 		8C20BF4D3015036900508138 /* SongLinkrShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF4C3015036900508138 /* SongLinkrShortcuts.swift */; };
-		8C20BF553015061C00508138 /* SongLinkrPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF543015061C00508138 /* SongLinkrPlatform.swift */; };
 		8C2906702686B8B2005A43CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C29066E2686B8B2005A43CD /* InfoPlist.strings */; };
 		8C2906732686B8B2005A43CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C2906712686B8B2005A43CD /* Localizable.strings */; };
 		8C29069526875422005A43CD /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C29069426875422005A43CD /* HistoryView.swift */; };
@@ -33,12 +33,13 @@
 		8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */; };
 		8C2906DC268CAF99005A43CD /* HistoryViewListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */; };
 		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
-		8C34F3C026723FEF00E05629 /* (null) in Embed Foundation Extensions */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34F3B826723FEF00E05629 /* Intents.framework */; };
+		8C34F3C026723FEF00E05629 /* Shortcuts.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8C34F3B726723FEF00E05629 /* Shortcuts.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43C36F267FB6320084CE97 /* SearchScreenView.swift */; };
 		8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */; };
 		8C43CB2924A66593001B89A0 /* SongLinkrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB2824A66593001B89A0 /* SongLinkrUITests.swift */; };
-		8C4E90832633741B00D201C1 /* (null) in Embed Foundation Extensions */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8C4E90832633741B00D201C1 /* SongLinkrActionWithView.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C55B3E824C1008300B6E6E3 /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
 		8C55B3EA24C1008300B6E6E3 /* StatefulPreviewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */; };
 		8C55B3EF24C1008300B6E6E3 /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
@@ -57,6 +58,7 @@
 		8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
 		8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
 		8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5449267E17DC0062099B /* ResultsModel.swift */; };
+		8CBD49DE2672CA2600CB69DB /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC0527B26A1BA21007200FE /* SupportedPlatformsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0527A26A1BA21007200FE /* SupportedPlatformsList.swift */; };
 		8CC091F6267029A600ED7BED /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC091F7267029A600ED7BED /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -71,6 +73,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8C34F3BE26723FEF00E05629 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C43CB0024A6658E001B89A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C34F3B626723FEF00E05629;
+			remoteInfo = Shortcuts;
+		};
 		8C43CB1A24A66593001B89A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C43CB0024A6658E001B89A0 /* Project object */;
@@ -84,6 +93,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8C43CB0724A6658E001B89A0;
 			remoteInfo = SongLinkr;
+		};
+		8C4E90812633741B00D201C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C43CB0024A6658E001B89A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C4E90762633741B00D201C1;
+			remoteInfo = SongLinkrActionWithView;
 		};
 		8CE207E72670206600DAD0F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -119,8 +135,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8C34F3C026723FEF00E05629 /* (null) in Embed Foundation Extensions */,
-				8C4E90832633741B00D201C1 /* (null) in Embed Foundation Extensions */,
+				8C34F3C026723FEF00E05629 /* Shortcuts.appex in Embed Foundation Extensions */,
+				8C4E90832633741B00D201C1 /* SongLinkrActionWithView.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,10 +146,10 @@
 /* Begin PBXFileReference section */
 		8C061EC426A19DCC0074C196 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C063A96267A1B610064B368 /* NeumorphicShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicShadowModifier.swift; sourceTree = "<group>"; };
+		8C20BF463015036000508138 /* Platform+AppEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+AppEnum.swift"; sourceTree = "<group>"; };
 		8C20BF483015036200508138 /* SendToSongLinkrIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToSongLinkrIntent.swift; sourceTree = "<group>"; };
 		8C20BF4A3015036700508138 /* MatchURLToPlatformIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchURLToPlatformIntent.swift; sourceTree = "<group>"; };
 		8C20BF4C3015036900508138 /* SongLinkrShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrShortcuts.swift; sourceTree = "<group>"; };
-		8C20BF543015061C00508138 /* SongLinkrPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrPlatform.swift; sourceTree = "<group>"; };
 		8C29066F2686B8B2005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C2906722686B8B2005A43CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8C290681268738F6005A43CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -145,6 +161,7 @@
 		8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedItemStorage.swift; sourceTree = "<group>"; };
 		8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewListItem.swift; sourceTree = "<group>"; };
 		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
+		8C34F3B726723FEF00E05629 /* Shortcuts.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Shortcuts.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C43C36F267FB6320084CE97 /* SearchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenView.swift; sourceTree = "<group>"; };
 		8C43CB0824A6658E001B89A0 /* SongLinkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SongLinkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +175,7 @@
 		8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongLinkrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C43CB2824A66593001B89A0 /* SongLinkrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrUITests.swift; sourceTree = "<group>"; };
 		8C43CB2A24A66593001B89A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SongLinkrActionWithView.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButton.swift; sourceTree = "<group>"; };
 		8C51E3E624B36FE700BD8D3D /* PlatformLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonView.swift; sourceTree = "<group>"; };
 		8C59A911267F69790010A451 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
@@ -190,6 +208,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8C34F3B426723FEF00E05629 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CBD49DE2672CA2600CB69DB /* SongLinkrNetworkCore.framework in Frameworks */,
+				8C34F3B926723FEF00E05629 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C43CB0524A6658E001B89A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,16 +239,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C4E90742633741B00D201C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		8C20BF433015035A00508138 /* App Intents */ = {
 			isa = PBXGroup;
 			children = (
+				8C20BF463015036000508138 /* Platform+AppEnum.swift */,
 				8C20BF483015036200508138 /* SendToSongLinkrIntent.swift */,
 				8C20BF4A3015036700508138 /* MatchURLToPlatformIntent.swift */,
 				8C20BF4C3015036900508138 /* SongLinkrShortcuts.swift */,
-				8C20BF543015061C00508138 /* SongLinkrPlatform.swift */,
 			);
 			path = "App Intents";
 			sourceTree = "<group>";
@@ -245,6 +279,8 @@
 				8C43CB0824A6658E001B89A0 /* SongLinkr.app */,
 				8C43CB1924A66593001B89A0 /* SongLinkrTests.xctest */,
 				8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */,
+				8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */,
+				8C34F3B726723FEF00E05629 /* Shortcuts.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -390,6 +426,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8C34F3B626723FEF00E05629 /* Shortcuts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C34F3C526723FEF00E05629 /* Build configuration list for PBXNativeTarget "Shortcuts" */;
+			buildPhases = (
+				8C34F3B326723FEF00E05629 /* Sources */,
+				8C34F3B426723FEF00E05629 /* Frameworks */,
+				8C34F3B526723FEF00E05629 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shortcuts;
+			productName = Shortcuts;
+			productReference = 8C34F3B726723FEF00E05629 /* Shortcuts.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8C43CB0724A6658E001B89A0 /* SongLinkr */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C43CB2D24A66593001B89A0 /* Build configuration list for PBXNativeTarget "SongLinkr" */;
@@ -403,6 +456,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				8C4E90822633741B00D201C1 /* PBXTargetDependency */,
+				8C34F3BF26723FEF00E05629 /* PBXTargetDependency */,
 			);
 			name = SongLinkr;
 			productName = SongLinkr;
@@ -445,6 +500,23 @@
 			productReference = 8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8C4E90762633741B00D201C1 /* SongLinkrActionWithView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C4E90842633741B00D201C1 /* Build configuration list for PBXNativeTarget "SongLinkrActionWithView" */;
+			buildPhases = (
+				8C4E90732633741B00D201C1 /* Sources */,
+				8C4E90742633741B00D201C1 /* Frameworks */,
+				8C4E90752633741B00D201C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SongLinkrActionWithView;
+			productName = SongLinkrActionWithView;
+			productReference = 8C4E90772633741B00D201C1 /* SongLinkrActionWithView.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -455,6 +527,9 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
+					8C34F3B626723FEF00E05629 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					8C43CB0724A6658E001B89A0 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -465,6 +540,9 @@
 					8C43CB2324A66593001B89A0 = {
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = 8C43CB0724A6658E001B89A0;
+					};
+					8C4E90762633741B00D201C1 = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -493,6 +571,8 @@
 				8C43CB0724A6658E001B89A0 /* SongLinkr */,
 				8C43CB1824A66593001B89A0 /* SongLinkrTests */,
 				8C43CB2324A66593001B89A0 /* SongLinkrUITests */,
+				8C4E90762633741B00D201C1 /* SongLinkrActionWithView */,
+				8C34F3B626723FEF00E05629 /* Shortcuts */,
 			);
 		};
 /* End PBXProject section */
@@ -515,6 +595,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8C34F3B526723FEF00E05629 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C43CB0624A6658E001B89A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -541,9 +628,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C4E90752633741B00D201C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8C34F3B326723FEF00E05629 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8C43CB0424A6658E001B89A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -574,10 +675,10 @@
 				8C2906C426875EAA005A43CD /* Persistence.swift in Sources */,
 				8C29069526875422005A43CD /* HistoryView.swift in Sources */,
 				8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */,
-				8C20BF553015061C00508138 /* SongLinkrPlatform.swift in Sources */,
 				8C29069926875A9D005A43CD /* HistoryViewModel.swift in Sources */,
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
 				8C2906DC268CAF99005A43CD /* HistoryViewListItem.swift in Sources */,
+				8C20BF473015036000508138 /* Platform+AppEnum.swift in Sources */,
 				8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */,
 				8C6BE3CE24C3971D004FBDD4 /* SongLinkCreditView.swift in Sources */,
 				8C08B57924C3134900DC8235 /* ResultsView.swift in Sources */,
@@ -617,9 +718,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C4E90732633741B00D201C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8C34F3BF26723FEF00E05629 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C34F3B626723FEF00E05629 /* Shortcuts */;
+			targetProxy = 8C34F3BE26723FEF00E05629 /* PBXContainerItemProxy */;
+		};
 		8C43CB1B24A66593001B89A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8C43CB0724A6658E001B89A0 /* SongLinkr */;
@@ -629,6 +742,11 @@
 			isa = PBXTargetDependency;
 			target = 8C43CB0724A6658E001B89A0 /* SongLinkr */;
 			targetProxy = 8C43CB2524A66593001B89A0 /* PBXContainerItemProxy */;
+		};
+		8C4E90822633741B00D201C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C4E90762633741B00D201C1 /* SongLinkrActionWithView */;
+			targetProxy = 8C4E90812633741B00D201C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -658,6 +776,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8C34F3C126723FEF00E05629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 184;
+				INFOPLIST_FILE = Shortcuts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		8C34F3C226723FEF00E05629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 184;
+				INFOPLIST_FILE = Shortcuts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.Shortcuts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
 		8C43CB2B24A66593001B89A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -798,7 +962,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 184;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -827,7 +991,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 184;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -924,9 +1088,68 @@
 			};
 			name = Release;
 		};
+		8C4E90852633741B00D201C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIconExtension-iOS";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 184;
+				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrActionWithView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		8C4E90862633741B00D201C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIconExtension-iOS";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 184;
+				INFOPLIST_FILE = SongLinkrActionWithView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrActionWithView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8C34F3C526723FEF00E05629 /* Build configuration list for PBXNativeTarget "Shortcuts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C34F3C126723FEF00E05629 /* Debug */,
+				8C34F3C226723FEF00E05629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8C43CB0324A6658E001B89A0 /* Build configuration list for PBXProject "SongLinkr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -959,6 +1182,15 @@
 			buildConfigurations = (
 				8C43CB3424A66593001B89A0 /* Debug */,
 				8C43CB3524A66593001B89A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C4E90842633741B00D201C1 /* Build configuration list for PBXNativeTarget "SongLinkrActionWithView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C4E90852633741B00D201C1 /* Debug */,
+				8C4E90862633741B00D201C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

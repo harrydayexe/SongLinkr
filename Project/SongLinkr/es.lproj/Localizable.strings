@@ -129,3 +129,11 @@
 
 /* Thanks To */
 "Thanks To" = "Gracias a";
+
+/* App Intents */
+"Match URL to Platform" = "Hacer coincidir la URL con la plataforma";
+"Convert a music link to links on all supported platforms" = "Coincidir con un enlace a una canción a una plataforma específica";
+"Send to SongLinkr" = "Enviar a SongLinkr";
+"Open a music link in SongLinkr" = "Abrir un enlace de música en SongLinkr";
+"Choose Specific Platform" = "Elija una plataforma específica";
+"Target Platform" = "Plataforma de destino";

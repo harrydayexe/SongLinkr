@@ -42,6 +42,9 @@ class RequestViewModel: NSObject, ObservableObject {
     
     /// Declares if the normal process is in progress
     @Published var normalInProgress = false
+
+    /// URL set by an App Intent to trigger a search when the app opens
+    @Published var pendingDeepLinkURL: URL?
     
     /// Last Snapshot of the `UserSettings`
     var userSettingsSnapshot: UserSettings?

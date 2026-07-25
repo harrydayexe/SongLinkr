@@ -71,6 +71,15 @@ struct ContentView: View {
                     self.searchURL = songLink.absoluteString
                 }
             })
+            // Handle URLs passed in from App Intents
+            .onChange(of: viewModel.pendingDeepLinkURL) { url in
+                guard let url else { return }
+                self.viewModel.showResults.wrappedValue = false
+                self.selectedTab = 0
+                self.searchURL = url.absoluteString
+                viewModel.pendingDeepLinkURL = nil
+                makeRequest()
+            }
             // Alert if error
             .alert(isPresented: viewModel.showError) {
                 Alert(

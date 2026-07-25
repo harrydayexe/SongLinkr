@@ -129,3 +129,11 @@
 
 /* Thanks To */
 "Thanks To" = "謝辞";
+
+/* App Intents */
+"Match URL to Platform" = "URLをプラットフォームに一致させる";
+"Convert a music link to links on all supported platforms" = "曲へのリンクを特定のプラットフォームに一致させる";
+"Send to SongLinkr" = "SongLinkrに送る";
+"Open a music link in SongLinkr" = "SongLinkrで音楽リンクを開く";
+"Choose Specific Platform" = "特定のプラットフォームを選択";
+"Target Platform" = "ターゲットプラットフォーム";

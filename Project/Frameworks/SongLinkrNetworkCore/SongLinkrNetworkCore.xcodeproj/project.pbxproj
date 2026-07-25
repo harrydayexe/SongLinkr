@@ -13,7 +13,6 @@
 		8CBAAF742671004B0018F500 /* PlatformLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */; };
 		8CBAAF7626714C5D0018F500 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF7526714C5D0018F500 /* URLProtocolStub.swift */; };
 		8CBAAF782671550A0018F500 /* XCTestCase+Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBAAF772671550A0018F500 /* XCTestCase+Await.swift */; };
-		8CBD49DD2672BFE900CB69DB /* Platform+ShortcutIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBD49DC2672BFE900CB69DB /* Platform+ShortcutIndex.swift */; };
 		8CE207FE2670212000DAD0F9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE207EB2670212000DAD0F9 /* Network.swift */; };
 		8CE207FF2670212000DAD0F9 /* Endpoint+search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE207ED2670212000DAD0F9 /* Endpoint+search.swift */; };
 		8CE208002670212000DAD0F9 /* Endpoint+url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE207EE2670212000DAD0F9 /* Endpoint+url.swift */; };
@@ -56,11 +55,12 @@
 		8C6E7F1026701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C6E7F1526701F6B00B0D05D /* SongLinkrNetworkCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SongLinkrNetworkCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6E7F1C26701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CAB000000000000000001 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		8CAB000000000000000002 /* Secrets.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.example.xcconfig; sourceTree = "<group>"; };
 		8CB60378283569C600393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinksTests.swift; sourceTree = "<group>"; };
 		8CBAAF7526714C5D0018F500 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		8CBAAF772671550A0018F500 /* XCTestCase+Await.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Await.swift"; sourceTree = "<group>"; };
-		8CBD49DC2672BFE900CB69DB /* Platform+ShortcutIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+ShortcutIndex.swift"; sourceTree = "<group>"; };
 		8CDD359F283286100011AA64 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CE207EB2670212000DAD0F9 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8CE207ED2670212000DAD0F9 /* Endpoint+search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endpoint+search.swift"; sourceTree = "<group>"; };
@@ -84,8 +84,6 @@
 		8CE20814267022FA00DAD0F9 /* SongLinkAPIResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLinkAPIResponseTests.swift; sourceTree = "<group>"; };
 		8CE2081A267023D100DAD0F9 /* URL+ExpressibleByStringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+ExpressibleByStringLiteral.swift"; sourceTree = "<group>"; };
 		8CE20820267024CB00DAD0F9 /* Optional+Require.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Require.swift"; sourceTree = "<group>"; };
-		8CAB000000000000000001 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
-		8CAB000000000000000002 /* Secrets.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.example.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				8CE207F32670212000DAD0F9 /* Platform+DisplayRank.swift */,
-				8CBD49DC2672BFE900CB69DB /* Platform+ShortcutIndex.swift */,
 				8CE207F42670212000DAD0F9 /* Platform+EntityName.swift */,
 				8CE207F52670212000DAD0F9 /* Platform+iconName.swift */,
 				8CE207F62670212000DAD0F9 /* Platform+displayName.swift */,
@@ -323,7 +320,6 @@
 				8CE208042670212000DAD0F9 /* Platform+DisplayRank.swift in Sources */,
 				8CE208052670212000DAD0F9 /* Platform+EntityName.swift in Sources */,
 				8CE2080B2670212000DAD0F9 /* SongLinkAPIResponse.swift in Sources */,
-				8CBD49DD2672BFE900CB69DB /* Platform+ShortcutIndex.swift in Sources */,
 				8CE208072670212000DAD0F9 /* Platform+displayName.swift in Sources */,
 				8CE2080A2670212000DAD0F9 /* SongLinkAPIResponse+Platform.swift in Sources */,
 				8CE2080C2670212000DAD0F9 /* SongLinkAPIResponse+Entity.swift in Sources */,
