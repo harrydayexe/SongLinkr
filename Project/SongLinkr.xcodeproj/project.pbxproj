@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,6 +57,10 @@
 		8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
 		8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
 		8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5449267E17DC0062099B /* ResultsModel.swift */; };
+		8CB11A4A30151F1600C1EDE1 /* SongLinkrShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8CB11A4030151F1600C1EDE1 /* SongLinkrShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8CB11A553015206000C1EDE1 /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
+		8CB11A563015206000C1EDE1 /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8CB11A583015207500C1EDE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8CC0527B26A1BA21007200FE /* SupportedPlatformsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0527A26A1BA21007200FE /* SupportedPlatformsList.swift */; };
 		8CC091F6267029A600ED7BED /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC091F7267029A600ED7BED /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -85,6 +89,13 @@
 			remoteGlobalIDString = 8C43CB0724A6658E001B89A0;
 			remoteInfo = SongLinkr;
 		};
+		8CB11A4830151F1600C1EDE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C43CB0024A6658E001B89A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CB11A3F30151F1600C1EDE1;
+			remoteInfo = SongLinkrShareExtension;
+		};
 		8CE207E72670206600DAD0F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8CE207E22670206600DAD0F9 /* SongLinkrNetworkCore.xcodeproj */;
@@ -102,6 +113,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8CB11A573015206000C1EDE1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8CB11A563015206000C1EDE1 /* SongLinkrNetworkCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CC091F8267029A600ED7BED /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,6 +143,7 @@
 			files = (
 				8C34F3C026723FEF00E05629 /* (null) in Embed Foundation Extensions */,
 				8C4E90832633741B00D201C1 /* (null) in Embed Foundation Extensions */,
+				8CB11A4A30151F1600C1EDE1 /* SongLinkrShareExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +196,7 @@
 		8CAAE7AA26F4E12F00BBF2CD /* TranslationCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationCreditView.swift; sourceTree = "<group>"; };
 		8CAD5443267E16B20062099B /* RequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
 		8CAD5449267E17DC0062099B /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
+		8CB11A4030151F1600C1EDE1 /* SongLinkrShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SongLinkrShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB6037B28356AF000393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CB6037C28356B0900393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8CB6037D28356B1B00393FEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -188,6 +212,20 @@
 		8CF3CFF624B3B016004E5179 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		8CFADD642E840D3000F8E171 /* Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Icon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8CB11A4D30151F1600C1EDE1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8CB11A3F30151F1600C1EDE1 /* SongLinkrShareExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8CB11A4130151F1600C1EDE1 /* SongLinkrShareExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (8CB11A4D30151F1600C1EDE1 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SongLinkrShareExtension; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8C43CB0524A6658E001B89A0 /* Frameworks */ = {
@@ -209,6 +247,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB11A3D30151F1600C1EDE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB11A553015206000C1EDE1 /* SongLinkrNetworkCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +280,7 @@
 				8C43CB0A24A6658E001B89A0 /* SongLinkr */,
 				8C43CB1C24A66593001B89A0 /* SongLinkrTests */,
 				8C43CB2724A66593001B89A0 /* SongLinkrUITests */,
+				8CB11A4130151F1600C1EDE1 /* SongLinkrShareExtension */,
 				8C43CB0924A6658E001B89A0 /* Products */,
 				8CE20824267027A400DAD0F9 /* Frameworks */,
 			);
@@ -245,6 +292,7 @@
 				8C43CB0824A6658E001B89A0 /* SongLinkr.app */,
 				8C43CB1924A66593001B89A0 /* SongLinkrTests.xctest */,
 				8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */,
+				8CB11A4030151F1600C1EDE1 /* SongLinkrShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -403,6 +451,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8CB11A4930151F1600C1EDE1 /* PBXTargetDependency */,
 			);
 			name = SongLinkr;
 			productName = SongLinkr;
@@ -445,6 +494,29 @@
 			productReference = 8C43CB2424A66593001B89A0 /* SongLinkrUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8CB11A3F30151F1600C1EDE1 /* SongLinkrShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CB11A4E30151F1600C1EDE1 /* Build configuration list for PBXNativeTarget "SongLinkrShareExtension" */;
+			buildPhases = (
+				8CB11A3C30151F1600C1EDE1 /* Sources */,
+				8CB11A3D30151F1600C1EDE1 /* Frameworks */,
+				8CB11A3E30151F1600C1EDE1 /* Resources */,
+				8CB11A573015206000C1EDE1 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8CB11A4130151F1600C1EDE1 /* SongLinkrShareExtension */,
+			);
+			name = SongLinkrShareExtension;
+			packageProductDependencies = (
+			);
+			productName = SongLinkrShareExtension;
+			productReference = 8CB11A4030151F1600C1EDE1 /* SongLinkrShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -452,7 +524,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					8C43CB0724A6658E001B89A0 = {
@@ -465,6 +537,9 @@
 					8C43CB2324A66593001B89A0 = {
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = 8C43CB0724A6658E001B89A0;
+					};
+					8CB11A3F30151F1600C1EDE1 = {
+						CreatedOnToolsVersion = 26.6;
 					};
 				};
 			};
@@ -493,6 +568,7 @@
 				8C43CB0724A6658E001B89A0 /* SongLinkr */,
 				8C43CB1824A66593001B89A0 /* SongLinkrTests */,
 				8C43CB2324A66593001B89A0 /* SongLinkrUITests */,
+				8CB11A3F30151F1600C1EDE1 /* SongLinkrShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -538,6 +614,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB11A3E30151F1600C1EDE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB11A583015207500C1EDE1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +701,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8CB11A3C30151F1600C1EDE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -629,6 +720,11 @@
 			isa = PBXTargetDependency;
 			target = 8C43CB0724A6658E001B89A0 /* SongLinkr */;
 			targetProxy = 8C43CB2524A66593001B89A0 /* PBXContainerItemProxy */;
+		};
+		8CB11A4930151F1600C1EDE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CB11A3F30151F1600C1EDE1 /* SongLinkrShareExtension */;
+			targetProxy = 8CB11A4830151F1600C1EDE1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -798,7 +894,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -827,7 +923,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -924,6 +1020,71 @@
 			};
 			name = Release;
 		};
+		8CB11A4B30151F1600C1EDE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SongLinkrShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8CB11A4C30151F1600C1EDE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SongLinkrShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.harryday.songlink.SongLinkrShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -959,6 +1120,15 @@
 			buildConfigurations = (
 				8C43CB3424A66593001B89A0 /* Debug */,
 				8C43CB3524A66593001B89A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CB11A4E30151F1600C1EDE1 /* Build configuration list for PBXNativeTarget "SongLinkrShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CB11A4B30151F1600C1EDE1 /* Debug */,
+				8CB11A4C30151F1600C1EDE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
