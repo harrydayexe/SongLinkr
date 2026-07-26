@@ -11,9 +11,9 @@ import Foundation
 /**
  The Network class contains networking utilities needed to make a request to the Song.Link API
  */
-public final class Network {
+public final class Network: @unchecked Sendable {
     /// Singleton
-    public static var shared = Network()
+    public static let shared = Network()
     
     /// The URL Session to use for the fetcher
     private let session: URLSession

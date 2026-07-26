@@ -9,7 +9,6 @@
 //  Github: https://github.com/harryday123
 //
 
-import AVFoundation
 import Foundation
 import ShazamKit
 import SongLinkrNetworkCore
@@ -54,11 +53,8 @@ class RequestViewModel: NSObject, ObservableObject {
     /// The network to make requests through
     private let network: Network
     
-    /// The audio engine to access the microphone
-    private var audioEngine: AVAudioEngine
-    
     /// The Shazam Session
-    private var session: SHSession
+    private var session: SHManagedSession
     
     /// Cache for last matched shazam item
     private var shazamItemCache: SHMediaItem?
@@ -98,12 +94,10 @@ class RequestViewModel: NSObject, ObservableObject {
      */
     init(
         network: Network = .shared,
-        session: SHSession = SHSession(),
-        audioEngine: AVAudioEngine = AVAudioEngine()
+        session: SHManagedSession = SHManagedSession()
     ) {
         self.network = network
         self.session = session
-        self.audioEngine = audioEngine
     }
     
     // MARK: Error Enum
@@ -333,57 +327,79 @@ class RequestViewModel: NSObject, ObservableObject {
     }
     
     /**
-     Starts to record from the microphone and send the buffer to shazam for a match
-     - Parameter snapshot: The current value of `UserSettings`
+     Starts recording from the microphone and sends audio to Shazam for matching.
+     Uses SHManagedSession which handles audio capture internally.
+     - Parameter snapshot: The current value of UserSettings
      */
     func startShazamMatch(userSettings snapshot: UserSettings?) {
-        // Set the snapshot
         self.userSettingsSnapshot = snapshot
-        
-        // Set the progress
         self.shazamState = .matching
         
-        // The delegate will receive callbacks when the media is recognized.
-        session.delegate = self
-        
-        // Create an audio format for our buffers based on the format of the input, with a single channel (mono).
-        let audioFormat = AVAudioFormat(
-            standardFormatWithSampleRate: audioEngine.inputNode.outputFormat(forBus: 0).sampleRate,
-            channels: 1
-        )
-        
-        // Install a "tap" in the audio engine's input so that we can send buffers from the microphone to the session.
-        audioEngine.inputNode.installTap(onBus: 0, bufferSize: 2048, format: audioFormat) { [weak session] buffer, audioTime in
-            // Whenever a new buffer comes in, we send it over to the session for recognition.
-            session?.matchStreamingBuffer(buffer, at: audioTime)
-        }
-        
-        // Tell the system that we're about to start recording.
-        try? AVAudioSession.sharedInstance().setCategory(.record)
-        
-        // Ensure that we have permission to record, then start running the audio engine.
-        AVAudioSession.sharedInstance().requestRecordPermission { [weak self] success in
-            guard success, let self = self else { return }
+        Task {
+            let result = await session.result()
             
-            try? self.audioEngine.start()
+            // If matching was cancelled while waiting, exit without processing
+            guard shazamState != .idle else { return }
+            
+            switch result {
+            case .match(let match):
+                guard let matchedItem = match.mediaItems.first else {
+                    self.error = .matchNotFound
+                    return
+                }
+                guard let appleMusicURLString = matchedItem.appleMusicURL?.absoluteString else {
+                    self.error = .missingInformation
+                    return
+                }
+                self.shazamState = .matchFound
+                self.shazamItemCache = matchedItem
+                await getResults(
+                    for: appleMusicURLString,
+                    with: userSettingsSnapshot,
+                    title: matchedItem.title,
+                    artist: matchedItem.artist,
+                    artworkURL: matchedItem.artworkURL,
+                    fromShazam: true
+                )
+                self.shazamState = .finished
+                if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
+                    Task {
+                        do {
+                            try await addToShazamLibrary(item: matchedItem)
+                        } catch {
+                            if let error = error as? RequestError {
+                                self.error = error
+                            } else {
+                                self.error = RequestError.unknown(error)
+                            }
+                        }
+                    }
+                }
+            case .noMatch:
+                self.error = .matchNotFound
+            case .error(let error, _):
+                if let shError = error as? SHError {
+                    self.error = .shazam(shError)
+                } else {
+                    self.error = .unknown(error)
+                }
+            }
         }
     }
     
-    /// Stops recording and removes the buffer tap
+    /// Stops recording and cancels the current Shazam match attempt
     func stopMatching() {
-        audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
+        session.cancel()
     }
     
     /**
      Add the given media item to the user's shazam library
      - Parameter item: The item to add to the shazam library
-     - Throws: A `RequestError`
+     - Throws: A RequestError
      */
     private func addToShazamLibrary(item: SHMediaItem) async throws {
-        // Save to Shazam Library Asynchronously
         do {
-            try await SHMediaLibrary.default.add([item])
+            try await SHLibrary.default.addItems([item])
             print("Added to Library")
         } catch {
             if let error = error as? SHError {
@@ -399,92 +415,21 @@ class RequestViewModel: NSObject, ObservableObject {
      - Returns: A Bool declaring if the operation was successful or not
      */
     func saveCachedItem() async -> Bool {
-        // Get the cached item
         guard let cachedItem = shazamItemCache else {
             self.error = RequestError.cacheEmpty
             return false
         }
         
         do {
-            // Try to add to library
             try await addToShazamLibrary(item: cachedItem)
             return true
         } catch {
-            // Catch all errors, set relevant one to error property
             if let error = error as? RequestError {
                 self.error = error
             } else {
                 self.error = RequestError.unknown(error)
             }
             return false
-        }
-    }
-}
-
-extension RequestViewModel: SHSessionDelegate {
-    /// Match found
-    func session(_ session: SHSession, didFind match: SHMatch) {
-        print("Match Found")
-        
-        // Stop recording
-        stopMatching()
-        
-        // Get the matched item
-        guard let matchedItem = match.mediaItems.first else {
-            DispatchQueue.main.async { self.error = .matchNotFound }
-            return
-        }
-        
-        // Get the apple music URL
-        guard let appleMusicURLString = matchedItem.appleMusicURL?.absoluteString else {
-            DispatchQueue.main.async { self.error = .missingInformation }
-            return
-        }
-        
-        // Set the button status and cache item
-        DispatchQueue.main.async {
-            self.shazamState = .matchFound
-            self.shazamItemCache = matchedItem
-        }
-        
-        Task {
-            // Get results from API
-            await getResults(for: appleMusicURLString, with: userSettingsSnapshot, title: matchedItem.title, artist: matchedItem.artist, artworkURL: matchedItem.artworkURL, fromShazam: true)
-            // Set finished state
-            self.shazamState = .finished
-        }
-        
-        if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
-            // Save to Shazam Library Asynchronously
-            Task {
-                do {
-                    try await addToShazamLibrary(item: matchedItem)
-                } catch {
-                    // Catch all errors, set relevant one to error property
-                    if let error = error as? RequestError {
-                        DispatchQueue.main.async { self.error = error }
-                    } else {
-                        DispatchQueue.main.async { self.error = RequestError.unknown(error) }
-                    }
-                    return
-                }
-            }
-        }
-    }
-    
-    /// No match found or error occured
-    func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
-        stopMatching()
-        // Check if error occured
-        if let error = error {
-            if let shError = error as? SHError {
-                DispatchQueue.main.async { self.error = RequestError.shazam(shError) }
-            } else {
-                DispatchQueue.main.async { self.error = RequestError.unknown(error) }
-            }
-            // No match found
-        } else {
-            DispatchQueue.main.async { self.error = RequestError.matchNotFound }
         }
     }
 }

@@ -72,7 +72,7 @@ struct ContentView: View {
                     }
                 })
                 // Handle URLs passed in from App Intents
-                .onChange(of: viewModel.pendingDeepLinkURL) { url in
+                .onChange(of: viewModel.pendingDeepLinkURL) { _, url in
                     guard let url else { return }
                     self.viewModel.showResults.wrappedValue = false
                     self.selectedTab = 0

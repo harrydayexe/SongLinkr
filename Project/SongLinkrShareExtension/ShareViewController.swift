@@ -59,8 +59,8 @@ final class ShareViewController: UIViewController {
         else { return nil }
 
         return try? await withCheckedThrowingContinuation { continuation in
-            attachment.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { item, error in
-                if let url = item as? URL {
+            attachment.loadObject(ofClass: NSURL.self) { nsurl, error in
+                if let url = nsurl as? URL {
                     continuation.resume(returning: url)
                 } else {
                     continuation.resume(throwing: error ?? URLError(.badURL))
