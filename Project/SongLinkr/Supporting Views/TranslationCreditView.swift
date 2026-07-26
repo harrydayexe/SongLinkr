@@ -33,8 +33,6 @@ struct TranslationCreditView: View {
     }
 }
 
-struct TranslationCreditView_Previews: PreviewProvider {
-    static var previews: some View {
-        TranslationCreditView()
-    }
+#Preview {
+    TranslationCreditView()
 }

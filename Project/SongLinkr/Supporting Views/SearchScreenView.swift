@@ -42,8 +42,6 @@ struct SearchScreenView: View {
     }
 }
 
-struct SearchScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchScreenView(searchURL: .constant(""), shazamInProgress: .constant(.idle), normalInProgress: .constant(false), makeRequest: {}, startShazam: {}, stopShazam: {})
-    }
+#Preview {
+    SearchScreenView(searchURL: .constant(""), shazamInProgress: .constant(.idle), normalInProgress: .constant(false), makeRequest: {}, startShazam: {}, stopShazam: {})
 }

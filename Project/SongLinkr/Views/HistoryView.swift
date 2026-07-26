@@ -115,16 +115,11 @@ struct HistoryView: View {
     }
 }
 
-struct HistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryView(selectedTab: .constant(1), viewModel: historyViewModel)
-    }
-}
-
-extension PreviewProvider {
-    static var historyViewModel: HistoryViewModel {
-        HistoryViewModel(
+#Preview {
+    HistoryView(
+        selectedTab: .constant(1),
+        viewModel: HistoryViewModel(
             matchedItemPublisher: MatchedItemStorage.shared.matchedItems.eraseToAnyPublisher()
         )
-    }
+    )
 }

@@ -23,8 +23,6 @@ struct SupportedPlatformsList: View {
     }
 }
 
-struct SupportedPlatformsList_Previews: PreviewProvider {
-    static var previews: some View {
-        SupportedPlatformsList()
-    }
+#Preview {
+    SupportedPlatformsList()
 }

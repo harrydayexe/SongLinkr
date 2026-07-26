@@ -92,13 +92,7 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var userSettings = UserSettings()
-    
-    static var previews: some View {
-        Group {
-            SettingsView()
-        }
-            .environmentObject(userSettings)
-    }
+#Preview {
+    SettingsView()
+        .environmentObject(UserSettings())
 }

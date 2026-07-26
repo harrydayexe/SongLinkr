@@ -28,8 +28,6 @@ struct MainTextView: View {
     }
 }
 
-struct MainTextView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTextView(searchURL: .constant(""))
-    }
+#Preview {
+    MainTextView(searchURL: .constant(""))
 }
