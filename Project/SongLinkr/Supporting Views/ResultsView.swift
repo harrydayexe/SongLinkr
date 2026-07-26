@@ -76,7 +76,8 @@ struct ResultsView: View {
                     ShareSheet(activityItems: [self.shareSheetURL])
                 }
             }
-            .navigationBarTitle(Text("Pick your platform", comment: "The modal view title"), displayMode: .inline)
+            .navigationTitle(Text("Pick your platform", comment: "The modal view title"))
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -111,15 +112,21 @@ struct ResultsView: View {
         PlatformLinks(id: Platform.deezer, url: URL(string: "https://www.deezer.com/track/811904832")!),
         PlatformLinks(id: Platform.tidal, url: URL(string: "https://listen.tidal.com/track/123030090")!),
     ].sorted(by: { $0.id.rawValue < $1.id.rawValue })
-    ResultsView(
-        showResults: .constant(true),
-        results: ResultsModel(
-            artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
-            mediaTitle: "Humble",
-            artistName: "Kendrick Lamar",
-            isFromShazam: true,
-            response: response
-        ),
-        saveFunction: { true }
-    ).environmentObject(UserSettings())
+    
+    let results = ResultsModel(
+        artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+        mediaTitle: "Humble",
+        artistName: "Kendrick Lamar",
+        isFromShazam: true,
+        response: response
+    )
+    
+    Color.clear
+        .sheet(isPresented: .constant(true)) {
+            ResultsView(
+                showResults: .constant(true),
+                results: results,
+                saveFunction: { true }
+            ).environmentObject(UserSettings())
+        }
 }
