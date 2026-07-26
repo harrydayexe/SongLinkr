@@ -53,8 +53,6 @@
 		8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
 		8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5449267E17DC0062099B /* ResultsModel.swift */; };
 		8CB11A4A30151F1600C1EDE1 /* SongLinkrShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8CB11A4030151F1600C1EDE1 /* SongLinkrShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8CB11A553015206000C1EDE1 /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
-		8CB11A563015206000C1EDE1 /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CB11A583015207500C1EDE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8CB11A9D3015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9B3015390F00C1EDE1 /* SongLinkCreditView.swift */; };
 		8CB11A9E3015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9A3015390F00C1EDE1 /* PlatformLinkButtonView.swift */; };
@@ -80,6 +78,7 @@
 		8CB11AB23015390F00C1EDE1 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A963015390F00C1EDE1 /* ColorManager.swift */; };
 		8CB11AB33015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A983015390F00C1EDE1 /* NeumorphicShadowModifier.swift */; };
 		8CB11AB43015390F00C1EDE1 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A973015390F00C1EDE1 /* MediaDetailView.swift */; };
+		8CB11B3D30164F7F00C1EDE1 /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC0527B26A1BA21007200FE /* SupportedPlatformsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0527A26A1BA21007200FE /* SupportedPlatformsList.swift */; };
 		8CC091F6267029A600ED7BED /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC091F7267029A600ED7BED /* SongLinkrNetworkCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -129,17 +128,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8CB11A573015206000C1EDE1 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8CB11A563015206000C1EDE1 /* SongLinkrNetworkCore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8CC091F8267029A600ED7BED /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,7 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CB11A553015206000C1EDE1 /* SongLinkrNetworkCore.framework in Frameworks */,
+				8CB11B3D30164F7F00C1EDE1 /* SongLinkrNetworkCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +513,6 @@
 				8CB11A3C30151F1600C1EDE1 /* Sources */,
 				8CB11A3D30151F1600C1EDE1 /* Frameworks */,
 				8CB11A3E30151F1600C1EDE1 /* Resources */,
-				8CB11A573015206000C1EDE1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -934,7 +921,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 191;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -962,7 +949,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 191;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -1064,7 +1051,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 191;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;
@@ -1097,7 +1084,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 191;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;
