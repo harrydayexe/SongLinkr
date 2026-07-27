@@ -37,7 +37,6 @@ struct ShazamButton: View {
             }
         }
         .tint(.blue)
-        .buttonStyle(.bordered)
         .controlSize(.large)
         .buttonStyle(.borderedProminent)
         .disabled(shazamState == .matchFound || shazamState == .finished)

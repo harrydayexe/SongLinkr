@@ -14,7 +14,7 @@ struct ContentView: View {
     @Environment(UserSettings.self) private var userSettings
 
     @State var searchURL: String = ""
-    @Binding var selectedTab: Int
+    @Binding var selectedTab: AppTab
 
     /// Pending URL written by SendToSongLinkrIntent; cleared after processing.
     @AppStorage("pendingDeepLinkURL") private var pendingDeepLinkURLString: String = ""
@@ -50,25 +50,19 @@ struct ContentView: View {
                 startShazam: startShazam,
                 stopShazam: stopShazam
             )
-            // Check pasteboard for URLs
-            .onAppear {
-                if UIPasteboard.general.hasURLs, let copiedURL = UIPasteboard.general.url {
-                    searchURL = "\(copiedURL)"
-                }
-            }
             // Handle deep links from the songlinkr:// URL scheme
             .onOpenURL { deepLinkURL in
                 searchModel.results = nil
-                selectedTab = 0
+                selectedTab = .search
                 if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
                     searchURL = songLink.absoluteString
                 }
             }
-            // Handle URLs queued by SendToSongLinkrIntent via UserDefaults
+            // Handle URLs queued by SendToSongLinkrIntent or HistoryView via UserDefaults
             .onChange(of: pendingDeepLinkURLString) { _, urlString in
                 guard !urlString.isEmpty, let url = URL(string: urlString) else { return }
                 searchModel.results = nil
-                selectedTab = 0
+                selectedTab = .search
                 searchURL = url.absoluteString
                 pendingDeepLinkURLString = ""
                 makeRequest()
@@ -78,15 +72,25 @@ struct ContentView: View {
                 if id == nil { shazamMatcher.shazamState = .idle }
             }
             // Error alert
-            .alert(item: $searchModel.error) { error in
-                Alert(
-                    title: Text(error.localizedTitle ?? String(localized: "Something went wrong", comment: "Generic error title")),
-                    message: Text(error.localizedDescription),
-                    dismissButton: .cancel {
+            .alert(
+                searchModel.error?.localizedTitle ?? String(localized: "Something went wrong", comment: "Generic error title"),
+                isPresented: Binding(
+                    get: { searchModel.error != nil },
+                    set: { if !$0 {
                         shazamMatcher.shazamState = .idle
                         searchModel.normalInProgress = false
-                    }
-                )
+                        searchModel.error = nil
+                    }}
+                ),
+                presenting: searchModel.error
+            ) { _ in
+                Button(String(localized: "OK"), role: .cancel) {
+                    shazamMatcher.shazamState = .idle
+                    searchModel.normalInProgress = false
+                    searchModel.error = nil
+                }
+            } message: { error in
+                Text(error.localizedDescription)
             }
             // Results sheet
             .sheet(item: $searchModel.results) { results in
@@ -101,7 +105,7 @@ struct ContentView: View {
 
 #Preview {
     let model = SearchModel()
-    ContentView(selectedTab: .constant(0))
+    ContentView(selectedTab: .constant(.search))
         .environment(UserSettings())
         .environment(model)
         .environment(ShazamMatcher(searchModel: model))

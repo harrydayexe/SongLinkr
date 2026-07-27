@@ -13,9 +13,7 @@ struct ResultsView: View {
     @Environment(UserSettings.self) var userSettings
     @Environment(SearchModel.self) var searchModel
     @Environment(\.dismiss) private var dismiss
-
-    @State private var showShareSheet = false
-    @State private var shareSheetURL: URL = "https://song.link"
+    @Environment(\.openURL) private var openURL
 
     let results: ResultsModel
     let saveFunction: @MainActor () async -> Bool
@@ -23,7 +21,7 @@ struct ResultsView: View {
     var gridItemLayout = [GridItem(.adaptive(minimum: 250))]
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 LazyVGrid(columns: gridItemLayout, spacing: 20) {
                     MediaDetailView(
@@ -37,10 +35,7 @@ struct ResultsView: View {
                     ForEach(results.response) { platform in
                         PlatformLinkButtonView(platform: platform)
                             .contextMenu {
-                                Button(action: {
-                                    shareSheetURL = platform.url
-                                    showShareSheet = true
-                                }) {
+                                ShareLink(item: platform.url) {
                                     Text("Share", comment: "A context menu item, launches the share sheet")
                                     Image(systemName: "square.and.arrow.up")
                                 }
@@ -50,13 +45,13 @@ struct ResultsView: View {
                                     Image(systemName: "doc.on.doc")
                                 }
 
-                                Button(action: { UIApplication.shared.open(platform.url) }) {
+                                Button(action: { openURL(platform.url) }) {
                                     Text("Open", comment: "A context menu item, opens the link")
                                     Image(systemName: "safari")
                                 }
 
                                 if platform.nativeAppUriMobile != nil {
-                                    Button(action: { UIApplication.shared.open(platform.nativeAppUriMobile!) }) {
+                                    Button(action: { openURL(platform.nativeAppUriMobile!) }) {
                                         Text("Open in App", comment: "A context menu item, opens the link in the relevant music app")
                                         Image(systemName: "square.on.square")
                                     }
@@ -65,13 +60,6 @@ struct ResultsView: View {
                     }
                     SongLinkCreditView()
                 }
-                .popover(
-                    isPresented: $showShareSheet,
-                    attachmentAnchor: .point(.bottom),
-                    arrowEdge: .bottom
-                ) {
-                    ShareSheet(activityItems: [shareSheetURL])
-                }
             }
             .navigationTitle(Text("Pick your platform", comment: "The modal view title"))
             .navigationBarTitleDisplayMode(.inline)
@@ -79,7 +67,7 @@ struct ResultsView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { dismiss() }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(.gray)
+                            .foregroundStyle(.gray)
                     }
                 }
             }
@@ -91,7 +79,7 @@ struct ResultsView: View {
             guard searchModel.originEntityID != "shazam" else { return }
             guard !searchModel.originEntityID.contains(userSettings.defaultPlatform.entityName) else { return }
             if let defaultPlatform = results.response.first(where: { $0.id == userSettings.defaultPlatform }) {
-                UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
+                openURL(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
             }
         }
     }

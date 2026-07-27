@@ -39,7 +39,7 @@ struct MediaDetailView: View {
                     }
                     .aspectRatio(1, contentMode: .fit)
                 }
-                .accessibility(label: Text("The artwork for the media in the results", comment: "Accessibility label"))
+                .accessibilityLabel(Text("The artwork for the media in the results", comment: "Accessibility label"))
                 Group {
                     Text(mediaTitle)
                         .font(.title).fontWeight(.semibold)

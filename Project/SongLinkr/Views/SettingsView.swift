@@ -15,7 +15,7 @@ struct SettingsView: View {
 
     var body: some View {
         @Bindable var settings = userSettings
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(
                     header: Text("Preferences", comment: "Section Header, the user preferences section"),
@@ -71,14 +71,10 @@ struct SettingsView: View {
                         Text("Version Number", comment: "The version number of the app")
                         Spacer()
                         Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                     }
-                    .accessibility(
-                        label: Text("Version Number", comment: "The version number of the app")
-                    )
-                    .accessibility(
-                        value: Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
-                    )
+                    .accessibilityLabel(Text("Version Number", comment: "The version number of the app"))
+                    .accessibilityValue(Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))"))
 
                     NavigationLink(destination: SupportedPlatformsList()) {
                         Text("Supported Platforms")

@@ -18,7 +18,6 @@ struct GetLinkButton: View {
             GetLinkButtonView(callInProgress: inProgress)
         }
         .tint(.accentColor)
-        .buttonStyle(.bordered)
         .controlSize(.large)
         .buttonStyle(.borderedProminent)
         .keyboardShortcut(.defaultAction)

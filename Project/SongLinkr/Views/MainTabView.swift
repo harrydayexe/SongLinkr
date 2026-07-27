@@ -7,25 +7,26 @@
 
 import SwiftUI
 
+enum AppTab: Hashable {
+    case search
+    case history
+    case settings
+}
+
 struct MainTabView: View {
-    @State var selectedView = 0
+    @State var selectedView: AppTab = .search
 
     var body: some View {
         TabView(selection: $selectedView) {
-            ContentView(selectedTab: $selectedView)
-                .tabItem {
-                    Image(systemName: "textbox")
-                    Text(verbatim: "SongLinkr")
-                }.tag(0)
-            HistoryView(selectedTab: $selectedView)
-                .tabItem {
-                    Label("History", systemImage: "clock")
-                }.tag(1)
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings", comment: "Tab Bar name for the settings page")
-                }.tag(2)
+            Tab("SongLinkr", systemImage: "textbox", value: AppTab.search) {
+                ContentView(selectedTab: $selectedView)
+            }
+            Tab("History", systemImage: "clock", value: AppTab.history) {
+                HistoryView(selectedTab: $selectedView)
+            }
+            Tab("Settings", systemImage: "gear", value: AppTab.settings) {
+                SettingsView()
+            }
         }
     }
 }
@@ -40,7 +41,7 @@ struct MainTabView: View {
 
 #Preview("History Tab") {
     let model = SearchModel()
-    MainTabView(selectedView: 1)
+    MainTabView(selectedView: .history)
         .environment(UserSettings())
         .environment(model)
         .environment(ShazamMatcher(searchModel: model))

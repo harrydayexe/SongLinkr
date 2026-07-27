@@ -5,7 +5,7 @@ struct ShareExtensionView: View {
     let dismiss: () -> Void
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             contentView
                 .navigationTitle("SongLinkr")
                 .navigationBarTitleDisplayMode(.inline)
@@ -25,7 +25,7 @@ struct ShareExtensionView: View {
                 ProgressView()
                     .scaleEffect(1.5)
                 Text("Looking up links…")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
@@ -41,10 +41,10 @@ struct ShareExtensionView: View {
             VStack(spacing: 12) {
                 Image(systemName: "exclamationmark.circle")
                     .font(.system(size: 44))
-                    .foregroundColor(.red)
+                    .foregroundStyle(.red)
                 Text(message)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .padding(.horizontal)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

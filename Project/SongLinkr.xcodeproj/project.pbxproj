@@ -40,14 +40,12 @@
 		8C55B3E824C1008300B6E6E3 /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
 		8C55B3EA24C1008300B6E6E3 /* StatefulPreviewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */; };
 		8C55B3EF24C1008300B6E6E3 /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
-		8C55B3FF24C1008300B6E6E3 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1F3E024C0807900E6B853 /* ActivityView.swift */; };
 		8C59A912267F69790010A451 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C59A911267F69790010A451 /* ShazamButton.swift */; };
 		8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */; };
 		8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */; };
 		8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
-		8CA1F3E124C0807900E6B853 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1F3E024C0807900E6B853 /* ActivityView.swift */; };
 		8CA992EF3017F9AB007B7DFA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992EE3017F9AB007B7DFA /* SearchModel.swift */; };
 		8CA992F03017F9AB007B7DFA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992EE3017F9AB007B7DFA /* SearchModel.swift */; };
 		8CA992F43017F9BA007B7DFA /* ShazamMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992F33017F9BA007B7DFA /* ShazamMatcher.swift */; };
@@ -197,7 +195,6 @@
 		8C81830824A908070047193B /* GetLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8C81830F24A9408C0047193B /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
 		8C81831124A945F30047193B /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
-		8CA1F3E024C0807900E6B853 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
 		8CA992EE3017F9AB007B7DFA /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		8CA992F33017F9BA007B7DFA /* ShazamMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamMatcher.swift; sourceTree = "<group>"; };
@@ -393,7 +390,6 @@
 			isa = PBXGroup;
 			children = (
 				8C81830824A908070047193B /* GetLinkButtonStyle.swift */,
-				8CA1F3E024C0807900E6B853 /* ActivityView.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -678,7 +674,6 @@
 				8CB11AA83015390F00C1EDE1 /* MediaDetailView.swift in Sources */,
 				8C59A912267F69790010A451 /* ShazamButton.swift in Sources */,
 				8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */,
-				8CA1F3E124C0807900E6B853 /* ActivityView.swift in Sources */,
 				8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */,
 				8C2906C426875EAA005A43CD /* Persistence.swift in Sources */,
 				8C29069526875422005A43CD /* HistoryView.swift in Sources */,
@@ -712,7 +707,6 @@
 				8C55B3EF24C1008300B6E6E3 /* GetLinkButtonStyle.swift in Sources */,
 				8C0615DC26E027E6000CD6C9 /* MatchedItem+CoreDataClass.swift in Sources */,
 				8C55B3EA24C1008300B6E6E3 /* StatefulPreviewWrapperView.swift in Sources */,
-				8C55B3FF24C1008300B6E6E3 /* ActivityView.swift in Sources */,
 				8C0615DE26E02800000CD6C9 /* Persistence.swift in Sources */,
 				8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */,
 				8C0615DA26E027DD000CD6C9 /* ResultsModel.swift in Sources */,
