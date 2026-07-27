@@ -9,120 +9,100 @@ import SongLinkrNetworkCore
 import SwiftUI
 
 struct ContentView: View {
-    /// The app state stored in the environment
-    @StateObject var viewModel: RequestViewModel = .shared
-    
-    /// The user settings stored in the environment
-    @EnvironmentObject var userSettings: UserSettings
-    
-    /// The URL the user is searching
+    @Environment(SearchModel.self) private var searchModel
+    @Environment(ShazamMatcher.self) private var shazamMatcher
+    @Environment(UserSettings.self) private var userSettings
+
     @State var searchURL: String = ""
-    
-    /// The selected tab
     @Binding var selectedTab: Int
-    
-    /// The function to start a request via the viewmodel to the server
+
+    /// Pending URL written by SendToSongLinkrIntent; cleared after processing.
+    @AppStorage("pendingDeepLinkURL") private var pendingDeepLinkURLString: String = ""
+
     private func makeRequest() {
-        if searchURL != "" {
-            Task {
-                viewModel.normalInProgress = true
-                await viewModel.getResults(for: searchURL, with: userSettings)
-                viewModel.normalInProgress = false
-            }
+        guard searchURL != "" else { return }
+        Task {
+            searchModel.normalInProgress = true
+            await searchModel.getResults(for: searchURL, with: userSettings)
+            searchModel.normalInProgress = false
         }
     }
-    
-    /// The function to start a shazam match via the viewmodel
+
     private func startShazam() {
-        print("Shazam Match Started")
-        viewModel.startShazamMatch(userSettings: userSettings)
+        shazamMatcher.startShazamMatch(userSettings: userSettings)
     }
-    
-    /// The function to stop recording and matching on Shazam
+
     private func stopShazam() {
-        print("Shazam Match Cancelled")
-        viewModel.stopMatching()
-        viewModel.shazamState = .idle
+        shazamMatcher.stopMatching()
+        shazamMatcher.shazamState = .idle
     }
-    
+
     var body: some View {
-        NavigationView {
+        @Bindable var searchModel = searchModel
+        @Bindable var shazamMatcher = shazamMatcher
+
+        NavigationStack {
             SearchScreenView(
                 searchURL: $searchURL,
-                shazamInProgress: $viewModel.shazamState,
-                normalInProgress: $viewModel.normalInProgress,
+                shazamInProgress: $shazamMatcher.shazamState,
+                normalInProgress: $searchModel.normalInProgress,
                 makeRequest: makeRequest,
                 startShazam: startShazam,
                 stopShazam: stopShazam
-            ).environmentObject(viewModel)
-                // Check pasteboard for URLs
-                .onAppear(perform: {
-                    if UIPasteboard.general.hasURLs {
-                        if let copiedURL = UIPasteboard.general.url {
-                            self.searchURL = "\(copiedURL)"
-                        }
-                    }
-                })
-                // Handle Deeplinks
-                .onOpenURL(perform: { deepLinkURL in
-                    self.viewModel.showResults.wrappedValue = false
-                    self.selectedTab = 0
-                    if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
-                        self.searchURL = songLink.absoluteString
-                    }
-                })
-                // Handle URLs passed in from App Intents
-                .onChange(of: viewModel.pendingDeepLinkURL) { _, url in
-                    guard let url else { return }
-                    self.viewModel.showResults.wrappedValue = false
-                    self.selectedTab = 0
-                    self.searchURL = url.absoluteString
-                    viewModel.pendingDeepLinkURL = nil
-                    makeRequest()
+            )
+            // Check pasteboard for URLs
+            .onAppear {
+                if UIPasteboard.general.hasURLs, let copiedURL = UIPasteboard.general.url {
+                    searchURL = "\(copiedURL)"
                 }
-                // Alert if error
-                .alert(isPresented: viewModel.showError) {
-                    Alert(
-                        title: Text(viewModel.error?.localizedTitle ?? String(localized: "Something went wrong", comment: "The title of a default error")),
-                        message: Text(viewModel.error?.localizedDescription ?? String(localized: "Please try again later", comment: "The description of a default error")),
-                        dismissButton: .cancel {
-                            // Reset both
-                            viewModel.shazamState = .idle
-                            viewModel.normalInProgress = false
-                            viewModel.errorDescription = nil
-                        }
-                    )
+            }
+            // Handle deep links from the songlinkr:// URL scheme
+            .onOpenURL { deepLinkURL in
+                searchModel.results = nil
+                selectedTab = 0
+                if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
+                    searchURL = songLink.absoluteString
                 }
-                // Results view
-                .sheet(isPresented: self.viewModel.showResults) {
-                    ResultsView(
-                        showResults: self.viewModel.showResults,
-                        results: self.viewModel.resultsObject!,
-                        saveFunction: viewModel.saveCachedItem
-                    )
-                    // Auto open
-                    .onAppear {
-                        // If auto open is on and the origin platform is not the default platform
-                        if userSettings.autoOpen && self.viewModel.originEntityID != "shazam" && !self.viewModel.originEntityID.contains(userSettings.defaultPlatform.entityName) {
-                            // Try to get the default platform index
-                            if let defaultPlatformIndex = self.viewModel.resultsObject?.response.firstIndex(where: {
-                                $0.id == userSettings.defaultPlatform
-                            }) {
-                                // Get the default platform
-                                if let defaultPlatform = self.viewModel.resultsObject?.response[defaultPlatformIndex] {
-                                    DispatchQueue.main.async {
-                                        UIApplication.shared.open(defaultPlatform.nativeAppUriMobile ?? defaultPlatform.url)
-                                    }
-                                }
-                            }
-                        }
+            }
+            // Handle URLs queued by SendToSongLinkrIntent via UserDefaults
+            .onChange(of: pendingDeepLinkURLString) { _, urlString in
+                guard !urlString.isEmpty, let url = URL(string: urlString) else { return }
+                searchModel.results = nil
+                selectedTab = 0
+                searchURL = url.absoluteString
+                pendingDeepLinkURLString = ""
+                makeRequest()
+            }
+            // Reset shazam state when results sheet is dismissed
+            .onChange(of: searchModel.results?.id) { _, id in
+                if id == nil { shazamMatcher.shazamState = .idle }
+            }
+            // Error alert
+            .alert(item: $searchModel.error) { error in
+                Alert(
+                    title: Text(error.localizedTitle ?? String(localized: "Something went wrong", comment: "Generic error title")),
+                    message: Text(error.localizedDescription),
+                    dismissButton: .cancel {
+                        shazamMatcher.shazamState = .idle
+                        searchModel.normalInProgress = false
                     }
-                }
+                )
+            }
+            // Results sheet
+            .sheet(item: $searchModel.results) { results in
+                ResultsView(
+                    results: results,
+                    saveFunction: shazamMatcher.saveCachedItem
+                )
+            }
         }
     }
 }
 
 #Preview {
+    let model = SearchModel()
     ContentView(selectedTab: .constant(0))
-        .environmentObject(UserSettings())
+        .environment(UserSettings())
+        .environment(model)
+        .environment(ShazamMatcher(searchModel: model))
 }

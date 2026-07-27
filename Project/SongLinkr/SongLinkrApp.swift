@@ -10,12 +10,22 @@ import SongLinkrNetworkCore
 
 @main
 struct SongLinkrApp: App {
-    var userSettings = UserSettings()
-    
+    @State private var userSettings = UserSettings()
+    @State private var searchModel: SearchModel
+    @State private var shazamMatcher: ShazamMatcher
+
+    init() {
+        let model = SearchModel()
+        _searchModel = State(initialValue: model)
+        _shazamMatcher = State(initialValue: ShazamMatcher(searchModel: model))
+    }
+
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                .environmentObject(userSettings)
+                .environment(userSettings)
+                .environment(searchModel)
+                .environment(shazamMatcher)
         }
     }
 }

@@ -13,4 +13,3 @@ extension URL: @retroactive ExpressibleByStringLiteral {
         self = URL(string: "\(value)").require(hint: "Invalid URL string literal: \(value)")
     }
 }
-

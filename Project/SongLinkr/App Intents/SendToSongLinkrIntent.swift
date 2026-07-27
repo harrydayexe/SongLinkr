@@ -9,9 +9,7 @@ struct SendToSongLinkrIntent: AppIntent {
     var url: URL
 
     func perform() async throws -> some IntentResult {
-        await MainActor.run {
-            RequestViewModel.shared.pendingDeepLinkURL = url
-        }
+        UserDefaults.standard.set(url.absoluteString, forKey: "pendingDeepLinkURL")
         return .result()
     }
 }

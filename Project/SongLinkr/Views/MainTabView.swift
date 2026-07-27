@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct MainTabView: View {
-    /// The tab that is selected
     @State var selectedView = 0
-    
+
     var body: some View {
         TabView(selection: $selectedView) {
             ContentView(selectedTab: $selectedView)
@@ -32,11 +31,17 @@ struct MainTabView: View {
 }
 
 #Preview("Default Tab") {
+    let model = SearchModel()
     MainTabView()
-        .environmentObject(UserSettings())
+        .environment(UserSettings())
+        .environment(model)
+        .environment(ShazamMatcher(searchModel: model))
 }
 
 #Preview("History Tab") {
+    let model = SearchModel()
     MainTabView(selectedView: 1)
-        .environmentObject(UserSettings())
+        .environment(UserSettings())
+        .environment(model)
+        .environment(ShazamMatcher(searchModel: model))
 }

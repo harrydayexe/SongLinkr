@@ -9,10 +9,12 @@ import SwiftUI
 import SongLinkrNetworkCore
 
 struct SettingsView: View {
-    @EnvironmentObject var userSettings: UserSettings
+    @Environment(UserSettings.self) var userSettings
+
     let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-    
+
     var body: some View {
+        @Bindable var settings = userSettings
         NavigationView {
             Form {
                 Section(
@@ -22,31 +24,31 @@ struct SettingsView: View {
                         comment: "Section Footer, Explains the auto open preference"
                     )
                 ) {
-                    Picker(selection: self.$userSettings.defaultPlatform, label: Text("Default Streaming Platform", comment: "Option Name, The user's preferred music platform")) {
+                    Picker(selection: $settings.defaultPlatform, label: Text("Default Streaming Platform", comment: "Option Name, The user's preferred music platform")) {
                         ForEach(Platform.allCases, id: \.self) { platform in
                             Text(platform.displayName)
                         }
                     }
-                    
-                    Picker(selection: self.$userSettings.sortOption, label: Text("Platform Sort Option", comment: "Option name, user's choose what order to show results in")) {
+
+                    Picker(selection: $settings.sortOption, label: Text("Platform Sort Option", comment: "Option name, user's choose what order to show results in")) {
                         ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in
                             Text(sortOption.localisedName)
                         }
                     }
-                    
-                    Toggle(isOn: self.$userSettings.defaultAtTop) {
+
+                    Toggle(isOn: $settings.defaultAtTop) {
                         Text("Default Platform at the Top of Results", comment: "Option name, decides whether the users preferred platform is at the top of the list")
                     }
-                    
-                    Toggle(isOn: self.$userSettings.autoOpen) {
+
+                    Toggle(isOn: $settings.autoOpen) {
                         Text("Auto Open External Links", comment: "Option name, decides whether to automatically open links in the user's preferred platform")
                     }
-                    
-                    Toggle(isOn: self.$userSettings.saveToShazamLibrary) {
+
+                    Toggle(isOn: $settings.saveToShazamLibrary) {
                         Text("Save Shazam Matches to Library", comment: "Option name, decides whether to save matches made with shazam to the shazam library automatically")
                     }
                 }
-                
+
                 Section(
                     header: Text("Help", comment: "Section Header, contains links to support online")
                 ) {
@@ -60,7 +62,7 @@ struct SettingsView: View {
                         Text("Improve Translations", comment: "Link name, Links to a page about improving translations")
                     }
                 }
-                
+
                 Section(
                     header: Text("About", comment: "Section Header, section contains information about the app"),
                     footer: Text("SongLinkr is developed by Harry Day from England", comment: "Section footer")
@@ -77,11 +79,11 @@ struct SettingsView: View {
                     .accessibility(
                         value: Text("\(versionNumber ?? String(localized: "Unknown", comment: "Placeholder for when the version number cannot be loaded"))")
                     )
-                    
+
                     NavigationLink(destination: SupportedPlatformsList()) {
                         Text("Supported Platforms")
                     }
-                    
+
                     NavigationLink(destination: TranslationCreditView()) {
                         Text("Thanks To")
                     }
@@ -94,5 +96,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(UserSettings())
+        .environment(UserSettings())
 }
