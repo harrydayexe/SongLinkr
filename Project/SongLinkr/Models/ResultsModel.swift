@@ -25,4 +25,7 @@ struct ResultsModel: Identifiable {
 
     /// The actual links to display
     var response: [PlatformLinks]
+
+    /// The song.link page URL for sharing
+    let pageUrl: URL?
 }

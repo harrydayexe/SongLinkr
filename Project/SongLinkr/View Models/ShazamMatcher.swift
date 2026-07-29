@@ -26,7 +26,7 @@ class ShazamMatcher {
 
     // MARK: ShazamState
 
-    enum ShazamState: Equatable {
+    enum ShazamState: Equatable, CaseIterable {
         case idle
         case matching
         case matchFound

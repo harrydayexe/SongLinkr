@@ -10,11 +10,9 @@ import SwiftUI
 
 extension Color {
     /// This is a gradient of the iTunes Store colours from top to bottom. use with a `LinearGradient` from top to bottom.
-    static let itunesGrad = Gradient(colors: [
-        Color(red: 234/255, green: 76/255, blue: 192/255),
-        Color(red: 217/255, green: 72/255, blue: 221/255),
-        Color(red: 204/255, green: 69/255, blue: 242/255)
-    ])
+    static let itunesColor1 = Color(red: 234/255, green: 76/255, blue: 192/255)
+    static let itunesColor2 = Color(red: 217/255, green: 72/255, blue: 221/255)
+    static let itunesColor3 = Color(red: 204/255, green: 69/255, blue: 242/255)
     
     /// This is the Apple Music background gradient
     static let appleMusicGrad = Gradient(colors: [

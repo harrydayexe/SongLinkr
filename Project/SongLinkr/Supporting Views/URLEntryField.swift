@@ -3,7 +3,7 @@
 //  SongLinkr
 //
 //  Created by Harry Day on 24/05/2021
-//  
+//
 //
 //  Twitter: https://twitter.com/realharryday
 //  Github: https://github.com/harryday123
@@ -17,15 +17,13 @@ struct URLEntryField: View {
 
     var body: some View {
         HStack {
-            // Search Icon
             Image(systemName: "magnifyingglass")
                 .font(Font.body.weight(.semibold))
-                .foregroundStyle(.gray)
+                .foregroundStyle(.secondary)
                 .accessibilityHidden(true)
 
-            // Search Field
             TextField("Paste a URL", text: self.$searchURL, prompt: Text(verbatim: "URL"))
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(.plain)
                 .frame(maxWidth: 700)
                 .keyboardType(.URL)
                 .textContentType(.URL)
@@ -38,8 +36,9 @@ struct URLEntryField: View {
                     self.searchURL = ""
                 }) {
                     Image(systemName: "multiply.circle.fill")
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(.secondary)
                 }
+                .buttonStyle(.plain)
                 .accessibilityLabel(Text("Clear Search Bar", comment: "Accessibility label"))
             } else {
                 PasteButton(payloadType: URL.self) { urls in
@@ -50,13 +49,18 @@ struct URLEntryField: View {
                 .buttonBorderShape(.capsule)
             }
         }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .glassEffect()
     }
 }
 
 #Preview {
     URLEntryField(searchURL: .constant(""))
+        .padding()
 }
 
 #Preview {
     URLEntryField(searchURL: .constant("https://spotify.com/test/song"))
+        .padding()
 }

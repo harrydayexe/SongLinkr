@@ -5,8 +5,8 @@
 //  Created by Harry Day on 26/06/2020.
 //
 
-import SwiftUI
 import SongLinkrNetworkCore
+import SwiftUI
 
 @main
 struct SongLinkrApp: App {

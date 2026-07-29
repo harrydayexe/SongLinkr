@@ -163,7 +163,8 @@ class SearchModel {
             mediaTitle: mediaTitle ?? "",
             artistName: artistName ?? "",
             isFromShazam: fromShazam,
-            response: platformLinks
+            response: platformLinks,
+            pageUrl: response.pageUrl
         )
     }
 }

@@ -36,11 +36,29 @@ struct ShazamButton: View {
                 Label("Matches Found", systemImage: "checkmark.icloud")
             }
         }
-        .tint(.blue)
         .controlSize(.large)
-        .buttonStyle(.borderedProminent)
+        .padding()
+        .buttonStyle(.plain)
+        .glassEffect(.regular.tint(.blue.opacity(0.3)).interactive(), in: .capsule)
         .disabled(shazamState == .matchFound || shazamState == .finished)
     }
+}
+
+// MARK: Preview Code
+
+#Preview("Animation") {
+    @Previewable @State var state: ShazamMatcher.ShazamState = .idle
+
+    ShazamButton(shazamState: $state, startShazam: {}, stopShazam: {})
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+                Task { @MainActor in
+                    let all = ShazamMatcher.ShazamState.allCases
+                    let idx = all.firstIndex(of: state)!
+                    state = all[(idx + 1) % all.count]
+                }
+            }
+        }
 }
 
 #Preview("Idle") {

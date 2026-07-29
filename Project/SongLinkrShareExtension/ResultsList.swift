@@ -28,6 +28,5 @@ struct ResultsList: View {
             }
             .padding()
         }
-        .background(Color.offWhite)
     }
 }

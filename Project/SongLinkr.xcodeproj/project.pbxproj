@@ -39,17 +39,19 @@
 		8C4E90832633741B00D201C1 /* (null) in Embed Foundation Extensions */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C55B3E824C1008300B6E6E3 /* Binding+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4724C06E2E006672AE /* Binding+Mock.swift */; };
 		8C55B3EA24C1008300B6E6E3 /* StatefulPreviewWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC72A4924C06E50006672AE /* StatefulPreviewWrapperView.swift */; };
-		8C55B3EF24C1008300B6E6E3 /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
 		8C59A912267F69790010A451 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C59A911267F69790010A451 /* ShazamButton.swift */; };
 		8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */; };
 		8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */; };
 		8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
-		8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830824A908070047193B /* GetLinkButtonStyle.swift */; };
 		8CA992EF3017F9AB007B7DFA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992EE3017F9AB007B7DFA /* SearchModel.swift */; };
 		8CA992F03017F9AB007B7DFA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992EE3017F9AB007B7DFA /* SearchModel.swift */; };
 		8CA992F43017F9BA007B7DFA /* ShazamMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992F33017F9BA007B7DFA /* ShazamMatcher.swift */; };
 		8CA992F53017F9BA007B7DFA /* ShazamMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992F33017F9BA007B7DFA /* ShazamMatcher.swift */; };
+		8CA992F7301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992F6301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift */; };
+		8CA992F8301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992F6301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift */; };
+		8CA992F9301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992F6301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift */; };
+		8CA992FA301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992F6301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift */; };
 		8CAAE7AB26F4E12F00BBF2CD /* TranslationCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAE7AA26F4E12F00BBF2CD /* TranslationCreditView.swift */; };
 		8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
 		8CAD5447267E16B50062099B /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD5443267E16B20062099B /* RequestViewModel.swift */; };
@@ -58,27 +60,19 @@
 		8CB11A583015207500C1EDE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8CB11A9D3015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9B3015390F00C1EDE1 /* SongLinkCreditView.swift */; };
 		8CB11A9E3015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9A3015390F00C1EDE1 /* PlatformLinkButtonView.swift */; };
-		8CB11A9F3015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A993015390F00C1EDE1 /* PlatformLinkButtonStyle.swift */; };
 		8CB11AA03015390F00C1EDE1 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A963015390F00C1EDE1 /* ColorManager.swift */; };
-		8CB11AA13015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A983015390F00C1EDE1 /* NeumorphicShadowModifier.swift */; };
 		8CB11AA23015390F00C1EDE1 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A973015390F00C1EDE1 /* MediaDetailView.swift */; };
 		8CB11AA33015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9B3015390F00C1EDE1 /* SongLinkCreditView.swift */; };
 		8CB11AA43015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9A3015390F00C1EDE1 /* PlatformLinkButtonView.swift */; };
-		8CB11AA53015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A993015390F00C1EDE1 /* PlatformLinkButtonStyle.swift */; };
 		8CB11AA63015390F00C1EDE1 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A963015390F00C1EDE1 /* ColorManager.swift */; };
-		8CB11AA73015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A983015390F00C1EDE1 /* NeumorphicShadowModifier.swift */; };
 		8CB11AA83015390F00C1EDE1 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A973015390F00C1EDE1 /* MediaDetailView.swift */; };
 		8CB11AA93015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9B3015390F00C1EDE1 /* SongLinkCreditView.swift */; };
 		8CB11AAA3015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9A3015390F00C1EDE1 /* PlatformLinkButtonView.swift */; };
-		8CB11AAB3015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A993015390F00C1EDE1 /* PlatformLinkButtonStyle.swift */; };
 		8CB11AAC3015390F00C1EDE1 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A963015390F00C1EDE1 /* ColorManager.swift */; };
-		8CB11AAD3015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A983015390F00C1EDE1 /* NeumorphicShadowModifier.swift */; };
 		8CB11AAE3015390F00C1EDE1 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A973015390F00C1EDE1 /* MediaDetailView.swift */; };
 		8CB11AAF3015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9B3015390F00C1EDE1 /* SongLinkCreditView.swift */; };
 		8CB11AB03015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A9A3015390F00C1EDE1 /* PlatformLinkButtonView.swift */; };
-		8CB11AB13015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A993015390F00C1EDE1 /* PlatformLinkButtonStyle.swift */; };
 		8CB11AB23015390F00C1EDE1 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A963015390F00C1EDE1 /* ColorManager.swift */; };
-		8CB11AB33015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A983015390F00C1EDE1 /* NeumorphicShadowModifier.swift */; };
 		8CB11AB43015390F00C1EDE1 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB11A973015390F00C1EDE1 /* MediaDetailView.swift */; };
 		8CB11B3D30164F7F00C1EDE1 /* SongLinkrNetworkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE207E82670206600DAD0F9 /* SongLinkrNetworkCore.framework */; };
 		8CC0527B26A1BA21007200FE /* SupportedPlatformsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0527A26A1BA21007200FE /* SupportedPlatformsList.swift */; };
@@ -192,20 +186,18 @@
 		8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		8C7689163016B580001271CA /* UI_REFRESH_PLAN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = UI_REFRESH_PLAN.md; sourceTree = "<group>"; };
-		8C81830824A908070047193B /* GetLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8C81830F24A9408C0047193B /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
 		8C81831124A945F30047193B /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
 		8CA992EE3017F9AB007B7DFA /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		8CA992F33017F9BA007B7DFA /* ShazamMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamMatcher.swift; sourceTree = "<group>"; };
+		8CA992F6301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8CAAE7AA26F4E12F00BBF2CD /* TranslationCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationCreditView.swift; sourceTree = "<group>"; };
 		8CAD5443267E16B20062099B /* RequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
 		8CAD5449267E17DC0062099B /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
 		8CB11A4030151F1600C1EDE1 /* SongLinkrShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SongLinkrShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB11A963015390F00C1EDE1 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		8CB11A973015390F00C1EDE1 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
-		8CB11A983015390F00C1EDE1 /* NeumorphicShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicShadowModifier.swift; sourceTree = "<group>"; };
-		8CB11A993015390F00C1EDE1 /* PlatformLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonStyle.swift; sourceTree = "<group>"; };
 		8CB11A9A3015390F00C1EDE1 /* PlatformLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonView.swift; sourceTree = "<group>"; };
 		8CB11A9B3015390F00C1EDE1 /* SongLinkCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkCreditView.swift; sourceTree = "<group>"; };
 		8CB6037B28356AF000393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -313,7 +305,6 @@
 				8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */,
 				8C81830724A907DB0047193B /* Views */,
 				8C81831324A94CD60047193B /* Supporting Views */,
-				8C81830A24A911760047193B /* Resources */,
 				8CAD5448267E16B80062099B /* View Models */,
 				8C43CB3624A665FD001B89A0 /* Models */,
 				8C53433B24C06DD1007BDB89 /* Development Resources */,
@@ -386,14 +377,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		8C81830A24A911760047193B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				8C81830824A908070047193B /* GetLinkButtonStyle.swift */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		8C81831324A94CD60047193B /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,10 +409,9 @@
 		8CB11A9C3015390F00C1EDE1 /* SongLinkrShared */ = {
 			isa = PBXGroup;
 			children = (
+				8CA992F6301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift */,
 				8CB11A963015390F00C1EDE1 /* ColorManager.swift */,
 				8CB11A973015390F00C1EDE1 /* MediaDetailView.swift */,
-				8CB11A983015390F00C1EDE1 /* NeumorphicShadowModifier.swift */,
-				8CB11A993015390F00C1EDE1 /* PlatformLinkButtonStyle.swift */,
 				8CB11A9A3015390F00C1EDE1 /* PlatformLinkButtonView.swift */,
 				8CB11A9B3015390F00C1EDE1 /* SongLinkCreditView.swift */,
 			);
@@ -661,16 +643,13 @@
 				8CAD5444267E16B20062099B /* RequestViewModel.swift in Sources */,
 				8C20BF4D3015036900508138 /* SongLinkrShortcuts.swift in Sources */,
 				8C08B57524C3134300DC8235 /* ContentView.swift in Sources */,
-				8C81830924A908070047193B /* GetLinkButtonStyle.swift in Sources */,
 				8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */,
 				8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */,
 				8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */,
 				8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */,
 				8CB11AA33015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */,
 				8CB11AA43015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */,
-				8CB11AA53015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */,
 				8CB11AA63015390F00C1EDE1 /* ColorManager.swift in Sources */,
-				8CB11AA73015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */,
 				8CB11AA83015390F00C1EDE1 /* MediaDetailView.swift in Sources */,
 				8C59A912267F69790010A451 /* ShazamButton.swift in Sources */,
 				8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */,
@@ -679,6 +658,7 @@
 				8C29069526875422005A43CD /* HistoryView.swift in Sources */,
 				8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */,
 				8C20BF553015061C00508138 /* SongLinkrPlatform.swift in Sources */,
+				8CA992F8301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */,
 				8C29069926875A9D005A43CD /* HistoryViewModel.swift in Sources */,
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
 				8C2906DC268CAF99005A43CD /* HistoryViewListItem.swift in Sources */,
@@ -697,15 +677,13 @@
 			files = (
 				8CB11AA93015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */,
 				8CB11AAA3015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */,
-				8CB11AAB3015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */,
 				8CA992F03017F9AB007B7DFA /* SearchModel.swift in Sources */,
 				8CB11AAC3015390F00C1EDE1 /* ColorManager.swift in Sources */,
-				8CB11AAD3015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */,
 				8CB11AAE3015390F00C1EDE1 /* MediaDetailView.swift in Sources */,
 				8C0615DB26E027E6000CD6C9 /* MatchedItemStorage.swift in Sources */,
 				8CA992F43017F9BA007B7DFA /* ShazamMatcher.swift in Sources */,
-				8C55B3EF24C1008300B6E6E3 /* GetLinkButtonStyle.swift in Sources */,
 				8C0615DC26E027E6000CD6C9 /* MatchedItem+CoreDataClass.swift in Sources */,
+				8CA992FA301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */,
 				8C55B3EA24C1008300B6E6E3 /* StatefulPreviewWrapperView.swift in Sources */,
 				8C0615DE26E02800000CD6C9 /* Persistence.swift in Sources */,
 				8C6BE3D624C3B9DE004FBDD4 /* UserSettings.swift in Sources */,
@@ -722,9 +700,8 @@
 			files = (
 				8CB11A9D3015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */,
 				8CB11A9E3015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */,
-				8CB11A9F3015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */,
+				8CA992F9301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */,
 				8CB11AA03015390F00C1EDE1 /* ColorManager.swift in Sources */,
-				8CB11AA13015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */,
 				8CB11AA23015390F00C1EDE1 /* MediaDetailView.swift in Sources */,
 				8C43CB2924A66593001B89A0 /* SongLinkrUITests.swift in Sources */,
 			);
@@ -736,10 +713,9 @@
 			files = (
 				8CB11AAF3015390F00C1EDE1 /* SongLinkCreditView.swift in Sources */,
 				8CB11AB03015390F00C1EDE1 /* PlatformLinkButtonView.swift in Sources */,
-				8CB11AB13015390F00C1EDE1 /* PlatformLinkButtonStyle.swift in Sources */,
 				8CB11AB23015390F00C1EDE1 /* ColorManager.swift in Sources */,
-				8CB11AB33015390F00C1EDE1 /* NeumorphicShadowModifier.swift in Sources */,
 				8CB11AB43015390F00C1EDE1 /* MediaDetailView.swift in Sources */,
+				8CA992F7301A3F4C007B7DFA /* PlatformLinkButtonStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,7 +909,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 193;
+				CURRENT_PROJECT_VERSION = 200;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -962,7 +938,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 193;
+				CURRENT_PROJECT_VERSION = 200;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -1065,7 +1041,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 193;
+				CURRENT_PROJECT_VERSION = 200;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;
@@ -1098,7 +1074,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 193;
+				CURRENT_PROJECT_VERSION = 200;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;

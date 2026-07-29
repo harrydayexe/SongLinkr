@@ -21,16 +21,17 @@ struct MediaDetailView: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(Color.offWhite)
-                .makeSkeumorphic()
+            ConcentricRectangle()
+                .fill(.regularMaterial)
+                .ignoresSafeArea()
+                .zIndex(.infinity * -1)
 
             VStack {
                 AsyncImage(url: artworkURL) { image in
                     image
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .clipShape(.rect(corners: .concentric(), isUniform: true))
                         .padding()
                 } placeholder: {
                     ZStack {
@@ -40,6 +41,7 @@ struct MediaDetailView: View {
                     .aspectRatio(1, contentMode: .fit)
                 }
                 .accessibilityLabel(Text("The artwork for the media in the results", comment: "Accessibility label"))
+
                 Group {
                     Text(mediaTitle)
                         .font(.title).fontWeight(.semibold)
@@ -59,25 +61,31 @@ struct MediaDetailView: View {
                             Label("Added to Shazam Library", systemImage: "checkmark.circle")
                         }
                     }
-                    .tint(.accentColor)
-                    .buttonStyle(.bordered)
                     .controlSize(.large)
+                    .padding()
+                    .buttonStyle(.plain)
+                    .glassEffect(.regular.tint(.blue.opacity(0.3)).interactive(), in: .capsule)
                     .disabled(hasBeenSaved)
                 }
             }.padding(.bottom)
         }
-        .padding(33)
+        .containerShape(
+            .rect(cornerRadius: 24)
+        )
     }
 }
 
 #Preview("Light") {
-    MediaDetailView(
-        artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
-        mediaTitle: "Humble",
-        artistName: "Kendrick Lamar",
-        displaySaveButton: true,
-        saveFunction: { false }
-    ).preferredColorScheme(.light).padding()
+    Color.clear
+        .sheet(isPresented: .constant(true)) {
+            MediaDetailView(
+                artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
+                mediaTitle: "Humble",
+                artistName: "Kendrick Lamar",
+                displaySaveButton: true,
+                saveFunction: { false }
+            ).preferredColorScheme(.light).padding()
+        }
 }
 
 #Preview("Dark") {

@@ -17,15 +17,23 @@ struct GetLinkButton: View {
         Button(action: makeRequest) {
             GetLinkButtonView(callInProgress: inProgress)
         }
+        .buttonStyle(.glass)
         .tint(.accentColor)
         .controlSize(.large)
-        .buttonStyle(.borderedProminent)
         .keyboardShortcut(.defaultAction)
         .padding()
         .disabled(searchURL == "")
     }
 }
 
-#Preview {
+#Preview("URL Entered, not in progress") {
     GetLinkButton(searchURL: .constant("Hi"), inProgress: .constant(false), makeRequest: {})
+}
+
+#Preview("URL Entered, in progress") {
+    GetLinkButton(searchURL: .constant("Hi"), inProgress: .constant(true), makeRequest: {})
+}
+
+#Preview("URL Not Entered") {
+    GetLinkButton(searchURL: .constant(""), inProgress: .constant(false), makeRequest: {})
 }

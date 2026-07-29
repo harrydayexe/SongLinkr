@@ -85,6 +85,7 @@ struct HistoryView: View {
                 EditButton()
             }
             .navigationTitle(Text("History"))
+            .toolbarMinimizationBehavior(.onScrollDown, for: .navigationBar)
         }
     }
 }

@@ -21,6 +21,7 @@ struct PlatformLinkButtonView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(minWidth: 50, maxWidth: 75, minHeight: 50, maxHeight: 75)
+                    .grayscale(1)
                 Text(platform.id.displayName)
                     .font(.largeTitle)
                     .fontWeight(.medium)

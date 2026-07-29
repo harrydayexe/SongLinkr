@@ -57,12 +57,6 @@
 		8C6E7F1C26701F6B00B0D05D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CAB000000000000000001 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		8CAB000000000000000002 /* Secrets.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.example.xcconfig; sourceTree = "<group>"; };
-		8CB11AB530153BBF00C1EDE1 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
-		8CB11AB630153BBF00C1EDE1 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
-		8CB11AB730153BBF00C1EDE1 /* NeumorphicShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicShadowModifier.swift; sourceTree = "<group>"; };
-		8CB11AB830153BBF00C1EDE1 /* PlatformLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonStyle.swift; sourceTree = "<group>"; };
-		8CB11AB930153BBF00C1EDE1 /* PlatformLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinkButtonView.swift; sourceTree = "<group>"; };
-		8CB11ABA30153BBF00C1EDE1 /* SongLinkCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkCreditView.swift; sourceTree = "<group>"; };
 		8CB60378283569C600393FEF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CBAAF732671004B0018F500 /* PlatformLinksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLinksTests.swift; sourceTree = "<group>"; };
 		8CBAAF7526714C5D0018F500 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
@@ -114,7 +108,6 @@
 		8C6E7F0226701F6A00B0D05D = {
 			isa = PBXGroup;
 			children = (
-				8CB11ABB30153BBF00C1EDE1 /* SongLinkrShared */,
 				8C6E7F0E26701F6B00B0D05D /* SongLinkrNetworkCore */,
 				8C6E7F1926701F6B00B0D05D /* SongLinkrNetworkCoreTests */,
 				8C6E7F0D26701F6B00B0D05D /* Products */,
@@ -161,19 +154,6 @@
 				8C6E7F1C26701F6B00B0D05D /* Info.plist */,
 			);
 			path = SongLinkrNetworkCoreTests;
-			sourceTree = "<group>";
-		};
-		8CB11ABB30153BBF00C1EDE1 /* SongLinkrShared */ = {
-			isa = PBXGroup;
-			children = (
-				8CB11AB530153BBF00C1EDE1 /* ColorManager.swift */,
-				8CB11AB630153BBF00C1EDE1 /* MediaDetailView.swift */,
-				8CB11AB730153BBF00C1EDE1 /* NeumorphicShadowModifier.swift */,
-				8CB11AB830153BBF00C1EDE1 /* PlatformLinkButtonStyle.swift */,
-				8CB11AB930153BBF00C1EDE1 /* PlatformLinkButtonView.swift */,
-				8CB11ABA30153BBF00C1EDE1 /* SongLinkCreditView.swift */,
-			);
-			path = SongLinkrShared;
 			sourceTree = "<group>";
 		};
 		8CE207EC2670212000DAD0F9 /* Endpoint */ = {
