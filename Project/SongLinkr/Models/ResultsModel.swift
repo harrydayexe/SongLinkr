@@ -29,3 +29,19 @@ struct ResultsModel: Identifiable {
     /// The song.link page URL for sharing
     let pageUrl: URL?
 }
+
+extension ResultsModel: Equatable {
+    static func == (lhs: ResultsModel, rhs: ResultsModel) -> Bool {
+        if
+            lhs.artworkURL == rhs.artworkURL,
+            lhs.mediaTitle == rhs.mediaTitle,
+            lhs.artistName == rhs.artistName,
+            lhs.isFromShazam == rhs.isFromShazam,
+            lhs.response == rhs.response,
+            lhs.pageUrl == rhs.pageUrl
+        {
+            return true
+        }
+        return false
+    }
+}

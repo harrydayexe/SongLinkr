@@ -1,5 +1,5 @@
 //
-//  ResultsView.swift
+//  OldResultsView.swift
 //  SongLinkr
 //
 //  Created by Harry Day on 28/06/2020.
@@ -9,7 +9,7 @@ import SongLinkrNetworkCore
 import StoreKit
 import SwiftUI
 
-struct ResultsView: View {
+struct OldResultsView: View {
     @Environment(UserSettings.self) var userSettings
     @Environment(SearchModel.self) var searchModel
     @Environment(\.dismiss) private var dismiss
@@ -132,7 +132,7 @@ struct ResultsView: View {
     )
     .ignoresSafeArea()
     .sheet(isPresented: .constant(true)) {
-        ResultsView(results: results, saveFunction: { true })
+        OldResultsView(results: results, saveFunction: { true })
             .environment(UserSettings())
             .environment(model)
             .presentationBackground(.ultraThinMaterial)

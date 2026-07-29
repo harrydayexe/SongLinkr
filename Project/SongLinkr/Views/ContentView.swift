@@ -94,7 +94,7 @@ struct ContentView: View {
             }
             // Results sheet
             .sheet(item: $searchModel.results) { results in
-                ResultsView(
+                OldResultsView(
                     results: results,
                     saveFunction: shazamMatcher.saveCachedItem
                 )

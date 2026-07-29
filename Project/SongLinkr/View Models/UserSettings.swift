@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import SwiftUI
 import SongLinkrNetworkCore
+import SwiftUI
 
 @Observable
+@MainActor
 class UserSettings {
     var defaultPlatform: Platform {
         didSet { UserDefaults.standard.set(defaultPlatform.rawValue, forKey: "defaultPlatform") }
