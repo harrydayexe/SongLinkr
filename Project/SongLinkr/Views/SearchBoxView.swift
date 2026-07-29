@@ -36,9 +36,9 @@ struct SearchBoxView: View {
         .padding(.horizontal, 28)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {
-                    // TODO: Do this page
-                }) {
+                NavigationLink {
+                    SettingsView()
+                } label: {
                     Image(systemName: "gear")
                 }
             }
@@ -52,4 +52,5 @@ struct SearchBoxView: View {
     NavigationView {
         SearchBoxView(namespace: morph, searchPhase: .constant(.home))
     }
+    .environment(UserSettings())
 }
