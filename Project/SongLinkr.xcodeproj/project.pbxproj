@@ -185,7 +185,6 @@
 		8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
-		8C7689163016B580001271CA /* UI_REFRESH_PLAN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = UI_REFRESH_PLAN.md; sourceTree = "<group>"; };
 		8C81830F24A9408C0047193B /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
 		8C81831124A945F30047193B /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
@@ -275,7 +274,6 @@
 		8C43CAFF24A6658E001B89A0 = {
 			isa = PBXGroup;
 			children = (
-				8C7689163016B580001271CA /* UI_REFRESH_PLAN.md */,
 				8CEE5FE32FDB603300242CE0 /* CLAUDE.md */,
 				8CE207E22670206600DAD0F9 /* SongLinkrNetworkCore.xcodeproj */,
 				8CB11A9C3015390F00C1EDE1 /* SongLinkrShared */,
