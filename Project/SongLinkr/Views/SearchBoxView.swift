@@ -15,23 +15,27 @@ struct SearchBoxView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Spacer()
-            ArtworkView(size: 92, cornerRadius: 23, showsIcon: true, artworkURL: nil, namespace: namespace)
-            TitleBlock(
-                title: "SongLinkr",
-                subtitle: "Any song. Every platform.",
-                titleFont: .largeTitle.bold()
-            )
-            .padding(.top, 22)
+            VStack(spacing: 0) {
+                Spacer()
+                SongLinkrLogoView(size: 92, cornerRadius: 23, namespace: namespace)
+                TitleBlock(
+                    title: "SongLinkr",
+                    subtitle: "Any song. Every platform.",
+                    titleFont: .largeTitle.bold()
+                )
+                .padding(.top, 22)
+            }
+            .frame(maxHeight: .infinity)
+
             InputPillView(urlText: $urlText, compact: false, namespace: namespace, onPaste: {}, onClear: {})
                 .padding(.top, 36)
-            ActionButtonRow(compact: false, namespace: namespace, primaryAction: {}, secondaryAction: {})
-                .padding(.top, 16)
-            Text("…or identify what’s playing around you")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .padding(.top, 14)
-            Spacer()
+
+            VStack(spacing: 0) {
+                ActionButtonRow(compact: false, namespace: namespace, primaryAction: {}, secondaryAction: {})
+                    .padding(.top, 16)
+                Spacer()
+            }
+            .frame(maxHeight: .infinity)
         }
         .padding(.horizontal, 28)
         .toolbar {

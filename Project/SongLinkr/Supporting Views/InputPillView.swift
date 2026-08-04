@@ -44,7 +44,7 @@ struct InputPillView: View {
                         Button(action: onPaste) {
                             Image(systemName: "document.on.clipboard")
                         }
-                        .buttonStyle(.glassProminent)
+                        .buttonStyle(.borderedProminent)
                     } else {
                         Button(action: onClear) {
                             Image(systemName: "xmark")

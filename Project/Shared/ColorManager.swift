@@ -14,20 +14,8 @@ extension Color {
     static let itunesColor2 = Color(red: 217/255, green: 72/255, blue: 221/255)
     static let itunesColor3 = Color(red: 204/255, green: 69/255, blue: 242/255)
     
-    /// This is the Apple Music background gradient
-    static let appleMusicGrad = Gradient(colors: [
-        Color(red: 250/255, green: 87/255, blue: 193/255),
-        Color(red: 177/255, green: 102/255, blue: 204/255)
-    ])
-    
     /// This is the Pandora Blue
     static let pandoraBlue = Color(red: 0/255, green: 160/255, blue: 238/255)
-    
-    /// This is the deezer Linear Gradient
-    static let deezerGrad = Gradient(colors: [
-        Color(red: 254/255, green: 171/255, blue: 46/255),
-        Color(red: 216/255, green: 27/255, blue: 96/255)
-    ])
     
     /// This is the Amazon Prime Blue
     static let amazonBlue = Color(red: 0, green: 168/255, blue: 225/255)
@@ -62,4 +50,21 @@ extension Color {
     
     /// The YouTube Red brand colour.
     static let youtubeColour = Color(red: 255/255, green: 0/255, blue: 51/255)
+}
+
+extension Gradient {
+    /// This is the Apple Music background gradient
+    static let appleMusicGrad = Gradient(colors: [
+        Color(red: 250/255, green: 87/255, blue: 193/255),
+        Color(red: 177/255, green: 102/255, blue: 204/255)
+    ])
+    
+    /// This is the deezer Linear Gradient
+    static let deezerGrad = Gradient(colors: [
+        Color(red: 254/255, green: 171/255, blue: 46/255),
+        Color(red: 216/255, green: 27/255, blue: 96/255)
+    ])
+
+    static let orangeGradient = Gradient(colors: [Color(red: 1, green: 0.70, blue: 0.25),
+                                                  Color(red: 1, green: 0.54, blue: 0.00)])
 }
