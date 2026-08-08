@@ -41,7 +41,7 @@ struct ActionButtonRow: View {
                     .foregroundStyle(.orange)
                     .frame(width: 52, height: 52)
             }
-            .glassEffect(.regular, in: .circle)
+            .frostedPill(in: .circle)
             .matchedGeometryEffect(id: "ctaSecondary", in: namespace)
         }
     }

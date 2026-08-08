@@ -27,7 +27,7 @@ struct SearchBoxView: View {
             }
             .frame(maxHeight: .infinity)
 
-            InputPillView(urlText: $urlText, compact: false, namespace: namespace, onPaste: {}, onClear: {})
+            InputPillView(urlText: $urlText)
                 .padding(.top, 36)
 
             VStack(spacing: 0) {

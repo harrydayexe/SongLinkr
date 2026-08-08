@@ -10,81 +10,62 @@ import SwiftUI
 struct InputPillView: View {
     @Binding var urlText: String
 
-    let compact: Bool
-    let namespace: Namespace.ID
-    let onPaste: () -> Void
-    let onClear: () -> Void
-
     @FocusState private var focused: Bool
+    @Environment(\.colorScheme) private var colorScheme
+    @Namespace private var buttonNamespace
 
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: "link")
                 .foregroundStyle(.tertiary)
 
-            if compact {
-                Text(urlText)
-                    .font(.subheadline)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Button(action: onClear) {
-                    Image(systemName: "xmark")
-                }
-                .buttonStyle(.glass)
-            } else {
-                TextField("Paste a song link…", text: $urlText)
-                    .focused($focused)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .keyboardType(.URL)
-                    .submitLabel(.search)
-                Group {
-                    if urlText.isEmpty {
-                        Button(action: onPaste) {
-                            Image(systemName: "document.on.clipboard")
-                        }
-                        .buttonStyle(.borderedProminent)
-                    } else {
-                        Button(action: onClear) {
-                            Image(systemName: "xmark")
-                        }
-                        .buttonStyle(.glass)
+            TextField("Paste a song link…", text: $urlText)
+                .focused($focused)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+                .keyboardType(.URL)
+                .submitLabel(.search)
+
+            if urlText.isEmpty {
+                PasteButton(payloadType: URL.self) { urls in
+                    if let url = urls.first {
+                        urlText = url.absoluteString
                     }
                 }
+                .buttonBorderShape(.circle)
+                .labelStyle(.iconOnly)
+                .matchedGeometryEffect(id: "actionButton", in: buttonNamespace)
+            } else {
+                Button(action: {
+                    urlText = ""
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.footnote.weight(.bold))
+                }
+                .buttonBorderShape(.circle)
+                .buttonStyle(.bordered)
+                .foregroundStyle(.secondary)
+                .matchedGeometryEffect(id: "actionButton", in: buttonNamespace)
             }
         }
-        .padding(.leading, 18)
+        .padding(.leading)
         .padding(.trailing, 8)
-        .frame(height: compact ? 46 : 54)
-        .glassEffect(.regular, in: .capsule)
-        .matchedGeometryEffect(id: "input", in: namespace)
+        .frame(height: 54)
+        .frostedPill()
+        .animation(.easeInOut(duration: 0.15), value: urlText.isEmpty)
     }
 }
 
-#Preview("No Input") {
-    @Previewable @FocusState var inputFocused: Bool
-    @Previewable @Namespace var morph
+#Preview("Dynamic") {
+    @Previewable @State var inputText = ""
 
-    InputPillView(urlText: .constant(""), compact: false, namespace: morph, onPaste: {}, onClear: {})
+    InputPillView(urlText: $inputText)
+}
+
+#Preview("No Input") {
+    InputPillView(urlText: .constant(""))
 }
 
 #Preview("Some Input") {
-    @Previewable @FocusState var inputFocused: Bool
-    @Previewable @Namespace var morph
-
-    InputPillView(urlText: .constant("https://music.apple.com/gb/album/better-than-yours/1812078323?i=1812078931"), compact: false, namespace: morph, onPaste: {}, onClear: {})
-}
-
-#Preview("Compacted") {
-    @Previewable @FocusState var inputFocused: Bool
-    @Previewable @Namespace var morph
-
-    InputPillView(
-        urlText: .constant("https://music.apple.com/gb/album/better-than-yours/1812078323?i=1812078931"),
-        compact: true,
-        namespace: morph,
-        onPaste: {},
-        onClear: {}
-    )
+    InputPillView(urlText: .constant("https://music.apple.com/gb/album/better-than-yours/1812078323?i=1812078931"))
 }

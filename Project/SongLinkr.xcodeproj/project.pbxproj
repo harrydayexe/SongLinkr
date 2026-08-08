@@ -181,6 +181,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ColorManager.swift,
+				FrostedPillStyle.swift,
 				MediaDetailView.swift,
 				PlatformLinkButtonStyle.swift,
 				PlatformLinkButtonView.swift,
