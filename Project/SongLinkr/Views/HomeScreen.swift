@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @Namespace private var morphNamespace
     @State private var phase: SearchPhase = .home
 
     var body: some View {
@@ -17,8 +18,7 @@ struct HomeScreen: View {
 
                 switch phase {
                 case .home:
-                    //                SearchBoxView()
-                    EmptyView()
+                    SearchBoxView(namespace: morphNamespace, searchPhase: $phase)
                 case .results(let result):
                     ResultsView(result: result)
                 }

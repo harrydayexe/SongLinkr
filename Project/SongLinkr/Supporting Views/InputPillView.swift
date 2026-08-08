@@ -12,7 +12,6 @@ struct InputPillView: View {
 
     @FocusState private var focused: Bool
     @Environment(\.colorScheme) private var colorScheme
-    @Namespace private var buttonNamespace
 
     var body: some View {
         HStack(spacing: 8) {
@@ -26,27 +25,30 @@ struct InputPillView: View {
                 .keyboardType(.URL)
                 .submitLabel(.search)
 
-            if urlText.isEmpty {
-                PasteButton(payloadType: URL.self) { urls in
-                    if let url = urls.first {
-                        urlText = url.absoluteString
+            ZStack {
+                if urlText.isEmpty {
+                    PasteButton(payloadType: URL.self) { urls in
+                        if let url = urls.first {
+                            urlText = url.absoluteString
+                        }
                     }
+                    .buttonBorderShape(.circle)
+                    .labelStyle(.iconOnly)
+                    .transition(.opacity.combined(with: .scale(scale: 0.7)))
+                } else {
+                    Button(action: {
+                        urlText = ""
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.footnote.weight(.bold))
+                    }
+                    .buttonBorderShape(.circle)
+                    .buttonStyle(.bordered)
+                    .foregroundStyle(.secondary)
+                    .transition(.opacity.combined(with: .scale(scale: 0.7)))
                 }
-                .buttonBorderShape(.circle)
-                .labelStyle(.iconOnly)
-                .matchedGeometryEffect(id: "actionButton", in: buttonNamespace)
-            } else {
-                Button(action: {
-                    urlText = ""
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.footnote.weight(.bold))
-                }
-                .buttonBorderShape(.circle)
-                .buttonStyle(.bordered)
-                .foregroundStyle(.secondary)
-                .matchedGeometryEffect(id: "actionButton", in: buttonNamespace)
             }
+            .animation(.easeInOut(duration: 0.2), value: urlText.isEmpty)
         }
         .padding(.leading)
         .padding(.trailing, 8)
@@ -56,10 +58,20 @@ struct InputPillView: View {
     }
 }
 
-#Preview("Dynamic") {
+#Preview("Animation") {
     @Previewable @State var inputText = ""
 
     InputPillView(urlText: $inputText)
+        .task {
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(2))
+                if inputText.isEmpty {
+                    inputText = "https://music.apple.com/gb/album/better-than-yours/1812078323?i=1812078931"
+                } else {
+                    inputText = ""
+                }
+            }
+        }
 }
 
 #Preview("No Input") {

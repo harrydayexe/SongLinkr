@@ -22,7 +22,7 @@ struct SongLinkrApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            HomeScreen()
                 .environment(userSettings)
                 .environment(searchModel)
                 .environment(shazamMatcher)
