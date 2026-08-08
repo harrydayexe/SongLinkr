@@ -16,14 +16,35 @@ struct HomeScreen: View {
             ZStack {
                 GradientBackground()
 
-                switch phase {
-                case .home:
-                    SearchBoxView(namespace: morphNamespace, searchPhase: $phase)
-                case .results(let result):
-                    ResultsView(result: result)
+                SearchBoxView(
+                    namespace: morphNamespace,
+                    isSource: !phase.isResults,
+                    searchAction: {
+                        withAnimation(morphAnimation) { phase = .results(.previewResults) }
+                    },
+                    searchPhase: $phase
+                )
+                .opacity(phase.isResults ? 0 : 1)
+
+                ResultsView(
+                    namespace: morphNamespace,
+                    isSource: phase.isResults,
+                    result: phase.result ?? .previewResults,
+                    shareAction: {
+                        withAnimation(morphAnimation) { phase = .home }
+                    }
+                )
+                .opacity(phase.isResults ? 1 : 0)
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Image(systemName: "gear")
+                    }
                 }
             }
-            .animation(morphAnimation, value: phase.isResults)
         }
     }
 }

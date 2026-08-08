@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct ActionButtonRow: View {
-    var compact: Bool
-    var namespace: Namespace.ID
-    var primaryAction: () -> Void
-    var secondaryAction: () -> Void
+    let isResults: Bool
+    let isSource: Bool
+    let namespace: Namespace.ID
+    let primaryAction: () -> Void
+    let secondaryAction: () -> Void
 
     var body: some View {
-        HStack(spacing: compact ? 10 : 12) {
+        HStack {
             Button(action: primaryAction) {
-                Label(compact ? "Share song.link" : "Search",
-                      systemImage: compact ? "square.and.arrow.up" : "magnifyingglass")
+                Label(isResults ? "Share song.link" : "Search",
+                      systemImage: isResults ? "square.and.arrow.up" : "magnifyingglass")
                     .foregroundStyle(.white)
                     .font(.headline)
                     .frame(maxWidth: .infinity)
@@ -32,17 +33,17 @@ struct ActionButtonRow: View {
                     )
             }
             .buttonStyle(.plain)
-            .matchedGeometryEffect(id: "ctaPrimary", in: namespace)
+            .matchedGeometryEffect(id: "ctaPrimary", in: namespace, isSource: isSource)
             .shadow(color: .orange.opacity(0.4), radius: 13, y: 5)
 
             Button(action: secondaryAction) {
-                Image(systemName: compact ? "plus" : "waveform")
+                Image(systemName: isResults ? "plus" : "waveform")
                     .font(.title3.weight(.bold))
                     .foregroundStyle(.orange)
                     .frame(width: 52, height: 52)
             }
             .frostedPill(in: .circle)
-            .matchedGeometryEffect(id: "ctaSecondary", in: namespace)
+            .matchedGeometryEffect(id: "ctaSecondary", in: namespace, isSource: isSource)
         }
     }
 }
@@ -50,11 +51,11 @@ struct ActionButtonRow: View {
 #Preview("Expanded") {
     @Previewable @Namespace var morph
 
-    ActionButtonRow(compact: false, namespace: morph, primaryAction: {}, secondaryAction: {})
+    ActionButtonRow(isResults: false, isSource: true, namespace: morph, primaryAction: {}, secondaryAction: {})
 }
 
 #Preview("Compacted") {
     @Previewable @Namespace var morph
 
-    ActionButtonRow(compact: true, namespace: morph, primaryAction: {}, secondaryAction: {})
+    ActionButtonRow(isResults: true, isSource: true, namespace: morph, primaryAction: {}, secondaryAction: {})
 }

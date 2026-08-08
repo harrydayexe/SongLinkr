@@ -17,7 +17,7 @@ public struct PlatformLinks: Identifiable, Equatable, Comparable {
         self.nativeAppUriMobile = nativeAppUriMobile
         self.nativeAppUriDesktop = nativeAppUriDesktop
     }
-    
+
     public static func < (lhs: PlatformLinks, rhs: PlatformLinks) -> Bool {
         if lhs.id.displayRank < rhs.id.displayRank {
             return true
@@ -31,7 +31,7 @@ public struct PlatformLinks: Identifiable, Equatable, Comparable {
             }
         }
     }
-    
+
     /**
      The unique ID for the song/album on the platform
      */
@@ -60,8 +60,19 @@ public extension Array where Element == PlatformLinks {
         guard let index = self.firstIndex(where: { $0.id == defaultPlatform }) else {
             return
         }
-        
+
         let element = self.remove(at: index)
         self.insert(element, at: 0)
     }
 }
+
+#if DEBUG
+public extension Array where Element == PlatformLinks {
+    static let previewPlatformLinks = [
+        PlatformLinks(id: Platform.yandex, url: URL(string: "https://music.yandex.ru/track/59994505")!),
+        PlatformLinks(id: Platform.youtube, url: URL(string: "https://www.youtube.com/watch?v=QfnVrp2bPuE")!),
+        PlatformLinks(id: Platform.spotify, url: URL(string: "https://open.spotify.com/track/3NivHilTTTs8SQwp51yG0X")!),
+        PlatformLinks(id: Platform.appleMusic, url: URL(string: "https://geo.music.apple.com/us/album/_/1488452376?i=1488452377&mt=1&app=music&at=1000lHKX")!, nativeAppUriMobile: URL(string: "itmss://itunes.apple.com/us/album/_/1488452376?i=1488452377&mt=1&app=music&at=1000lHKX")!, nativeAppUriDesktop: URL(string: "music://itunes.apple.com/us/album/_/1488452376?i=1488452377&mt=1&app=music&at=1000lHKX")!)
+    ]
+}
+#endif

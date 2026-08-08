@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ResultsView: View {
+    let namespace: Namespace.ID
+    let isSource: Bool
     let result: ResultsModel
+    let shareAction: () -> Void
 
     var body: some View {
-        Text("Results")
+        VStack {
+            Spacer()
+            ActionButtonRow(isResults: true, isSource: isSource, namespace: namespace, primaryAction: shareAction, secondaryAction: {})
+                .padding()
+        }
     }
+}
+
+#Preview {
+    @Previewable @Namespace var namespace
+
+    ResultsView(namespace: namespace, isSource: true, result: .previewResults, shareAction: {})
 }

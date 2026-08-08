@@ -10,4 +10,6 @@ enum SearchPhase: Equatable {
     case results(ResultsModel)
 
     var isResults: Bool { if case .results = self { true } else { false } }
+
+    var result: ResultsModel? { if case .results(let model) = self { model } else { nil } }
 }

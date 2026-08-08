@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchBoxView: View {
     let namespace: Namespace.ID
+    let isSource: Bool
+    let searchAction: () -> Void
     @State private var urlText: String = ""
 
     @Binding var searchPhase: SearchPhase
@@ -31,22 +33,13 @@ struct SearchBoxView: View {
                 .padding(.top, 36)
 
             VStack(spacing: 0) {
-                ActionButtonRow(compact: false, namespace: namespace, primaryAction: {}, secondaryAction: {})
+                ActionButtonRow(isResults: false, isSource: isSource, namespace: namespace, primaryAction: searchAction, secondaryAction: {})
                     .padding(.top, 16)
                 Spacer()
             }
             .frame(maxHeight: .infinity)
         }
         .padding(.horizontal, 28)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    SettingsView()
-                } label: {
-                    Image(systemName: "gear")
-                }
-            }
-        }
     }
 }
 
@@ -54,7 +47,7 @@ struct SearchBoxView: View {
     @Previewable @Namespace var morph
 
     NavigationView {
-        SearchBoxView(namespace: morph, searchPhase: .constant(.home))
+        SearchBoxView(namespace: morph, isSource: true, searchAction: {}, searchPhase: .constant(.home))
     }
     .environment(UserSettings())
 }
