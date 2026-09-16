@@ -15,9 +15,13 @@ struct ResultsView: View {
 
     var body: some View {
         VStack {
-            Spacer()
-            ActionButtonRow(isResults: true, isSource: isSource, namespace: namespace, primaryAction: shareAction, secondaryAction: {})
-                .padding()
+            ZStack(alignment: .bottom) {
+                ResultsScrollView(namespace: namespace, isSource: isSource, result: result, shareAction: shareAction)
+
+                ActionButtonRow(isResults: true, isSource: isSource, namespace: namespace, primaryAction: shareAction, secondaryAction: {})
+                    .padding()
+                    .zIndex(1)
+            }
         }
     }
 }

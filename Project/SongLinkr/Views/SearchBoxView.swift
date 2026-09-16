@@ -23,7 +23,7 @@ struct SearchBoxView: View {
                 TitleBlock(
                     title: "SongLinkr",
                     subtitle: "Any song. Every platform.",
-                    titleFont: .largeTitle.bold()
+                    subtitleFont: .subheadline
                 )
                 .padding(.top, 22)
             }

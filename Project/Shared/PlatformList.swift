@@ -30,6 +30,7 @@ struct PlatformListRow: View {
         HStack {
             #warning("Add icon here")
             Text(platform.displayName)
+                .font(.title)
             Spacer()
             if showArrow {
                 Image(systemName: "arrow.up.right")
@@ -37,6 +38,7 @@ struct PlatformListRow: View {
                     .font(.callout)
             }
         }
+        .padding(.vertical)
     }
 }
 

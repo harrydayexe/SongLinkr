@@ -10,51 +10,23 @@ import SwiftUI
 struct InputPillView: View {
     @Binding var urlText: String
 
-    @FocusState private var focused: Bool
-    @Environment(\.colorScheme) private var colorScheme
-
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: "link")
                 .foregroundStyle(.tertiary)
 
             TextField("Paste a song link…", text: $urlText)
-                .focused($focused)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .keyboardType(.URL)
                 .submitLabel(.search)
 
-            ZStack {
-                if urlText.isEmpty {
-                    PasteButton(payloadType: URL.self) { urls in
-                        if let url = urls.first {
-                            urlText = url.absoluteString
-                        }
-                    }
-                    .buttonBorderShape(.circle)
-                    .labelStyle(.iconOnly)
-                    .transition(.opacity.combined(with: .scale(scale: 0.7)))
-                } else {
-                    Button(action: {
-                        urlText = ""
-                    }) {
-                        Image(systemName: "xmark")
-                            .font(.footnote.weight(.bold))
-                    }
-                    .buttonBorderShape(.circle)
-                    .buttonStyle(.bordered)
-                    .foregroundStyle(.secondary)
-                    .transition(.opacity.combined(with: .scale(scale: 0.7)))
-                }
-            }
-            .animation(.easeInOut(duration: 0.2), value: urlText.isEmpty)
+            PasteClearButton(urlText: $urlText)
         }
         .padding(.leading)
         .padding(.trailing, 8)
         .frame(height: 54)
         .frostedPill()
-        .animation(.easeInOut(duration: 0.15), value: urlText.isEmpty)
     }
 }
 

@@ -29,6 +29,8 @@
 		8C37CD83302772EA007FFAC9 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C37CD82302772EA007FFAC9 /* InfoPlist.xcstrings */; };
 		8C37CD85302772EA007FFAC9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C37CD84302772EA007FFAC9 /* Localizable.xcstrings */; };
 		8C37CD8730277B47007FFAC9 /* SupportedPlatformsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37CD8630277B47007FFAC9 /* SupportedPlatformsList.swift */; };
+		8C37CD8930278E19007FFAC9 /* PasteClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37CD8830278E19007FFAC9 /* PasteClearButton.swift */; };
+		8C37CD8B3027B6A3007FFAC9 /* ResultsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37CD8A3027B6A3007FFAC9 /* ResultsScrollView.swift */; };
 		8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43C36F267FB6320084CE97 /* SearchScreenView.swift */; };
 		8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */; };
@@ -131,6 +133,8 @@
 		8C37CD82302772EA007FFAC9 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		8C37CD84302772EA007FFAC9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8C37CD8630277B47007FFAC9 /* SupportedPlatformsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedPlatformsList.swift; sourceTree = "<group>"; };
+		8C37CD8830278E19007FFAC9 /* PasteClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteClearButton.swift; sourceTree = "<group>"; };
+		8C37CD8A3027B6A3007FFAC9 /* ResultsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsScrollView.swift; sourceTree = "<group>"; };
 		8C43C36F267FB6320084CE97 /* SearchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenView.swift; sourceTree = "<group>"; };
 		8C43CB0824A6658E001B89A0 /* SongLinkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SongLinkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrApp.swift; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 				8C37CD3130227DF8007FFAC9 /* SongLinkrLogoView.swift */,
 				8CB67C5F301A90D90049B5F2 /* TitleBlock.swift */,
 				8CB67C59301A8DC20049B5F2 /* InputPillView.swift */,
+				8C37CD8830278E19007FFAC9 /* PasteClearButton.swift */,
 				8CB67C57301A8BA10049B5F2 /* SettingsButton.swift */,
 				8CB67C4F301A887B0049B5F2 /* GradientBackground.swift */,
 				8C81830F24A9408C0047193B /* MainTextView.swift */,
@@ -325,6 +330,7 @@
 				8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */,
 				8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */,
 				8C2D1800265C656800478F0F /* URLEntryField.swift */,
+				8C37CD8A3027B6A3007FFAC9 /* ResultsScrollView.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -521,6 +527,7 @@
 				8CB67C4E301A87BF0049B5F2 /* HomeScreen.swift in Sources */,
 				8CB67C58301A8BA50049B5F2 /* SettingsButton.swift in Sources */,
 				8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */,
+				8C37CD8930278E19007FFAC9 /* PasteClearButton.swift in Sources */,
 				8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */,
 				8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */,
 				8C59A912267F69790010A451 /* ShazamButton.swift in Sources */,
@@ -535,6 +542,7 @@
 				8C2906DC268CAF99005A43CD /* HistoryViewListItem.swift in Sources */,
 				8C37CD8730277B47007FFAC9 /* SupportedPlatformsList.swift in Sources */,
 				8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */,
+				8C37CD8B3027B6A3007FFAC9 /* ResultsScrollView.swift in Sources */,
 				8C08B57924C3134900DC8235 /* OldResultsView.swift in Sources */,
 				8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */,
 				8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */,

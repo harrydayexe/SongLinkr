@@ -51,11 +51,17 @@ struct ActionButtonRow: View {
 #Preview("Expanded") {
     @Previewable @Namespace var morph
 
-    ActionButtonRow(isResults: false, isSource: true, namespace: morph, primaryAction: {}, secondaryAction: {})
+    VStack(alignment: .trailing) {
+        Spacer()
+        ActionButtonRow(isResults: false, isSource: true, namespace: morph, primaryAction: {}, secondaryAction: {})
+    }
 }
 
 #Preview("Compacted") {
     @Previewable @Namespace var morph
 
-    ActionButtonRow(isResults: true, isSource: true, namespace: morph, primaryAction: {}, secondaryAction: {})
+    VStack(alignment: .trailing) {
+        Spacer()
+        ActionButtonRow(isResults: true, isSource: true, namespace: morph, primaryAction: {}, secondaryAction: {})
+    }
 }
