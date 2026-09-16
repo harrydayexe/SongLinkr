@@ -3,7 +3,7 @@
 //  SongLinkr
 //
 //  Created by Harry Day on 26/06/2021
-//  
+//
 //
 //  Twitter: https://twitter.com/realharryday
 //  Github: https://github.com/harryday123
@@ -12,20 +12,15 @@
 import SwiftUI
 
 struct HistoryView: View {
-    /// The selected tab
-    @Binding var selectedTab: AppTab
+    @Environment(\.dismiss) private var dismiss
 
     /// The View model for the view
     @StateObject private var viewModel = HistoryViewModel()
 
-    /// Pending URL picked up by ContentView to trigger a new search.
+    /// Pending URL picked up by HomeScreen to trigger a new search.
     @AppStorage("pendingDeepLinkURL") private var pendingDeepLinkURL: String = ""
 
-    init(
-        selectedTab: Binding<AppTab>,
-        viewModel: HistoryViewModel = HistoryViewModel()
-    ) {
-        _selectedTab = selectedTab
+    init(viewModel: HistoryViewModel = HistoryViewModel()) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
@@ -53,8 +48,9 @@ struct HistoryView: View {
                 #warning("Fix this")
                 return
             }
+            // HomeScreen watches this key and kicks off the search.
             pendingDeepLinkURL = urlString
-            selectedTab = .search
+            dismiss()
         } label: {
             Label("Search Again", systemImage: "magnifyingglass.circle")
         }
@@ -62,39 +58,40 @@ struct HistoryView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            List {
-                Section(header: Text("Shazam Matches")) {
-                    ForEach(shazamItems, id: \.self) { item in
-                        HistoryViewListItem(item: item)
-                            .swipeActions { swipeActionsContent(for: item) }
-                    }
-                    .onDelete(perform: viewModel.deleteShazamItem(at:))
-                }.headerProminence(.increased)
+        List {
+            Section(header: Text("Shazam Matches")) {
+                ForEach(shazamItems, id: \.self) { item in
+                    HistoryViewListItem(item: item)
+                        .swipeActions { swipeActionsContent(for: item) }
+                }
+                .onDelete(perform: viewModel.deleteShazamItem(at:))
+            }.headerProminence(.increased)
 
-                Section(header: Text("URL Matches")) {
-                    ForEach(nonShazamItems, id: \.self) { item in
-                        HistoryViewListItem(item: item)
-                            .swipeActions { swipeActionsContent(for: item) }
-                    }
-                    .onDelete(perform: viewModel.deleteNonShazamItem(at:))
-                }.headerProminence(.increased)
-            }
-            .listStyle(.insetGrouped)
-            .toolbar {
-                EditButton()
-            }
-            .navigationTitle(Text("History"))
-            .toolbarMinimizationBehavior(.onScrollDown, for: .navigationBar)
+            Section(header: Text("URL Matches")) {
+                ForEach(nonShazamItems, id: \.self) { item in
+                    HistoryViewListItem(item: item)
+                        .swipeActions { swipeActionsContent(for: item) }
+                }
+                .onDelete(perform: viewModel.deleteNonShazamItem(at:))
+            }.headerProminence(.increased)
         }
+        .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background { GradientBackground() }
+        .toolbar {
+            EditButton()
+        }
+        .navigationTitle(Text("History"))
+        .toolbarMinimizationBehavior(.onScrollDown, for: .navigationBar)
     }
 }
 
 #Preview {
-    HistoryView(
-        selectedTab: .constant(.history),
-        viewModel: HistoryViewModel(
-            matchedItemPublisher: MatchedItemStorage.shared.matchedItems.eraseToAnyPublisher()
+    NavigationStack {
+        HistoryView(
+            viewModel: HistoryViewModel(
+                matchedItemPublisher: MatchedItemStorage.shared.matchedItems.eraseToAnyPublisher()
+            )
         )
-    )
+    }
 }

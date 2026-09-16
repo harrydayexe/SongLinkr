@@ -8,11 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */; };
-		8C08B57524C3134300DC8235 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43CB0D24A6658E001B89A0 /* ContentView.swift */; };
-		8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */; };
-		8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81830F24A9408C0047193B /* MainTextView.swift */; };
-		8C08B57924C3134900DC8235 /* OldResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81831124A945F30047193B /* OldResultsView.swift */; };
-		8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */; };
 		8C20BF493015036200508138 /* SendToSongLinkrIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF483015036200508138 /* SendToSongLinkrIntent.swift */; };
 		8C20BF4B3015036700508138 /* MatchURLToPlatformIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF4A3015036700508138 /* MatchURLToPlatformIntent.swift */; };
 		8C20BF4D3015036900508138 /* SongLinkrShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20BF4C3015036900508138 /* SongLinkrShortcuts.swift */; };
@@ -23,7 +18,6 @@
 		8C2906C726875F57005A43CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C526875F57005A43CD /* Model.xcdatamodeld */; };
 		8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */; };
 		8C2906DC268CAF99005A43CD /* HistoryViewListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */; };
-		8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D1800265C656800478F0F /* URLEntryField.swift */; };
 		8C34F3C026723FEF00E05629 /* (null) in Embed Foundation Extensions */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C37CD3230227DF8007FFAC9 /* SongLinkrLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37CD3130227DF8007FFAC9 /* SongLinkrLogoView.swift */; };
 		8C37CD83302772EA007FFAC9 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8C37CD82302772EA007FFAC9 /* InfoPlist.xcstrings */; };
@@ -31,12 +25,9 @@
 		8C37CD8730277B47007FFAC9 /* SupportedPlatformsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37CD8630277B47007FFAC9 /* SupportedPlatformsList.swift */; };
 		8C37CD8930278E19007FFAC9 /* PasteClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37CD8830278E19007FFAC9 /* PasteClearButton.swift */; };
 		8C37CD8B3027B6A3007FFAC9 /* ResultsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37CD8A3027B6A3007FFAC9 /* ResultsScrollView.swift */; };
-		8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C43C36F267FB6320084CE97 /* SearchScreenView.swift */; };
 		8C43CB1024A66593001B89A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB0F24A66593001B89A0 /* Assets.xcassets */; };
 		8C43CB1324A66593001B89A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */; };
 		8C4E90832633741B00D201C1 /* (null) in Embed Foundation Extensions */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8C59A912267F69790010A451 /* ShazamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C59A911267F69790010A451 /* ShazamButton.swift */; };
-		8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */; };
 		8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */; };
 		8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */; };
 		8CA992EF3017F9AB007B7DFA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA992EE3017F9AB007B7DFA /* SearchModel.swift */; };
@@ -51,7 +42,6 @@
 		8CB67C52301A89040049B5F2 /* SearchPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB67C51301A89000049B5F2 /* SearchPhase.swift */; };
 		8CB67C54301A8AB40049B5F2 /* SearchBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB67C53301A8AA90049B5F2 /* SearchBoxView.swift */; };
 		8CB67C56301A8ACA0049B5F2 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB67C55301A8AC20049B5F2 /* ResultsView.swift */; };
-		8CB67C58301A8BA50049B5F2 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB67C57301A8BA10049B5F2 /* SettingsButton.swift */; };
 		8CB67C5A301A8DC70049B5F2 /* InputPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB67C59301A8DC20049B5F2 /* InputPillView.swift */; };
 		8CB67C60301A90DC0049B5F2 /* TitleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB67C5F301A90D90049B5F2 /* TitleBlock.swift */; };
 		8CB67C64301A91EE0049B5F2 /* ArtworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB67C63301A91E80049B5F2 /* ArtworkView.swift */; };
@@ -127,7 +117,6 @@
 		8C2906C626875F57005A43CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8C2906C826876C2B005A43CD /* MatchedItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedItemStorage.swift; sourceTree = "<group>"; };
 		8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewListItem.swift; sourceTree = "<group>"; };
-		8C2D1800265C656800478F0F /* URLEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEntryField.swift; sourceTree = "<group>"; };
 		8C34F3B826723FEF00E05629 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		8C37CD3130227DF8007FFAC9 /* SongLinkrLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrLogoView.swift; sourceTree = "<group>"; };
 		8C37CD82302772EA007FFAC9 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -135,21 +124,13 @@
 		8C37CD8630277B47007FFAC9 /* SupportedPlatformsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedPlatformsList.swift; sourceTree = "<group>"; };
 		8C37CD8830278E19007FFAC9 /* PasteClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteClearButton.swift; sourceTree = "<group>"; };
 		8C37CD8A3027B6A3007FFAC9 /* ResultsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsScrollView.swift; sourceTree = "<group>"; };
-		8C43C36F267FB6320084CE97 /* SearchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenView.swift; sourceTree = "<group>"; };
 		8C43CB0824A6658E001B89A0 /* SongLinkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SongLinkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C43CB0B24A6658E001B89A0 /* SongLinkrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLinkrApp.swift; sourceTree = "<group>"; };
-		8C43CB0D24A6658E001B89A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8C43CB0F24A66593001B89A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C43CB1224A66593001B89A0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8C43CB1424A66593001B89A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButton.swift; sourceTree = "<group>"; };
-		8C59A911267F69790010A451 /* ShazamButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamButton.swift; sourceTree = "<group>"; };
-		8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8C6BE3D424C3B9DD004FBDD4 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
-		8C81830F24A9408C0047193B /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
-		8C81831124A945F30047193B /* OldResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldResultsView.swift; sourceTree = "<group>"; };
-		8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLinkButtonView.swift; sourceTree = "<group>"; };
 		8CA992EE3017F9AB007B7DFA /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		8CA992F33017F9BA007B7DFA /* ShazamMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamMatcher.swift; sourceTree = "<group>"; };
 		8CAAE7AA26F4E12F00BBF2CD /* TranslationCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationCreditView.swift; sourceTree = "<group>"; };
@@ -160,7 +141,6 @@
 		8CB67C51301A89000049B5F2 /* SearchPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhase.swift; sourceTree = "<group>"; };
 		8CB67C53301A8AA90049B5F2 /* SearchBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBoxView.swift; sourceTree = "<group>"; };
 		8CB67C55301A8AC20049B5F2 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
-		8CB67C57301A8BA10049B5F2 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		8CB67C59301A8DC20049B5F2 /* InputPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPillView.swift; sourceTree = "<group>"; };
 		8CB67C5F301A90D90049B5F2 /* TitleBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBlock.swift; sourceTree = "<group>"; };
 		8CB67C63301A91E80049B5F2 /* ArtworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkView.swift; sourceTree = "<group>"; };
@@ -301,8 +281,6 @@
 				8CB67C4D301A87AF0049B5F2 /* HomeScreen.swift */,
 				8CB67C53301A8AA90049B5F2 /* SearchBoxView.swift */,
 				8CB67C55301A8AC20049B5F2 /* ResultsView.swift */,
-				8C6BE3D024C3B511004FBDD4 /* MainTabView.swift */,
-				8C43CB0D24A6658E001B89A0 /* ContentView.swift */,
 				8C29069426875422005A43CD /* HistoryView.swift */,
 				8C6BE3D224C3B5FD004FBDD4 /* SettingsView.swift */,
 			);
@@ -319,17 +297,9 @@
 				8CB67C5F301A90D90049B5F2 /* TitleBlock.swift */,
 				8CB67C59301A8DC20049B5F2 /* InputPillView.swift */,
 				8C37CD8830278E19007FFAC9 /* PasteClearButton.swift */,
-				8CB67C57301A8BA10049B5F2 /* SettingsButton.swift */,
 				8CB67C4F301A887B0049B5F2 /* GradientBackground.swift */,
-				8C81830F24A9408C0047193B /* MainTextView.swift */,
 				8CAAE7AA26F4E12F00BBF2CD /* TranslationCreditView.swift */,
 				8C2906DB268CAF99005A43CD /* HistoryViewListItem.swift */,
-				8C43C36F267FB6320084CE97 /* SearchScreenView.swift */,
-				8C59A911267F69790010A451 /* ShazamButton.swift */,
-				8C81831124A945F30047193B /* OldResultsView.swift */,
-				8CA41EBD24B25257006C8ADB /* GetLinkButtonView.swift */,
-				8C51E3E024B36B0600BD8D3D /* GetLinkButton.swift */,
-				8C2D1800265C656800478F0F /* URLEntryField.swift */,
 				8C37CD8A3027B6A3007FFAC9 /* ResultsScrollView.swift */,
 			);
 			path = "Supporting Views";
@@ -513,29 +483,21 @@
 				8CF1D4A0269A1CA800B5A46E /* MatchedItem+CoreDataProperties.swift in Sources */,
 				8CF1D49F269A1CA800B5A46E /* MatchedItem+CoreDataClass.swift in Sources */,
 				8CA992F53017F9BA007B7DFA /* ShazamMatcher.swift in Sources */,
-				8C08B57624C3134900DC8235 /* GetLinkButton.swift in Sources */,
 				8CB67C54301A8AB40049B5F2 /* SearchBoxView.swift in Sources */,
-				8C6BE3D124C3B511004FBDD4 /* MainTabView.swift in Sources */,
 				8CB67C56301A8ACA0049B5F2 /* ResultsView.swift in Sources */,
 				8CB67C64301A91EE0049B5F2 /* ArtworkView.swift in Sources */,
 				8CB67C52301A89040049B5F2 /* SearchPhase.swift in Sources */,
 				8C20BF4D3015036900508138 /* SongLinkrShortcuts.swift in Sources */,
-				8C08B57524C3134300DC8235 /* ContentView.swift in Sources */,
 				8CB67C66301A9CB70049B5F2 /* ActionButtonRow.swift in Sources */,
 				8C6BE3D524C3B9DD004FBDD4 /* UserSettings.swift in Sources */,
 				8CB67C50301A88880049B5F2 /* GradientBackground.swift in Sources */,
 				8CB67C4E301A87BF0049B5F2 /* HomeScreen.swift in Sources */,
-				8CB67C58301A8BA50049B5F2 /* SettingsButton.swift in Sources */,
 				8C2906C926876C2B005A43CD /* MatchedItemStorage.swift in Sources */,
 				8C37CD8930278E19007FFAC9 /* PasteClearButton.swift in Sources */,
 				8C08B57424C3133B00DC8235 /* SongLinkrApp.swift in Sources */,
 				8CC72A4A24C06E50006672AE /* StatefulPreviewWrapperView.swift in Sources */,
-				8C59A912267F69790010A451 /* ShazamButton.swift in Sources */,
-				8C43C370267FB6320084CE97 /* SearchScreenView.swift in Sources */,
-				8C2D1801265C656800478F0F /* URLEntryField.swift in Sources */,
 				8C2906C426875EAA005A43CD /* Persistence.swift in Sources */,
 				8C29069526875422005A43CD /* HistoryView.swift in Sources */,
-				8C08B57A24C3134900DC8235 /* GetLinkButtonView.swift in Sources */,
 				8C20BF553015061C00508138 /* SongLinkrPlatform.swift in Sources */,
 				8C29069926875A9D005A43CD /* HistoryViewModel.swift in Sources */,
 				8CC72A4824C06E2E006672AE /* Binding+Mock.swift in Sources */,
@@ -543,8 +505,6 @@
 				8C37CD8730277B47007FFAC9 /* SupportedPlatformsList.swift in Sources */,
 				8C6BE3D324C3B5FD004FBDD4 /* SettingsView.swift in Sources */,
 				8C37CD8B3027B6A3007FFAC9 /* ResultsScrollView.swift in Sources */,
-				8C08B57924C3134900DC8235 /* OldResultsView.swift in Sources */,
-				8C08B57824C3134900DC8235 /* MainTextView.swift in Sources */,
 				8CAD544A267E17DC0062099B /* ResultsModel.swift in Sources */,
 				8CAAE7AB26F4E12F00BBF2CD /* TranslationCreditView.swift in Sources */,
 				8C2906C726875F57005A43CD /* Model.xcdatamodeld in Sources */,
@@ -717,7 +677,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202;
+				CURRENT_PROJECT_VERSION = 203;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -746,7 +706,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202;
+				CURRENT_PROJECT_VERSION = 203;
 				DEVELOPMENT_ASSET_PATHS = "\"SongLinkr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SongLinkr/Info.plist;
@@ -773,7 +733,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202;
+				CURRENT_PROJECT_VERSION = 203;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;
@@ -806,7 +766,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202;
+				CURRENT_PROJECT_VERSION = 203;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SongLinkrShareExtension/Info.plist;

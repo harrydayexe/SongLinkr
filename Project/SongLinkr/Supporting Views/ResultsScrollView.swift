@@ -11,18 +11,24 @@ struct ResultsScrollView: View {
     let namespace: Namespace.ID
     let isSource: Bool
     let result: ResultsModel
-    let shareAction: () -> Void
 
     var body: some View {
-        VStack {
-            ArtworkView(size: 190, cornerRadius: 24, artworkURL: result.artworkURL, namespace: namespace)
-                .padding()
+        VStack(spacing: 0) {
+            ArtworkView(size: 190, cornerRadius: 24, artworkURL: result.artworkURL, namespace: namespace, isSource: isSource)
+                .padding(.top, 26)
 
-            TitleBlock(title: result.mediaTitle, subtitle: result.artistName, subtitleFont: .subheadline)
-                .padding(.bottom)
+            TitleBlock(
+                title: result.mediaTitle,
+                subtitle: result.artistName,
+                titleFont: .system(size: 24, weight: .bold),
+                subtitleFont: .subheadline
+            )
+            .padding(.top, 18)
 
-            PlatformList(platforms: result.response).contentMargins(.bottom, 100, for: .scrollContent)
+            PlatformList(platforms: result.response)
+                .contentMargins(.bottom, 100, for: .scrollContent)
                 .scrollContentBackground(.hidden)
+                .padding(.top, 4)
         }
     }
 }
@@ -30,5 +36,8 @@ struct ResultsScrollView: View {
 #Preview {
     @Previewable @Namespace var namespace
 
-    ResultsScrollView(namespace: namespace, isSource: true, result: .previewResults, shareAction: {})
+    ZStack {
+        GradientBackground()
+        ResultsScrollView(namespace: namespace, isSource: true, result: .previewResults)
+    }
 }

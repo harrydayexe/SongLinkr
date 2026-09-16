@@ -10,11 +10,12 @@ import SwiftUI
 struct TitleBlock: View {
     var title: String
     var subtitle: String
+    var titleFont: Font = .largeTitle.bold()
     var subtitleFont: Font
 
     var body: some View {
         VStack(spacing: 4) {
-            Text(title).font(.largeTitle.bold())
+            Text(title).font(titleFont)
             Text(subtitle).font(subtitleFont).foregroundStyle(.secondary)
         }
     }

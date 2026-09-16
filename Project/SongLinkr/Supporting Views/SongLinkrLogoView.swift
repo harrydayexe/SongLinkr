@@ -11,6 +11,7 @@ struct SongLinkrLogoView: View {
     var size: CGFloat
     var cornerRadius: CGFloat
     var namespace: Namespace.ID
+    var isSource: Bool = true
 
     var body: some View {
         ZStack {
@@ -23,7 +24,7 @@ struct SongLinkrLogoView: View {
         .frame(width: size, height: size)
         .clipShape(.rect(cornerRadius: cornerRadius))
         .shadow(color: .orange.opacity(0.4), radius: 13, y: 5)
-        .matchedGeometryEffect(id: "art", in: namespace)
+        .matchedGeometryEffect(id: "art", in: namespace, isSource: isSource)
     }
 }
 

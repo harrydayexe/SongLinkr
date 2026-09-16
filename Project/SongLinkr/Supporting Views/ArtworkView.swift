@@ -12,6 +12,7 @@ struct ArtworkView: View {
     var cornerRadius: CGFloat
     var artworkURL: URL?
     var namespace: Namespace.ID
+    var isSource: Bool = true
 
     var body: some View {
         AsyncImage(url: artworkURL) { image in
@@ -22,7 +23,7 @@ struct ArtworkView: View {
         .frame(width: size, height: size)
         .clipShape(.rect(cornerRadius: cornerRadius))
         .shadow(color: .orange.opacity(0.4), radius: 22, y: 9)
-        .matchedGeometryEffect(id: "art", in: namespace)
+        .matchedGeometryEffect(id: "art", in: namespace, isSource: isSource)
     }
 
     private var placeholderGradient: some View {

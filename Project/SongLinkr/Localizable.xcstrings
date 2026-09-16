@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "…or identify what’s playing around you" : {
+      "comment" : "Hint under the search button pointing at the Shazam button"
+    },
     "%@" : {
 
     },
@@ -73,6 +76,9 @@
     },
     "An unknown error occured" : {
       "comment" : "Error message title"
+    },
+    "Any song. Every platform." : {
+      "comment" : "Tagline under the app name on the home screen"
     },
     "Apple Music" : {
 
@@ -153,6 +159,7 @@
     },
     "Clear Search Bar" : {
       "comment" : "Accessibility label",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -420,6 +427,7 @@
     },
     "Listening" : {
       "comment" : "Button indicator, shows that the app is listening with the microphone",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -443,6 +451,7 @@
     },
     "Loading" : {
       "comment" : "Loading indicator",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -489,6 +498,7 @@
     },
     "Match with Shazam" : {
       "comment" : "Button name, starts listening with Shazam",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -512,6 +522,7 @@
     },
     "Matches Found" : {
       "comment" : "Button Indicator, shows that all matches have been found",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -622,11 +633,9 @@
     "Paste a song link…" : {
 
     },
-    "Paste a URL" : {
-
-    },
     "Paste a URL to search for matches on other platforms." : {
       "comment" : "Accessibility label",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -650,6 +659,7 @@
     },
     "Pick your platform" : {
       "comment" : "The modal view title",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -813,7 +823,7 @@
       }
     },
     "Search" : {
-
+      "comment" : "Button title, searches for the entered link"
     },
     "Search Again" : {
       "comment" : "List Swipe Action Name",
@@ -840,6 +850,7 @@
     },
     "Search Link" : {
       "comment" : "Button Name, sends a link to be matched",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -930,10 +941,11 @@
       }
     },
     "Share song.link" : {
-
+      "comment" : "Button title, shares the universal song.link URL"
     },
     "Shazam Match Found" : {
       "comment" : "Button indicator, shows a match has been found",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -983,9 +995,6 @@
     },
     "Something went wrong" : {
       "comment" : "Error message title\nGeneric error title"
-    },
-    "SongLinkr" : {
-
     },
     "SongLinkr is developed by Harry Day from England" : {
       "comment" : "Section footer",
@@ -1196,6 +1205,7 @@
     },
     "URL Search Field" : {
       "comment" : "Accessibility label",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
