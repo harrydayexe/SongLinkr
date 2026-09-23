@@ -46,11 +46,11 @@ class ShazamMatcher {
             switch result {
             case .match(let match):
                 guard let matchedItem = match.mediaItems.first else {
-                    searchModel.error = .matchNotFound
+                    fail(with: .matchNotFound)
                     return
                 }
                 guard let appleMusicURLString = matchedItem.appleMusicURL?.absoluteString else {
-                    searchModel.error = .missingInformation
+                    fail(with: .missingInformation)
                     return
                 }
                 shazamState = .matchFound
@@ -62,7 +62,8 @@ class ShazamMatcher {
                     artworkURL: matchedItem.artworkURL,
                     fromShazam: true
                 )
-                shazamState = .finished
+                // The lookup sets its own error on failure
+                shazamState = searchModel.results == nil ? .idle : .finished
                 if let settings = userSettingsSnapshot, settings.saveToShazamLibrary {
                     Task {
                         do {
@@ -74,13 +75,13 @@ class ShazamMatcher {
                 }
 
             case .noMatch:
-                searchModel.error = .matchNotFound
+                fail(with: .matchNotFound)
 
             case .error(let error, _):
                 if let shError = error as? SHError {
-                    searchModel.error = .shazam(shError)
+                    fail(with: .shazam(shError))
                 } else {
-                    searchModel.error = .unknown(error)
+                    fail(with: .unknown(error))
                 }
             }
         }
@@ -88,6 +89,12 @@ class ShazamMatcher {
 
     func stopMatching() {
         session.cancel()
+    }
+
+    /// Returns the button to idle straight away rather than waiting for the alert to be dismissed
+    private func fail(with error: SearchModel.RequestError) {
+        shazamState = .idle
+        searchModel.error = error
     }
 
     // MARK: Shazam Library

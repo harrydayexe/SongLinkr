@@ -150,7 +150,7 @@ struct HomeScreen: View {
                 shareURL: displayedResult?.pageUrl,
                 isSearching: searchModel.normalInProgress,
                 searchDisabled: searchURL.isEmpty,
-                isShazamListening: shazamMatcher.shazamState == .matching,
+                shazamState: shazamMatcher.shazamState,
                 copyConfirmed: linkCopied,
                 primaryAction: makeRequest,
                 secondaryAction: phase.isResults ? copyLink : toggleShazam

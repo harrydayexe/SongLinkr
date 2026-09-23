@@ -18,7 +18,7 @@ struct ActionButtonRow: View {
     var shareURL: URL?
     var isSearching: Bool = false
     var searchDisabled: Bool = false
-    var isShazamListening: Bool = false
+    var shazamState: ShazamMatcher.ShazamState = .idle
     var copyConfirmed: Bool = false
 
     var primaryAction: () -> Void = {}
@@ -106,12 +106,24 @@ struct ActionButtonRow: View {
 
     // MARK: Secondary
 
+    /// A match was found and its links are being looked up
+    private var isShazamSearching: Bool {
+        shazamState == .matchFound
+    }
+
     private var secondaryButton: some View {
         Button(action: secondaryAction) {
             ZStack {
-                Image(systemName: "waveform")
-                    .symbolEffect(.variableColor.iterative, isActive: isShazamListening && !isResults)
-                    .morphCrossfade(visible: !isResults)
+                ZStack {
+                    Image(systemName: "waveform")
+                        .symbolEffect(.variableColor.iterative, isActive: shazamState == .matching && !isResults)
+                        .morphCrossfade(visible: !isShazamSearching)
+
+                    ProgressView()
+                        .tint(.orange)
+                        .morphCrossfade(visible: isShazamSearching)
+                }
+                .morphCrossfade(visible: !isResults)
 
                 Image(systemName: copyConfirmed ? "checkmark" : "doc.on.doc")
                     .contentTransition(.symbolEffect(.replace))
@@ -123,7 +135,7 @@ struct ActionButtonRow: View {
             .contentShape(.circle)
         }
         .buttonStyle(.plain)
-        .disabled(isResults && (shareURL == nil || copyConfirmed))
+        .disabled(isResults ? shareURL == nil || copyConfirmed : isShazamSearching)
         .opacity(isResults && shareURL == nil ? 0.4 : 1)
         .accessibilityLabel(isResults
             ? Text("Copy song.link", comment: "Accessibility label for the button that copies the universal song.link URL")
@@ -144,7 +156,16 @@ struct ActionButtonRow: View {
 #Preview("Home — listening") {
     VStack {
         Spacer()
-        ActionButtonRow(isResults: false, isShazamListening: true)
+        ActionButtonRow(isResults: false, shazamState: .matching)
+            .frame(height: 52)
+    }
+    .padding(.horizontal, 28)
+}
+
+#Preview("Home — Shazam searching") {
+    VStack {
+        Spacer()
+        ActionButtonRow(isResults: false, shazamState: .matchFound)
             .frame(height: 52)
     }
     .padding(.horizontal, 28)
