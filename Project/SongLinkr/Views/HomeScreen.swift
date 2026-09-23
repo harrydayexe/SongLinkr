@@ -38,6 +38,9 @@ struct HomeScreen: View {
                         saveAction: saveToShazamLibrary
                     )
                     .transition(.opacity)
+                    // Explicit zIndex keeps the outgoing screen above the background while it
+                    // transitions out; without it the ZStack draws it behind and it vanishes
+                    .zIndex(1)
                 } else {
                     SearchBoxView(
                         namespace: morphNamespace,
@@ -49,6 +52,7 @@ struct HomeScreen: View {
                         shazamAction: toggleShazam
                     )
                     .transition(.opacity)
+                    .zIndex(1)
                 }
             }
             .toolbar {
