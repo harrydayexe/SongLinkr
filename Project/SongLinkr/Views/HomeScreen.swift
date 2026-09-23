@@ -16,7 +16,7 @@ struct HomeScreen: View {
     @Namespace private var heroNamespace
     @State private var phase: SearchPhase = .home
     @State private var searchURL: String = ""
-    @State private var savedToShazamLibrary = false
+    @State private var linkCopied = false
     /// The last result, kept after returning home so the results content and artwork
     /// can animate out intact rather than emptying mid-transition.
     @State private var displayedResult: ResultsModel?
@@ -42,7 +42,7 @@ struct HomeScreen: View {
                 SearchBoxView(namespace: heroNamespace, isActive: !phase.isResults, onWipeEdgeChange: updateWipeEdge)
                     .wipeMask(top: wipeBand.top, bottom: wipeBand.bottom, revealsBand: false)
 
-                ResultsView(namespace: heroNamespace, result: displayedResult, isActive: phase.isResults, onWipeEdgeChange: updateWipeEdge)
+                ResultsView(namespace: heroNamespace, result: displayedResult, isActive: phase.isResults, onWipeEdgeChange: updateWipeEdge, onDismiss: returnHome)
                     .wipeMask(top: wipeBand.top, bottom: wipeBand.bottom, revealsBand: true)
             }
             .coordinateSpace(.morph)
@@ -58,7 +58,7 @@ struct HomeScreen: View {
             // Morph between home and results whenever a search finishes or is cleared
             .onChange(of: searchModel.results?.id) { _, id in
                 if id != nil, let results = searchModel.results {
-                    savedToShazamLibrary = false
+                    linkCopied = false
                     // Swap the (hidden) results content without animation; only the morph animates
                     displayedResult = results
                     resultsURLText = searchURL.isEmpty ? (results.pageUrl?.absoluteString ?? "") : searchURL
@@ -132,6 +132,8 @@ struct HomeScreen: View {
     private var heroLayer: some View {
         ZStack {
             HeroArtView(artworkURL: displayedResult?.artworkURL, showsArtwork: phase.isResults)
+                // The artwork sits above the results header, so it needs the swipe itself
+                .onSwipeDown { if phase.isResults { returnHome() } }
                 .heroFollower(.art, in: heroNamespace)
 
             InputPillView(
@@ -149,10 +151,9 @@ struct HomeScreen: View {
                 isSearching: searchModel.normalInProgress,
                 searchDisabled: searchURL.isEmpty,
                 isShazamListening: shazamMatcher.shazamState == .matching,
-                canSaveToLibrary: phase.result.map { $0.isFromShazam && !userSettings.saveToShazamLibrary } ?? false,
-                saveConfirmed: savedToShazamLibrary,
+                copyConfirmed: linkCopied,
                 primaryAction: makeRequest,
-                secondaryAction: phase.isResults ? saveToShazamLibrary : toggleShazam
+                secondaryAction: phase.isResults ? copyLink : toggleShazam
             )
             .heroFollower(.actions, in: heroNamespace)
         }
@@ -186,11 +187,14 @@ struct HomeScreen: View {
         searchModel.results = nil
     }
 
-    private func saveToShazamLibrary() {
+    /// Copies the song.link URL and shows a checkmark briefly before reverting to the copy icon.
+    private func copyLink() {
+        guard let pageURL = displayedResult?.pageUrl else { return }
+        UIPasteboard.general.string = pageURL.absoluteString
+        withAnimation { linkCopied = true }
         Task {
-            if await shazamMatcher.saveCachedItem() {
-                savedToShazamLibrary = true
-            }
+            try? await Task.sleep(for: .seconds(2))
+            withAnimation { linkCopied = false }
         }
     }
 

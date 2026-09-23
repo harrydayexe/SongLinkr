@@ -16,6 +16,8 @@ struct ResultsView: View {
     var result: ResultsModel?
     var isActive: Bool
     var onWipeEdgeChange: (MorphWipe.Edge, CGFloat) -> Void
+    /// Collapses back to the search layout; the same action as the input bar's clear button.
+    var onDismiss: () -> Void
 
     private var metrics = HeroMetrics()
 
@@ -23,12 +25,14 @@ struct ResultsView: View {
         namespace: Namespace.ID,
         result: ResultsModel?,
         isActive: Bool = true,
-        onWipeEdgeChange: @escaping (MorphWipe.Edge, CGFloat) -> Void = { _, _ in }
+        onWipeEdgeChange: @escaping (MorphWipe.Edge, CGFloat) -> Void = { _, _ in },
+        onDismiss: @escaping () -> Void = {}
     ) {
         self.namespace = namespace
         self.result = result
         self.isActive = isActive
         self.onWipeEdgeChange = onWipeEdgeChange
+        self.onDismiss = onDismiss
     }
 
     var body: some View {
@@ -40,7 +44,7 @@ struct ResultsView: View {
                     .wipeEdge(.resultsInput, onChange: onWipeEdgeChange)
                     .padding(.horizontal)
 
-                ResultsScrollView(namespace: namespace, result: result, isActive: isActive)
+                ResultsScrollView(namespace: namespace, result: result, isActive: isActive, onDismiss: onDismiss)
             }
 
             Color.clear

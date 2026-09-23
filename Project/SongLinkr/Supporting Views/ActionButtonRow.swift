@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Hero "actions": Search pill + Shazam circle on the home screen morph into the
-/// Share song.link bar + add-to-Shazam-library circle on results. Fills whatever size
+/// Share song.link bar + copy song.link circle on results. Fills whatever size
 /// it is given: the circle is as tall as the row and the pill takes the remaining width.
 /// The pill and circle surfaces are shared; only their labels crossfade in place.
 struct ActionButtonRow: View {
@@ -19,8 +19,7 @@ struct ActionButtonRow: View {
     var isSearching: Bool = false
     var searchDisabled: Bool = false
     var isShazamListening: Bool = false
-    var canSaveToLibrary: Bool = false
-    var saveConfirmed: Bool = false
+    var copyConfirmed: Bool = false
 
     var primaryAction: () -> Void = {}
     var secondaryAction: () -> Void = {}
@@ -114,7 +113,7 @@ struct ActionButtonRow: View {
                     .symbolEffect(.variableColor.iterative, isActive: isShazamListening && !isResults)
                     .morphCrossfade(visible: !isResults)
 
-                Image(systemName: saveConfirmed ? "checkmark" : "plus")
+                Image(systemName: copyConfirmed ? "checkmark" : "doc.on.doc")
                     .contentTransition(.symbolEffect(.replace))
                     .morphCrossfade(visible: isResults)
             }
@@ -124,8 +123,11 @@ struct ActionButtonRow: View {
             .contentShape(.circle)
         }
         .buttonStyle(.plain)
-        .disabled(isResults && (!canSaveToLibrary || saveConfirmed))
-        .opacity(isResults && !canSaveToLibrary && !saveConfirmed ? 0.4 : 1)
+        .disabled(isResults && (shareURL == nil || copyConfirmed))
+        .opacity(isResults && shareURL == nil ? 0.4 : 1)
+        .accessibilityLabel(isResults
+            ? Text("Copy song.link", comment: "Accessibility label for the button that copies the universal song.link URL")
+            : Text("Shazam", comment: "Accessibility label for the button that starts a Shazam match"))
         .aspectRatio(1, contentMode: .fit)
     }
 }
@@ -165,7 +167,6 @@ struct ActionButtonRow: View {
         ActionButtonRow(
             isResults: isResults,
             shareURL: URL(string: "https://song.link/s/3NivHilTTTs8SQwp51yG0X"),
-            canSaveToLibrary: true,
             primaryAction: { withAnimation(morphAnimation) { isResults.toggle() } },
             secondaryAction: { withAnimation(morphAnimation) { isResults.toggle() } }
         )

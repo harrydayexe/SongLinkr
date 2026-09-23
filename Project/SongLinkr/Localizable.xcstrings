@@ -65,9 +65,6 @@
     "Amazon Store" : {
 
     },
-    "An error occured whilst saving to Shazam Library" : {
-      "comment" : "Error message title"
-    },
     "An unknown error occured" : {
       "comment" : "Error message title"
     },
@@ -219,6 +216,9 @@
           }
         }
       }
+    },
+    "Copy song.link" : {
+      "comment" : "Accessibility label for the button that copies the universal song.link URL"
     },
     "Deezer" : {
 
@@ -946,6 +946,9 @@
     "Share song.link" : {
       "comment" : "Button title, shares the universal song.link URL"
     },
+    "Shazam" : {
+      "comment" : "Accessibility label for the button that starts a Shazam match"
+    },
     "Shazam Match Found" : {
       "comment" : "Button indicator, shows a match has been found",
       "extractionState" : "stale",
@@ -1170,9 +1173,6 @@
           }
         }
       }
-    },
-    "The media cache was empty so the song was not saved. Please try again later" : {
-      "comment" : "Error message"
     },
     "The song was matched by Shazam but not enough information was returned. Please try again later." : {
       "comment" : "Error message"

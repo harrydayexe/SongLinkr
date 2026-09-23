@@ -30,7 +30,6 @@ class SearchModel {
         case network(Network.DataLoaderError)
         case shazam(SHError)
         case missingInformation
-        case cacheEmpty
         case unknown(Error)
         case matchNotFound
     }
@@ -183,11 +182,6 @@ extension SearchModel.RequestError: LocalizedError {
                 localized: "The song was matched by Shazam but not enough information was returned. Please try again later.",
                 comment: "Error message"
             )
-        case .cacheEmpty:
-            return String(
-                localized: "The media cache was empty so the song was not saved. Please try again later",
-                comment: "Error message"
-            )
         case .unknown(let error):
             return error.localizedDescription
         case .matchNotFound:
@@ -204,8 +198,6 @@ extension SearchModel.RequestError: LocalizedError {
             return error.errorTitle
         case .missingInformation:
             return String(localized: "Some information was missing", comment: "Error message title")
-        case .cacheEmpty:
-            return String(localized: "An error occured whilst saving to Shazam Library", comment: "Error message title")
         case .unknown:
             return String(localized: "An unknown error occured", comment: "Error message title")
         case .matchNotFound:
@@ -224,7 +216,6 @@ extension SearchModel.RequestError: Identifiable {
         case .network(let e): "network:\(e)"
         case .shazam(let e): "shazam:\(e)"
         case .missingInformation: "missingInformation"
-        case .cacheEmpty: "cacheEmpty"
         case .unknown(let e): "unknown:\(e.localizedDescription)"
         case .matchNotFound: "matchNotFound"
         }

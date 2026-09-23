@@ -12,7 +12,6 @@ class ShazamMatcher {
 
     var shazamState: ShazamState = .idle
 
-    private var shazamItemCache: SHMediaItem?
     private var session: SHManagedSession
     private var userSettingsSnapshot: UserSettings?
     private let searchModel: SearchModel
@@ -55,7 +54,6 @@ class ShazamMatcher {
                     return
                 }
                 shazamState = .matchFound
-                shazamItemCache = matchedItem
                 await searchModel.getResults(
                     for: appleMusicURLString,
                     with: userSettingsSnapshot,
@@ -103,20 +101,6 @@ class ShazamMatcher {
             } else {
                 throw SearchModel.RequestError.unknown(error)
             }
-        }
-    }
-
-    func saveCachedItem() async -> Bool {
-        guard let cachedItem = shazamItemCache else {
-            searchModel.error = .cacheEmpty
-            return false
-        }
-        do {
-            try await addToShazamLibrary(item: cachedItem)
-            return true
-        } catch {
-            searchModel.error = (error as? SearchModel.RequestError) ?? .unknown(error)
-            return false
         }
     }
 }

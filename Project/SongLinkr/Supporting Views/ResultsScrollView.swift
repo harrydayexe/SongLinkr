@@ -11,6 +11,8 @@ struct ResultsScrollView: View {
     let namespace: Namespace.ID
     var result: ResultsModel?
     var isActive: Bool = true
+    /// Collapses back to the search layout; the same action as the input bar's clear button.
+    var onDismiss: () -> Void = {}
 
     var body: some View {
         PlatformList(platforms: result?.response ?? [])
@@ -39,6 +41,11 @@ struct ResultsScrollView: View {
             )
             .padding(.top, 18)
         }
+        // The bar otherwise shrinks to the art square, which would leave the swipe target
+        // narrower than the list it covers
+        .frame(maxWidth: .infinity)
+        .contentShape(.rect)
+        .onSwipeDown(perform: onDismiss)
     }
 }
 
