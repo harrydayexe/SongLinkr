@@ -7,54 +7,60 @@
 
 import SwiftUI
 
+/// Results layout. Reserves slots for the hero elements (drawn by `HomeScreen`) and owns
+/// the content that only exists on results. Stays mounted on home so the wipe mask in
+/// `HomeScreen` can uncover it rather than it being inserted.
 struct ResultsView: View {
     let namespace: Namespace.ID
-    let isSource: Bool
-    let result: ResultsModel
-    /// The searched URL shown in the compact bar at the top.
-    var searchURL: String = ""
-    var canSaveToLibrary: Bool = false
-    var saveConfirmed: Bool = false
-    let closeAction: () -> Void
-    var saveAction: () -> Void = {}
+    /// The last result shown; kept after returning home so it can be wiped away intact.
+    var result: ResultsModel?
+    var isActive: Bool
+    var onWipeEdgeChange: (MorphWipe.Edge, CGFloat) -> Void
+
+    private var metrics = HeroMetrics()
+
+    init(
+        namespace: Namespace.ID,
+        result: ResultsModel?,
+        isActive: Bool = true,
+        onWipeEdgeChange: @escaping (MorphWipe.Edge, CGFloat) -> Void = { _, _ in }
+    ) {
+        self.namespace = namespace
+        self.result = result
+        self.isActive = isActive
+        self.onWipeEdgeChange = onWipeEdgeChange
+    }
 
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
-                InputPillView(
-                    namespace: namespace,
-                    isSource: isSource,
-                    compact: true,
-                    urlText: .constant(searchURL),
-                    onClear: closeAction
-                )
-                .padding(.horizontal, 16)
+                Color.clear
+                    .frame(height: metrics.compactInputHeight)
+                    .heroSlot(.input, in: namespace, isActive: isActive)
+                    .wipeEdge(.resultsInput, onChange: onWipeEdgeChange)
+                    .padding(.horizontal)
 
-                ResultsScrollView(namespace: namespace, isSource: isSource, result: result)
+                ResultsScrollView(namespace: namespace, result: result, isActive: isActive)
             }
 
-            ActionButtonRow(
-                isResults: true,
-                isSource: isSource,
-                namespace: namespace,
-                shareURL: result.pageUrl,
-                canSaveToLibrary: canSaveToLibrary,
-                saveConfirmed: saveConfirmed,
-                secondaryAction: saveAction
-            )
-            .padding(.horizontal, 16)
-            .padding(.bottom, 8)
-            .background {
-                LinearGradient(
-                    colors: [.clear, Color(.systemGroupedBackground).opacity(0.95)],
-                    startPoint: .top,
-                    endPoint: UnitPoint(x: 0.5, y: 0.45)
-                )
-                .padding(.top, -40)
-                .ignoresSafeArea(edges: .bottom)
-            }
-            .zIndex(1)
+            Color.clear
+                .frame(height: metrics.actionsHeight)
+                .heroSlot(.actions, in: namespace, isActive: isActive)
+                .padding(.horizontal)
+                .padding(.bottom, 8)
+                .background {
+                    // Fades the list out beneath the actions hero, which is drawn above this layout
+                    LinearGradient(
+                        colors: [.clear, Color(.systemGroupedBackground).opacity(0.95)],
+                        startPoint: .top,
+                        endPoint: UnitPoint(x: 0.5, y: 0.45)
+                    )
+                    .padding(.top, -40)
+                    .ignoresSafeArea(edges: .bottom)
+                }
         }
+        .allowsHitTesting(isActive)
+        .accessibilityHidden(!isActive)
     }
 }
 
@@ -63,13 +69,6 @@ struct ResultsView: View {
 
     ZStack {
         GradientBackground()
-        ResultsView(
-            namespace: namespace,
-            isSource: true,
-            result: .previewResults,
-            searchURL: "https://open.spotify.com/track/3NivHilTTTs8SQwp51yG0X",
-            canSaveToLibrary: true,
-            closeAction: {}
-        )
+        ResultsView(namespace: namespace, result: .previewResults)
     }
 }

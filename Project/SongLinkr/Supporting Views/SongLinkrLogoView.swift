@@ -7,29 +7,27 @@
 
 import SwiftUI
 
+/// Fills whatever size it is given; the glyph scales with it.
 struct SongLinkrLogoView: View {
-    var size: CGFloat
-    var cornerRadius: CGFloat
-    var namespace: Namespace.ID
-    var isSource: Bool = true
+    /// Glyph size relative to the tile's width.
+    private let glyphScale: CGFloat = 0.43
 
     var body: some View {
-        ZStack {
-            LinearGradient(gradient: .orangeGradient, startPoint: .topLeading, endPoint: .bottomTrailing)
-            #warning("Update this to the the SongLinkr logo")
-            Image(systemName: "link")
-                .font(.system(size: size * 0.43, weight: .bold))
-                .foregroundStyle(.white)
-        }
-        .frame(width: size, height: size)
-        .clipShape(.rect(cornerRadius: cornerRadius))
-        .shadow(color: .orange.opacity(0.4), radius: 13, y: 5)
-        .matchedGeometryEffect(id: "art", in: namespace, isSource: isSource)
+        LinearGradient(gradient: .orangeGradient, startPoint: .topLeading, endPoint: .bottomTrailing)
+            .overlay {
+                GeometryReader { proxy in
+                    #warning("Update this to the the SongLinkr logo")
+                    Image(systemName: "link")
+                        .font(.system(size: proxy.size.width * glyphScale, weight: .bold))
+                        .foregroundStyle(.white)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                }
+            }
     }
 }
 
 #Preview {
-    @Previewable @Namespace var morph
-
-    SongLinkrLogoView(size: 98, cornerRadius: 24, namespace: morph)
+    SongLinkrLogoView()
+        .frame(width: 92, height: 92)
+        .clipShape(.rect(cornerRadius: HeroMetrics.artCornerRadius))
 }

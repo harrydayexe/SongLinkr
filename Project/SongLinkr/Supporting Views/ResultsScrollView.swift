@@ -9,25 +9,27 @@ import SwiftUI
 
 struct ResultsScrollView: View {
     let namespace: Namespace.ID
-    let isSource: Bool
-    let result: ResultsModel
+    var result: ResultsModel?
+    var isActive: Bool = true
 
     var body: some View {
         VStack(spacing: 0) {
-            ArtworkView(size: 190, cornerRadius: 24, artworkURL: result.artworkURL, namespace: namespace, isSource: isSource)
+            HeroArtSlot(heightFraction: HeroMetrics.artHeightFraction, namespace: namespace, isActive: isActive)
                 .padding(.top, 26)
 
             TitleBlock(
-                title: result.mediaTitle,
-                subtitle: result.artistName,
+                title: result?.mediaTitle ?? "",
+                subtitle: result?.artistName ?? "",
                 titleFont: .system(size: 24, weight: .bold),
                 subtitleFont: .subheadline
             )
             .padding(.top, 18)
 
-            PlatformList(platforms: result.response)
+            PlatformList(platforms: result?.response ?? [])
                 .contentMargins(.bottom, 100, for: .scrollContent)
                 .scrollContentBackground(.hidden)
+                // A fresh list per result, so it starts scrolled to the top
+                .id(result?.id)
                 .padding(.top, 4)
         }
     }
@@ -38,6 +40,6 @@ struct ResultsScrollView: View {
 
     ZStack {
         GradientBackground()
-        ResultsScrollView(namespace: namespace, isSource: true, result: .previewResults)
+        ResultsScrollView(namespace: namespace, result: .previewResults)
     }
 }

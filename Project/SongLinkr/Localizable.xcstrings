@@ -351,7 +351,7 @@
       }
     },
     "History" : {
-      "comment" : "Navigation Bar Title",
+      "comment" : "Accessibility label for the history button",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -895,7 +895,7 @@
       }
     },
     "Settings" : {
-      "comment" : "Tab Bar name for the settings page",
+      "comment" : "Accessibility label for the settings button",
       "localizations" : {
         "de" : {
           "stringUnit" : {

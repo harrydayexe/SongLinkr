@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-/// Shared element "cta": Search pill + Shazam circle on the home screen morph
-/// into the Share song.link bar + add-to-Shazam-library circle on results.
+/// Hero "actions": Search pill + Shazam circle on the home screen morph into the
+/// Share song.link bar + add-to-Shazam-library circle on results. Fills whatever size
+/// it is given: the circle is as tall as the row and the pill takes the remaining width.
+/// The pill and circle surfaces are shared; only their labels crossfade in place.
 struct ActionButtonRow: View {
     let isResults: Bool
-    let isSource: Bool
-    let namespace: Namespace.ID
 
     /// The song.link page URL shared from the results screen.
     var shareURL: URL?
@@ -28,124 +28,139 @@ struct ActionButtonRow: View {
     var body: some View {
         HStack(spacing: 12) {
             primaryButton
-                .matchedGeometryEffect(id: "ctaPrimary", in: namespace, isSource: isSource)
+                .background(
+                    LinearGradient(
+                        gradient: .orangeGradient,
+                        startPoint: UnitPoint(x: 0.5, y: -0.5),
+                        endPoint: .bottom
+                    ),
+                    in: .capsule
+                )
+                .opacity(primaryDimmed ? 0.6 : 1)
                 .shadow(color: .orange.opacity(0.4), radius: 13, y: 5)
 
             secondaryButton
                 .frostedPill(in: .circle)
-                .matchedGeometryEffect(id: "ctaSecondary", in: namespace, isSource: isSource)
         }
+    }
+
+    private var primaryDimmed: Bool {
+        isResults ? shareURL == nil : searchDisabled && !isSearching
     }
 
     // MARK: Primary
 
-    @ViewBuilder
+    // Both buttons and all labels stay mounted and swap by opacity, so outgoing content
+    // travels with the hero instead of being frozen in place while it's removed
     private var primaryButton: some View {
-        if isResults {
-            if let shareURL {
-                ShareLink(item: shareURL) {
-                    primaryLabel(Text("Share song.link", comment: "Button title, shares the universal song.link URL"), systemImage: "square.and.arrow.up")
-                }
-                .buttonStyle(.plain)
-            } else {
-                Button {} label: {
-                    primaryLabel(Text("Share song.link", comment: "Button title, shares the universal song.link URL"), systemImage: "square.and.arrow.up")
-                }
-                .buttonStyle(.plain)
-                .disabled(true)
-                .opacity(0.5)
-            }
-        } else {
+        ZStack {
             Button(action: primaryAction) {
-                primaryLabel(
-                    Text("Search", comment: "Button title, searches for the entered link"),
-                    systemImage: "magnifyingglass",
-                    showsProgress: isSearching
-                )
+                primaryLabel {
+                    ProgressView()
+                        .tint(.white)
+                        .morphCrossfade(visible: isSearching)
+
+                    Label {
+                        Text("Search", comment: "Button title, searches for the entered link")
+                    } icon: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .morphCrossfade(visible: !isSearching)
+                }
             }
             .buttonStyle(.plain)
             .disabled(searchDisabled || isSearching)
-            .opacity(searchDisabled && !isSearching ? 0.6 : 1)
+            .morphCrossfade(visible: !isResults)
+
+            shareButton
+                .morphCrossfade(visible: isResults)
         }
     }
 
-    private func primaryLabel(_ title: Text, systemImage: String, showsProgress: Bool = false) -> some View {
-        ZStack {
-            if showsProgress {
-                ProgressView()
-                    .tint(.white)
-            } else {
-                Label { title } icon: { Image(systemName: systemImage) }
+    @ViewBuilder
+    private var shareButton: some View {
+        let label = primaryLabel {
+            Label {
+                Text("Share song.link", comment: "Button title, shares the universal song.link URL")
+            } icon: {
+                Image(systemName: "square.and.arrow.up")
             }
         }
-        .foregroundStyle(.white)
-        .font(.headline)
-        .frame(maxWidth: .infinity)
-        .frame(height: 52)
-        .background(
-            LinearGradient(
-                gradient: .orangeGradient,
-                startPoint: UnitPoint(x: 0.5, y: -0.5),
-                endPoint: .bottom
-            ),
-            in: .capsule
-        )
+
+        if let shareURL {
+            ShareLink(item: shareURL) { label }
+                .buttonStyle(.plain)
+        } else {
+            Button {} label: { label }
+                .buttonStyle(.plain)
+                .disabled(true)
+        }
+    }
+
+    private func primaryLabel(@ViewBuilder content: () -> some View) -> some View {
+        ZStack { content() }
+            .foregroundStyle(.white)
+            .font(.headline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .contentShape(.capsule)
     }
 
     // MARK: Secondary
 
     private var secondaryButton: some View {
         Button(action: secondaryAction) {
-            Group {
-                if isResults {
-                    Image(systemName: saveConfirmed ? "checkmark" : "plus")
-                } else {
-                    Image(systemName: "waveform")
-                        .symbolEffect(.variableColor.iterative, isActive: isShazamListening)
-                }
+            ZStack {
+                Image(systemName: "waveform")
+                    .symbolEffect(.variableColor.iterative, isActive: isShazamListening && !isResults)
+                    .morphCrossfade(visible: !isResults)
+
+                Image(systemName: saveConfirmed ? "checkmark" : "plus")
+                    .contentTransition(.symbolEffect(.replace))
+                    .morphCrossfade(visible: isResults)
             }
             .font(.title3.weight(.bold))
             .foregroundStyle(.orange)
-            .frame(width: 52, height: 52)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .contentShape(.circle)
         }
         .buttonStyle(.plain)
         .disabled(isResults && (!canSaveToLibrary || saveConfirmed))
         .opacity(isResults && !canSaveToLibrary && !saveConfirmed ? 0.4 : 1)
+        .aspectRatio(1, contentMode: .fit)
     }
 }
 
 #Preview("Home") {
-    @Previewable @Namespace var morph
-
-    VStack(alignment: .trailing) {
+    VStack {
         Spacer()
-        ActionButtonRow(isResults: false, isSource: true, namespace: morph)
+        ActionButtonRow(isResults: false)
+            .frame(height: 52)
     }
     .padding(.horizontal, 28)
 }
 
 #Preview("Home — listening") {
-    @Previewable @Namespace var morph
-
-    VStack(alignment: .trailing) {
+    VStack {
         Spacer()
-        ActionButtonRow(isResults: false, isSource: true, namespace: morph, isShazamListening: true)
+        ActionButtonRow(isResults: false, isShazamListening: true)
+            .frame(height: 52)
     }
     .padding(.horizontal, 28)
 }
 
-#Preview("Results") {
-    @Previewable @Namespace var morph
+#Preview("Morph") {
+    @Previewable @State var isResults = false
 
-    VStack(alignment: .trailing) {
+    VStack {
         Spacer()
         ActionButtonRow(
-            isResults: true,
-            isSource: true,
-            namespace: morph,
+            isResults: isResults,
             shareURL: URL(string: "https://song.link/s/3NivHilTTTs8SQwp51yG0X"),
-            canSaveToLibrary: true
+            canSaveToLibrary: true,
+            primaryAction: { withAnimation(morphAnimation) { isResults.toggle() } },
+            secondaryAction: { withAnimation(morphAnimation) { isResults.toggle() } }
         )
+        .frame(height: 52)
     }
-    .padding(.horizontal, 16)
+    .padding(.horizontal, isResults ? 16 : 28)
 }

@@ -7,27 +7,45 @@
 
 import SwiftUI
 
-/// Shared element "input": centered input pill on the home screen morphs into
-/// the compact URL bar docked at the top of the results screen.
+/// Hero "input": centered input pill on the home screen morphs into the compact URL bar
+/// docked at the top of the results screen. Fills whatever size it is given; only the
+/// field and trailing button crossfade.
 struct InputPillView: View {
-    let namespace: Namespace.ID
-    let isSource: Bool
     var compact: Bool = false
     @Binding var urlText: String
+    /// Text shown in the compact bar; falls back to `urlText`.
+    var compactText: String? = nil
     var onSubmit: () -> Void = {}
     var onClear: () -> Void = {}
+
+    @FocusState private var isFieldFocused: Bool
 
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: "link")
                 .foregroundStyle(.tertiary)
 
-            if compact {
-                Text(urlText)
+            ZStack(alignment: .leading) {
+                TextField("Paste a song link…", text: $urlText)
+                    .focused($isFieldFocused)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .keyboardType(.URL)
+                    .submitLabel(.search)
+                    .onSubmit(onSubmit)
+                    .morphCrossfade(visible: !compact)
+
+                Text(compactText ?? urlText)
                     .font(.subheadline)
                     .lineLimit(1)
                     .truncationMode(.tail)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .morphCrossfade(visible: compact)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            ZStack {
+                PasteClearButton(urlText: $urlText)
+                    .morphCrossfade(visible: !compact)
 
                 Button(action: onClear) {
                     Image(systemName: "xmark")
@@ -36,49 +54,47 @@ struct InputPillView: View {
                 .buttonBorderShape(.circle)
                 .buttonStyle(.bordered)
                 .foregroundStyle(.secondary)
-            } else {
-                TextField("Paste a song link…", text: $urlText)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .keyboardType(.URL)
-                    .submitLabel(.search)
-                    .onSubmit(onSubmit)
-
-                PasteClearButton(urlText: $urlText)
+                .morphCrossfade(visible: compact)
             }
         }
         .padding(.leading)
         .padding(.trailing, 8)
-        .frame(height: compact ? 46 : 54)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .frostedPill()
-        .matchedGeometryEffect(id: "input", in: namespace, isSource: isSource)
+        // The field stays mounted while hidden, so drop focus to dismiss the keyboard
+        .onChange(of: compact) { _, isCompact in
+            if isCompact { isFieldFocused = false }
+        }
     }
 }
 
 #Preview("Animation") {
     @Previewable @State var inputText = ""
-    @Previewable @Namespace var morph
+    @Previewable @State var compact = false
 
-    InputPillView(namespace: morph, isSource: true, urlText: $inputText)
+    InputPillView(compact: compact, urlText: $inputText)
+        .frame(height: compact ? 46 : 54)
+        .padding(.horizontal, compact ? 16 : 28)
         .task {
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(2))
                 if inputText.isEmpty {
                     inputText = "https://music.apple.com/gb/album/better-than-yours/1812078323?i=1812078931"
                 } else {
-                    inputText = ""
+                    withAnimation(morphAnimation) { compact.toggle() }
+                    if !compact { inputText = "" }
                 }
             }
         }
 }
 
 #Preview("No Input") {
-    @Previewable @Namespace var morph
-    InputPillView(namespace: morph, isSource: true, urlText: .constant(""))
+    InputPillView(urlText: .constant(""))
+        .frame(height: 54)
 }
 
 #Preview("Compact") {
-    @Previewable @Namespace var morph
-    InputPillView(namespace: morph, isSource: true, compact: true, urlText: .constant("https://music.apple.com/gb/album/better-than-yours/1812078323?i=1812078931"))
+    InputPillView(compact: true, urlText: .constant("https://music.apple.com/gb/album/better-than-yours/1812078323?i=1812078931"))
+        .frame(height: 46)
         .padding(.horizontal)
 }
