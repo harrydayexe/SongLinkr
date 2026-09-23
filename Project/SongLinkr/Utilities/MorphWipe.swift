@@ -23,7 +23,8 @@ enum MorphWipe {
 
 extension CoordinateSpaceProtocol where Self == NamedCoordinateSpace {
     /// Shared by the layouts' edge measurements and the wipe masks.
-    static var morph: Self { .named("morph") }
+    /// `nonisolated` so it can be used from the Sendable geometry-measurement closures.
+    nonisolated static var morph: Self { .named("morph") }
 }
 
 extension View {
