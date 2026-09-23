@@ -7,17 +7,16 @@
 
 import SwiftUI
 
-/// The home ↔ results wipe. Results content is only visible in the band between the URL bar
-/// and the actions row, and home content only outside it. As the bar rises and the actions
-/// drop, the band opens and uncovers the results while erasing home; reversing closes it.
+/// The home ↔ results wipe. Results content is only visible in a band that opens beneath the
+/// URL bar, and home content only outside it. On home the band is closed at the bar's bottom
+/// edge; as the bar rises it opens down to the screen's bottom, uncovering the results while
+/// erasing home. Reversing closes it again as the bar lands, before the spring settles.
 ///
-/// The band's edges are the heroes' centers, animated with the same spring as the heroes, so
-/// they stay attached to them and the seams sit beneath their bodies.
+/// The edges animate with the same spring as the heroes, so the top stays attached to the bar.
 enum MorphWipe {
-    /// Positions that define the band, measured from the hero slots.
+    /// Positions that define the band, measured from the URL bar's slots.
     enum Edge: Hashable {
         case homeInput
-        case homeActions
         case resultsInput
     }
 }
@@ -28,12 +27,12 @@ extension CoordinateSpaceProtocol where Self == NamedCoordinateSpace {
 }
 
 extension View {
-    /// Reports this view's vertical center in the morph space as a wipe edge.
+    /// Reports this view's bottom edge in the morph space as a wipe edge.
     func wipeEdge(_ edge: MorphWipe.Edge, onChange: @escaping (MorphWipe.Edge, CGFloat) -> Void) -> some View {
         onGeometryChange(for: CGFloat.self) { proxy in
-            proxy.frame(in: .morph).midY
-        } action: { midY in
-            onChange(edge, midY)
+            proxy.frame(in: .morph).maxY
+        } action: { maxY in
+            onChange(edge, maxY)
         }
     }
 

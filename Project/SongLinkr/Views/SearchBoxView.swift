@@ -48,7 +48,6 @@ struct SearchBoxView: View {
                 Color.clear
                     .frame(height: metrics.actionsHeight)
                     .heroSlot(.actions, in: namespace, isActive: isActive)
-                    .wipeEdge(.homeActions, onChange: onWipeEdgeChange)
                     .padding(.top, 16)
 
                 Text("…or identify what’s playing around you", comment: "Hint under the search button pointing at the Shazam button")

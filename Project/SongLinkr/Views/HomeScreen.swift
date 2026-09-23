@@ -23,13 +23,10 @@ struct HomeScreen: View {
     /// URL shown in the compact bar, captured on entering results so clearing
     /// `searchURL` on the way home doesn't swap the text mid-transition.
     @State private var resultsURLText: String = ""
-    /// Hero slot centers in the morph space; they define the wipe band.
+    /// URL bar slot bottoms in the morph space; they define the wipe band.
     @State private var wipeEdges: [MorphWipe.Edge: CGFloat] = [:]
     /// Bottom of the screen in the morph space, including the bottom safe area.
     @State private var screenBottom: CGFloat = 0
-    /// Keeps results hidden at rest on home, where the (closed) band would otherwise show
-    /// them in the gap between the URL bar and the actions. Cleared once the reverse wipe ends.
-    @State private var resultsRevealed = false
 
     /// Pending URL written by SendToSongLinkrIntent or HistoryView; cleared after processing.
     @AppStorage("pendingDeepLinkURL") private var pendingDeepLinkURLString: String = ""
@@ -40,14 +37,13 @@ struct HomeScreen: View {
                 GradientBackground()
 
                 // Both layouts stay mounted: the active one's slots position the heroes, and
-                // the wipe band (opened by the URL bar rising and the actions dropping)
-                // uncovers one layout while erasing the other
+                // the wipe band (opened by the URL bar rising) uncovers one layout while
+                // erasing the other
                 SearchBoxView(namespace: heroNamespace, isActive: !phase.isResults, onWipeEdgeChange: updateWipeEdge)
                     .wipeMask(top: wipeBand.top, bottom: wipeBand.bottom, revealsBand: false)
 
                 ResultsView(namespace: heroNamespace, result: displayedResult, isActive: phase.isResults, onWipeEdgeChange: updateWipeEdge)
                     .wipeMask(top: wipeBand.top, bottom: wipeBand.bottom, revealsBand: true)
-                    .opacity(resultsRevealed ? 1 : 0)
             }
             .coordinateSpace(.morph)
             .onGeometryChange(for: CGFloat.self) { proxy in
@@ -65,7 +61,6 @@ struct HomeScreen: View {
                     savedToShazamLibrary = false
                     // Swap the (hidden) results content without animation; only the morph animates
                     displayedResult = results
-                    resultsRevealed = true
                     resultsURLText = searchURL.isEmpty ? (results.pageUrl?.absoluteString ?? "") : searchURL
                     // Clear the spinner in the same transaction as the morph so it fades
                     // straight into "Share" instead of flashing "Search" first
@@ -76,11 +71,7 @@ struct HomeScreen: View {
                     autoOpenIfNeeded(results)
                 } else {
                     shazamMatcher.shazamState = .idle
-                    withAnimation(morphAnimation) {
-                        phase = .home
-                    } completion: {
-                        if !phase.isResults { resultsRevealed = false }
-                    }
+                    withAnimation(morphAnimation) { phase = .home }
                 }
             }
             // Handle deep links from the songlinkr:// URL scheme
@@ -116,19 +107,20 @@ struct HomeScreen: View {
 
     // MARK: Wipe
 
-    /// Results show inside this band and home outside it. Its edges are the URL bar's and
-    /// actions row's centers, so it opens and closes attached to the heroes (same spring).
-    /// On results the bottom extends to the screen edge to include what's below the actions.
+    /// Results show inside this band and home outside it. The top follows the URL bar's
+    /// bottom edge (same spring as the bar). On home the band is closed there, so nothing of
+    /// the results peeks between the bar and the actions; on results it runs to the screen's
+    /// bottom to include what's beneath the actions.
     private var wipeBand: (top: CGFloat, bottom: CGFloat) {
-        if phase.isResults {
-            (wipeEdges[.resultsInput] ?? 0, screenBottom)
-        } else {
-            (wipeEdges[.homeInput] ?? 0, wipeEdges[.homeActions] ?? 0)
+        guard phase.isResults else {
+            let closed = wipeEdges[.homeInput] ?? 0
+            return (closed, closed)
         }
+        return (wipeEdges[.resultsInput] ?? 0, screenBottom)
     }
 
-    private func updateWipeEdge(_ edge: MorphWipe.Edge, to midY: CGFloat) {
-        wipeEdges[edge] = midY
+    private func updateWipeEdge(_ edge: MorphWipe.Edge, to y: CGFloat) {
+        wipeEdges[edge] = y
     }
 
     // MARK: Heroes
