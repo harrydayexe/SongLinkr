@@ -3,16 +3,15 @@
 //  SongLinkr
 //
 //  Created by Harry Day on 26/06/2021
-//  
+//
 //
 //  Twitter: https://twitter.com/realharryday
 //  Github: https://github.com/harryday123
 //
 
-
-import Foundation
 import Combine
 import CoreData
+import Foundation
 
 class MatchedItemStorage: NSObject, ObservableObject {
     var matchedItems = CurrentValueSubject<[MatchedItem], Never>([])
@@ -29,12 +28,12 @@ class MatchedItemStorage: NSObject, ObservableObject {
     }
     
     /// Singleton Instance
-    static var shared: MatchedItemStorage = MatchedItemStorage()
+    static var shared: MatchedItemStorage = .init()
     
     /**
-     Initialise a MatchedItemStorage with a specificed PersistenceController
-    - Parameter persistenceController: The `PersistenceController` to use. Defaults to Shared
-     */
+      Initialise a MatchedItemStorage with a specificed PersistenceController
+     - Parameter persistenceController: The `PersistenceController` to use. Defaults to Shared
+      */
     private init(persistenceController: PersistenceController = .shared) {
         self.persistenceController = persistenceController
         
@@ -83,10 +82,8 @@ class MatchedItemStorage: NSObject, ObservableObject {
 }
 
 extension MatchedItemStorage: NSFetchedResultsControllerDelegate {
-    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard let matchedItems = controller.fetchedObjects as? [MatchedItem] else { return }
-        
-        print("Updated Context, reloading now")
         
         self.matchedItems.value = matchedItems
         self.itemStore = matchedItems
