@@ -199,7 +199,7 @@ extension SearchModel.RequestError: LocalizedError {
         case .missingInformation:
             return String(localized: "Some information was missing", comment: "Error message title")
         case .unknown:
-            return String(localized: "An unknown error occured", comment: "Error message title")
+            return String(localized: "An unknown error occurred", comment: "Error message title")
         case .matchNotFound:
             return String(localized: "No Match Found", comment: "Error message title")
         default:
