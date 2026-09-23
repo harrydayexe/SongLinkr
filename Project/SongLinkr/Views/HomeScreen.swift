@@ -31,6 +31,10 @@ struct HomeScreen: View {
     /// Pending URL written by SendToSongLinkrIntent or HistoryView; cleared after processing.
     @AppStorage("pendingDeepLinkURL") private var pendingDeepLinkURLString: String = ""
 
+    /// Major.minor version whose What's New notes were last shown; empty on a fresh install.
+    @AppStorage("lastSeenWhatsNewVersion") private var lastSeenWhatsNewVersion: String = ""
+    @State private var whatsNew: WhatsNew?
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -103,6 +107,24 @@ struct HomeScreen: View {
             } message: { error in
                 Text(error.localizedDescription)
             }
+            .task { checkForWhatsNew() }
+            .sheet(item: $whatsNew, onDismiss: { lastSeenWhatsNewVersion = WhatsNew.currentVersion }) { whatsNew in
+                WhatsNewView(whatsNew: whatsNew)
+            }
+        }
+    }
+
+    // MARK: What's New
+
+    private func checkForWhatsNew() {
+        // Don't cover a link opened from elsewhere; the notes stay pending for the next launch
+        guard pendingDeepLinkURLString.isEmpty else { return }
+        if let pending = WhatsNew.pending(lastSeen: lastSeenWhatsNewVersion) {
+            whatsNew = pending
+        } else {
+            // Record the version even when there's nothing to show, so a fresh install of a
+            // later release isn't mistaken for an upgrade
+            lastSeenWhatsNewVersion = WhatsNew.currentVersion
         }
     }
 

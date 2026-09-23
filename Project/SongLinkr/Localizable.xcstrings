@@ -7,6 +7,9 @@
     "%@" : {
 
     },
+    "A Fresh New Look" : {
+      "comment" : "What's New feature title"
+    },
     "About" : {
       "comment" : "Section Header, section contains information about the app",
       "localizations" : {
@@ -171,6 +174,9 @@
           }
         }
       }
+    },
+    "Continue" : {
+      "comment" : "Dismisses the What's New sheet"
     },
     "Convert a music link to links on all supported platforms" : {
       "localizations" : {
@@ -802,6 +808,12 @@
         }
       }
     },
+    "Rebuilt from the ground up for iOS 27, with Liquid Glass throughout." : {
+      "comment" : "What's New feature description"
+    },
+    "Redesigned Share Extension" : {
+      "comment" : "What's New feature title"
+    },
     "Save Shazam Matches to Library" : {
       "comment" : "Option name, decides whether to save matches made with shazam to the shazam library automatically",
       "localizations" : {
@@ -943,8 +955,14 @@
         }
       }
     },
+    "Share a song from any app and get links without leaving it." : {
+      "comment" : "What's New feature description"
+    },
+    "Share a universal link to your friends." : {
+      "comment" : "What's New feature description"
+    },
     "Share song.link" : {
-      "comment" : "Button title, shares the universal song.link URL"
+      "comment" : "Button title, shares the universal song.link URL\nWhat's New feature title"
     },
     "Shazam" : {
       "comment" : "Accessibility label for the button that starts a Shazam match"
@@ -995,6 +1013,9 @@
           }
         }
       }
+    },
+    "Shazam, Front and Centre" : {
+      "comment" : "What's New feature title"
     },
     "Some information was missing" : {
       "comment" : "Error message title"
@@ -1105,6 +1126,9 @@
           }
         }
       }
+    },
+    "Tap the Shazam button to identify what's playing and get links straight away." : {
+      "comment" : "What's New feature description"
     },
     "Target Platform" : {
       "localizations" : {
@@ -1288,6 +1312,9 @@
           }
         }
       }
+    },
+    "Welcome to SongLinkr" : {
+      "comment" : "What's New sheet title"
     },
     "Yandex" : {
 
