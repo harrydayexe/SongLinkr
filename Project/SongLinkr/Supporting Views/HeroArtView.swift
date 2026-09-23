@@ -1,5 +1,5 @@
 //
-//  ArtworkView.swift
+//  HeroArtView.swift
 //  SongLinkr
 //
 //  Created by Harry Day on 29/07/2026.
@@ -23,22 +23,6 @@ struct HeroArtView: View {
         }
         .clipShape(.rect(cornerRadius: HeroMetrics.artCornerRadius))
         .shadow(color: .orange.opacity(0.4), radius: showsArtwork ? 22 : 13, y: showsArtwork ? 9 : 5)
-    }
-}
-
-/// Fills whatever size it is given, fading the image in once loaded.
-struct ArtworkView: View {
-    var artworkURL: URL?
-
-    var body: some View {
-        AsyncImage(url: artworkURL, transaction: Transaction(animation: .smooth)) { phase in
-            if let image = phase.image {
-                image.resizable().scaledToFill()
-            } else {
-                Color.clear
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

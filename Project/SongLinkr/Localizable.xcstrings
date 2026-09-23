@@ -36,12 +36,6 @@
         }
       }
     },
-    "Add to Shazam Library" : {
-
-    },
-    "Added to Shazam Library" : {
-
-    },
     "Alphabetically" : {
       "comment" : "Platform Sort Option",
       "localizations" : {
@@ -473,6 +467,9 @@
         }
       }
     },
+    "Looking up links…" : {
+      "comment" : "Share extension loading message"
+    },
     "Match URL to Platform" : {
       "comment" : "App Intents",
       "localizations" : {
@@ -550,6 +547,9 @@
     "Napster" : {
 
     },
+    "No Link Found" : {
+      "comment" : "Share extension error title"
+    },
     "No Match Found" : {
       "comment" : "Error message title"
     },
@@ -626,6 +626,9 @@
           }
         }
       }
+    },
+    "Open in SongLinkr" : {
+      "comment" : "Share extension button, opens the shared link in the SongLinkr app"
     },
     "Pandora" : {
 
@@ -996,6 +999,9 @@
     "Something went wrong" : {
       "comment" : "Error message title\nGeneric error title"
     },
+    "SongLinkr couldn't find a link in what was shared." : {
+      "comment" : "Share extension error message, shown when no URL could be read from the shared item"
+    },
     "SongLinkr is developed by Harry Day from England" : {
       "comment" : "Section footer",
       "localizations" : {
@@ -1173,6 +1179,9 @@
     },
     "Tidal" : {
 
+    },
+    "Try Again" : {
+      "comment" : "Button title, retries a failed search"
     },
     "Unknown" : {
       "comment" : "Placeholder for when the version number cannot be loaded"

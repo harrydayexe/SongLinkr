@@ -29,5 +29,5 @@ struct SongLinkrLogoView: View {
 #Preview {
     SongLinkrLogoView()
         .frame(width: 92, height: 92)
-        .clipShape(.rect(cornerRadius: HeroMetrics.artCornerRadius))
+        .clipShape(.rect(cornerRadius: 24))
 }

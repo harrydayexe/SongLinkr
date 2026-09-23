@@ -50,8 +50,8 @@ struct ActionButtonRow: View {
 
     // MARK: Primary
 
-    // Both buttons and all labels stay mounted and swap by opacity, so outgoing content
-    // travels with the hero instead of being frozen in place while it's removed
+    /// Both buttons and all labels stay mounted and swap by opacity, so outgoing content
+    /// travels with the hero instead of being frozen in place while it's removed
     private var primaryButton: some View {
         ZStack {
             Button(action: primaryAction) {
@@ -143,6 +143,15 @@ struct ActionButtonRow: View {
     VStack {
         Spacer()
         ActionButtonRow(isResults: false, isShazamListening: true)
+            .frame(height: 52)
+    }
+    .padding(.horizontal, 28)
+}
+
+#Preview("Results") {
+    VStack {
+        Spacer()
+        ActionButtonRow(isResults: true)
             .frame(height: 52)
     }
     .padding(.horizontal, 28)

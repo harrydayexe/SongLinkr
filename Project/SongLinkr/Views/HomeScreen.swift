@@ -74,11 +74,12 @@ struct HomeScreen: View {
                     withAnimation(morphAnimation) { phase = .home }
                 }
             }
-            // Handle deep links from the songlinkr:// URL scheme
+            // Handle deep links from the songlinkr:// URL scheme, e.g. the share extension
             .onOpenURL { deepLinkURL in
                 searchModel.results = nil
                 if let songLink = URL(string: deepLinkURL.absoluteString.replacingOccurrences(of: "songlinkr:", with: "")) {
                     searchURL = songLink.absoluteString
+                    makeRequest()
                 }
             }
             // Handle URLs queued by SendToSongLinkrIntent or HistoryView via UserDefaults
