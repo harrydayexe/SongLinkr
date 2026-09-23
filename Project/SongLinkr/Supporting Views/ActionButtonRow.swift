@@ -111,13 +111,20 @@ struct ActionButtonRow: View {
         shazamState == .matchFound
     }
 
+    private var isShazamListening: Bool {
+        shazamState == .matching
+    }
+
     private var secondaryButton: some View {
         Button(action: secondaryAction) {
             ZStack {
                 ZStack {
+                    Image(systemName: "shazam.logo.fill")
+                        .morphCrossfade(visible: !isShazamListening && !isShazamSearching)
+
                     Image(systemName: "waveform")
-                        .symbolEffect(.variableColor.iterative, isActive: shazamState == .matching && !isResults)
-                        .morphCrossfade(visible: !isShazamSearching)
+                        .symbolEffect(.variableColor.iterative, isActive: isShazamListening && !isResults)
+                        .morphCrossfade(visible: isShazamListening)
 
                     ProgressView()
                         .tint(.orange)
