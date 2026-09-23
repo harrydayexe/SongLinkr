@@ -17,7 +17,6 @@ struct WhatsNewView: View {
             VStack(alignment: .leading, spacing: 32) {
                 SongLinkrLogoView()
                     .frame(width: 92, height: 92)
-                    .clipShape(.rect(cornerRadius: 24))
                     .frame(maxWidth: .infinity)
                     .padding(.top, 48)
                     .accessibilityHidden(true)

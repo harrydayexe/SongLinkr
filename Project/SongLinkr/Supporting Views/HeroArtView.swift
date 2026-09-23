@@ -10,7 +10,8 @@ import SwiftUI
 /// Hero "art": the SongLinkr logo on home morphs into the result's artwork.
 ///
 /// A single view whose frame follows the active slot. The logo is always drawn underneath
-/// and the artwork fades over it, so the square never dips in opacity mid-morph.
+/// and the artwork fades over it. The logo keeps its own squircle while the artwork is clipped
+/// to `artCornerRadius`, so the corners fill in as the artwork fades up.
 struct HeroArtView: View {
     var artworkURL: URL?
     var showsArtwork: Bool
@@ -19,9 +20,9 @@ struct HeroArtView: View {
         ZStack {
             SongLinkrLogoView()
             ArtworkView(artworkURL: artworkURL)
+                .clipShape(.rect(cornerRadius: HeroMetrics.artCornerRadius))
                 .morphCrossfade(visible: showsArtwork)
         }
-        .clipShape(.rect(cornerRadius: HeroMetrics.artCornerRadius))
         .shadow(color: .orange.opacity(0.4), radius: showsArtwork ? 22 : 13, y: showsArtwork ? 9 : 5)
     }
 }

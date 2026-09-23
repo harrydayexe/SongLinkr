@@ -75,9 +75,9 @@ private struct ShareResultsView: View {
             ZStack {
                 SongLinkrLogoView()
                 ArtworkView(artworkURL: result.artworkURL)
+                    .clipShape(.rect(cornerRadius: 24))
             }
             .aspectRatio(1, contentMode: .fit)
-            .clipShape(.rect(cornerRadius: 24))
             .shadow(color: .orange.opacity(0.4), radius: 22, y: 9)
             .containerRelativeFrame(.vertical) { height, _ in height * 0.22 }
             .accessibilityHidden(true)
