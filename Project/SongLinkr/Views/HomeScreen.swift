@@ -12,6 +12,7 @@ struct HomeScreen: View {
     @Environment(ShazamMatcher.self) private var shazamMatcher
     @Environment(UserSettings.self) private var userSettings
     @Environment(\.openURL) private var openURL
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @Namespace private var heroNamespace
     @State private var phase: SearchPhase = .home
@@ -68,14 +69,14 @@ struct HomeScreen: View {
                     resultsURLText = searchURL.isEmpty ? (results.pageUrl?.absoluteString ?? "") : searchURL
                     // Clear the spinner in the same transaction as the morph so it fades
                     // straight into "Share" instead of flashing "Search" first
-                    withAnimation(morphAnimation) {
+                    withAnimation(morph) {
                         searchModel.normalInProgress = false
                         phase = .results(results)
                     }
                     autoOpenIfNeeded(results)
                 } else {
                     shazamMatcher.shazamState = .idle
-                    withAnimation(morphAnimation) { phase = .home }
+                    withAnimation(morph) { phase = .home }
                 }
             }
             // Handle deep links from the songlinkr:// URL scheme, e.g. the share extension
@@ -148,6 +149,11 @@ struct HomeScreen: View {
 
     // MARK: Heroes
 
+    /// With Reduce Motion on, the layouts flip instantly instead of morphing.
+    private var morph: Animation? {
+        reduceMotion ? nil : morphAnimation
+    }
+
     /// The one instance of each shared element. Each follows whichever layout's slot is
     /// inserted, so a phase change animates its frame while only its content crossfades.
     /// Transparent areas pass touches through to the layouts beneath.
@@ -205,7 +211,7 @@ struct HomeScreen: View {
     }
 
     private func returnHome() {
-        withAnimation(morphAnimation) { searchURL = "" }
+        withAnimation(morph) { searchURL = "" }
         searchModel.results = nil
     }
 

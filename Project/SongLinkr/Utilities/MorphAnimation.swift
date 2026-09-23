@@ -20,12 +20,22 @@ enum MorphCrossfade {
 extension View {
     /// Hero content that swaps in place. Both states stay mounted so they move with the hero
     /// (content removed mid-flight is frozen where it was); the hidden one ignores touches
-    /// and accessibility.
+    /// and accessibility. Swaps instantly with Reduce Motion on.
     func morphCrossfade(visible: Bool) -> some View {
-        animation(visible ? MorphCrossfade.fadeIn : MorphCrossfade.fadeOut) { content in
-            content.opacity(visible ? 1 : 0)
-        }
-        .allowsHitTesting(visible)
-        .accessibilityHidden(!visible)
+        modifier(MorphCrossfadeModifier(visible: visible))
+    }
+}
+
+private struct MorphCrossfadeModifier: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    let visible: Bool
+
+    func body(content: Content) -> some View {
+        content
+            .animation(reduceMotion ? nil : (visible ? MorphCrossfade.fadeIn : MorphCrossfade.fadeOut)) { content in
+                content.opacity(visible ? 1 : 0)
+            }
+            .allowsHitTesting(visible)
+            .accessibilityHidden(!visible)
     }
 }
