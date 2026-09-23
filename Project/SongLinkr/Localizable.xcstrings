@@ -553,6 +553,9 @@
     "Napster" : {
 
     },
+    "No History" : {
+
+    },
     "No Link Found" : {
       "comment" : "Share extension error title"
     },
@@ -1048,6 +1051,9 @@
           }
         }
       }
+    },
+    "Songs you convert or Shazam show up here. Paste a link on the home screen to convert your first one." : {
+
     },
     "SoundCloud" : {
 

@@ -42,12 +42,10 @@ struct HistoryView: View {
             Label("Delete", systemImage: "trash")
         }
 
+        // `originURL` is optional in the model, so there is nothing to search
+        // again for when it is missing. The button is disabled in that case.
         Button {
-            guard let urlString = item.originURL?.absoluteString else {
-                print("Could not Open")
-                #warning("Fix this")
-                return
-            }
+            guard let urlString = item.originURL?.absoluteString else { return }
             // HomeScreen watches this key and kicks off the search.
             pendingDeepLinkURL = urlString
             dismiss()
@@ -55,34 +53,57 @@ struct HistoryView: View {
             Label("Search Again", systemImage: "magnifyingglass.circle")
         }
         .tint(.accentColor)
+        .disabled(item.originURL == nil)
     }
 
     var body: some View {
-        List {
-            Section(header: Text("Shazam Matches")) {
-                ForEach(shazamItems, id: \.self) { item in
-                    HistoryViewListItem(item: item)
-                        .swipeActions { swipeActionsContent(for: item) }
+        Group {
+            if viewModel.pastMatchedItems.isEmpty {
+                ContentUnavailableView {
+                    Label("No History", systemImage: "clock.arrow.circlepath")
+                } description: {
+                    Text("Songs you convert or Shazam show up here. Paste a link on the home screen to convert your first one.")
                 }
-                .onDelete(perform: viewModel.deleteShazamItem(at:))
-            }.headerProminence(.increased)
-
-            Section(header: Text("URL Matches")) {
-                ForEach(nonShazamItems, id: \.self) { item in
-                    HistoryViewListItem(item: item)
-                        .swipeActions { swipeActionsContent(for: item) }
-                }
-                .onDelete(perform: viewModel.deleteNonShazamItem(at:))
-            }.headerProminence(.increased)
+            } else {
+                historyList
+            }
         }
-        .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
         .background { GradientBackground() }
         .toolbar {
-            EditButton()
+            if !viewModel.pastMatchedItems.isEmpty {
+                EditButton()
+            }
         }
         .navigationTitle(Text("History"))
         .toolbarMinimizationBehavior(.onScrollDown, for: .navigationBar)
+    }
+
+    /// Each section is only rendered when it has items, so a history made up of
+    /// only one kind of match doesn't show an empty heading for the other.
+    private var historyList: some View {
+        List {
+            if !shazamItems.isEmpty {
+                Section(header: Text("Shazam Matches")) {
+                    ForEach(shazamItems, id: \.self) { item in
+                        HistoryViewListItem(item: item)
+                            .swipeActions { swipeActionsContent(for: item) }
+                    }
+                    .onDelete(perform: viewModel.deleteShazamItem(at:))
+                }.headerProminence(.increased)
+            }
+
+            if !nonShazamItems.isEmpty {
+                Section(header: Text("URL Matches")) {
+                    ForEach(nonShazamItems, id: \.self) { item in
+                        HistoryViewListItem(item: item)
+                            .swipeActions { swipeActionsContent(for: item) }
+                    }
+                    .onDelete(perform: viewModel.deleteNonShazamItem(at:))
+                }.headerProminence(.increased)
+            }
+        }
+        .listStyle(.insetGrouped)
     }
 }
 
