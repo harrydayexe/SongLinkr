@@ -59,10 +59,20 @@ struct HistoryView: View {
     var body: some View {
         Group {
             if viewModel.pastMatchedItems.isEmpty {
-                ContentUnavailableView {
-                    Label("No History", systemImage: "clock.arrow.circlepath")
-                } description: {
-                    Text("Songs you convert or Shazam show up here. Paste a link on the home screen to convert your first one.")
+                // A failed load also leaves the list empty, so it gets its own
+                // message rather than claiming there is no history.
+                if viewModel.loadFailed {
+                    ContentUnavailableView {
+                        Label("Couldn't Load History", systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text("Your saved history couldn't be read. Reopening SongLinkr may fix it.")
+                    }
+                } else {
+                    ContentUnavailableView {
+                        Label("No History", systemImage: "clock.arrow.circlepath")
+                    } description: {
+                        Text("Songs you convert or Shazam show up here. Paste a link on the home screen to convert your first one.")
+                    }
                 }
             } else {
                 historyList

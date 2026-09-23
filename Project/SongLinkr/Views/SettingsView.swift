@@ -5,8 +5,8 @@
 //  Created by Harry Day on 18/07/2020.
 //
 
-import SwiftUI
 import SongLinkrNetworkCore
+import SwiftUI
 
 struct SettingsView: View {
     @Environment(UserSettings.self) var userSettings
@@ -32,6 +32,9 @@ struct SettingsView: View {
                         Text("Default Streaming Platform", comment: "Option Name, The user's preferred music platform")
                     }
                 }
+                // Long label plus the platform list wraps onto a second line inline, so push
+                // the choice onto its own page with a disclosure arrow instead.
+                .pickerStyle(.navigationLink)
 
                 Picker(selection: $settings.sortOption) {
                     ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in

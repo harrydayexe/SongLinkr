@@ -226,6 +226,9 @@
     "Copy song.link" : {
       "comment" : "Accessibility label for the button that copies the universal song.link URL"
     },
+    "Couldn't Load History" : {
+
+    },
     "Deezer" : {
 
     },
@@ -1323,6 +1326,9 @@
       "comment" : "What's New sheet title"
     },
     "Yandex" : {
+
+    },
+    "Your saved history couldn't be read. Reopening SongLinkr may fix it." : {
 
     },
     "YouTube" : {

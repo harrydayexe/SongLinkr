@@ -12,6 +12,10 @@ class HistoryViewModel: ObservableObject {
     /// The MatchItems found in CoreData
     @Published var pastMatchedItems: [MatchedItem] = []
 
+    /// Whether the stored history failed to load, so that an empty
+    /// `pastMatchedItems` can be told apart from a genuinely empty history.
+    let loadFailed: Bool
+
     private var cancellable: AnyCancellable?
     private let itemStorage: MatchedItemStorage
 
@@ -19,6 +23,7 @@ class HistoryViewModel: ObservableObject {
         matchedItemPublisher: AnyPublisher<[MatchedItem], Never> = MatchedItemStorage.shared.matchedItems.eraseToAnyPublisher()
     ) {
         itemStorage = .shared
+        loadFailed = itemStorage.loadFailed
 
         cancellable = matchedItemPublisher.sink { [weak self] matchedItems in
             self?.pastMatchedItems = matchedItems
