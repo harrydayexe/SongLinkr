@@ -2,14 +2,54 @@
   "sourceLanguage" : "en",
   "strings" : {
     "…or identify what’s playing around you" : {
-      "comment" : "Hint under the search button pointing at the Shazam button"
+      "comment" : "Hint under the search button pointing at the Shazam button",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "…oder erkennen, was gerade in der Umgebung läuft"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "…o identifica lo que suena a tu alrededor"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "…または、周りで流れている曲を認識"
+          }
+        }
+      }
     },
     "%@" : {
       "comment" : "The app's version number, shown in Settings. Not translatable",
       "shouldTranslate" : false
     },
     "A Fresh New Look" : {
-      "comment" : "What's New feature title"
+      "comment" : "What's New feature title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ein frisches neues Design"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Un diseño completamente nuevo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "まったく新しいデザイン"
+          }
+        }
+      }
     },
     "About" : {
       "comment" : "Section Header, section contains information about the app",
@@ -64,25 +104,165 @@
       }
     },
     "Amazon Music" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Amazon Music"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Amazon Music"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Amazon Music"
+          }
+        }
+      }
     },
     "Amazon Store" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Amazon Store"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Amazon Store"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Amazon Store"
+          }
+        }
+      }
     },
     "An unknown error occurred" : {
-      "comment" : "Error message title"
+      "comment" : "Error message title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ein unbekannter Fehler ist aufgetreten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Se ha producido un error desconocido"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "不明なエラー"
+          }
+        }
+      }
     },
     "Any song. Every platform." : {
-      "comment" : "Tagline under the app name on the home screen"
+      "comment" : "Tagline under the app name on the home screen",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Jeder Song. Jede Plattform."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Cualquier canción. Todas las plataformas."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "どんな曲も、あらゆる音楽配信サービスで。"
+          }
+        }
+      }
     },
     "Apple Music" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Apple Music"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Apple Music"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Apple Music"
+          }
+        }
+      }
     },
     "Audiomack" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Audiomack"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Audiomack"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Audiomack"
+          }
+        }
+      }
     },
     "Audius" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Audius"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Audius"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Audius"
+          }
+        }
+      }
     },
     "Auto Open External Links" : {
       "comment" : "Option name, decides whether to automatically open links in the user's preferred platform",
@@ -154,7 +334,27 @@
       }
     },
     "Continue" : {
-      "comment" : "Dismisses the What's New sheet"
+      "comment" : "Dismisses the What's New sheet",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Weiter"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Continuar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "続ける"
+          }
+        }
+      }
     },
     "Convert a music link to links on all supported platforms" : {
       "comment" : "Shortcuts action description for Match URL to Platform",
@@ -203,13 +403,73 @@
       }
     },
     "Copy song.link" : {
-      "comment" : "Accessibility label for the button that copies the universal song.link URL"
+      "comment" : "Accessibility label for the button that copies the universal song.link URL",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "song.link kopieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Copiar song.link"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "song.linkをコピー"
+          }
+        }
+      }
     },
     "Couldn't Load History" : {
-      "comment" : "History screen empty state title, shown when saved history fails to load"
+      "comment" : "History screen empty state title, shown when saved history fails to load",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Verlauf konnte nicht geladen werden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "No se ha podido cargar el historial"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "履歴の読み込みエラー"
+          }
+        }
+      }
     },
     "Deezer" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Deezer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Deezer"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Deezer"
+          }
+        }
+      }
     },
     "Default Platform at the Top of Results" : {
       "comment" : "Option name, decides whether the users preferred platform is at the top of the list",
@@ -304,10 +564,50 @@
       }
     },
     "Google" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Google"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Google"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Google"
+          }
+        }
+      }
     },
     "Google Store" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Google Store"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Google Store"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Google Store"
+          }
+        }
+      }
     },
     "Help" : {
       "comment" : "Section Header, contains links to support online",
@@ -379,7 +679,27 @@
       }
     },
     "iTunes" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "iTunes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "iTunes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "iTunes"
+          }
+        }
+      }
     },
     "Japanese" : {
       "comment" : "Language name, section header on the Thanks To screen listing the Japanese translator",
@@ -405,10 +725,50 @@
       }
     },
     "Listen On" : {
-      "comment" : "Heading above a list of platforms"
+      "comment" : "Heading above a list of platforms",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Anhören auf"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Escuchar en"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "聴ける音楽配信サービス"
+          }
+        }
+      }
     },
     "Looking up links…" : {
-      "comment" : "Share extension loading message"
+      "comment" : "Share extension loading message",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Links werden gesucht …"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Buscando enlaces…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "リンクを検索中…"
+          }
+        }
+      }
     },
     "Match URL to Platform" : {
       "comment" : "Shortcuts action name and short title, converts a music link to links on other platforms",
@@ -433,26 +793,143 @@
         }
       }
     },
-    "MatrixZockt" : {
-      "comment" : "Name of a translator credited on the Thanks To screen. Person's username, do not translate"
-    },
     "Napster" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Napster"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Napster"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Napster"
+          }
+        }
+      }
     },
     "No History" : {
-      "comment" : "History screen empty state title, shown when there is no history yet"
+      "comment" : "History screen empty state title, shown when there is no history yet",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Kein Verlauf"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Sin historial"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "履歴なし"
+          }
+        }
+      }
     },
     "No Link Found" : {
-      "comment" : "Share extension error title"
+      "comment" : "Share extension error title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Kein Link gefunden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "No se ha encontrado ningún enlace"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "リンクが見つかりません"
+          }
+        }
+      }
     },
     "No Match Found" : {
-      "comment" : "Error message title"
+      "comment" : "Error message title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Kein Ergebnis gefunden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "No se ha encontrado ninguna coincidencia"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "マッチが見つかりません"
+          }
+        }
+      }
     },
     "No match was found in the Shazam Library" : {
-      "comment" : "Error message"
+      "comment" : "Error message",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "In der Shazam-Bibliothek wurde kein Ergebnis gefunden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "No se ha encontrado ninguna coincidencia en la biblioteca de Shazam"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazamのライブラリでマッチする曲が見つかりませんでした。"
+          }
+        }
+      }
     },
     "OK" : {
-      "comment" : "Button that dismisses the error alert on the home screen"
+      "comment" : "Button that dismisses the error alert on the home screen",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "OK"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Aceptar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "Open" : {
       "comment" : "A context menu item, opens the link",
@@ -524,16 +1001,96 @@
       }
     },
     "Open in SongLinkr" : {
-      "comment" : "Share extension button, opens the shared link in the SongLinkr app"
+      "comment" : "Share extension button, opens the shared link in the SongLinkr app",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "In SongLinkr öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Abrir en SongLinkr"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "SongLinkrで開く"
+          }
+        }
+      }
     },
     "Pandora" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Pandora"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Pandora"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Pandora"
+          }
+        }
+      }
     },
     "Paste a song link…" : {
-      "comment" : "Placeholder text in the link input field on the home screen"
+      "comment" : "Placeholder text in the link input field on the home screen",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Song-Link einfügen …"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Pega el enlace de una canción…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "曲のリンクをペースト…"
+          }
+        }
+      }
     },
     "Platform" : {
-      "comment" : "Shortcuts type name for a music platform (e.g. Spotify, Apple Music) used as a parameter in the Match URL to Platform action"
+      "comment" : "Shortcuts type name for a music platform (e.g. Spotify, Apple Music) used as a parameter in the Match URL to Platform action",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Plattform"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Plataforma"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "プラットフォーム"
+          }
+        }
+      }
     },
     "Platform Sort Option" : {
       "comment" : "Option name, user's choose what order to show results in",
@@ -651,10 +1208,50 @@
       }
     },
     "Rebuilt from the ground up for iOS 27, with Liquid Glass throughout." : {
-      "comment" : "What's New feature description"
+      "comment" : "What's New feature description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Von Grund auf neu für iOS 27 entwickelt, durchgehend mit Liquid Glass."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Reconstruida desde cero para iOS 27, con Liquid Glass en toda la app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "iOS 27のためにゼロから作り直し、アプリ全体にLiquid Glassを採用しました。"
+          }
+        }
+      }
     },
     "Redesigned Share Extension" : {
-      "comment" : "What's New feature title"
+      "comment" : "What's New feature title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Neu gestaltete Teilen-Erweiterung"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Extensión para compartir rediseñada"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "新しくなった共有機能拡張"
+          }
+        }
+      }
     },
     "Save Shazam Matches to Library" : {
       "comment" : "Option name, decides whether to save matches made with shazam to the shazam library automatically",
@@ -680,7 +1277,27 @@
       }
     },
     "Search" : {
-      "comment" : "Button title, searches for the entered link"
+      "comment" : "Button title, searches for the entered link",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Suchen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Buscar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "検索"
+          }
+        }
+      }
     },
     "Search Again" : {
       "comment" : "List Swipe Action Name",
@@ -775,16 +1392,96 @@
       }
     },
     "Share a song from any app and get links without leaving it." : {
-      "comment" : "What's New feature description"
+      "comment" : "What's New feature description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Songs aus jeder App teilen und Links erhalten, ohne die App zu verlassen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Comparte una canción desde cualquier app y obtén los enlaces sin salir de ella."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "どのアプリからでも曲を共有して、そのアプリを離れずにリンクを取得できます。"
+          }
+        }
+      }
     },
     "Share a universal link to your friends." : {
-      "comment" : "What's New feature description"
+      "comment" : "What's New feature description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Einen universellen Link mit Freunden teilen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Comparte un enlace universal con tus amigos."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "どの音楽配信サービスでも開ける共通のリンクを友達にシェアできます。"
+          }
+        }
+      }
     },
     "Share song.link" : {
-      "comment" : "Button title, shares the universal song.link URL\nWhat's New feature title"
+      "comment" : "Button title, shares the universal song.link URL\nWhat's New feature title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "song.link teilen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Compartir song.link"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "song.linkをシェア"
+          }
+        }
+      }
     },
     "Shazam" : {
-      "comment" : "Accessibility label for the button that starts a Shazam match"
+      "comment" : "Accessibility label for the button that starts a Shazam match",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazam"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazam"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazam"
+          }
+        }
+      }
     },
     "Shazam Matches" : {
       "comment" : "Section Header in History Tab",
@@ -812,22 +1509,100 @@
     "Shazam, Front and Centre" : {
       "comment" : "What's New feature title",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazam im Mittelpunkt"
+          }
+        },
         "en-US" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shazam, Front and Center"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazam, en primer plano"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazamが主役に"
+          }
         }
       }
     },
     "Some information was missing" : {
-      "comment" : "Error message title"
+      "comment" : "Error message title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Fehlende Informationen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Falta información"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "一部の情報がありません"
+          }
+        }
+      }
     },
     "Something went wrong" : {
-      "comment" : "Error message title\nGeneric error title"
+      "comment" : "Error message title\nGeneric error title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Etwas ist schief gelaufen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Algo salió mal"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "エラーが発生しました"
+          }
+        }
+      }
     },
     "SongLinkr couldn't find a link in what was shared." : {
-      "comment" : "Share extension error message, shown when no URL could be read from the shared item"
+      "comment" : "Share extension error message, shown when no URL could be read from the shared item",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "SongLinkr konnte im geteilten Inhalt keinen Link finden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "SongLinkr no ha podido encontrar ningún enlace en el contenido compartido."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "共有された内容の中にリンクが見つかりませんでした。"
+          }
+        }
+      }
     },
     "SongLinkr is developed by Harry Day from England" : {
       "comment" : "Section footer",
@@ -853,10 +1628,50 @@
       }
     },
     "Songs you convert or Shazam show up here. Paste a link on the home screen to convert your first one." : {
-      "comment" : "History screen empty state description, shown when there is no history yet"
+      "comment" : "History screen empty state description, shown when there is no history yet",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Songs, die du umwandelst oder mit Shazam erkennst, erscheinen hier. Füge auf dem Startbildschirm einen Link ein, um deinen ersten Song umzuwandeln."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Las canciones que conviertas o identifiques con Shazam aparecerán aquí. Pega un enlace en la pantalla de inicio para convertir la primera."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "変換した曲やShazamで認識した曲がここに表示されます。ホーム画面でリンクをペーストして、最初の曲を変換してみてください。"
+          }
+        }
+      }
     },
     "SoundCloud" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "SoundCloud"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "SoundCloud"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "SoundCloud"
+          }
+        }
+      }
     },
     "Spanish" : {
       "comment" : "Language name, section header on the Thanks To screen listing the Spanish translator",
@@ -882,10 +1697,50 @@
       }
     },
     "Spinrilla" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Spinrilla"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Spinrilla"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Spinrilla"
+          }
+        }
+      }
     },
     "Spotify" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Spotify"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Spotify"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Spotify"
+          }
+        }
+      }
     },
     "Support" : {
       "comment" : "Link name, links to the support page",
@@ -934,7 +1789,27 @@
       }
     },
     "Tap the Shazam button to identify what's playing and get links straight away." : {
-      "comment" : "What's New feature description"
+      "comment" : "What's New feature description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tippe auf die Shazam-Taste, um zu erkennen, was gerade läuft, und sofort Links zu erhalten."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Toca el botón Shazam para identificar lo que suena y obtener los enlaces al instante."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazamボタンをタップすると、いま流れている曲を認識して、すぐにリンクを取得できます。"
+          }
+        }
+      }
     },
     "Target Platform" : {
       "comment" : "Shortcuts action parameter (Match URL to Platform), the platform to return a link for",
@@ -1006,19 +1881,119 @@
       }
     },
     "The song was matched by Shazam but not enough information was returned. Please try again later." : {
-      "comment" : "Error message"
+      "comment" : "Error message",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Der Song wurde von Shazam erkannt, es wurden jedoch nicht genügend Informationen zurückgegeben. Bitte später erneut versuchen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazam ha identificado la canción, pero no ha devuelto suficiente información. Inténtalo de nuevo más tarde."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Shazamで曲は認識されましたが、十分な情報が返されませんでした。あとでやり直してみてください。"
+          }
+        }
+      }
     },
     "Tidal" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidal"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidal"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidal"
+          }
+        }
+      }
     },
     "Try Again" : {
-      "comment" : "Button title, retries a failed search"
+      "comment" : "Button title, retries a failed search",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Erneut versuchen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Reintentar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "再試行"
+          }
+        }
+      }
     },
     "Unknown" : {
-      "comment" : "Placeholder for when the version number cannot be loaded"
+      "comment" : "Placeholder for when the version number cannot be loaded",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Unbekannt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Desconocido"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "不明"
+          }
+        }
+      }
     },
     "URL" : {
-      "comment" : "Shortcuts action parameter, the music link to convert or open"
+      "comment" : "Shortcuts action parameter, the music link to convert or open",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "URL"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "URL"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "URL"
+          }
+        }
+      }
     },
     "URL Matches" : {
       "comment" : "Section Header in History Tab",
@@ -1067,19 +2042,119 @@
       }
     },
     "Welcome to SongLinkr" : {
-      "comment" : "What's New sheet title"
+      "comment" : "What's New sheet title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Willkommen bei SongLinkr"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Te damos la bienvenida a SongLinkr"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "SongLinkrへようこそ"
+          }
+        }
+      }
     },
     "Yandex" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Yandex"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Yandex"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Yandex"
+          }
+        }
+      }
     },
     "Your saved history couldn't be read. Reopening SongLinkr may fix it." : {
-      "comment" : "History screen empty state description, shown when saved history fails to load"
+      "comment" : "History screen empty state description, shown when saved history fails to load",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Der gespeicherte Verlauf konnte nicht gelesen werden. Möglicherweise hilft es, SongLinkr neu zu öffnen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "No se ha podido leer el historial guardado. Puede que se solucione al volver a abrir SongLinkr."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "保存されている履歴を読み込めませんでした。SongLinkrを開き直すと解決する場合があります。"
+          }
+        }
+      }
     },
     "YouTube" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "YouTube"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "YouTube"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "YouTube"
+          }
+        }
+      }
     },
     "YouTube Music" : {
-      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is"
+      "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "YouTube Music"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "YouTube Music"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "YouTube Music"
+          }
+        }
+      }
     }
   },
   "version" : "1.3"
