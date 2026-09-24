@@ -143,6 +143,7 @@ private struct ShareResultsView: View {
     }
 }
 
+#if DEBUG
 #Preview("Results") {
     ZStack {
         GradientBackground()
@@ -158,3 +159,4 @@ private struct ShareResultsView: View {
         )
     }
 }
+#endif

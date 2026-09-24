@@ -119,6 +119,8 @@ struct PlatformListRow: View {
     }
 }
 
+#if DEBUG
 #Preview {
     PlatformList(platforms: .previewPlatformLinks)
 }
+#endif

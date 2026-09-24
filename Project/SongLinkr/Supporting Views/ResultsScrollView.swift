@@ -49,6 +49,7 @@ struct ResultsScrollView: View {
     }
 }
 
+#if debug
 #Preview {
     @Previewable @Namespace var namespace
 
@@ -57,3 +58,4 @@ struct ResultsScrollView: View {
         ResultsScrollView(namespace: namespace, result: .previewResults)
     }
 }
+#endif
