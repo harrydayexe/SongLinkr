@@ -1023,6 +1023,9 @@
         }
       }
     },
+    "Opens in your browser" : {
+      "comment" : "Accessibility hint for settings links that open a web page"
+    },
     "Pandora" : {
       "comment" : "Music platform name, shown as an option in the Shortcuts app for the Match URL to Platform action's Target Platform parameter. Brand name, usually kept as-is",
       "localizations" : {
@@ -1367,6 +1370,9 @@
           }
         }
       }
+    },
+    "Settings…" : {
+      "comment" : "Menu command that opens the settings screen"
     },
     "Share" : {
       "comment" : "A context menu item, launches the share sheet",

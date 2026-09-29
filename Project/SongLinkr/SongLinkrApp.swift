@@ -13,6 +13,7 @@ struct SongLinkrApp: App {
     @State private var userSettings = UserSettings()
     @State private var searchModel: SearchModel
     @State private var shazamMatcher: ShazamMatcher
+    @State private var navigation = AppNavigation()
 
     init() {
         let model = SearchModel()
@@ -26,6 +27,16 @@ struct SongLinkrApp: App {
                 .environment(userSettings)
                 .environment(searchModel)
                 .environment(shazamMatcher)
+                .environment(navigation)
+        }
+        .commands {
+            // Adds "Settings…" (⌘,) to the app menu on Mac and the ⌘ shortcut list on iPad
+            CommandGroup(replacing: .appSettings) {
+                Button(String(localized: "Settings…", comment: "Menu command that opens the settings screen")) {
+                    navigation.showSettings()
+                }
+                .keyboardShortcut(",", modifiers: .command)
+            }
         }
     }
 }

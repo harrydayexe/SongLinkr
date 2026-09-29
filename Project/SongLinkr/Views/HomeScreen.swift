@@ -11,6 +11,7 @@ struct HomeScreen: View {
     @Environment(SearchModel.self) private var searchModel
     @Environment(ShazamMatcher.self) private var shazamMatcher
     @Environment(UserSettings.self) private var userSettings
+    @Environment(AppNavigation.self) private var navigation
     @Environment(\.openURL) private var openURL
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -37,7 +38,9 @@ struct HomeScreen: View {
     @State private var whatsNew: WhatsNew?
 
     var body: some View {
-        NavigationStack {
+        @Bindable var navigation = navigation
+
+        NavigationStack(path: $navigation.path) {
             ZStack {
                 GradientBackground()
 
@@ -60,6 +63,12 @@ struct HomeScreen: View {
             // they must never be able to size the layouts in return (e.g. a long URL's ideal
             // width widening the ZStack, which widens the slots, which widens the heroes…)
             .overlay { heroLayer }
+            .navigationDestination(for: AppDestination.self) { destination in
+                switch destination {
+                case .history: HistoryView()
+                case .settings: SettingsView()
+                }
+            }
             // Morph between home and results whenever a search finishes or is cleared
             .onChange(of: searchModel.results?.id) { _, id in
                 if id != nil, let results = searchModel.results {
@@ -248,4 +257,5 @@ struct HomeScreen: View {
         .environment(UserSettings())
         .environment(model)
         .environment(ShazamMatcher(searchModel: model))
+        .environment(AppNavigation())
 }

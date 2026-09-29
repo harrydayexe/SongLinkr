@@ -82,9 +82,7 @@ struct SearchBoxView: View {
             }
             .accessibilityLabel(Text("History", comment: "Accessibility label for the history button"))
 
-            NavigationLink {
-                SettingsView()
-            } label: {
+            NavigationLink(value: AppDestination.settings) {
                 Image(systemName: "slider.horizontal.3")
                     .frame(minWidth: 44, minHeight: 44)
             }

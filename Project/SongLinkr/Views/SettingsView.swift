@@ -23,18 +23,7 @@ struct SettingsView: View {
                     comment: "Section Footer, Explains the auto open preference"
                 )
             ) {
-                Picker(selection: $settings.defaultPlatform) {
-                    ForEach(Platform.allCases, id: \.self) { platform in
-                        Text(platform.displayName)
-                    }
-                } label: {
-                    SettingsRowLabel(color: .orange, systemImage: "music.note") {
-                        Text("Default Streaming Platform", comment: "Option Name, The user's preferred music platform")
-                    }
-                }
-                // Long label plus the platform list wraps onto a second line inline, so push
-                // the choice onto its own page with a disclosure arrow instead.
-                .pickerStyle(.navigationLink)
+                defaultPlatformPicker(selection: $settings.defaultPlatform)
 
                 Picker(selection: $settings.sortOption) {
                     ForEach(UserSettings.SortOptions.allCases, id: \.self) { sortOption in
@@ -68,22 +57,16 @@ struct SettingsView: View {
             Section(
                 header: Text("Help", comment: "Section Header, contains links to support online")
             ) {
-                Link(destination: URL(string: "https://harryday.dev/songlinkr/support")!) {
-                    SettingsRowLabel(color: .teal, systemImage: "questionmark") {
-                        Text("Support", comment: "Link name, links to the support page")
-                    }
+                ExternalLinkRow(destination: URL(string: "https://harryday.dev/songlinkr/support")!, color: .teal, systemImage: "questionmark") {
+                    Text("Support", comment: "Link name, links to the support page")
                 }
 
-                Link(destination: URL(string: "https://harryday.dev/songlinkr/privacy")!) {
-                    SettingsRowLabel(color: .gray, systemImage: "hand.raised") {
-                        Text("Privacy Policy", comment: "Link name, links to the privacy policy")
-                    }
+                ExternalLinkRow(destination: URL(string: "https://harryday.dev/songlinkr/privacy")!, color: .gray, systemImage: "hand.raised") {
+                    Text("Privacy Policy", comment: "Link name, links to the privacy policy")
                 }
 
-                Link(destination: URL(string: "http://harryday.dev/songlinkr/support")!) {
-                    SettingsRowLabel(color: .cyan, systemImage: "globe") {
-                        Text("Improve Translations", comment: "Link name, Links to a page about improving translations")
-                    }
+                ExternalLinkRow(destination: URL(string: "http://harryday.dev/songlinkr/support")!, color: .cyan, systemImage: "globe") {
+                    Text("Improve Translations", comment: "Link name, Links to a page about improving translations")
                 }
             }
 
@@ -121,6 +104,39 @@ struct SettingsView: View {
         .background { GradientBackground() }
         .navigationTitle(Text("Settings"))
     }
+
+    @ViewBuilder
+    private func defaultPlatformPicker(selection: Binding<Platform>) -> some View {
+        let label = SettingsRowLabel(color: .orange, systemImage: "music.note") {
+            Text("Default Streaming Platform", comment: "Option Name, The user's preferred music platform")
+        }
+
+        // On iPhone the long label plus the platform name wraps onto a second line inline,
+        // so push the choice onto its own page, where there's room for the platform logos.
+        // iPad and Mac have room for an inline menu, which only renders plain text.
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            Picker(selection: selection) {
+                ForEach(Platform.allCases, id: \.self) { platform in
+                    PlatformListRow(platform: platform, showArrow: false)
+                }
+            } label: {
+                label
+            } currentValueLabel: {
+                // Keep the settings row to just the name; the logos are only for the selection page.
+                Text(selection.wrappedValue.displayName)
+            }
+            .pickerStyle(.navigationLink)
+        } else {
+            Picker(selection: selection) {
+                ForEach(Platform.allCases, id: \.self) { platform in
+                    Text(platform.displayName)
+                }
+            } label: {
+                label
+            }
+            .pickerStyle(.menu)
+        }
+    }
 }
 
 /// Grouped-list row label with a small coloured icon tile, matching the redesign language.
@@ -142,6 +158,29 @@ struct SettingsRowLabel<Title: View>: View {
             title
                 .foregroundStyle(.primary)
         }
+    }
+}
+
+/// Settings row that opens a web page, with a trailing arrow so it reads as leaving the app.
+struct ExternalLinkRow<Title: View>: View {
+    let destination: URL
+    let color: Color
+    let systemImage: String
+    @ViewBuilder let title: Title
+
+    var body: some View {
+        Link(destination: destination) {
+            HStack {
+                SettingsRowLabel(color: color, systemImage: systemImage) {
+                    title
+                }
+                Spacer()
+                Image(systemName: "arrow.up.right")
+                    .foregroundStyle(.secondary)
+                    .accessibilityHidden(true)
+            }
+        }
+        .accessibilityHint(Text("Opens in your browser", comment: "Accessibility hint for settings links that open a web page"))
     }
 }
 
