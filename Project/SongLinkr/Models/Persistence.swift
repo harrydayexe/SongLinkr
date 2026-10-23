@@ -61,19 +61,19 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        container.viewContext.mergePolicy = NSMergePolicy(merge: .mergeByPropertyStoreTrumpMergePolicyType)
     }
 
-    func save() {
-        print("here")
+    /// Saves the view context if it has pending changes.
+    ///
+    /// Failures are thrown rather than handled here so the caller can decide how
+    /// to recover. A caller that ignores the error leaves the rejected changes
+    /// pending, which makes every later save fail the same way.
+    func save() throws {
         let context = container.viewContext
 
         if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                print("Save Failed")
-            }
+            try context.save()
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 /**
     The `Endpoint` struct contains the necessary code to create a URL to access the Song.Link API
  */
-public struct Endpoint {
+public struct Endpoint: Sendable {
     /**
      The path of a URL. For example the path of `https://github.com/harryday123/` is `/harryday123/`
      */

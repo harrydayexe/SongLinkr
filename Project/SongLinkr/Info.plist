@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2.1</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -32,12 +32,12 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>191</string>
+	<string>273</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow microphone access to enable searching via Shazam</string>
-<key>UIApplicationSceneManifest</key>
+	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
@@ -55,8 +55,6 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>UIRequiresFullScreen</key>
-	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

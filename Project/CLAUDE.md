@@ -4,4 +4,4 @@ There is also a Shazam feature which listens to and identifies the song first.
 
 Networking lives in SongLinkrNetworkCore.
 
-SongLinkr is written in Swift, using SwiftUI
+SongLinkr is written in Swift, using SwiftUI.
