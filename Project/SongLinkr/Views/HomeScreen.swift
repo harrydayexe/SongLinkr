@@ -14,6 +14,9 @@ struct HomeScreen: View {
     @Environment(AppNavigation.self) private var navigation
     @Environment(\.openURL) private var openURL
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Set when bars sit in a column beside the content (iPhone Duo), nil when they run along
+    /// the top. Read inside the navigation stack, then passed down as `\.verticalBarEdge`.
+    @State private var verticalBarEdge: HorizontalEdge?
 
     @Namespace private var heroNamespace
     @State private var phase: SearchPhase = .home
@@ -54,6 +57,8 @@ struct HomeScreen: View {
                     .wipeMask(top: wipeBand.top, bottom: wipeBand.bottom, revealsBand: true)
             }
             .coordinateSpace(.morph)
+            .environment(\.verticalBarEdge, verticalBarEdge)
+            .onVerticalBarEdgeChange { verticalBarEdge = $0 }
             .onGeometryChange(for: CGFloat.self) { proxy in
                 proxy.size.height + proxy.safeAreaInsets.bottom
             } action: { bottom in
@@ -63,6 +68,17 @@ struct HomeScreen: View {
             // they must never be able to size the layouts in return (e.g. a long URL's ideal
             // width widening the ZStack, which widens the slots, which widens the heroes…)
             .overlay { heroLayer }
+            .overlay {
+                if let verticalBarEdge {
+                    ColumnControls(
+                        edge: verticalBarEdge,
+                        isResults: phase.isResults,
+                        shareURL: displayedResult?.pageUrl,
+                        copyConfirmed: linkCopied,
+                        copyAction: copyLink
+                    )
+                }
+            }
             .navigationDestination(for: AppDestination.self) { destination in
                 switch destination {
                 case .history: HistoryView()
@@ -193,6 +209,8 @@ struct HomeScreen: View {
                 secondaryAction: phase.isResults ? copyLink : toggleShazam
             )
             .heroFollower(.actions, in: heroNamespace)
+            // With vertical bars, Share and Copy live in the status bar column instead
+            .morphCrossfade(visible: !(phase.isResults && verticalBarEdge != nil))
         }
     }
 

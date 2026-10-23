@@ -540,6 +540,12 @@
         }
       }
     },
+    "Done" : {
+
+    },
+    "Edit" : {
+
+    },
     "German" : {
       "comment" : "Language name, section header on the Thanks To screen listing the German translator",
       "localizations" : {

@@ -21,6 +21,9 @@ struct ResultsView: View {
 
     private var metrics = HeroMetrics()
 
+    /// Set when bars sit in a column beside the content (iPhone Duo), nil when they run along the top.
+    @Environment(\.verticalBarEdge) private var verticalBarEdge
+
     init(
         namespace: Namespace.ID,
         result: ResultsModel?,
@@ -43,24 +46,31 @@ struct ResultsView: View {
                     .heroSlot(.input, in: namespace, isActive: isActive)
                     .wipeEdge(.resultsInput, onChange: onWipeEdgeChange)
                     .padding(.horizontal)
+                    // A small gap below a status bar; with none above (it's in the column),
+                    // a standard margin from the screen edge to match the side padding
+                    .padding(.top, verticalBarEdge == nil ? 8 : nil)
 
-                ResultsScrollView(namespace: namespace, result: result, isActive: isActive, onDismiss: onDismiss)
+                ResultsScrollView(namespace: namespace, result: result, isActive: isActive, reservesActionsSpace: verticalBarEdge == nil, onDismiss: onDismiss)
             }
 
+            // Still the actions hero's destination with vertical bars, where HomeScreen hides
+            // it and its controls move to the status bar column
             Color.clear
                 .frame(height: metrics.actionsHeight)
                 .heroSlot(.actions, in: namespace, isActive: isActive)
                 .padding(.horizontal)
                 .padding(.bottom, 8)
                 .background {
-                    // Fades the list out beneath the actions hero, which is drawn above this layout
-                    LinearGradient(
-                        colors: [.clear, Color(.systemGroupedBackground).opacity(0.95)],
-                        startPoint: .top,
-                        endPoint: UnitPoint(x: 0.5, y: 0.45)
-                    )
-                    .padding(.top, -40)
-                    .ignoresSafeArea(edges: .bottom)
+                    if verticalBarEdge == nil {
+                        // Fades the list out beneath the actions hero, which is drawn above this layout
+                        LinearGradient(
+                            colors: [.clear, Color(.systemGroupedBackground).opacity(0.95)],
+                            startPoint: .top,
+                            endPoint: UnitPoint(x: 0.5, y: 0.45)
+                        )
+                        .padding(.top, -40)
+                        .ignoresSafeArea(edges: .bottom)
+                    }
                 }
         }
         .allowsHitTesting(isActive)

@@ -24,6 +24,13 @@ struct HistoryView: View {
         horizontalSizeClass == .regular
     }
 
+    /// Driven by the toolbar's edit button
+    @State private var editMode: EditMode = .inactive
+
+    private var isEditing: Bool {
+        editMode.isEditing
+    }
+
     /// The View model for the view
     @StateObject private var viewModel = HistoryViewModel()
 
@@ -92,10 +99,20 @@ struct HistoryView: View {
         }
         .scrollContentBackground(.hidden)
         .background { GradientBackground() }
+        .environment(\.editMode, $editMode)
         .toolbar {
             // The grid has no edit mode; deleting is done from each tile's context menu.
             if !viewModel.pastMatchedItems.isEmpty && !usesGrid {
-                EditButton()
+                // Symbol-only rather than EditButton, so it can join a vertical bar (iPhone Duo)
+                Button {
+                    withAnimation { editMode = isEditing ? .inactive : .active }
+                } label: {
+                    Label {
+                        isEditing ? Text("Done") : Text("Edit")
+                    } icon: {
+                        Image(systemName: isEditing ? "checkmark" : "pencil")
+                    }
+                }
             }
         }
         .navigationTitle(Text("History"))

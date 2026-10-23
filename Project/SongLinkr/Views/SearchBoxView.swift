@@ -17,6 +17,9 @@ struct SearchBoxView: View {
 
     private var metrics = HeroMetrics()
 
+    /// Set when bars sit in a column beside the content (iPhone Duo), nil when they run along the top.
+    @Environment(\.verticalBarEdge) private var verticalBarEdge
+
     init(namespace: Namespace.ID, isActive: Bool = true, onWipeEdgeChange: @escaping (MorphWipe.Edge, CGFloat) -> Void = { _, _ in }) {
         self.namespace = namespace
         self.isActive = isActive
@@ -66,37 +69,16 @@ struct SearchBoxView: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 28)
         .overlay(alignment: .topTrailing) {
-            navigationButtons
-                .padding(.trailing)
-                // Sits above the URL bar's resting place, so it fades rather than being wiped
-                .morphCrossfade(visible: isActive)
+            // With vertical bars, HomeScreen puts these in the status bar column instead
+            if verticalBarEdge == nil {
+                NavigationButtons()
+                    .padding(.trailing)
+                    // Sits above the URL bar's resting place, so it fades rather than being wiped
+                    .morphCrossfade(visible: isActive)
+            }
         }
         .allowsHitTesting(isActive)
         .accessibilityHidden(!isActive)
-    }
-
-    /// History and Settings. Part of the layout rather than the toolbar: removing toolbar
-    /// items collapses the navigation bar, shifting the safe area mid-morph.
-    private var navigationButtons: some View {
-        HStack(spacing: 0) {
-            NavigationLink {
-                HistoryView()
-            } label: {
-                Image(systemName: "clock")
-                    .frame(minWidth: 44, minHeight: 44)
-            }
-            .accessibilityLabel(Text("History", comment: "Accessibility label for the history button"))
-
-            NavigationLink(value: AppDestination.settings) {
-                Image(systemName: "slider.horizontal.3")
-                    .frame(minWidth: 44, minHeight: 44)
-            }
-            .accessibilityLabel(Text("Settings", comment: "Accessibility label for the settings button"))
-        }
-        .buttonStyle(.plain)
-        .foregroundStyle(.primary)
-        .padding(.horizontal, 4)
-        .glassEffect(.regular.interactive(), in: .capsule)
     }
 }
 
