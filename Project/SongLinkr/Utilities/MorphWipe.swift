@@ -72,8 +72,13 @@ private nonisolated struct WipeShape: Shape {
         if revealsBand {
             path.addRect(CGRect(x: rect.minX, y: bandTop, width: rect.width, height: bandBottom - bandTop))
         } else {
-            path.addRect(CGRect(x: rect.minX, y: minY, width: rect.width, height: bandTop - minY))
-            path.addRect(CGRect(x: rect.minX, y: bandBottom, width: rect.width, height: maxY - bandBottom))
+            // Home also overdraws sideways, for the navigation buttons in a side status bar
+            // column (unfolded iPhone Duo). The results band keeps to the view's width: widening
+            // its mask shifts the platform list's leading inset to the screen edge.
+            let minX = rect.minX - rect.width
+            let width = rect.width * 3
+            path.addRect(CGRect(x: minX, y: minY, width: width, height: bandTop - minY))
+            path.addRect(CGRect(x: minX, y: bandBottom, width: width, height: maxY - bandBottom))
         }
         return path
     }

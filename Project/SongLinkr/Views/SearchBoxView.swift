@@ -17,6 +17,10 @@ struct SearchBoxView: View {
 
     private var metrics = HeroMetrics()
 
+    /// Width of a status bar column beside the content (unfolded iPhone Duo), or 0 when the
+    /// status bar runs along the top as usual.
+    @State private var sideColumnWidth: CGFloat = 0
+
     init(namespace: Namespace.ID, isActive: Bool = true, onWipeEdgeChange: @escaping (MorphWipe.Edge, CGFloat) -> Void = { _, _ in }) {
         self.namespace = namespace
         self.isActive = isActive
@@ -65,11 +69,31 @@ struct SearchBoxView: View {
         // keep the navigation buttons overlay pinned to the screen's corner
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 28)
-        .overlay(alignment: .topTrailing) {
-            navigationButtons
-                .padding(.trailing)
-                // Sits above the URL bar's resting place, so it fades rather than being wiped
-                .morphCrossfade(visible: isActive)
+        .overlay(alignment: sideColumnWidth > 0 ? .bottomTrailing : .topTrailing) {
+            Group {
+                if sideColumnWidth > 0 {
+                    // Centred in the status bar column, like the system places the back button
+                    // The overlay ends at the safe area, so negative padding reaches into the column
+                    navigationButtons(axis: .vertical)
+                        .frame(width: sideColumnWidth)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing, -sideColumnWidth)
+                        .padding(.bottom)
+                } else {
+                    navigationButtons(axis: .horizontal)
+                        .padding(.trailing)
+                }
+            }
+            // Sits above the URL bar's resting place, so it fades rather than being wiped
+            .morphCrossfade(visible: isActive)
+        }
+        .onGeometryChange(for: CGFloat.self) { proxy in
+            // A side status bar column shows up as a trailing inset with nothing on the
+            // leading side. Landscape iPhones inset both sides equally, so they're excluded.
+            let insets = proxy.safeAreaInsets
+            return insets.trailing > insets.leading && insets.trailing > insets.top ? insets.trailing : 0
+        } action: { width in
+            sideColumnWidth = width
         }
         .allowsHitTesting(isActive)
         .accessibilityHidden(!isActive)
@@ -77,8 +101,10 @@ struct SearchBoxView: View {
 
     /// History and Settings. Part of the layout rather than the toolbar: removing toolbar
     /// items collapses the navigation bar, shifting the safe area mid-morph.
-    private var navigationButtons: some View {
-        HStack(spacing: 0) {
+    private func navigationButtons(axis: Axis) -> some View {
+        let layout = axis == .horizontal ? AnyLayout(HStackLayout(spacing: 0)) : AnyLayout(VStackLayout(spacing: 0))
+
+        return layout {
             NavigationLink {
                 HistoryView()
             } label: {
@@ -95,7 +121,7 @@ struct SearchBoxView: View {
         }
         .buttonStyle(.plain)
         .foregroundStyle(.primary)
-        .padding(.horizontal, 4)
+        .padding(axis == .horizontal ? .horizontal : .vertical, 4)
         .glassEffect(.regular.interactive(), in: .capsule)
     }
 }

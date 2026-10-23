@@ -21,6 +21,12 @@ struct ResultsView: View {
 
     private var metrics = HeroMetrics()
 
+    /// Top safe area inset. Zero when the status bar sits in a side column (unfolded iPhone Duo).
+    @State private var topInset: CGFloat = 0
+
+    /// Gap kept above the URL bar when there's no status bar above it, matching its side padding.
+    private let minimumTopMargin: CGFloat = 16
+
     init(
         namespace: Namespace.ID,
         result: ResultsModel?,
@@ -43,6 +49,8 @@ struct ResultsView: View {
                     .heroSlot(.input, in: namespace, isActive: isActive)
                     .wipeEdge(.resultsInput, onChange: onWipeEdgeChange)
                     .padding(.horizontal)
+                    // The status bar normally provides this gap; only make up the difference
+                    .padding(.top, max(0, minimumTopMargin - topInset))
 
                 ResultsScrollView(namespace: namespace, result: result, isActive: isActive, onDismiss: onDismiss)
             }
@@ -62,6 +70,11 @@ struct ResultsView: View {
                     .padding(.top, -40)
                     .ignoresSafeArea(edges: .bottom)
                 }
+        }
+        .onGeometryChange(for: CGFloat.self) { proxy in
+            proxy.safeAreaInsets.top
+        } action: { top in
+            topInset = top
         }
         .allowsHitTesting(isActive)
         .accessibilityHidden(!isActive)
