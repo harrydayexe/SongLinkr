@@ -11,12 +11,14 @@ struct ResultsScrollView: View {
     let namespace: Namespace.ID
     var result: ResultsModel?
     var isActive: Bool = true
+    /// Leaves room at the end of the list for the actions row drawn over its bottom.
+    var reservesActionsSpace: Bool = true
     /// Collapses back to the search layout; the same action as the input bar's clear button.
     var onDismiss: () -> Void = {}
 
     var body: some View {
         PlatformList(platforms: result?.response ?? [])
-            .contentMargins(.bottom, 100, for: .scrollContent)
+            .contentMargins(.bottom, reservesActionsSpace ? 100 : 0, for: .scrollContent)
             .scrollContentBackground(.hidden)
             // A fresh list per result, so it starts scrolled to the top
             .id(result?.id)
