@@ -66,7 +66,6 @@ public extension Array where Element == PlatformLinks {
     }
 }
 
-#if DEBUG
 public extension Array where Element == PlatformLinks {
     static let previewPlatformLinks = [
         PlatformLinks(id: Platform.yandex, url: URL(string: "https://music.yandex.ru/track/59994505")!),
@@ -75,4 +74,3 @@ public extension Array where Element == PlatformLinks {
         PlatformLinks(id: Platform.appleMusic, url: URL(string: "https://geo.music.apple.com/us/album/_/1488452376?i=1488452377&mt=1&app=music&at=1000lHKX")!, nativeAppUriMobile: URL(string: "itmss://itunes.apple.com/us/album/_/1488452376?i=1488452377&mt=1&app=music&at=1000lHKX")!, nativeAppUriDesktop: URL(string: "music://itunes.apple.com/us/album/_/1488452376?i=1488452377&mt=1&app=music&at=1000lHKX")!)
     ]
 }
-#endif

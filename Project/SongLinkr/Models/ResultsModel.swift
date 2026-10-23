@@ -46,7 +46,6 @@ extension ResultsModel: Equatable {
     }
 }
 
-#if DEBUG
 extension ResultsModel {
     static let previewResults = ResultsModel(
         artworkURL: URL(string: "https://m.media-amazon.com/images/I/51jNytp9pxL._AA500.jpg"),
@@ -62,4 +61,3 @@ extension ResultsModel {
         pageUrl: URL(string: "https://song.link/s/3NivHilTTTs8SQwp51yG0X")
     )
 }
-#endif

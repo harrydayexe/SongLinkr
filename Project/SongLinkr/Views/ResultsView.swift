@@ -68,7 +68,6 @@ struct ResultsView: View {
     }
 }
 
-#if DEBUG
 #Preview {
     @Previewable @Namespace var namespace
 
@@ -77,4 +76,3 @@ struct ResultsView: View {
         ResultsView(namespace: namespace, result: .previewResults)
     }
 }
-#endif

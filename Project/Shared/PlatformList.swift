@@ -10,15 +10,68 @@ import SwiftUI
 
 struct PlatformList: View {
     @Environment(\.openURL) private var openURL
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    /// The smallest a grid tile may be; scales with Dynamic Type so names stay readable.
+    @ScaledMetric(relativeTo: .subheadline) private var gridTileMinimumWidth: CGFloat = 110
 
     let platforms: [PlatformLinks]
 
     var body: some View {
+        // Wide windows (iPad, Mac) show a grid of platform tiles; compact widths
+        // (iPhone, Slide Over, narrow Split View) keep the list.
+        if horizontalSizeClass == .regular {
+            platformGrid
+        } else {
+            platformList
+        }
+    }
+
+    private func open(_ platform: PlatformLinks) {
+        openURL(platform.nativeAppUriMobile ?? platform.url)
+    }
+
+    /// Adaptive columns fit as many tiles as the window width allows. The maximum keeps
+    /// the logos from ballooning when only a few columns fit.
+    private var platformGrid: some View {
+        ScrollView {
+            LazyVGrid(
+                columns: [GridItem(.adaptive(minimum: gridTileMinimumWidth, maximum: gridTileMinimumWidth * 1.4), spacing: 20, alignment: .top)],
+                spacing: 24
+            ) {
+                Section {
+                    ForEach(platforms) { platform in
+                        Button {
+                            open(platform)
+                        } label: {
+                            PlatformGridTile(platform: platform.id)
+                        }
+                        .buttonStyle(.plain)
+                        .hoverEffect()
+                        .contextMenu { contextMenuContent(for: platform) }
+                    }
+                } header: {
+                    Text("Listen On", comment: "Heading above a list of platforms")
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityAddTraits(.isHeader)
+                } footer: {
+                    SongLinkCreditView()
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 8)
+                }
+            }
+            .padding()
+        }
+    }
+
+    private var platformList: some View {
         List {
             Section {
                 ForEach(platforms) { platform in
                     Button {
-                        openURL(platform.nativeAppUriMobile ?? platform.url)
+                        open(platform)
                     } label: {
                         PlatformListRow(platform: platform.id)
                     }
@@ -119,8 +172,49 @@ struct PlatformListRow: View {
     }
 }
 
-#if DEBUG
+/// A grid tile: the platform's brand-coloured icon tile with its name underneath.
+struct PlatformGridTile: View {
+    let platform: Platform
+
+    var body: some View {
+        VStack(spacing: 8) {
+            // Square tile sized by the grid column. The icon scales with it, keeping the
+            // same proportions as the list row's 22pt icon on a 36pt tile.
+            GeometryReader { proxy in
+                let side = proxy.size.width
+                RoundedRectangle(cornerRadius: side * 0.25)
+                    .fill(platform.tileBackground)
+                    .overlay {
+                        if platform.iconName.isEmpty {
+                            Image(systemName: "music.note")
+                                .font(.system(size: side * 0.35, weight: .bold))
+                                .foregroundStyle(.white)
+                        } else {
+                            Image(platform.iconName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: side * 0.6, height: side * 0.6)
+                        }
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: side * 0.25)
+                            .strokeBorder(.primary.opacity(0.08), lineWidth: 0.5)
+                    }
+            }
+            .aspectRatio(1, contentMode: .fit)
+            .accessibilityHidden(true)
+
+            Text(platform.displayName)
+                .font(.subheadline)
+                .foregroundStyle(.primary)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+        }
+        .contentShape(.rect)
+        .accessibilityElement(children: .combine)
+    }
+}
+
 #Preview {
     PlatformList(platforms: .previewPlatformLinks)
 }
-#endif

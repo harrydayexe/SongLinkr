@@ -13,6 +13,16 @@ import SwiftUI
 
 struct HistoryView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    /// The smallest a grid tile may be; scales with Dynamic Type so titles stay readable.
+    @ScaledMetric(relativeTo: .headline) private var gridTileMinimumWidth: CGFloat = 160
+
+    /// Wide windows (iPad, Mac) show a grid of artwork; compact widths
+    /// (iPhone, Slide Over, narrow Split View) keep the list.
+    private var usesGrid: Bool {
+        horizontalSizeClass == .regular
+    }
 
     /// The View model for the view
     @StateObject private var viewModel = HistoryViewModel()
@@ -74,6 +84,8 @@ struct HistoryView: View {
                         Text("Songs you convert or Shazam show up here. Paste a link on the home screen to convert your first one.")
                     }
                 }
+            } else if usesGrid {
+                historyGrid
             } else {
                 historyList
             }
@@ -81,7 +93,8 @@ struct HistoryView: View {
         .scrollContentBackground(.hidden)
         .background { GradientBackground() }
         .toolbar {
-            if !viewModel.pastMatchedItems.isEmpty {
+            // The grid has no edit mode; deleting is done from each tile's context menu.
+            if !viewModel.pastMatchedItems.isEmpty && !usesGrid {
                 EditButton()
             }
         }
@@ -114,6 +127,42 @@ struct HistoryView: View {
             }
         }
         .listStyle(.insetGrouped)
+    }
+
+    /// Adaptive columns fit as many tiles as the window width allows, so the
+    /// grid reflows for any iPad size or window size.
+    private var historyGrid: some View {
+        ScrollView {
+            LazyVGrid(
+                columns: [GridItem(.adaptive(minimum: gridTileMinimumWidth), spacing: 20, alignment: .top)],
+                alignment: .leading,
+                spacing: 28
+            ) {
+                if !shazamItems.isEmpty {
+                    gridSection("Shazam Matches", items: shazamItems)
+                }
+
+                if !nonShazamItems.isEmpty {
+                    gridSection("URL Matches", items: nonShazamItems)
+                }
+            }
+            .padding()
+        }
+    }
+
+    private func gridSection(_ title: LocalizedStringKey, items: [MatchedItem]) -> some View {
+        Section {
+            ForEach(items, id: \.self) { item in
+                HistoryGridItem(item: item)
+                    .contextMenu { swipeActionsContent(for: item) }
+            }
+        } header: {
+            Text(title)
+                .font(.title2.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 8)
+                .accessibilityAddTraits(.isHeader)
+        }
     }
 }
 

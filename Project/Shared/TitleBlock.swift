@@ -15,8 +15,8 @@ struct TitleBlock: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            Text(title).font(titleFont)
-            Text(subtitle).font(subtitleFont).foregroundStyle(.secondary)
+            Text(title).font(titleFont).multilineTextAlignment(.center)
+            Text(subtitle).font(subtitleFont).foregroundStyle(.secondary).multilineTextAlignment(.center)
         }
     }
 }

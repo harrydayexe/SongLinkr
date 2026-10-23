@@ -40,6 +40,7 @@ struct SearchBoxView: View {
 
             Color.clear
                 .frame(height: metrics.inputHeight)
+                .frame(maxWidth: metrics.homeControlsMaxWidth)
                 .heroSlot(.input, in: namespace, isActive: isActive)
                 .wipeEdge(.homeInput, onChange: onWipeEdgeChange)
                 .padding(.top, 36)
@@ -47,6 +48,7 @@ struct SearchBoxView: View {
             VStack(spacing: 0) {
                 Color.clear
                     .frame(height: metrics.actionsHeight)
+                    .frame(maxWidth: metrics.homeControlsMaxWidth)
                     .heroSlot(.actions, in: namespace, isActive: isActive)
                     .padding(.top, 16)
 
@@ -59,6 +61,9 @@ struct SearchBoxView: View {
             }
             .frame(maxHeight: .infinity)
         }
+        // The capped slots no longer fill the width, so stretch the layout explicitly to
+        // keep the navigation buttons overlay pinned to the screen's corner
+        .frame(maxWidth: .infinity)
         .padding(.horizontal, 28)
         .overlay(alignment: .topTrailing) {
             navigationButtons

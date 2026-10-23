@@ -62,6 +62,9 @@ struct HeroMetrics: DynamicProperty {
     @ScaledMetric(relativeTo: .body) var inputHeight: CGFloat = 54
     @ScaledMetric(relativeTo: .subheadline) var compactInputHeight: CGFloat = 46
     @ScaledMetric(relativeTo: .headline) var actionsHeight: CGFloat = 52
+    /// Caps the home input and actions so they don't stretch edge to edge on iPad and Mac.
+    /// Narrower than any iPhone's usable width, so it only applies to wider windows.
+    @ScaledMetric(relativeTo: .body) var homeControlsMaxWidth: CGFloat = 500
 
     /// Logo height as a fraction of the screen's usable height on home.
     static let logoHeightFraction: CGFloat = 0.11
